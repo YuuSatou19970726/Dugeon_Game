@@ -11,6 +11,5 @@ AssetOrigin:
   productId: 166114
   packageName: Pixel Art Platformer - Village Props
   packageVersion: 2.2.0
-  assetPath: Assets/Cainos/Pixel Art Platformer - Village Props/Animation/AC Chest
-    Silver.controller
+  assetPath: Assets/Animations/AnimationChest/AC Chest Silver.controller
   uploadId: 552318
