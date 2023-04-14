@@ -15,7 +15,7 @@ public class FloatingGravitation : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            Destroy(gameObject, 0.3f);
+            Destroy(gameObject, 2f);
         }
     }
 }
