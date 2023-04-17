@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class FloatingGravitation : MonoBehaviour
 {
-    Rigidbody2D rigidbody2D;
+    Rigidbody2D rigid;
 
     private void Start()
     {
-        rigidbody2D = GetComponent<Rigidbody2D>();
+        rigid = GetComponent<Rigidbody2D>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
