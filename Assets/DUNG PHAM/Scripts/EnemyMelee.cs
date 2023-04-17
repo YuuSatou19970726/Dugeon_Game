@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeEnemy : MonoBehaviour
+public class EnemyMelee : MonoBehaviour
 {
     #region Variable Declare
     [Header("Preference")]
@@ -38,12 +38,12 @@ public class MeleeEnemy : MonoBehaviour
         playerDetected = false;
     }
     void Update()
-    {
+    {      
         FindPlayer();
 
         if (playerDetected)
         {
-            Attack();
+            MeleeAttack();
         }
         else
         {
@@ -93,7 +93,6 @@ public class MeleeEnemy : MonoBehaviour
 
         if (GroundCheck() && WallCheck())
         {
-            // Debug.Log(GroundCheck() + " " + WallCheck());
             rigid.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
     }
@@ -118,7 +117,6 @@ public class MeleeEnemy : MonoBehaviour
     }
     #endregion
 
-
     #region Attack
     void FindPlayer()
     {
@@ -134,7 +132,7 @@ public class MeleeEnemy : MonoBehaviour
             playerDetected = false;
         }
     }
-    void Attack()
+    void MeleeAttack()
     {
         if (!isAttacking)
         {
@@ -148,7 +146,7 @@ public class MeleeEnemy : MonoBehaviour
     }
     IEnumerator AttackDelay()
     {
-        Debug.Log(damage);
+        Debug.Log("Hello");
         yield return new WaitForSeconds(speedAttack);
         isAttacking = false;
     }
