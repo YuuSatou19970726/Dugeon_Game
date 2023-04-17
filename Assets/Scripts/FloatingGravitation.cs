@@ -4,18 +4,14 @@ using UnityEngine;
 
 public class FloatingGravitation : MonoBehaviour
 {
-    Rigidbody2D rigidbody2D;
 
-    private void Start()
-    {
-        rigidbody2D = GetComponent<Rigidbody2D>();
-    }
+    float deplayDestroy = 2f;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            Destroy(gameObject, 2f);
+            Destroy(gameObject, deplayDestroy);
         }
     }
 }

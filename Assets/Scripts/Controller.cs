@@ -10,6 +10,7 @@ public class Controller : MonoBehaviour
     float xDirection;
 
     bool isJumping = false;
+    float moveSpeed = 5f;
     float jumpForce = 5f;
 
     [SerializeField]
@@ -26,7 +27,7 @@ public class Controller : MonoBehaviour
     void Update()
     {
         xDirection = Input.GetAxisRaw("Horizontal");
-        float moveStep = 10f * xDirection * Time.deltaTime;
+        float moveStep = moveSpeed * xDirection * Time.deltaTime;
         transform.position = transform.position + new Vector3(moveStep, 0, 0);
 
         if(Input.GetButtonDown("Jump") && !isJumping && IsGrounded())
