@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GiyuTorappu : MonoBehaviour
 {
+    [SerializeField]
+    GameObject blueMagician;
+
     CultistBlueMagician cultistBlueMagician;
 
     private void Awake()
@@ -16,7 +19,14 @@ public class GiyuTorappu : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             cultistBlueMagician.SetIsFallingWater(true);
+            InstallBlueMagician();
             Destroy(gameObject);
         }
+    }
+
+    void InstallBlueMagician()
+    {
+        Vector2 position = new Vector2(20f, -5.3f);
+        Instantiate(blueMagician, position, Quaternion.identity);
     }
 }

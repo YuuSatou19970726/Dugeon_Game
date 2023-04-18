@@ -18,7 +18,10 @@ public class KillerZone : MonoBehaviour
     {
         if (!cultistBlueMagician.GetIsFallingWater() || transform.position.x < 6f)
         {
-            KillerMovement();
+            if (transform.position.x < 72f)
+            {
+                KillerMovement();
+            }
         }
 
         if (cultistBlueMagician.GetIsFallingWater() && transform.position.x > 6f)

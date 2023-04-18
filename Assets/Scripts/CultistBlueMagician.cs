@@ -5,6 +5,7 @@ using UnityEngine;
 public class CultistBlueMagician : MonoBehaviour
 {
     bool isFallingWater;
+    int countCoinBlue = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -26,5 +27,14 @@ public class CultistBlueMagician : MonoBehaviour
     public bool GetIsFallingWater()
     {
         return isFallingWater;
+    }
+
+    public void IncrementCoin()
+    {
+        countCoinBlue++;
+        if(countCoinBlue == 3)
+        {
+            this.isFallingWater = false;
+        }
     }
 }
