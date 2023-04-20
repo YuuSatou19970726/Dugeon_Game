@@ -179,7 +179,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 96
-        width: 32
+        width: 22
         height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -200,7 +200,7 @@ TextureImporter:
         serializedVersion: 2
         x: 32
         y: 96
-        width: 32
+        width: 22
         height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -221,7 +221,7 @@ TextureImporter:
         serializedVersion: 2
         x: 64
         y: 96
-        width: 32
+        width: 22
         height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -242,7 +242,7 @@ TextureImporter:
         serializedVersion: 2
         x: 96
         y: 96
-        width: 32
+        width: 22
         height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -488,6 +488,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Idle
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4f9935db94530145be2a5e30d5c1ed9
+      internalID: -1303722077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -514,6 +535,7 @@ TextureImporter:
       Dust_7: 21300022
       Dust_8: 21300024
       Dust_9: 21300026
+      Idle: -1303722077
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
