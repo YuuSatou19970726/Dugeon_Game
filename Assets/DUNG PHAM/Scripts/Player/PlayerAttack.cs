@@ -10,11 +10,19 @@ public class PlayerAttack : MonoBehaviour
     float comboTimer = 0;
     const string ENEMY = "Enemy";
     public float damage;
+    public ScreenShake screenShake;
+    public float attackSpeed;
+    bool canAttack;
+    void Start()
+    {
+        screenShake = FindObjectOfType<ScreenShake>();
+        canAttack = true;
+    }
 
     void Update()
     {
         comboTimer += Time.deltaTime;
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && canAttack)
         {
             Attack();
         }
@@ -33,6 +41,8 @@ public class PlayerAttack : MonoBehaviour
         {
             if (coli.CompareTag(ENEMY))
             {
+                StartCoroutine(screenShake.cameraShaking());
+                
                 if (coli.GetComponent<EnemyMelee>())
                     coli.GetComponent<EnemyMelee>().BeAttacked(damage);
                 if (coli.GetComponent<EnemyRange>())
@@ -41,11 +51,20 @@ public class PlayerAttack : MonoBehaviour
                 hitCount++;
                 comboTimer = 0;
 
+                StartCoroutine(AttackDelay());
+
                 Debug.Log(coli + " + " + hitCount);
             }
         }
     }
-  
+
+    IEnumerator AttackDelay()
+    {
+        canAttack = false;
+        yield return new WaitForSeconds(attackSpeed);
+        canAttack = true;
+    }
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.cyan;

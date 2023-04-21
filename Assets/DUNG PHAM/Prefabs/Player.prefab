@@ -50,6 +50,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   damage: 30
+  screenShake: {fileID: 0}
+  attackSpeed: 0.5
 --- !u!1 &163671115832767518
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,10 +309,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lowPoint: {x: 0, y: 0, z: 0}
-  wallChecker: {fileID: 0}
+  leftPoint: {x: 0, y: 0, z: 0}
+  rightPoint: {x: 0, y: 0, z: 0}
   isGrounded: 0
   isJumping: 0
-  isWalling: 0
+  isLeftWall: 0
+  isRightWall: 0
   isWallJumping: 0
   moveOnAir: 0
   maxSpeed: 5

@@ -15,10 +15,14 @@ public class EnemyRange : EnemyProperties
 
     void Start()
     {
+        player = FindObjectOfType<PlayerController>().transform;
         rigid = GetComponent<Rigidbody2D>();
         playerHealth = player.GetComponent<PlayerHealth>();
         animator = GetComponent<Animator>();
+        bloodSplash = GetComponentInChildren<BloodSplash>();
+
         weaponRange = Vector2.Distance(weaponMaxRange.position, weaponMinRange.position);
+
         playerDetected = false;
 
         animator.Play("Idle");
@@ -34,14 +38,15 @@ public class EnemyRange : EnemyProperties
     {
         if (transform.position.x > target.x)
         {
-            transform.localScale = new Vector3(1, 1, 0);
             direction = -1;
         }
         else
         {
-            transform.localScale = new Vector3(-1, 1, 0);
             direction = 1;
         }
+        transform.localScale = new Vector3(-direction, 1, 0);
+
+        bloodSplash.direction = -direction;
     }
 
     void FindPlayer()

@@ -8,6 +8,7 @@ public class EnemyProperties : MonoBehaviour
     public Transform player;
     public LayerMask groundLayer;
     public PlayerHealth playerHealth;
+    public BloodSplash bloodSplash;
 
     [Header("Enemy Object")]
     [Range(0, 100)] public float health;
@@ -35,11 +36,12 @@ public class EnemyProperties : MonoBehaviour
     public void BeAttacked(float damage)
     {
         health -= damage;
+        bloodSplash.SpawnBlood();
         if (health <= 0) BeDeath();
     }
     public void BeDeath()
     {
-        Destroy(gameObject);
+        Destroy(gameObject.transform.parent.gameObject);
     }
     #endregion
 

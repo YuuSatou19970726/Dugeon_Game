@@ -11,9 +11,12 @@ public class EnemyMelee : EnemyProperties
     Vector3 targetPos;
     void Start()
     {
+        player = FindObjectOfType<PlayerController>().transform;
         rigid = GetComponent<Rigidbody2D>();
         playerHealth = player.GetComponent<PlayerHealth>();
         animator = GetComponent<Animator>();
+        bloodSplash = GetComponentInChildren<BloodSplash>();
+
         playerDetected = false;
 
         targetPos = pointA.position;
@@ -70,6 +73,8 @@ public class EnemyMelee : EnemyProperties
         }
 
         transform.localScale = new Vector3(direction, 1, 0);
+        
+        bloodSplash.direction = direction;
 
         if (transform.position != target)
         {
