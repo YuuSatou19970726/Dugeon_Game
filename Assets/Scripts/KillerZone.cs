@@ -5,10 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class KillerZone : MonoBehaviour
 {
+
+    CameraController cameraController;
+
     CultistBlueMagician cultistBlueMagician;
 
     private void Awake()
     {
+        cameraController = FindAnyObjectByType<CameraController>();
         cultistBlueMagician = FindAnyObjectByType<CultistBlueMagician>();
     }
 
@@ -18,7 +22,7 @@ public class KillerZone : MonoBehaviour
     {
         if (!cultistBlueMagician.GetIsFallingWater() || transform.position.x < 6f)
         {
-            if (transform.position.x < 72f)
+            if (transform.position.x < 72f && !cameraController.GetIsMovie())
             {
                 KillerMovement();
             }

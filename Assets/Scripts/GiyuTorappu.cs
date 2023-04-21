@@ -7,11 +7,21 @@ public class GiyuTorappu : MonoBehaviour
     [SerializeField]
     GameObject blueMagician;
 
+    CameraController cameraController;
     CultistBlueMagician cultistBlueMagician;
 
     private void Awake()
     {
+        cameraController = FindAnyObjectByType<CameraController>();
         cultistBlueMagician = FindAnyObjectByType<CultistBlueMagician>();
+    }
+
+    private void Start()
+    {
+        if (cameraController.GetIsMovie())
+        {
+            InstallBlueMagician();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
