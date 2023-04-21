@@ -5,8 +5,7 @@ AssetOrigin:
   productId: 228568
   packageName: Slime Enemy - Pixel Art
   packageVersion: 1.0
-  assetPath: Assets/War/Slime Enemy - Pixel Art/Sprites/Idle/Blue/Sprite Sheet -
-    Blue Idle.png
+  assetPath: Assets/Sprites/Slime/Idle/Blue/Sprite Sheet - Blue Idle.png
   uploadId: 531930
 TextureImporter:
   internalIDToNameTable:

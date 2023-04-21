@@ -19,7 +19,7 @@ public class Controller : MonoBehaviour
     LayerMask jumpableGround;
 
     //Animation States
-    const string PLAYER_IDLE = "Slime_Idle";
+    const string PLAYER_IDLE = "Slime_Idle_Animation";
     const string PLAYER_JUMP = "Slime_Jump_Start_Up";
     const string PLAYER_HURT = "Slime_Hurt";
     const string PLAYER_DEATH = "Slime_Death";
@@ -42,6 +42,11 @@ public class Controller : MonoBehaviour
         if(Input.GetButtonDown("Jump") && !isJumping && IsGrounded())
         {
             isJumping = true;
+        }
+
+        if (IsGrounded())
+        {
+            ChangeAnimationState(PLAYER_IDLE);
         }
     }
 

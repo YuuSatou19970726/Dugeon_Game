@@ -5,8 +5,7 @@ AssetOrigin:
   productId: 228568
   packageName: Slime Enemy - Pixel Art
   packageVersion: 1.0
-  assetPath: Assets/War/Slime Enemy - Pixel Art/Sprites/Jump/Blue/Sprite Sheet -
-    Blue Jump Start-up.png
+  assetPath: Assets/Sprites/Slime/Jump/Blue/Sprite Sheet - Blue Jump Start-up.png
   uploadId: 531930
 TextureImporter:
   internalIDToNameTable:
