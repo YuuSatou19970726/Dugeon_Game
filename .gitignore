@@ -10,6 +10,8 @@
 /Logs/
 /MemoryCaptures/
 /UserSettings/
+/Packages/
+/ProjectSettings/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
@@ -45,6 +47,9 @@ ExportedObj/
 *.opendb
 *.VC.db
 *.meta
+*.log
+*.asset
+*.vsconfig
 
 # Unity3D generated meta files
 *.pidb.meta
