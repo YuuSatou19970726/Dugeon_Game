@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Controller : MonoBehaviour
 {
-    Rigidbody2D rigidbody2D;
+    Rigidbody2D rigid;
     BoxCollider2D boxCollider2D;
 
     Animator animator;
@@ -27,7 +27,7 @@ public class Controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rigidbody2D = GetComponent<Rigidbody2D>();
+        rigid = GetComponent<Rigidbody2D>();
         boxCollider2D = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
     }
@@ -49,7 +49,7 @@ public class Controller : MonoBehaviour
     {
         if (isJumping)
         {
-            rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpForce);
+            rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
             isJumping = false;
             ChangeAnimationState(PLAYER_JUMP);
         }

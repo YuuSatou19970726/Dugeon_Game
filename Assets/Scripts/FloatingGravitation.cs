@@ -6,6 +6,12 @@ public class FloatingGravitation : MonoBehaviour
 {
 
     float deplayDestroy = 2f;
+    Rigidbody2D rigid;
+
+    private void Start()
+    {
+        rigid = GetComponent<Rigidbody2D>();
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
