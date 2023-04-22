@@ -2,16 +2,16 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
-/Library/
-/Temp/
-/Obj/
-/Build/
-/Builds/
-/Logs/
-/MemoryCaptures/
-/UserSettings/
-/Packages/
-/ProjectSettings/
+/Library/*
+/Temp/*
+/Obj/*
+/Build/*
+/Builds/*
+/Logs/*
+/MemoryCaptures/*
+/UserSettings/*
+/Packages/*
+/ProjectSettings/*
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
@@ -50,6 +50,7 @@ ExportedObj/
 *.log
 *.asset
 *.vsconfig
+*.dwlt
 
 # Unity3D generated meta files
 *.pidb.meta

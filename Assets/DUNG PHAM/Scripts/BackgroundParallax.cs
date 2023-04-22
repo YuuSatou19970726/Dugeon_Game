@@ -5,7 +5,7 @@ using UnityEngine;
 public class BackgroundParallax : MonoBehaviour
 {
     private Transform cameraTranform;
-    [Range(0, 1)] public float parallaxEffect;
+    [Range(0, 2)] public float parallaxEffectX, parallaxEffectY;
     private Vector3 lastCameraPositon;
     private float textureUnitSizeX;
 
@@ -21,7 +21,7 @@ public class BackgroundParallax : MonoBehaviour
     void Update()
     {
         Vector3 distance = cameraTranform.position - lastCameraPositon;
-        transform.position += new Vector3(distance.x * parallaxEffect, distance.y * parallaxEffect, transform.position.z);
+        transform.position += new Vector3(distance.x * parallaxEffectX, distance.y * parallaxEffectY, transform.position.z);
         lastCameraPositon = cameraTranform.position;
 
         // MoveBackground();
