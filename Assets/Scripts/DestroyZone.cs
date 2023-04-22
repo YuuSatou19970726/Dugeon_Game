@@ -11,5 +11,10 @@ public class DestroyZone : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+
+        if (collision.gameObject.CompareTag("Bridge"))
+        {
+            Destroy(collision.gameObject);
+        }
     }
 }

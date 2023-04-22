@@ -4631,6 +4631,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: wall 00
+      rect:
+        serializedVersion: 2
+        x: 860
+        y: 473
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29fc58aedf2f1214c86d5767df304244
+      internalID: -1018500602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -4749,6 +4770,7 @@ TextureImporter:
       roof 4: -562862935
       roof 6: -1418334091
       roof 7: 1910216924
+      wall 00: -1018500602
       wall 1: 1760507941
       wall 2: 1312663696
       wall big 1: -764281227

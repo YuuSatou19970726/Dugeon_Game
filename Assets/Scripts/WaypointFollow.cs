@@ -10,7 +10,7 @@ public class WaypointFollow : MonoBehaviour
     int currentWaypointIndex = 0;
 
     [SerializeField]
-    float speed = 2f;
+    float speed = 4f;
 
     void Update()
     {

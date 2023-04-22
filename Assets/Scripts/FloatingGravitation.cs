@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FloatingGravitation : MonoBehaviour
 {
+
+    float deplayDestroy = 2f;
     Rigidbody2D rigid;
 
     private void Start()
@@ -15,7 +17,7 @@ public class FloatingGravitation : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            Destroy(gameObject, 2f);
+            Destroy(gameObject, deplayDestroy);
         }
     }
 }

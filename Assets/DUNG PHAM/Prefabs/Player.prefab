@@ -28,9 +28,11 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1283002139856782236}
+  - {fileID: 1283002141601980451}
   m_Father: {fileID: 5312422120388965400}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1160294684
 MonoBehaviour:
@@ -44,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a25e69c6d6748424498d1daeec8bce3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 0}
   maxRangePoint: {fileID: 1283002139856782236}
   minRangePoint: {fileID: 1283002141601980451}
   attackable:
@@ -215,13 +218,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1283002139856782239}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.805, y: -0.59, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.8050003, y: -0.59000015, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5312422120388965400}
-  m_RootOrder: 1
+  m_Father: {fileID: 1160294683}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1283002141601980450
 GameObject:
@@ -246,13 +249,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1283002141601980450}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.323, y: 0.24, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.32300186, y: 0.24000168, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5312422120388965400}
-  m_RootOrder: 2
+  m_Father: {fileID: 1160294683}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5312422120388965383
 GameObject:
@@ -290,8 +293,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 163671115832767513}
-  - {fileID: 1283002139856782236}
-  - {fileID: 1283002141601980451}
   - {fileID: 1160294683}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -311,18 +312,19 @@ MonoBehaviour:
   lowPoint: {x: 0, y: 0, z: 0}
   leftPoint: {x: 0, y: 0, z: 0}
   rightPoint: {x: 0, y: 0, z: 0}
-  isGrounded: 0
-  isJumping: 0
-  isLeftWall: 0
-  isRightWall: 0
-  isWallJumping: 0
   moveOnAir: 0
   maxSpeed: 5
   jumpForce: 7
+  runSpeed: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 1024
-  direction: 0
+  IDLE: Idle
+  ATTACK:
+  - Attack 1
+  - Attack 2
+  - Attack 3
+  animator: {fileID: 0}
 --- !u!114 &2502368701763644626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,11 +334,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5312422120388965383}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a8c86db3ef7c1242927c6d574c4970f, type: 3}
+  m_Script: {fileID: 11500000, guid: 410c8605a1a563540811d00a67a70af7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   climbSpeed: 5
-  swimSpeed: 7
+  swimSpeed: 5
   isClimbing: 0
   isSwimming: 0
 --- !u!114 &6940127857496913907

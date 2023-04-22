@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Ladder
   - Water
+  - Bridge
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Player
   - Attackable
   - Ground
   - 
@@ -45,4 +46,37 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2979575761
+    locked: 0
+  - name: Ground
+    uniqueID: 295398379
+    locked: 0
+  - name: BackTerrain
+    uniqueID: 3710783131
+    locked: 0
+  - name: Terrain
+    uniqueID: 1627272463
+    locked: 0
+  - name: Door
+    uniqueID: 2076183997
+    locked: 0
+  - name: BackTrap
+    uniqueID: 1983543923
+    locked: 0
+  - name: Trap
+    uniqueID: 975054427
+    locked: 0
+  - name: Player
+    uniqueID: 871894479
+    locked: 0
+  - name: Fontground
+    uniqueID: 3986441097
+    locked: 0
+  - name: FontTerrain
+    uniqueID: 239838479
+    locked: 0
+  - name: FontTrap
+    uniqueID: 2413390143
     locked: 0
