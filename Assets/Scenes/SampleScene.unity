@@ -13074,7 +13074,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 1865925172}
-  isMovie: 0
+  isMovie: 1
 --- !u!1 &561932369
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,8 +16,6 @@ public class NextLevelPosition : MonoBehaviour
     IEnumerator CompleteLevel()
     {
         yield return new WaitForSeconds(.5f);
-
-        Debug.Log("DUNG" + SceneManager.GetActiveScene().buildIndex);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
