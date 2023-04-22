@@ -13074,7 +13074,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 1865925172}
-  isMovie: 1
+  isMovie: 0
 --- !u!1 &561932369
 GameObject:
   m_ObjectHideFlags: 0
@@ -29736,7 +29736,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1268587472
 SpriteRenderer:
   m_ObjectHideFlags: 0
