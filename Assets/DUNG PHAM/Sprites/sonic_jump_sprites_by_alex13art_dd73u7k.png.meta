@@ -125,7 +125,7 @@ TextureImporter:
         width: 69
         height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -146,7 +146,7 @@ TextureImporter:
         width: 69
         height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -167,7 +167,7 @@ TextureImporter:
         width: 69
         height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -175,6 +175,27 @@ TextureImporter:
       bones: []
       spriteID: 4c7961fbe8cfa0b4fa150be35b1963f8
       internalID: 1756738764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teleport
+      rect:
+        serializedVersion: 2
+        x: 961
+        y: 1131
+        width: 25
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e8465d0cdad44e458e82419c06bb2fa
+      internalID: -1084273159
       vertices: []
       indices: 
       edges: []
@@ -193,7 +214,7 @@ TextureImporter:
       jump pad 1: 1870317649
       jump pad 2: 1293433326
       jump pad 3: 1756738764
-      sonic_jump_sprites_by_alex13art_dd73u7k_0: -2062432187
+      teleport: -2062432187
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

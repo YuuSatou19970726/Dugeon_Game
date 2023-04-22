@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public Vector3 lowPoint, leftPoint, rightPoint;
+    #region Fields
+    Vector3 lowPoint, leftPoint, rightPoint;
     Collider2D coli;
     Rigidbody2D rigid;
-    public bool isGrounded, isJumping, isLeftWall, isRightWall, isWallJumping, moveOnAir;
-    public float maxSpeed, jumpForce;
+    bool isGrounded, isJumping, isLeftWall, isRightWall, isWallJumping;
+    [HideInInspector] public bool moveOnAir;
+    [SerializeField] float maxSpeed, jumpForce;
     float runSpeed;
     float accelerationRate = 0.5f;
-    public LayerMask groundLayer;
-    public int direction;
-    const string IDLE = "Idle";
+    [SerializeField] LayerMask groundLayer;
+    int direction;
+    [HideInInspector] public string IDLE = "Idle";
     const string RUN = "Run";
     const string IDLE_RUN = "Idle To Run";
     const string RUN_IDLE = "Run To Idle";
@@ -23,11 +25,13 @@ public class PlayerController : MonoBehaviour
     const string HURT = "Hurt";
     const string WALL_JUMP = "Wall Jump";
     const string WALL_SIDE = "Wall Side";
-    string[] ATTACK = { "Attack 1", "Attack 2", "Attack 3" };
+    [HideInInspector] public string[] ATTACK = { "Attack 1", "Attack 2", "Attack 3" };
     string DEATH = "Death";
-    Animator animator;
-    AnimatorStateInfo state;
-    bool attack01, attack02, attack03;
+    [HideInInspector] public Animator animator;
+    public AnimatorStateInfo state;
+    #endregion
+
+    #region Monobehaviour
     void Awake()
     {
         coli = GetComponent<Collider2D>();
@@ -45,10 +49,7 @@ public class PlayerController : MonoBehaviour
 
         CheckGround();
         CheckWall();
-        AttackAnim();
         CheckJumpCondition();
-
-
     }
     void FixedUpdate()
     {
@@ -57,22 +58,7 @@ public class PlayerController : MonoBehaviour
         WallJump();
         Falling();
     }
-    void CheckJumpCondition()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (isGrounded)
-            {
-                isJumping = true;
-                moveOnAir = true;
-            }
-            else
-            {
-                if (isLeftWall || isRightWall) isWallJumping = true;
-                moveOnAir = false;
-            }
-        }
-    }
+    #endregion
 
     #region Movement
     void Movement()
@@ -118,7 +104,22 @@ public class PlayerController : MonoBehaviour
             runSpeed = 0;
             MoveAnim(IDLE);
         }
-
+    }
+    void CheckJumpCondition()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (isGrounded)
+            {
+                isJumping = true;
+                moveOnAir = true;
+            }
+            else
+            {
+                if (isLeftWall || isRightWall) isWallJumping = true;
+                moveOnAir = false;
+            }
+        }
     }
     void GroundJump()
     {
@@ -198,22 +199,31 @@ public class PlayerController : MonoBehaviour
         else { isRightWall = false; }
     }
     #endregion
+
+    #region Animation
     public void PlayAnimation(string clip)
     {
+        if (state.IsName(clip)) return;
+
         animator.CrossFade(clip, 0, 0);
     }
-    void MoveAnim(string clip)
+    public void MoveAnim(string clip)
     {
-        if (state.IsName(ATTACK[0]) || state.IsName(ATTACK[1]) || state.IsName(ATTACK[2]) || state.IsName(HURT) || state.IsName(DEATH)) return;
+        if (state.IsName(ATTACK[0]) || state.IsName(ATTACK[1]) || state.IsName(ATTACK[2]) || state.IsName(HURT) || state.IsName(DEATH))
+        {
+            if (state.normalizedTime < 1) return;
+        }
         if (isGrounded)
             animator.CrossFade(clip, 0);
     }
+    #endregion
 
     #region Hurt and Die
     public void BeDamagedAnim()
     {
         PlayAnimation(HURT);
-        animator.SetTrigger("Idle");
+
+        MoveAnim(IDLE);
     }
 
     public IEnumerator BeDeath()
@@ -223,64 +233,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(1f);
     }
     #endregion
-    void AttackAnim()
-    {
-        if (Input.GetMouseButtonDown(0) && !state.IsName(ATTACK[0]) && !state.IsName(ATTACK[1]) && !state.IsName(ATTACK[2]))
-        {
-            animator.SetTrigger("Attack 1");
-        }
 
-        if (state.IsName(ATTACK[0]))
-        {
-            if (Input.GetMouseButtonDown(0)) attack01 = true;
-
-            if (state.normalizedTime >= 0.8 && attack01)
-            {
-                animator.SetTrigger("Attack 2");
-                attack01 = false;
-            }
-            else if (state.normalizedTime >= 1 && !attack01)
-            {
-                animator.SetTrigger("Idle");
-            }
-        }
-
-        if (state.IsName(ATTACK[1]))
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                attack02 = true;
-            }
-
-            if (state.normalizedTime >= 0.8 && attack02)
-            {
-                animator.SetTrigger("Attack 3");
-                attack02 = false;
-            }
-            else if (state.normalizedTime >= 1 && !attack02)
-            {
-                animator.SetTrigger("Idle");
-            }
-        }
-
-        if (state.IsName(ATTACK[2]))
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                attack03 = true;
-            }
-
-            if (state.normalizedTime >= 1 && attack03)
-            {
-                animator.SetTrigger("Attack 1");
-                attack03 = false;
-            }
-            else if (state.normalizedTime >= 1 && !attack03)
-            {
-                animator.SetTrigger("Idle");
-            }
-        }
-    }
     #region Debug
     void OnDrawGizmosSelected()
     {

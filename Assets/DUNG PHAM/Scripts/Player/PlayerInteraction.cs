@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Interact_Tile : MonoBehaviour
+public class PlayerInteraction : MonoBehaviour
 {
     #region Variables Declared
     Rigidbody2D rigid;
@@ -46,7 +46,6 @@ public class Interact_Tile : MonoBehaviour
             rigid.GetComponent<PlayerController>().moveOnAir = true;
         }
         else isClimbing = false;
-
 
         if (coli.gameObject.tag == (WATER)) isSwimming = true;
         else isSwimming = false;
