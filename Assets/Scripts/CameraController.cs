@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraController : MonoBehaviour
 {
@@ -63,7 +64,15 @@ public class CameraController : MonoBehaviour
 
             Vector2 speedVector2 = transform.position;
             speedVector2.x += 4f * Time.deltaTime;
-            transform.position = new Vector3(speedVector2.x, transform.position.y, transform.position.z);
+
+            if (transform.position.x > 120f)
+            {
+                cultistBlueMagician.SetIsFallingWater(false);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            } else
+            {
+                transform.position = new Vector3(speedVector2.x, transform.position.y, transform.position.z);
+            }
         }
     }
 
