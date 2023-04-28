@@ -20,8 +20,13 @@ public class Controller : MonoBehaviour
     LayerMask jumpableGround;
 
     //Animation States
+    string PLAYER_STATE = "Slime_Idle_Animation";
     const string PLAYER_IDLE = "Slime_Idle_Animation";
-    const string PLAYER_JUMP = "Slime_Jump_Start_Up";
+    const string PLAYER_JUMP_START_UP = "Slime_Jump_Start_Up";
+    const string PLAYER_JUMP_UP = "Slime_Jump_Up";
+    const string PLAYER_JUMP_TO_FALL = "Slime_Jump_To_Fall";
+    const string PLAYER_JUMP_DOWN = "Slime_Jump_Down";
+    const string PLAYER_JUMP_LAND = "Slime_Jump_Land";
     const string PLAYER_HURT = "Slime_Hurt";
     const string PLAYER_DEATH = "Slime_Death";
 
@@ -47,6 +52,7 @@ public class Controller : MonoBehaviour
 
         if(Input.GetButtonDown("Jump") && !isJumping && IsGrounded())
         {
+            ChangeAnimationState(PLAYER_JUMP_START_UP);
             isJumping = true;
         }
     }
@@ -59,28 +65,50 @@ public class Controller : MonoBehaviour
         } else if (xDirection < 0)
         {
             spriteRenderer.flipX = true;
-        } else
-        {
-            if (IsGrounded())
-            {
-                AnimationIdle();
-            }
         }
 
         if (isJumping)
         {
-            rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
-            ChangeAnimationState(PLAYER_JUMP);
             isJumping = false;
-
-            animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length + 0.5f;
-            Invoke("AnimationIdle", animatorDeplay);
+            PLAYER_STATE = PLAYER_JUMP_UP;
+            animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length;
+            Invoke("AnimationJump", animatorDeplay);
         }
     }
 
-    void AnimationIdle()
+    void AnimationJump()
     {
-        ChangeAnimationState(PLAYER_IDLE);
+        if (PLAYER_STATE == PLAYER_JUMP_UP)
+        rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
+        ChangeAnimationState(PLAYER_STATE);
+
+        if (PLAYER_STATE == PLAYER_IDLE) return;
+
+        switch (PLAYER_STATE)
+        {
+            case PLAYER_JUMP_UP:
+                PLAYER_STATE = PLAYER_JUMP_TO_FALL;
+                animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length - 0.3f;
+                break;
+            case PLAYER_JUMP_TO_FALL:
+                PLAYER_STATE = PLAYER_JUMP_DOWN;
+                animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length;
+                break;
+            case PLAYER_JUMP_DOWN:
+                PLAYER_STATE = PLAYER_JUMP_LAND;
+                animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length - 0.3f;
+                break;
+            case PLAYER_JUMP_LAND:
+                PLAYER_STATE = PLAYER_IDLE;
+                animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length + 0.5f;
+                break;
+        }
+        Invoke("AnimationJump", animatorDeplay);
+    }
+
+    void AnimationState()
+    {
+        ChangeAnimationState(PLAYER_STATE);
     }
 
     bool IsGrounded()
