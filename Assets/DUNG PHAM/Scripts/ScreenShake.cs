@@ -11,7 +11,7 @@ public class ScreenShake : MonoBehaviour
     public float amplitude = 5f;
     public float frequency = 1f;
 
-    void Start()
+    void Awake()
     {
         virtualCamera = GetComponent<CinemachineVirtualCamera>();
         cinemachineBasicMultiChannelPerlin = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();

@@ -5,22 +5,26 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     #region Fields
-    [SerializeField] PlayerController playerController;
+    PlayerController playerController;
     public Transform maxRangePoint, minRangePoint;
-    public LayerMask attackable;
-    int hitCount = 0;
-    float comboTimer = 0;
-    const string ENEMY = "Enemy";
-    public float damage;
-    public ScreenShake screenShake;
-    public float attackSpeed;
+    ScreenShake screenShake;
+    int hitCount;
+    float comboTimer;
     bool attack01, attack02, attack03;
+
+    [SerializeField] ParticleSystem enemyBlood;
+
     #endregion
 
     #region MonoBehaviour
+    void Awake()
+    {
+        playerController = GetComponent<PlayerController>();
+        screenShake = FindObjectOfType<ScreenShake>();
+    }
     void Start()
     {
-        screenShake = FindObjectOfType<ScreenShake>();
+        enemyBlood.Stop();
     }
 
     void Update()
@@ -40,97 +44,101 @@ public class PlayerAttack : MonoBehaviour
     #region Attack
     void AttackAndPlayAnimation(string clip)
     {
-        playerController.PlayAnimation(clip);
+        playerController.playerAnimation.PlayAnimation(clip);
 
-        Collider2D[] targets = Physics2D.OverlapAreaAll(minRangePoint.position, maxRangePoint.position, attackable);
+        Collider2D[] targets = Physics2D.OverlapAreaAll(minRangePoint.position, maxRangePoint.position, playerController.playerProperties.attackLayer);
 
         foreach (Collider2D coli in targets)
         {
-            if (coli.CompareTag(ENEMY))
+            // if (coli.GetComponent<EnemyBeAttacked>())
+            // {
+            //     coli.GetComponent<EnemyBeAttacked>().BeHurt(playerController.playerProperties.damage);
+            // }
+
+            if (coli.GetComponent<IDamageable>() != null)
             {
+                coli.GetComponent<IDamageable>().GetDamage(playerController.playerProperties.damage);
 
-                if (coli.GetComponent<EnemyMelee>())
-                {
-                    coli.GetComponent<EnemyMelee>().BeAttacked(damage);
-                }
-                if (coli.GetComponent<EnemyRange>())
-                {
-                    coli.GetComponent<EnemyRange>().BeAttacked(damage);
-                }
-
-                StartCoroutine(screenShake.cameraShaking());
-
-                hitCount++;
-                comboTimer = 0;
-
-                Debug.Log(coli + " + " + hitCount);
+                enemyBlood.Play();
             }
+
+            StartCoroutine(screenShake.cameraShaking());
+
+
+            hitCount++;
+            comboTimer = 0;
+
+            Debug.Log(coli + " + " + hitCount);
+
         }
     }
     void Attack()
     {
+        if (playerController.playerAnimation.CheckCurrentAnimation(playerController.playerAnimation.ATTACK[0])
+        && playerController.playerAnimation.currentState.normalizedTime < 0.5f) return;
+
         if (
-        Input.GetMouseButtonDown(0)
-        && !playerController.state.IsName(playerController.ATTACK[0])
-        && !playerController.state.IsName(playerController.ATTACK[1])
-        && !playerController.state.IsName(playerController.ATTACK[2]))
+        playerController.playerProperties.isLeftMousePress
+        && !playerController.playerAnimation.CheckCurrentAnimation(playerController.playerAnimation.ATTACK[0])
+        && !playerController.playerAnimation.CheckCurrentAnimation(playerController.playerAnimation.ATTACK[1])
+        && !playerController.playerAnimation.CheckCurrentAnimation(playerController.playerAnimation.ATTACK[2]))
         {
-            AttackAndPlayAnimation(playerController.ATTACK[0]);
+            AttackAndPlayAnimation(playerController.playerAnimation.ATTACK[0]);
             return;
         }
 
-        if (playerController.state.IsName(playerController.ATTACK[0]))
+        if (playerController.playerAnimation.CheckCurrentAnimation(playerController.playerAnimation.ATTACK[0]))
         {
-            if (Input.GetMouseButtonDown(0)) attack02 = true;
+            if (playerController.playerProperties.isLeftMousePress) attack02 = true;
 
-            if (playerController.state.normalizedTime >= 1 && attack02)
+            if (playerController.playerAnimation.currentState.normalizedTime >= 1 && attack02)
             {
-                AttackAndPlayAnimation(playerController.ATTACK[1]);
+                AttackAndPlayAnimation(playerController.playerAnimation.ATTACK[1]);
                 attack02 = false;
                 return;
             }
-            else if (playerController.state.normalizedTime >= 1.5 && !attack02)
+            else if (playerController.playerAnimation.currentState.normalizedTime >= 1.5 && !attack02)
             {
-                playerController.MoveAnim(playerController.IDLE);
+                playerController.playerAnimation.MoveAnim(playerController.playerAnimation.IDLE);
             }
         }
 
-        if (playerController.state.IsName(playerController.ATTACK[1]))
+        if (playerController.playerAnimation.currentState.IsName(playerController.playerAnimation.ATTACK[1]))
         {
-            if (Input.GetMouseButtonDown(0))
+            if (playerController.playerProperties.isLeftMousePress)
             {
                 attack03 = true;
             }
 
-            if (playerController.state.normalizedTime >= 1 && attack03)
+            if (playerController.playerAnimation.currentState.normalizedTime >= 1 && attack03)
             {
-                AttackAndPlayAnimation(playerController.ATTACK[2]);
+                AttackAndPlayAnimation(playerController.playerAnimation.ATTACK[2]);
 
                 attack03 = false;
                 return;
             }
-            else if (playerController.state.normalizedTime >= 1.5 && !attack03)
+            else if (playerController.playerAnimation.currentState.normalizedTime >= 1.5 && !attack03)
             {
-                playerController.MoveAnim(playerController.IDLE);
+                playerController.playerAnimation.MoveAnim(playerController.playerAnimation.IDLE);
             }
         }
 
-        if (playerController.state.IsName(playerController.ATTACK[2]))
+        if (playerController.playerAnimation.currentState.IsName(playerController.playerAnimation.ATTACK[2]))
         {
-            if (Input.GetMouseButtonDown(0))
+            if (playerController.playerProperties.isLeftMousePress)
             {
                 attack01 = true;
             }
 
-            if (playerController.state.normalizedTime >= 1 && attack01)
+            if (playerController.playerAnimation.currentState.normalizedTime >= 1 && attack01)
             {
-                AttackAndPlayAnimation(playerController.ATTACK[0]);
+                AttackAndPlayAnimation(playerController.playerAnimation.ATTACK[0]);
                 attack01 = false;
                 return;
             }
-            else if (playerController.state.normalizedTime >= 1.5 && !attack01)
+            else if (playerController.playerAnimation.currentState.normalizedTime >= 1.5 && !attack01)
             {
-                playerController.MoveAnim(playerController.IDLE);
+                playerController.playerAnimation.MoveAnim(playerController.playerAnimation.IDLE);
             }
         }
     }

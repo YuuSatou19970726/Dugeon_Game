@@ -10,6 +10,7 @@ TagManager:
   - Ladder
   - Water
   - Bridge
+  - OneWayPlatform
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - Player
   - Attackable
   - Ground
-  - 
+  - Grapplable
   - 
   - 
   - 

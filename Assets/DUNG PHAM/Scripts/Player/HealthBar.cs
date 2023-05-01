@@ -8,7 +8,11 @@ public class HealthBar : MonoBehaviour
     public Slider healthBar;
     public Gradient healthBarFill;
     public Image fill;
-    public PlayerHealth playerHealth;
+    public PlayerBeAttacked playerBeAttacked;
+    void Awake()
+    {
+        playerBeAttacked = FindObjectOfType<PlayerBeAttacked>();
+    }
     void Start()
     {
         SetMaxHealth();
@@ -20,14 +24,14 @@ public class HealthBar : MonoBehaviour
 
     void DisplayHealthBar()
     {
-        healthBar.value = playerHealth.health;
+        healthBar.value = playerBeAttacked.currentHealth;
         fill.color = healthBarFill.Evaluate(healthBar.normalizedValue);
     }
 
     public void SetMaxHealth()
     {
-        healthBar.maxValue = playerHealth.maxHealth;
-        healthBar.value = playerHealth.maxHealth;
+        healthBar.maxValue = playerBeAttacked.playerController.playerProperties.maxHealth;
+        healthBar.value = playerBeAttacked.playerController.playerProperties.maxHealth;
         fill.color = healthBarFill.Evaluate(1f);
     }
 }
