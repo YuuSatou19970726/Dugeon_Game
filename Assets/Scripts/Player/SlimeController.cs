@@ -25,6 +25,7 @@ public class SlimeController : MonoBehaviour
     string PLAYER_STATE = "Slime_Idle_Animation";
     const string PLAYER_IDLE = "Slime_Idle_Animation";
     const string PLAYER_JUMP_START_UP = "Slime_Jump_Start_Up";
+    const string PLAYER_HOLD_JUMP = "Slime_Hold_Jump";
     const string PLAYER_JUMP_UP = "Slime_Jump_Up";
     const string PLAYER_JUMP_TO_FALL = "Slime_Jump_To_Fall";
     const string PLAYER_JUMP_DOWN = "Slime_Jump_Down";
@@ -53,16 +54,7 @@ public class SlimeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        xDirection = Input.GetAxisRaw("Horizontal");
-        float moveStep = moveSpeed * xDirection * Time.deltaTime;
-        transform.position = transform.position + new Vector3(moveStep, 0, 0);
-
-        if (Input.GetButtonDown("Jump") && !isJumping && IsGrounded())
-        {
-            ChangeAnimationState(PLAYER_JUMP_START_UP);
-            isJumping = true;
-        }
-
+        SlimeMove();
         cameraController.SetMoveCamera(transform);
     }
 
@@ -86,10 +78,86 @@ public class SlimeController : MonoBehaviour
         }
     }
 
+    void SlimeMove()
+    {
+        //move
+        if (PLAYER_STATE == PLAYER_IDLE)
+        {
+            moveSpeed = 5f;
+        }
+        else if (PLAYER_STATE == PLAYER_JUMP_START_UP || PLAYER_STATE == PLAYER_HOLD_JUMP)
+        {
+            moveSpeed = 3f;
+        }
+        else
+        {
+            moveSpeed = 0f;
+        }
+
+        xDirection = Input.GetAxisRaw("Horizontal");
+        float moveStep = moveSpeed * xDirection * Time.deltaTime;
+
+        if (moveSpeed == 0f && !IsGrounded())
+        {
+            if (spriteRenderer.flipX)
+            {
+                xDirection = -1;
+            }
+            else
+            {
+                xDirection = 1;
+            }
+            moveStep = 5 * xDirection * Time.deltaTime;
+            transform.position = transform.position + new Vector3(moveStep, 0, 0);
+        }
+        else
+        {
+            transform.position = transform.position + new Vector3(moveStep, 0, 0);
+        }
+
+        //jump
+        if (Input.GetKey(KeyCode.Space) && !isJumping && IsGrounded() && PLAYER_STATE == PLAYER_IDLE)
+        {
+            ChangeAnimationState(PLAYER_JUMP_START_UP);
+            isJumping = false;
+
+            PLAYER_STATE = PLAYER_JUMP_START_UP;
+            animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length;
+            Invoke("AnimationHoldJump", animatorDeplay);
+        } else if (Input.GetKeyDown(KeyCode.Space) && !isJumping && IsGrounded())
+        {
+            ChangeAnimationState(PLAYER_JUMP_START_UP);
+            isJumping = true;
+        }
+
+        if (Input.GetKeyUp(KeyCode.Space) && !isJumping && IsGrounded())
+        {
+            isJumping = true;
+        }
+
+        if (PLAYER_STATE == PLAYER_HOLD_JUMP)
+        {
+            if (jumpForce <= 7f)
+            jumpForce += 0.5f;
+        }
+    }
+
+    void AnimationHoldJump()
+    {
+        if (PLAYER_STATE == PLAYER_JUMP_START_UP)
+        {
+            PLAYER_STATE = PLAYER_HOLD_JUMP;
+            ChangeAnimationState(PLAYER_STATE);
+        }
+    }
+
     void AnimationJump()
     {
         if (PLAYER_STATE == PLAYER_JUMP_UP && IsGrounded())
+        {
             rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
+            jumpForce = 5f;
+        }
         ChangeAnimationState(PLAYER_STATE);
 
         if (PLAYER_STATE == PLAYER_IDLE) return;
@@ -114,11 +182,6 @@ public class SlimeController : MonoBehaviour
                 break;
         }
         Invoke("AnimationJump", animatorDeplay);
-    }
-
-    void AnimationState()
-    {
-        ChangeAnimationState(PLAYER_STATE);
     }
 
     bool IsGrounded()
