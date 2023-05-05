@@ -5,20 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField]
-    Transform character;
-
+    MainGame mainGame;
     CultistBlueMagician cultistBlueMagician;
 
     float editDesiredHalfHeight = 0.7f;
     float sceneWidth = 10f;
     Camera camera;
 
-    [SerializeField]
-    bool isMovie = false;
-
     private void Awake()
     {
+        mainGame = FindAnyObjectByType<MainGame>();
         cultistBlueMagician = FindAnyObjectByType<CultistBlueMagician>();
     }
 
@@ -26,7 +22,7 @@ public class CameraController : MonoBehaviour
     {
         camera = GetComponent<Camera>();
 
-        if (isMovie)
+        if (mainGame.GetIsMovie())
         {
             transform.position = new Vector3(-23f, -1f, transform.position.z);
         }
@@ -35,24 +31,7 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isMovie)
-        {
-            if (!cultistBlueMagician.GetIsFallingWater())
-            {
-                editDesiredHalfHeight = 1.3f;
-            }
-            else
-            {
-                editDesiredHalfHeight = 0.7f;
-            }
-
-            float unitsPerPixel = sceneWidth / Screen.width;
-            float desiredHalfHeight = editDesiredHalfHeight * unitsPerPixel * Screen.height;
-
-            camera.orthographicSize = desiredHalfHeight;
-
-            transform.position = new Vector3(character.position.x, character.position.y, transform.position.z);
-        } else
+        if (mainGame.GetIsMovie())
         {
             sceneWidth = 9f;
             editDesiredHalfHeight = 1.5f;
@@ -69,15 +48,32 @@ public class CameraController : MonoBehaviour
             {
                 cultistBlueMagician.SetIsFallingWater(false);
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            } else
+            }
+            else
             {
                 transform.position = new Vector3(speedVector2.x, transform.position.y, transform.position.z);
             }
         }
     }
 
-    public bool GetIsMovie()
+    public void SetMoveCamera (Transform transform)
     {
-        return isMovie;
+        if (!mainGame.GetIsMovie())
+        {
+            if (!cultistBlueMagician.GetIsFallingWater())
+            {
+                editDesiredHalfHeight = 1.3f;
+            }
+            else
+            {
+                editDesiredHalfHeight = 0.7f;
+            }
+
+            float unitsPerPixel = sceneWidth / Screen.width;
+            float desiredHalfHeight = editDesiredHalfHeight * unitsPerPixel * Screen.height;
+
+            camera.orthographicSize = desiredHalfHeight;
+            this.transform.position = new Vector3(transform.position.x, transform.position.y, this.transform.position.z);
+        }
     }
 }

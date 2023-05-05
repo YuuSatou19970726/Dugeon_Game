@@ -7,17 +7,17 @@ public class CultistBlueMagician : MonoBehaviour
     bool isFallingWater;
     int countCoinBlue = 0;
 
-    CameraController cameraController;
+    MainGame mainGame;
 
     private void Awake()
     {
-        cameraController = FindAnyObjectByType<CameraController>();
+        mainGame = FindAnyObjectByType<MainGame>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        if (cameraController.GetIsMovie())
+        if (mainGame.GetIsMovie())
         {
             SetIsFallingWater(true);
         }
