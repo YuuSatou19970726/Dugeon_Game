@@ -45,12 +45,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4785431423388889453}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c35c066949db8b54cbc2f3c924e715e4, type: 3}
+  m_Script: {fileID: 11500000, guid: 359cea97cd76bff419b1929cedfd1965, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: {fileID: 0}
-  enemyRange: {fileID: 0}
-  bulletSpeed: 10
 --- !u!212 &4785431423388889455
 SpriteRenderer:
   m_ObjectHideFlags: 0
