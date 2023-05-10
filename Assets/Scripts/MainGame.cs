@@ -14,11 +14,6 @@ public class MainGame : MonoBehaviour
     [SerializeField]
     bool isMovie = false;
 
-    float startTime = -1f;
-    float roundTime = 10f;
-    [SerializeField]
-    Text timeValue;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -27,11 +22,7 @@ public class MainGame : MonoBehaviour
 
     private void Update()
     {
-        if (startTime >= 0f)
-        {
-            startTime += Time.deltaTime;
-            timeValue.text = $"{startTime:0.0}s";
-        }
+
     }
 
     IEnumerator InstallBringer()

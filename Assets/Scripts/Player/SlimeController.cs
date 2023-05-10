@@ -22,7 +22,7 @@ public class SlimeController : MonoBehaviour
     LayerMask jumpableGround;
 
     //Animation States
-    string PLAYER_STATE = "Slime_Idle_Animation";
+    string currentState = "Slime_Idle_Animation";
     const string PLAYER_IDLE = "Slime_Idle_Animation";
     const string PLAYER_JUMP_START_UP = "Slime_Jump_Start_Up";
     const string PLAYER_HOLD_JUMP = "Slime_Hold_Jump";
@@ -32,8 +32,6 @@ public class SlimeController : MonoBehaviour
     const string PLAYER_JUMP_LAND = "Slime_Jump_Land";
     const string PLAYER_HURT = "Slime_Hurt";
     const string PLAYER_DEATH = "Slime_Death";
-
-    string currentState;
 
     float animatorDeplay = 0.3f;
 
@@ -54,7 +52,21 @@ public class SlimeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (currentState == PLAYER_IDLE)
+        {
+            moveSpeed = 5f;
+        }
+        else if (currentState == PLAYER_HOLD_JUMP)
+        {
+            moveSpeed = 3f;
+        }
+        else
+        {
+            moveSpeed = 0f;
+        }
+
         SlimeMove();
+        SlimeJump();
         cameraController.SetMoveCamera(transform);
     }
 
@@ -72,7 +84,6 @@ public class SlimeController : MonoBehaviour
         if (isJumping)
         {
             isJumping = false;
-            PLAYER_STATE = PLAYER_JUMP_UP;
             animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length;
             Invoke("AnimationJump", animatorDeplay);
         }
@@ -80,22 +91,11 @@ public class SlimeController : MonoBehaviour
 
     void SlimeMove()
     {
-        //move
-        if (PLAYER_STATE == PLAYER_IDLE)
-        {
-            moveSpeed = 5f;
-        }
-        else if (PLAYER_STATE == PLAYER_JUMP_START_UP || PLAYER_STATE == PLAYER_HOLD_JUMP)
-        {
-            moveSpeed = 3f;
-        }
-        else
-        {
-            moveSpeed = 0f;
-        }
-
         xDirection = Input.GetAxisRaw("Horizontal");
         float moveStep = moveSpeed * xDirection * Time.deltaTime;
+
+        if(moveSpeed != 0 && IsGrounded())
+            transform.position = transform.position + new Vector3(moveStep, 0, 0);
 
         if (moveSpeed == 0f && !IsGrounded())
         {
@@ -107,81 +107,100 @@ public class SlimeController : MonoBehaviour
             {
                 xDirection = 1;
             }
-            moveStep = 5 * xDirection * Time.deltaTime;
+            moveStep = 5f * xDirection * Time.deltaTime;
             transform.position = transform.position + new Vector3(moveStep, 0, 0);
         }
-        else
-        {
-            transform.position = transform.position + new Vector3(moveStep, 0, 0);
-        }
+    }
 
-        //jump
-        if (Input.GetKey(KeyCode.Space) && !isJumping && IsGrounded() && PLAYER_STATE == PLAYER_IDLE)
+    void SlimeJump()
+    {
+
+        if (Input.GetKey(KeyCode.Space) && IsGrounded())
         {
-            ChangeAnimationState(PLAYER_JUMP_START_UP);
             isJumping = false;
+            if (currentState != PLAYER_HOLD_JUMP)
+            {
+                ChangeAnimationState(PLAYER_JUMP_START_UP);
+                animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length;
+                Invoke("AnimationHoldJump", animatorDeplay);
+            }
+        }
 
-            PLAYER_STATE = PLAYER_JUMP_START_UP;
-            animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length;
-            Invoke("AnimationHoldJump", animatorDeplay);
-        } else if (Input.GetKeyDown(KeyCode.Space) && !isJumping && IsGrounded())
+        if (Input.GetKeyUp(KeyCode.Space) && IsGrounded())
         {
-            ChangeAnimationState(PLAYER_JUMP_START_UP);
             isJumping = true;
         }
 
-        if (Input.GetKeyUp(KeyCode.Space) && !isJumping && IsGrounded())
+        if (currentState == PLAYER_HOLD_JUMP)
         {
-            isJumping = true;
-        }
-
-        if (PLAYER_STATE == PLAYER_HOLD_JUMP)
-        {
-            if (jumpForce <= 7f)
-            jumpForce += 0.5f;
+            if (jumpForce < 7f)
+                jumpForce += (0.5f * Time.deltaTime);
         }
     }
 
     void AnimationHoldJump()
     {
-        if (PLAYER_STATE == PLAYER_JUMP_START_UP)
+        if (currentState == PLAYER_JUMP_START_UP)
         {
-            PLAYER_STATE = PLAYER_HOLD_JUMP;
-            ChangeAnimationState(PLAYER_STATE);
+            ChangeAnimationState(PLAYER_HOLD_JUMP);
         }
     }
 
     void AnimationJump()
     {
-        if (PLAYER_STATE == PLAYER_JUMP_UP && IsGrounded())
+        switch (currentState)
         {
-            rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
-            jumpForce = 5f;
-        }
-        ChangeAnimationState(PLAYER_STATE);
-
-        if (PLAYER_STATE == PLAYER_IDLE) return;
-
-        switch (PLAYER_STATE)
-        {
+            case PLAYER_JUMP_START_UP:
+                if (IsGrounded())
+                {
+                    ChangeAnimationState(PLAYER_JUMP_UP);
+                    rigid.AddForce(Vector3.up * jumpForce, (ForceMode2D)ForceMode.Impulse);
+                    animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length + 0.5f;
+                } else
+                {
+                    ChangeAnimationState(PLAYER_IDLE);
+                    animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length;
+                }
+                break;
+            case PLAYER_HOLD_JUMP:
+                if (IsGrounded())
+                {
+                    ChangeAnimationState(PLAYER_JUMP_UP);
+                    rigid.AddForce(Vector3.up * jumpForce, (ForceMode2D)ForceMode.Impulse);
+                    animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length + 0.5f;
+                } else
+                {
+                    ChangeAnimationState(PLAYER_IDLE);
+                    animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length;
+                }
+                break;
             case PLAYER_JUMP_UP:
-                PLAYER_STATE = PLAYER_JUMP_TO_FALL;
-                animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length - 0.3f;
+                ChangeAnimationState(PLAYER_JUMP_TO_FALL);
+                animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length;
                 break;
             case PLAYER_JUMP_TO_FALL:
-                PLAYER_STATE = PLAYER_JUMP_DOWN;
+                ChangeAnimationState(PLAYER_JUMP_DOWN);
                 animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length;
                 break;
             case PLAYER_JUMP_DOWN:
-                PLAYER_STATE = PLAYER_JUMP_LAND;
-                animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length - 0.3f;
+                if (IsGrounded())
+                {
+                    ChangeAnimationState(PLAYER_JUMP_LAND);
+                    animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length;
+                } else
+                {
+                    animatorDeplay = 0f;
+                }
                 break;
             case PLAYER_JUMP_LAND:
-                PLAYER_STATE = PLAYER_IDLE;
-                animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length + 0.5f;
+                ChangeAnimationState(PLAYER_IDLE);
+                animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length;
+                jumpForce = 5f;
                 break;
         }
-        Invoke("AnimationJump", animatorDeplay);
+
+        if (currentState != PLAYER_IDLE)
+            Invoke("AnimationJump", animatorDeplay);
     }
 
     bool IsGrounded()
