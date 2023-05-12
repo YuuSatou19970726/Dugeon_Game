@@ -1,0 +1,156 @@
+{
+    "activeFile": "TileMap/New Map.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        ":/automap-tiles.tsx": {
+            "scaleInDock": 1.5
+        },
+        "Assets.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "New Map.tmx": {
+            "scale": 0.25,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": 2004,
+                "y": 2034
+            }
+        },
+        "TileMap/Assets.tsx": {
+            "scaleInDock": 1
+        },
+        "TileMap/New Map.tmx": {
+            "expandedObjectLayers": [
+                34
+            ],
+            "scale": 5.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 612.7272727272727,
+                "y": 1479.3636363636365
+            }
+        },
+        "TileMap/TileSet/mainlevbuild.tsx": {
+            "scaleInDock": 1
+        },
+        "TileMap/foreground.tsx": {
+            "scaleInDock": 1
+        },
+        "TileMap/main_lev_build_1.tsx": {
+            "scaleInDock": 1
+        },
+        "TileMap/prototype16.tsx": {
+            "scaleInDock": 1
+        },
+        "TileMap/untitled.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 9,
+            "viewCenter": {
+                "x": 800,
+                "y": 799
+            }
+        },
+        "TileRule/rule_1.tmx": {
+            "expandedObjectLayers": [
+                14
+            ],
+            "scale": 4,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 3.25,
+                "y": 800.375
+            }
+        },
+        "TileRule/rule_2.tmx": {
+            "scale": 1.5892708333333332,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 240.3618011404601,
+                "y": 160.13633086452126
+            }
+        },
+        "TileSet/Assets.tsx": {
+            "scaleInDock": 1
+        },
+        "TileSet/bakcground_night1.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "TileSet/foreground.tsx": {
+            "scaleInDock": 1
+        },
+        "TileSet/main_lev_build_1.tsx": {
+            "scaleInDock": 1
+        },
+        "TileSet/mainlevbuild.tsx": {
+            "scaleInDock": 3,
+            "scaleInEditor": 1
+        },
+        "foreground.tsx": {
+            "scaleInDock": 3,
+            "scaleInEditor": 1
+        },
+        "main_lev_build_1.tsx": {
+            "scaleInDock": 2,
+            "scaleInEditor": 1
+        },
+        "prototype/prototype16.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "prototype16.tsx": {
+            "scaleInDock": 1
+        },
+        "rule_1.tmx": {
+            "expandedObjectLayers": [
+                4
+            ],
+            "scale": 2,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 501,
+                "y": 1318.75
+            }
+        },
+        "untitled.tmx": {
+            "scale": 0.33,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 796.9696969696971,
+                "y": 762.1212121212121
+            }
+        }
+    },
+    "last.externalTilesetPath": "D:/SOFTWARE/UNITY_PROJECT/Dungeon_Game_Project/Assets/DUNG PHAM/Tiled/TileSet",
+    "last.imagePath": "D:/SOFTWARE/UNITY_PROJECT/Dungeon_Game_Project/Assets/DUNG PHAM/Sprites/objects/PFantasy_SET1_v1.0",
+    "openFiles": [
+        "TileMap/New Map.tmx",
+        "prototype/prototype16.tsx",
+        "TileRule/rule_1.tmx"
+    ],
+    "project": "New Map.tiled-project",
+    "recentFiles": [
+        "TileRule/rule_1.tmx",
+        "prototype/prototype16.tsx",
+        "TileMap/New Map.tmx",
+        "TileMap/untitled.tmx",
+        "TileRule/rule_2.tmx",
+        "New Map.tmx",
+        "rule_1.tmx",
+        "TileSet/bakcground_night1.tsx",
+        "TileSet/mainlevbuild.tsx",
+        "main_lev_build_1.tsx",
+        "foreground.tsx",
+        "untitled.tmx"
+    ],
+    "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
+}
