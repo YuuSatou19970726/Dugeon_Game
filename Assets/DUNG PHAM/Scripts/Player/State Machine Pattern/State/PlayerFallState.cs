@@ -16,13 +16,13 @@ public class PlayerFallState : PlayerBaseState
 
     public override void FixedUpdateState(PlayerStateManager player)
     {
-        player.playerMovementController.onWall = false;
         player.playerMovementController.MoveOnAir();
 
         if (player.playerMovementController.isGrounded)
         {
-            player.SwitchState(player.crouchState);
-            player.soundEffect.PlayAudio(3);
+            // player.SwitchState(player.crouchState);
+            // player.soundEffect.PlayAudio(3);
+            player.SwitchState(player.idleState);
         }
     }
 

@@ -1,4 +1,8 @@
 {
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
     "activeFile": "TileMap/New Map.tmx",
     "expandedProjectPaths": [
         "."
@@ -23,15 +27,20 @@
         "TileMap/Assets.tsx": {
             "scaleInDock": 1
         },
-        "TileMap/New Map.tmx": {
-            "expandedObjectLayers": [
-                34
-            ],
-            "scale": 5.5,
-            "selectedLayer": 2,
+        "TileMap/Map 1.tmx": {
+            "scale": 2,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 612.7272727272727,
-                "y": 1479.3636363636365
+                "x": 193.5,
+                "y": 554.25
+            }
+        },
+        "TileMap/New Map.tmx": {
+            "scale": 0.25,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 984,
+                "y": 1634
             }
         },
         "TileMap/TileSet/mainlevbuild.tsx": {
@@ -56,13 +65,14 @@
         },
         "TileRule/rule_1.tmx": {
             "expandedObjectLayers": [
-                14
+                14,
+                15
             ],
             "scale": 4,
-            "selectedLayer": 2,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 3.25,
-                "y": 800.375
+                "x": 336,
+                "y": 261.875
             }
         },
         "TileRule/rule_2.tmx": {
@@ -127,6 +137,9 @@
     },
     "last.externalTilesetPath": "D:/SOFTWARE/UNITY_PROJECT/Dungeon_Game_Project/Assets/DUNG PHAM/Tiled/TileSet",
     "last.imagePath": "D:/SOFTWARE/UNITY_PROJECT/Dungeon_Game_Project/Assets/DUNG PHAM/Sprites/objects/PFantasy_SET1_v1.0",
+    "map.height": 50,
+    "map.lastUsedFormat": "tmx",
+    "map.width": 100,
     "openFiles": [
         "TileMap/New Map.tmx",
         "prototype/prototype16.tsx",

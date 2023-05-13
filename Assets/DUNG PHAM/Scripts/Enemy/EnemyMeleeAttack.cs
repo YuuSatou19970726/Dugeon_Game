@@ -12,7 +12,7 @@ public class EnemyMeleeAttack : MonoBehaviour
     }
     void Start()
     {
-        enemyController.enemyProperties.canAttack = true;
+        enemyController.canAttack = true;
         enemyController.enemyProperties.isAttacking = false;
     }
     void Update()
@@ -37,10 +37,10 @@ public class EnemyMeleeAttack : MonoBehaviour
     }
     IEnumerator AttackDelay()
     {
-        enemyController.enemyProperties.canAttack = false;
+        enemyController.canAttack = false;
         enemyController.enemyProperties.isAttacking = false;
         yield return new WaitForSeconds(enemyController.enemyProperties.attackSpeed);
 
-        enemyController.enemyProperties.canAttack = true;
+        enemyController.canAttack = true;
     }
 }

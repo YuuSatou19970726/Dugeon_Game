@@ -7,33 +7,38 @@ public class PlayerMovementController : MonoBehaviour
     public PlayerDatabase playerDatabase;
     InputControllerNew inputController;
     Rigidbody2D rigid;
+    Collider2D coli;
     Vector2 groundCheckPoint;
     Vector2 leftWallCheckPoint, rightWallCheckPoint;
+    Vector2 upperLeftWallCheckPoint, upperRightWallCheckPoint;
     public Transform head;
-
+    public Collider2D wallEdge;
     public bool isGrounded;
     public bool isLeftWall, isRightWall;
+    public bool isLeftEdge, isRightEdge;
+    public Vector2 wallEdgePoint;
     float lastGroundTime;
     [SerializeField] int jumpDirection;
-    public bool onWall = false;
     float dashTimer;
+    // public Vector3 grabPosition;
 
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         inputController = GetComponent<InputControllerNew>();
+        coli = GetComponent<Collider2D>();
     }
 
     void Update()
     {
         GroundCheck();
         WallCheck();
+        EdgeCheck();
+        CoyoteJumpCheck();
+
         FallGravityChange();
-        JumpConditionCheck();
 
         dashTimer += Time.deltaTime;
-
-        // Debug.Log(rigid.velocity.y);
     }
     public void Movement()
     {
@@ -55,7 +60,7 @@ public class PlayerMovementController : MonoBehaviour
         rigid.velocity = Vector2.up * playerDatabase.jumpForce;
     }
 
-    void JumpConditionCheck()
+    void CoyoteJumpCheck()
     {
         if (isGrounded)
             lastGroundTime = 0f;
@@ -67,10 +72,13 @@ public class PlayerMovementController : MonoBehaviour
 
     void FallGravityChange()
     {
-        if (onWall)
+        if (!isGrounded)
         {
-            rigid.gravityScale = 0.5f;
-            return;
+            if (isLeftWall || isRightWall)
+            {
+                rigid.gravityScale = 0.5f;
+                return;
+            }
         }
 
         if (isGrounded)
@@ -91,7 +99,8 @@ public class PlayerMovementController : MonoBehaviour
             rigid.gravityScale = 7f;
         }
 
-        if (rigid.velocity.y < -playerDatabase.maxFallVelocity) rigid.velocity = new Vector2(rigid.velocity.x, -playerDatabase.maxFallVelocity);
+        if (rigid.velocity.y < -playerDatabase.maxFallVelocity)
+            rigid.velocity = new Vector2(rigid.velocity.x, -playerDatabase.maxFallVelocity);
     }
 
     public void EnterCrouch()
@@ -149,7 +158,7 @@ public class PlayerMovementController : MonoBehaviour
 
     void GroundCheck()
     {
-        groundCheckPoint = GetComponent<Collider2D>().bounds.center - new Vector3(0f, GetComponent<Collider2D>().bounds.size.y / 2, 0f);
+        groundCheckPoint = coli.bounds.center - new Vector3(0f, coli.bounds.size.y / 2, 0f);
 
         if (Physics2D.OverlapCircle(groundCheckPoint, 0.1f, playerDatabase.groundLayer))
             isGrounded = true;
@@ -158,26 +167,98 @@ public class PlayerMovementController : MonoBehaviour
     }
     void WallCheck()
     {
-        leftWallCheckPoint = GetComponent<Collider2D>().bounds.center - new Vector3(GetComponent<Collider2D>().bounds.size.x / 2, -0.5f, 0f);
-        rightWallCheckPoint = GetComponent<Collider2D>().bounds.center + new Vector3(GetComponent<Collider2D>().bounds.size.x / 2, 0.5f, 0f);
+        leftWallCheckPoint = coli.bounds.center + new Vector3(-coli.bounds.size.x / 2, 0.5f, 0f);
+        rightWallCheckPoint = coli.bounds.center + new Vector3(coli.bounds.size.x / 2, 0.5f, 0f);
 
-        if (Physics2D.OverlapCircle(leftWallCheckPoint, 0.2f, playerDatabase.wallLayer))
+        RaycastHit2D leftHit = Physics2D.Raycast(leftWallCheckPoint, Vector2.left, 0.2f, playerDatabase.wallLayer);
+
+        if (leftHit)
+        {
             isLeftWall = true;
+            wallEdge = leftHit.collider;
+            wallEdgePoint = wallEdge.bounds.center + new Vector3(wallEdge.bounds.size.x / 2, wallEdge.bounds.size.y / 2, 0);
+        }
         else
+        {
             isLeftWall = false;
+        }
 
-        if (Physics2D.OverlapCircle(rightWallCheckPoint, 0.2f, playerDatabase.wallLayer))
+        RaycastHit2D rightHit = Physics2D.Raycast(rightWallCheckPoint, Vector2.right, 0.2f, playerDatabase.wallLayer);
+
+        if (rightHit)
+        {
             isRightWall = true;
+            wallEdge = rightHit.collider;
+            wallEdgePoint = wallEdge.bounds.center + new Vector3(-wallEdge.bounds.size.x / 2, wallEdge.bounds.size.y / 2, 0);
+        }
         else
+        {
             isRightWall = false;
+        }
+    }
+
+    void EdgeCheck()
+    {
+        upperLeftWallCheckPoint = coli.bounds.center + new Vector3(-coli.bounds.size.x / 2, 1.2f, 0f);
+        upperRightWallCheckPoint = coli.bounds.center + new Vector3(coli.bounds.size.x / 2, 1.2f, 0f);
+
+        if (isLeftWall && !Physics2D.Raycast(upperLeftWallCheckPoint, Vector2.left, 0.2f, playerDatabase.wallLayer))
+        {
+            isLeftEdge = true;
+            transform.localScale = new Vector3(-1, 1, 1);
+
+        }
+        else
+            isLeftEdge = false;
+
+        if (isRightWall && !Physics2D.Raycast(upperRightWallCheckPoint, Vector2.right, 0.2f, playerDatabase.wallLayer))
+        {
+            isRightEdge = true;
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        else
+            isRightEdge = false;
+    }
+
+    public void WallEdgeGrab()
+    {
+        Vector3 position = wallEdgePoint - new Vector2((coli.bounds.size.x / 2 + 0.1f) * transform.localScale.x, coli.bounds.size.y / 2 + 0.15f);
+
+        transform.position = position;
+    }
+
+    Vector3 pos = Vector3.zero;
+
+    public void WallClimb()
+    {
+        StartCoroutine(WallClimbDelay());
+    }
+    IEnumerator WallClimbDelay()
+    {
+        if (pos == Vector3.zero)
+            pos = transform.position;
+
+        transform.position = pos;
+
+        yield return new WaitForSeconds(0.5f);
+
+        Vector3 position = new Vector3(wallEdgePoint.x + coli.bounds.size.x / 2 * transform.localScale.x, wallEdgePoint.y + coli.bounds.size.y / 2 + 0.46f, 0);
+
+        transform.position = position;
+
+        pos = Vector3.zero;
     }
 
     void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.black;
+        Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(groundCheckPoint, 0.1f);
-        Gizmos.DrawWireSphere(leftWallCheckPoint, 0.2f);
-        Gizmos.DrawWireSphere(rightWallCheckPoint, 0.2f);
+        //     Gizmos.DrawWireSphere(leftWallCheckPoint, 0.2f);
+        //     Gizmos.DrawWireSphere(rightWallCheckPoint, 0.2f);
+        Gizmos.DrawLine(leftWallCheckPoint, leftWallCheckPoint + Vector2.left * 0.2f);
+        Gizmos.DrawLine(rightWallCheckPoint, rightWallCheckPoint + Vector2.right * 0.2f);
+        Gizmos.DrawLine(upperLeftWallCheckPoint, upperLeftWallCheckPoint + Vector2.left * 0.2f);
+        Gizmos.DrawLine(upperRightWallCheckPoint, upperRightWallCheckPoint + Vector2.right * 0.2f);
     }
 }
 

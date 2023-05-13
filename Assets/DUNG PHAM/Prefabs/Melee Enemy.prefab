@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 862493845081507125}
-  - component: {fileID: 8965391529458823389}
   m_Layer: 9
   m_Name: Health Bar
   m_TagString: Untagged
@@ -33,20 +32,6 @@ Transform:
   m_Father: {fileID: 6720638902416828375}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8965391529458823389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 71781438248670822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e2202f99ad1eb14caee5faef5889aae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy: {fileID: 6720638902416828372}
-  healthRate: 0
 --- !u!1 &2635948357061741730
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,6 +316,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6720638902416828375}
   - component: {fileID: 6720638902416828372}
+  - component: {fileID: 7837121800592886247}
+  - component: {fileID: 4823329974309878169}
   - component: {fileID: 6720638902416828373}
   - component: {fileID: 6720638902416828370}
   - component: {fileID: 6720638902416828374}
@@ -368,31 +355,42 @@ MonoBehaviour:
   m_GameObject: {fileID: 6720638902416828371}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98c3bcd3d862cf64bb6b157b9a4b292a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4dfa10cf02379f74c8c832bfb37e85d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  playerHealth: {fileID: 0}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 1024
-  bloodSplash: {fileID: 5594743775285245589, guid: 651527bd70a1050488eade35042f3777, type: 3}
-  health: 100
-  maxHealth: 100
-  animator: {fileID: 0}
-  rigid: {fileID: 0}
-  speed: 3
-  jumpForce: 1.2
-  direction: 0
-  weaponMaxRange: {fileID: 6720638901031124389}
-  weaponMinRange: {fileID: 6720638901506527901}
-  speedAttack: 2
-  damage: 10
-  isAttacking: 0
+  enemyAnimation: {fileID: 0}
+  enemyController: {fileID: 0}
+--- !u!114 &7837121800592886247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6720638902416828371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c524c83fd068232488acbaa94ad3e619, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyProperties: {fileID: 0}
   playerDetected: 0
-  pointA: {fileID: 6720638900745970476}
-  pointB: {fileID: 6720638901065493346}
-  distanceGuard: 10
+  playerInRange: 0
+  patrolPoints:
+  - {fileID: 6720638900745970476}
+  - {fileID: 6720638901065493346}
+--- !u!114 &4823329974309878169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6720638902416828371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcb405c05a994474ca49d8f98dda47ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationClip: []
 --- !u!212 &6720638902416828373
 SpriteRenderer:
   m_ObjectHideFlags: 0

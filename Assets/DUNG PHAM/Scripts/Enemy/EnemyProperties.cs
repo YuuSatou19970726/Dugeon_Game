@@ -26,8 +26,6 @@ public class EnemyProperties : ScriptableObject
     public float attackSpeed;
     public float minAttackRange;
     public float maxAttackRange;
-    public bool canAttack;
-    public bool playerInRange;
 
     [Header("Object Bullet")]
     public GameObject bulletPrefab;
@@ -37,7 +35,6 @@ public class EnemyProperties : ScriptableObject
 
     [Header("Object Guard and Patrol")]
     public float detectRange;
-    public bool playerDetected;
     public LayerMask AttackLayer;
     public float patrolRestTime;
     #endregion

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerCrouchState : PlayerBaseState
 {
-    float timer = 0;
+    // float timer = 0;
     public override void EnterState(PlayerStateManager player)
     {
         player.playerAnimation.PlayAnimatorClip("Crouch");
@@ -23,16 +23,16 @@ public class PlayerCrouchState : PlayerBaseState
 
     public override void UpdateState(PlayerStateManager player)
     {
-        timer += Time.deltaTime;
+        // timer += Time.deltaTime;
 
         if (player.inputController.inputY >= 0)
         {
-            if (player.inputController.inputX != 0) timer = 1f;
+            // if (player.inputController.inputX != 0) timer = 1f;
 
-            if (timer < 0.5f) return;
+            // if (timer < 0.5f) return;
 
             player.SwitchState(player.idleState);
-            timer = 0;
+            // timer = 0;
         }
 
         if (player.inputController.inputY < 0 && player.inputController.inputX != 0)

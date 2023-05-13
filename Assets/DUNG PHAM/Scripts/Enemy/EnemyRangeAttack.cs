@@ -16,7 +16,7 @@ public class EnemyRangeAttack : MonoBehaviour
     {
         CreateObject();
 
-        enemyController.enemyProperties.canAttack = true;
+        enemyController.canAttack = true;
         enemyController.enemyProperties.isAttacking = false;
     }
 
@@ -71,12 +71,12 @@ public class EnemyRangeAttack : MonoBehaviour
     }
     IEnumerator AttackDelay()
     {
-        enemyController.enemyProperties.canAttack = false;
+        enemyController.canAttack = false;
         enemyController.enemyProperties.isAttacking = false;
 
         yield return new WaitForSeconds(enemyController.enemyProperties.attackSpeed);
 
-        enemyController.enemyProperties.canAttack = true;
+        enemyController.canAttack = true;
     }
     void DestroyOutRangeBullet()
     {

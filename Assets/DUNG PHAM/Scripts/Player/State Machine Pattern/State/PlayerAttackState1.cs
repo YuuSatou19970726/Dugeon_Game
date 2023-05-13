@@ -22,12 +22,12 @@ public class PlayerAttackState1 : PlayerBaseState
 
     public override void UpdateState(PlayerStateManager player)
     {
-        if (player.playerAnimation.currentState.normalizedTime <= 0.8f) return;
+        if (player.playerAnimation.currentState.normalizedTime <= 1f) return;
 
         if (player.inputController.isLeftMousePress)
             player.SwitchState(player.attackState2);
 
-        if (player.playerAnimation.currentState.normalizedTime <= 1) return;
+        if (player.playerAnimation.currentState.normalizedTime <= 1.5f) return;
 
         if (!player.inputController.isLeftMousePress)
             player.SwitchState(player.idleState);

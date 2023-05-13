@@ -6,36 +6,48 @@ public class EnemyController : MonoBehaviour
 {
     public EnemyProperties enemyProperties;
     Vector3 groundCheckPoint;
+    public bool playerDetected;
+    public bool playerInRange;
+    public bool canAttack;
+
+    Rigidbody2D rigid;
+    public Collider2D playerColi;
+
+
+    public Transform target;
+    public Transform[] patrolPoints = new Transform[2];
+    int index = 0;
+    void Awake()
+    {
+        rigid = GetComponent<Rigidbody2D>();
+    }
+
     void Start()
     {
-        enemyProperties.objectRigid = GetComponent<Rigidbody2D>();
         enemyProperties.isDead = false;
+
+        target = patrolPoints[index];
+
     }
     void Update()
     {
         CheckGround();
         FindPlayer();
         CheckTarget();
-
     }
     public void FindPlayer()
     {
-        Collider2D playerColi = Physics2D.OverlapCircle(enemyProperties.objectRigid.transform.position, enemyProperties.detectRange, enemyProperties.AttackLayer);
+        playerColi = Physics2D.OverlapCircle(rigid.transform.position, enemyProperties.detectRange, enemyProperties.AttackLayer);
 
-        enemyProperties.playerDetected = playerColi != null;
-
-        if (enemyProperties.playerDetected)
-        {
-            MoveToTarget(playerColi.transform.position);
-        }
+        playerDetected = playerColi != null;
     }
     public IEnumerator FaceToTarget(Vector3 target)
     {
         yield return new WaitForSeconds(0f);
 
-        enemyProperties.faceDirection = Mathf.RoundToInt(Mathf.Sign(target.x - enemyProperties.objectRigid.transform.position.x)) * enemyProperties.originSpriteDirection;
+        enemyProperties.faceDirection = Mathf.RoundToInt(Mathf.Sign(target.x - rigid.transform.position.x)) * enemyProperties.originSpriteDirection;
 
-        enemyProperties.objectRigid.transform.localScale = new Vector3(enemyProperties.faceDirection, 1, 1);
+        rigid.transform.localScale = new Vector3(enemyProperties.faceDirection, 1, 1);
     }
 
 
@@ -43,7 +55,7 @@ public class EnemyController : MonoBehaviour
     {
         if (enemyProperties.isHurting || enemyProperties.isDead || enemyProperties.isAttacking)
         {
-            enemyProperties.objectRigid.velocity = Vector3.zero;
+            rigid.velocity = Vector3.zero;
             return;
         }
 
@@ -51,21 +63,22 @@ public class EnemyController : MonoBehaviour
 
         int moveDirection = GetMoveDirection(target);
 
-        if (enemyProperties.objectRigid.transform.position == target || !enemyProperties.isGrounded) return;
+        if (transform.position == target || !enemyProperties.isGrounded) return;
 
-        enemyProperties.objectRigid.velocity = new Vector3(enemyProperties.moveSpeed * moveDirection, enemyProperties.objectRigid.velocity.y, 0);
+        rigid.velocity = new Vector3(enemyProperties.moveSpeed * moveDirection, rigid.velocity.y, 0);
     }
 
 
     int GetMoveDirection(Vector3 target)
     {
-        enemyProperties.playerInRange = false;
+        // Debug.Log("hello");
+        playerInRange = false;
 
-        if (!enemyProperties.playerDetected) return (enemyProperties.objectRigid.transform.position.x < target.x) ? 1 : -1;
+        if (!playerDetected) return (rigid.transform.position.x < target.x) ? 1 : -1;
 
-        float distance = Vector2.Distance(enemyProperties.objectRigid.transform.position, target);
+        float distance = Vector2.Distance(rigid.transform.position, target);
 
-        if (enemyProperties.objectRigid.transform.position.x < target.x)
+        if (rigid.transform.position.x < target.x)
         {
             if (distance > enemyProperties.maxAttackRange)
             {
@@ -76,7 +89,7 @@ public class EnemyController : MonoBehaviour
                 return -1;
             }
         }
-        else if (enemyProperties.objectRigid.transform.position.x > target.x)
+        else if (rigid.transform.position.x > target.x)
         {
             if (distance > enemyProperties.maxAttackRange)
             {
@@ -88,13 +101,13 @@ public class EnemyController : MonoBehaviour
             }
         }
 
-        enemyProperties.playerInRange = true;
+        playerInRange = true;
         return 0;
     }
 
     void CheckTarget()
     {
-        if (enemyProperties.canAttack && enemyProperties.playerDetected && enemyProperties.playerInRange)
+        if (canAttack && playerDetected && playerInRange)
         {
             enemyProperties.isAttacking = true;
         }
@@ -103,17 +116,52 @@ public class EnemyController : MonoBehaviour
 
     void CheckGround()
     {
-        groundCheckPoint = enemyProperties.objectRigid.GetComponent<Collider2D>().bounds.center - new Vector3(0, enemyProperties.objectRigid.GetComponent<Collider2D>().bounds.size.y / 2, 0);
+        groundCheckPoint = GetComponent<Collider2D>().bounds.center - new Vector3(0, GetComponent<Collider2D>().bounds.size.y / 2, 0);
 
-        if (Physics2D.OverlapCircle(groundCheckPoint, 0.1f, enemyProperties.groundLayer)) enemyProperties.isGrounded = true;
-        else enemyProperties.isGrounded = false;
+        // if (Physics2D.OverlapCircle(groundCheckPoint, 0.1f, enemyProperties.groundLayer)) enemyProperties.isGrounded = true;
+        // else enemyProperties.isGrounded = false;
+
+        RaycastHit2D hit = Physics2D.Raycast(groundCheckPoint, Vector2.down, 0.1f, enemyProperties.groundLayer);
+
+        if (hit) enemyProperties.isGrounded = true;
+        else
+        {
+            enemyProperties.isGrounded = false;
+        }
+    }
+
+    public void Patrol(Transform target)
+    {
+        if (target != patrolPoints[index]) return;
+
+        MoveToTarget(target.position);
+
+        if (Vector2.Distance(transform.position, target.position) > 0.5f) return;
+
+        index++;
+
+        if (index >= patrolPoints.Length)
+        {
+            index = 0;
+        }
+
+        StartCoroutine(PatrolRest(patrolPoints[index]));
+
+    }
+    IEnumerator PatrolRest(Transform targetPos)
+    {
+        rigid.velocity = Vector3.zero;
+
+        yield return new WaitForSeconds(enemyProperties.patrolRestTime);
+
+        target = targetPos;
     }
 
     #region Debug
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(groundCheckPoint, 0.1f);
+        Gizmos.DrawLine(groundCheckPoint, new Vector3(groundCheckPoint.x, groundCheckPoint.y - 0.1f, 0));
         Gizmos.DrawWireSphere(transform.position, enemyProperties.minAttackRange);
         Gizmos.DrawWireSphere(transform.position, enemyProperties.maxAttackRange);
         Gizmos.DrawWireSphere(transform.position, enemyProperties.detectRange);

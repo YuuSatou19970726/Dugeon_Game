@@ -25,6 +25,8 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerCrouchMoveState crouchMoveState = new PlayerCrouchMoveState();
     public PlayerWallSlideState wallSlideState = new PlayerWallSlideState();
     public PlayerWallJumpState wallJumpState = new PlayerWallJumpState();
+    public PlayerWallEdgeState wallEdge = new PlayerWallEdgeState();
+    public PlayerWallClimbState wallClimb = new PlayerWallClimbState();
     public PlayerHurtState hurtState = new PlayerHurtState();
     public PlayerDieState dieState = new PlayerDieState();
     #endregion
@@ -49,8 +51,6 @@ public class PlayerStateManager : MonoBehaviour
     void Update()
     {
         currentState.UpdateState(this);
-
-
     }
 
     void FixedUpdate()
@@ -68,6 +68,6 @@ public class PlayerStateManager : MonoBehaviour
 
         currentState.EnterState(this);
 
-        Debug.Log(currentState);
+        // Debug.Log(currentState);
     }
 }

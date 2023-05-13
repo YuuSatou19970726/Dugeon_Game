@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBeAttacked : MonoBehaviour, IDamageable
+public class EnemyHurtState : EnemyBaseState, IDamageable
 {
     EnemyController enemyController;
     float health;
@@ -10,10 +10,6 @@ public class EnemyBeAttacked : MonoBehaviour, IDamageable
     public GameObject healthBar;
     public GameObject healthBarHolder;
 
-    void Awake()
-    {
-        enemyController = GetComponent<EnemyController>();
-    }
     void Start()
     {
         health = enemyController.enemyProperties.maxHealth;
@@ -57,4 +53,23 @@ public class EnemyBeAttacked : MonoBehaviour, IDamageable
         gameObject.SetActive(false);
     }
 
+    public override void EnterState(EnemyStateMachine enemy)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void UpdateState(EnemyStateMachine enemy)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void FixedUpdateState(EnemyStateMachine enemy)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void ExitState(EnemyStateMachine enemy)
+    {
+        throw new System.NotImplementedException();
+    }
 }
