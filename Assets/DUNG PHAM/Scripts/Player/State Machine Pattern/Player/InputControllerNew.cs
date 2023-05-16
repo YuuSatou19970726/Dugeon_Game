@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class InputControllerNew : MonoBehaviour
 {
+    public static InputControllerNew instance;
+    public bool canInput = true;
+
     public float inputX, inputY;
     public float inputXRaw, inputYRaw;
     public bool isLeftMousePress, isRightMousePress;
@@ -11,8 +14,18 @@ public class InputControllerNew : MonoBehaviour
     public bool isJumpHold;
     public bool isDashPress;
     public bool isQPress, isEPress, isTabPress, isTPress, isFPress, isRPress, isCtrlPress;
+    void Awake()
+    {
+        instance = this;
+    }
     void Update()
     {
+        if (!canInput)
+        {
+            inputX = 0;
+            return;
+        }
+
         inputX = Input.GetAxis("Horizontal");
         inputY = Input.GetAxis("Vertical");
         inputXRaw = Input.GetAxisRaw("Horizontal");

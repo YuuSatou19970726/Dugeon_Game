@@ -8,10 +8,11 @@ public class EnemyStateMachine : MonoBehaviour
     [HideInInspector] public EnemyController enemyController;
     EnemyBaseState currentState;
     public EnemyIdleState idleState = new EnemyIdleState();
-    public EnemyAttackState attackState = new EnemyAttackState();
-    public EnemyChaseState chaseState = new EnemyChaseState();
-    public EnemyHurtState hurtState = new EnemyHurtState();
     public EnemyPatrolState patrolState = new EnemyPatrolState();
+    public EnemyChaseState chaseState = new EnemyChaseState();
+    public EnemyAttackState attackState = new EnemyAttackState();
+    public EnemyHurtState hurtState = new EnemyHurtState();
+    public EnemyDieState dieState = new EnemyDieState();
 
     void Awake()
     {

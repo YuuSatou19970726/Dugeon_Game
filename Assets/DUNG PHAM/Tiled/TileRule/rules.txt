@@ -1,2 +1,5 @@
 rule_1.tmx
 rule_2.tmx
+rule_3.tmx
+rule_4.tmx
+rule_5.tmx

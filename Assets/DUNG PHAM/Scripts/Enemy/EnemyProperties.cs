@@ -37,6 +37,7 @@ public class EnemyProperties : ScriptableObject
     public float detectRange;
     public LayerMask AttackLayer;
     public float patrolRestTime;
+    public float idleTime;
     #endregion
 
 }

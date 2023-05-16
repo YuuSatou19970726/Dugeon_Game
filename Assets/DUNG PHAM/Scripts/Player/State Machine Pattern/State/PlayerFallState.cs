@@ -20,9 +20,15 @@ public class PlayerFallState : PlayerBaseState
 
         if (player.playerMovementController.isGrounded)
         {
-            // player.SwitchState(player.crouchState);
-            // player.soundEffect.PlayAudio(3);
-            player.SwitchState(player.idleState);
+            // if (player.GetComponent<Rigidbody2D>().velocity.y > -player.playerMovementController.playerDatabase.maxFallVelocity / 2)
+            // {
+            //     player.SwitchState(player.idleState);
+            // }
+            // else
+            // {
+                player.SwitchState(player.crouchState);
+                player.soundEffect.PlayAudio(3);
+            // }
         }
     }
 

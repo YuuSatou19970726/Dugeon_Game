@@ -12,15 +12,14 @@ public class PlayerMovementController : MonoBehaviour
     Vector2 leftWallCheckPoint, rightWallCheckPoint;
     Vector2 upperLeftWallCheckPoint, upperRightWallCheckPoint;
     public Transform head;
-    public Collider2D wallEdge;
-    public bool isGrounded;
-    public bool isLeftWall, isRightWall;
-    public bool isLeftEdge, isRightEdge;
-    public Vector2 wallEdgePoint;
+    [HideInInspector] public Collider2D wallEdge;
+    [HideInInspector] public bool isGrounded;
+    [HideInInspector] public bool isLeftWall, isRightWall;
+    [HideInInspector] public bool isLeftEdge, isRightEdge;
+    [HideInInspector] public Vector2 wallEdgePoint;
     float lastGroundTime;
     [SerializeField] int jumpDirection;
     float dashTimer;
-    // public Vector3 grabPosition;
 
     void Awake()
     {

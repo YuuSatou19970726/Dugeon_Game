@@ -5,12 +5,10 @@ using UnityEngine;
 public class EnemyRangeAttack : MonoBehaviour
 {
     EnemyController enemyController;
-    EnemyAnimation enemyAnimation;
     List<GameObject> bullets = new List<GameObject>();
     void Awake()
     {
         enemyController = GetComponent<EnemyController>();
-        enemyAnimation = GetComponent<EnemyAnimation>();
     }
     void Start()
     {

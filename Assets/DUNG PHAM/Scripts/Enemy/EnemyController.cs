@@ -12,66 +12,71 @@ public class EnemyController : MonoBehaviour
 
     Rigidbody2D rigid;
     public Collider2D playerColi;
-
+    public bool isResting = false;
 
     public Transform target;
     public Transform[] patrolPoints = new Transform[2];
     int index = 0;
+
+    public float health;
+    public bool isHurt;
+
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
     }
-
     void Start()
     {
-        enemyProperties.isDead = false;
-
-        target = patrolPoints[index];
-
+        health = enemyProperties.maxHealth;
     }
     void Update()
     {
         CheckGround();
         FindPlayer();
-        CheckTarget();
+
+        if (isResting) return;
+
+        MoveToTarget(target.position);
     }
     public void FindPlayer()
     {
         playerColi = Physics2D.OverlapCircle(rigid.transform.position, enemyProperties.detectRange, enemyProperties.AttackLayer);
 
         playerDetected = playerColi != null;
+
+        if (playerColi)
+            target = playerColi.transform;
+        else
+            target = patrolPoints[index];
     }
-    public IEnumerator FaceToTarget(Vector3 target)
-    {
-        yield return new WaitForSeconds(0f);
-
-        enemyProperties.faceDirection = Mathf.RoundToInt(Mathf.Sign(target.x - rigid.transform.position.x)) * enemyProperties.originSpriteDirection;
-
-        rigid.transform.localScale = new Vector3(enemyProperties.faceDirection, 1, 1);
-    }
-
 
     public void MoveToTarget(Vector3 target)
     {
-        if (enemyProperties.isHurting || enemyProperties.isDead || enemyProperties.isAttacking)
-        {
-            rigid.velocity = Vector3.zero;
-            return;
-        }
+        enemyProperties.faceDirection = Mathf.RoundToInt(Mathf.Sign(target.x - rigid.transform.position.x)) * enemyProperties.originSpriteDirection;
 
-        StartCoroutine(FaceToTarget(target));
+        rigid.transform.localScale = new Vector3(enemyProperties.faceDirection, 1, 1);
 
         int moveDirection = GetMoveDirection(target);
 
-        if (transform.position == target || !enemyProperties.isGrounded) return;
+        if (Vector2.Distance(transform.position, target) > 0.5f)
 
-        rigid.velocity = new Vector3(enemyProperties.moveSpeed * moveDirection, rigid.velocity.y, 0);
+            rigid.velocity = new Vector3(enemyProperties.moveSpeed * moveDirection, rigid.velocity.y, 0);
+
+        else
+        {
+            index++;
+
+            if (index >= patrolPoints.Length)
+            {
+                index = 0;
+            }
+            isResting = true;
+        }
     }
 
 
     int GetMoveDirection(Vector3 target)
     {
-        // Debug.Log("hello");
         playerInRange = false;
 
         if (!playerDetected) return (rigid.transform.position.x < target.x) ? 1 : -1;
@@ -105,63 +110,19 @@ public class EnemyController : MonoBehaviour
         return 0;
     }
 
-    void CheckTarget()
-    {
-        if (canAttack && playerDetected && playerInRange)
-        {
-            enemyProperties.isAttacking = true;
-        }
-        // else enemyProperties.isAttacking = false;
-    }
-
     void CheckGround()
     {
         groundCheckPoint = GetComponent<Collider2D>().bounds.center - new Vector3(0, GetComponent<Collider2D>().bounds.size.y / 2, 0);
 
-        // if (Physics2D.OverlapCircle(groundCheckPoint, 0.1f, enemyProperties.groundLayer)) enemyProperties.isGrounded = true;
-        // else enemyProperties.isGrounded = false;
-
-        RaycastHit2D hit = Physics2D.Raycast(groundCheckPoint, Vector2.down, 0.1f, enemyProperties.groundLayer);
-
-        if (hit) enemyProperties.isGrounded = true;
-        else
-        {
-            enemyProperties.isGrounded = false;
-        }
-    }
-
-    public void Patrol(Transform target)
-    {
-        if (target != patrolPoints[index]) return;
-
-        MoveToTarget(target.position);
-
-        if (Vector2.Distance(transform.position, target.position) > 0.5f) return;
-
-        index++;
-
-        if (index >= patrolPoints.Length)
-        {
-            index = 0;
-        }
-
-        StartCoroutine(PatrolRest(patrolPoints[index]));
-
-    }
-    IEnumerator PatrolRest(Transform targetPos)
-    {
-        rigid.velocity = Vector3.zero;
-
-        yield return new WaitForSeconds(enemyProperties.patrolRestTime);
-
-        target = targetPos;
+        if (Physics2D.OverlapCircle(groundCheckPoint, 0.1f, enemyProperties.groundLayer)) enemyProperties.isGrounded = true;
+        else enemyProperties.isGrounded = false;
     }
 
     #region Debug
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(groundCheckPoint, new Vector3(groundCheckPoint.x, groundCheckPoint.y - 0.1f, 0));
+        Gizmos.DrawWireSphere(groundCheckPoint, 0.1f);
         Gizmos.DrawWireSphere(transform.position, enemyProperties.minAttackRange);
         Gizmos.DrawWireSphere(transform.position, enemyProperties.maxAttackRange);
         Gizmos.DrawWireSphere(transform.position, enemyProperties.detectRange);
