@@ -13,6 +13,8 @@ public class BlueMagician : MonoBehaviour
 
     CultistBlueMagician cultistBlueMagician;
 
+    int spawnCount = 4;
+
     private void Awake()
     {
         cultistBlueMagician = FindAnyObjectByType<CultistBlueMagician>();
@@ -43,7 +45,11 @@ public class BlueMagician : MonoBehaviour
 
         Instantiate(pulseAttack, bodyPosition, Quaternion.identity);
 
-        StartCoroutine(SpawnSkill());
+        if(spawnCount > 0)
+        {
+            spawnCount--;
+            StartCoroutine(SpawnSkill());
+        }
     }
 
     IEnumerator SpawnCoinBlue()

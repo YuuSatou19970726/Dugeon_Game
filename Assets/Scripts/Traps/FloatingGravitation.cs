@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FloatingGravitation : MonoBehaviour
 {
 
-    float deplayDestroy = 2f;
     Rigidbody2D rigid;
 
     private void Start()
@@ -17,7 +17,18 @@ public class FloatingGravitation : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            Destroy(gameObject, deplayDestroy);
+            StartCoroutine(KinematicGravitation());
         }
+
+        if (collision.gameObject.CompareTag("Destroy"))
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    IEnumerator KinematicGravitation()
+    {
+        yield return new WaitForSeconds(5f);
+        rigid.isKinematic = false;
     }
 }

@@ -28,7 +28,7 @@ public class MainGame : MonoBehaviour
     IEnumerator InstallBringer()
     {
         yield return new WaitForSeconds(.3f);
-        Vector2 position = new Vector2(-18.9f, 0f);
+        Vector2 position = new Vector2(-22.9f, 0f);
         Instantiate(bringer, position, Quaternion.identity);
 
         StartCoroutine(CreateBLueSlime());
@@ -38,7 +38,7 @@ public class MainGame : MonoBehaviour
     IEnumerator CreateBLueSlime()
     {
         yield return new WaitForSeconds(.3f);
-        Vector2 position = new Vector2(-19f, 0f);
+        Vector2 position = new Vector2(-23f, 0f);
         Instantiate(blueSlime, position, Quaternion.identity);
     }
 

@@ -10,8 +10,16 @@ public class SlimeController : MonoBehaviour
     BoxCollider2D boxCollider2D;
     SpriteRenderer spriteRenderer;
 
+    //audio
+    [SerializeField]
+    AudioSource audioSource;
+    [SerializeField]
+    AudioClip audioClip;
+
+    //animator
     Animator animator;
 
+    //value move
     float xDirection;
 
     bool isJumping = false;
@@ -84,8 +92,14 @@ public class SlimeController : MonoBehaviour
         if (isJumping)
         {
             isJumping = false;
-            animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length;
-            Invoke("AnimationJump", animatorDeplay);
+            if (IsGrounded())
+            {
+                animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length;
+                Invoke("AnimationJump", animatorDeplay);
+            } else
+            {
+                ChangeAnimationState(PLAYER_IDLE);
+            }
         }
     }
 
@@ -94,8 +108,10 @@ public class SlimeController : MonoBehaviour
         xDirection = Input.GetAxisRaw("Horizontal");
         float moveStep = moveSpeed * xDirection * Time.deltaTime;
 
-        if(moveSpeed != 0 && IsGrounded())
+        if (moveSpeed != 0 && IsGrounded() && xDirection != 0)
+        {
             transform.position = transform.position + new Vector3(moveStep, 0, 0);
+        }
 
         if (moveSpeed == 0f && !IsGrounded())
         {
@@ -115,7 +131,7 @@ public class SlimeController : MonoBehaviour
     void SlimeJump()
     {
 
-        if (Input.GetKey(KeyCode.Space) && IsGrounded())
+        if (Input.GetKey(KeyCode.Space) && IsGrounded() && currentState == PLAYER_IDLE)
         {
             isJumping = false;
             if (currentState != PLAYER_HOLD_JUMP)
@@ -126,7 +142,7 @@ public class SlimeController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyUp(KeyCode.Space) && IsGrounded())
+        if (Input.GetKeyUp(KeyCode.Space))
         {
             isJumping = true;
         }
@@ -155,6 +171,7 @@ public class SlimeController : MonoBehaviour
                 {
                     ChangeAnimationState(PLAYER_JUMP_UP);
                     rigid.AddForce(Vector3.up * jumpForce, (ForceMode2D)ForceMode.Impulse);
+                    audioSource.PlayOneShot(audioClip);
                     animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length + 0.5f;
                 } else
                 {
@@ -167,6 +184,7 @@ public class SlimeController : MonoBehaviour
                 {
                     ChangeAnimationState(PLAYER_JUMP_UP);
                     rigid.AddForce(Vector3.up * jumpForce, (ForceMode2D)ForceMode.Impulse);
+                    audioSource.PlayOneShot(audioClip);
                     animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length + 0.5f;
                 } else
                 {
@@ -179,8 +197,14 @@ public class SlimeController : MonoBehaviour
                 animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length;
                 break;
             case PLAYER_JUMP_TO_FALL:
-                ChangeAnimationState(PLAYER_JUMP_DOWN);
-                animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length;
+                if (IsGrounded())
+                {
+                    ChangeAnimationState(PLAYER_IDLE);
+                } else
+                {
+                    ChangeAnimationState(PLAYER_JUMP_DOWN);
+                }
+                animatorDeplay = 0f;
                 break;
             case PLAYER_JUMP_DOWN:
                 if (IsGrounded())

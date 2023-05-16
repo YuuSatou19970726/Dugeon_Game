@@ -2,14 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class PulseAttack : MonoBehaviour
 {
 
-    float speedMove = 7f;
+    float speedMove = 3f;
+    CultistBlueMagician cultistBlueMagician;
+
+    float positionY;
+
+    private void Awake()
+    {
+        cultistBlueMagician = FindAnyObjectByType<CultistBlueMagician>();
+    }
 
     private void Start()
     {
+        positionY = transform.position.y + 3f;
         transform.Rotate(0, 0, 90);
     }
 
@@ -18,7 +28,11 @@ public class PulseAttack : MonoBehaviour
     {
         PulseAttackMovement();
 
-        if (transform.position.y > 15f)
+        if (cultistBlueMagician.GetIsFallingWater())
+        {
+            if (transform.position.y > 13f)
+                ReStart();
+        } else
         {
             Destroy(gameObject);
         }
@@ -30,6 +44,12 @@ public class PulseAttack : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+    }
+
+    void ReStart()
+    {
+        float positionX = 20f + Random.Range(-6f, 6f);
+        transform.position = new Vector2(positionX, positionY);
     }
 
     void PulseAttackMovement()

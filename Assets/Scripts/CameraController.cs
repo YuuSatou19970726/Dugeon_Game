@@ -24,7 +24,7 @@ public class CameraController : MonoBehaviour
 
         if (mainGame.GetIsMovie())
         {
-            transform.position = new Vector3(-23f, -1f, transform.position.z);
+            transform.position = new Vector3(-23f, 2.5f, transform.position.z);
         }
     }
 
@@ -33,8 +33,7 @@ public class CameraController : MonoBehaviour
     {
         if (mainGame.GetIsMovie())
         {
-            sceneWidth = 9f;
-            editDesiredHalfHeight = 1.5f;
+            editDesiredHalfHeight = 1.95f;
 
             float unitsPerPixel = sceneWidth / Screen.width;
             float desiredHalfHeight = editDesiredHalfHeight * unitsPerPixel * Screen.height;
@@ -62,11 +61,11 @@ public class CameraController : MonoBehaviour
         {
             if (!cultistBlueMagician.GetIsFallingWater())
             {
-                editDesiredHalfHeight = 1.3f;
+                editDesiredHalfHeight = 0.95f;
             }
             else
             {
-                editDesiredHalfHeight = 0.7f;
+                editDesiredHalfHeight = 1.5f;
             }
 
             float unitsPerPixel = sceneWidth / Screen.width;

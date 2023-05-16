@@ -10,6 +10,7 @@ TagManager:
   - Ladder
   - Water
   - Bridge
+  - Trap
   layers:
   - Default
   - TransparentFX
