@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class SlimeController : MonoBehaviour
 {
+    BaseCurrent baseCurrent;
     CameraController cameraController;
+    BoardTutorial boardTutorial;
 
     Rigidbody2D rigid;
     BoxCollider2D boxCollider2D;
@@ -31,26 +33,20 @@ public class SlimeController : MonoBehaviour
 
     //Animation States
     string currentState = "Slime_Idle_Animation";
-    const string PLAYER_IDLE = "Slime_Idle_Animation";
-    const string PLAYER_JUMP_START_UP = "Slime_Jump_Start_Up";
-    const string PLAYER_HOLD_JUMP = "Slime_Hold_Jump";
-    const string PLAYER_JUMP_UP = "Slime_Jump_Up";
-    const string PLAYER_JUMP_TO_FALL = "Slime_Jump_To_Fall";
-    const string PLAYER_JUMP_DOWN = "Slime_Jump_Down";
-    const string PLAYER_JUMP_LAND = "Slime_Jump_Land";
-    const string PLAYER_HURT = "Slime_Hurt";
-    const string PLAYER_DEATH = "Slime_Death";
 
     float animatorDeplay = 0.3f;
 
     private void Awake()
     {
         cameraController = FindAnyObjectByType<CameraController>();
+        boardTutorial = FindAnyObjectByType<BoardTutorial>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        baseCurrent = new BaseCurrent();
+
         rigid = GetComponent<Rigidbody2D>();
         boxCollider2D = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
@@ -60,11 +56,11 @@ public class SlimeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentState == PLAYER_IDLE)
+        if (currentState == baseCurrent.GetPlayerIdle())
         {
             moveSpeed = 5f;
         }
-        else if (currentState == PLAYER_HOLD_JUMP)
+        else if (currentState == baseCurrent.GetPlayerHoldJump() || currentState == baseCurrent.GetPlayerHoldJumpGreen() || currentState == baseCurrent.GetPlayerHoldJumpRed())
         {
             moveSpeed = 3f;
         }
@@ -76,6 +72,7 @@ public class SlimeController : MonoBehaviour
         SlimeMove();
         SlimeJump();
         cameraController.SetMoveCamera(transform);
+        boardTutorial.CheckTransform(transform);
     }
 
     private void FixedUpdate()
@@ -98,7 +95,7 @@ public class SlimeController : MonoBehaviour
                 Invoke("AnimationJump", animatorDeplay);
             } else
             {
-                ChangeAnimationState(PLAYER_IDLE);
+                ChangeAnimationState(baseCurrent.GetPlayerIdle());
             }
         }
     }
@@ -131,12 +128,12 @@ public class SlimeController : MonoBehaviour
     void SlimeJump()
     {
 
-        if (Input.GetKey(KeyCode.Space) && IsGrounded() && currentState == PLAYER_IDLE)
+        if (Input.GetKey(KeyCode.Space) && IsGrounded() && currentState == baseCurrent.GetPlayerIdle())
         {
             isJumping = false;
-            if (currentState != PLAYER_HOLD_JUMP)
+            if (currentState != baseCurrent.GetPlayerHoldJump())
             {
-                ChangeAnimationState(PLAYER_JUMP_START_UP);
+                ChangeAnimationState(baseCurrent.GetPlayerJumpStartUp());
                 animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length;
                 Invoke("AnimationHoldJump", animatorDeplay);
             }
@@ -147,18 +144,26 @@ public class SlimeController : MonoBehaviour
             isJumping = true;
         }
 
-        if (currentState == PLAYER_HOLD_JUMP)
+        if (currentState == baseCurrent.GetPlayerHoldJump() || currentState == baseCurrent.GetPlayerHoldJumpGreen() || currentState == baseCurrent.GetPlayerHoldJumpRed())
         {
             if (jumpForce < 7f)
                 jumpForce += (0.5f * Time.deltaTime);
+
+             if (jumpForce >= 6f && jumpForce < 7f && currentState == baseCurrent.GetPlayerHoldJump())
+            {
+                ChangeAnimationState(baseCurrent.GetPlayerHoldJumpGreen());
+            } else if (jumpForce > 7f && currentState == baseCurrent.GetPlayerHoldJumpGreen())
+            {
+                ChangeAnimationState(baseCurrent.GetPlayerHoldJumpRed());
+            }
         }
     }
 
     void AnimationHoldJump()
     {
-        if (currentState == PLAYER_JUMP_START_UP)
+        if (currentState == baseCurrent.GetPlayerJumpStartUp())
         {
-            ChangeAnimationState(PLAYER_HOLD_JUMP);
+            ChangeAnimationState(baseCurrent.GetPlayerHoldJump());
         }
     }
 
@@ -166,64 +171,92 @@ public class SlimeController : MonoBehaviour
     {
         switch (currentState)
         {
-            case PLAYER_JUMP_START_UP:
+            case "Slime_Jump_Start_Up":
                 if (IsGrounded())
                 {
-                    ChangeAnimationState(PLAYER_JUMP_UP);
+                    ChangeAnimationState(baseCurrent.GetPlayerJumpUp());
                     rigid.AddForce(Vector3.up * jumpForce, (ForceMode2D)ForceMode.Impulse);
                     audioSource.PlayOneShot(audioClip);
                     animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length + 0.5f;
                 } else
                 {
-                    ChangeAnimationState(PLAYER_IDLE);
+                    ChangeAnimationState(baseCurrent.GetPlayerIdle());
                     animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length;
                 }
                 break;
-            case PLAYER_HOLD_JUMP:
+            case "Slime_Hold_Jump":
                 if (IsGrounded())
                 {
-                    ChangeAnimationState(PLAYER_JUMP_UP);
+                    ChangeAnimationState(baseCurrent.GetPlayerJumpUp());
                     rigid.AddForce(Vector3.up * jumpForce, (ForceMode2D)ForceMode.Impulse);
                     audioSource.PlayOneShot(audioClip);
                     animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length + 0.5f;
                 } else
                 {
-                    ChangeAnimationState(PLAYER_IDLE);
+                    ChangeAnimationState(baseCurrent.GetPlayerIdle());
                     animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length;
                 }
                 break;
-            case PLAYER_JUMP_UP:
-                ChangeAnimationState(PLAYER_JUMP_TO_FALL);
+            case "Slime_Hold_Jump_Green":
+                if (IsGrounded())
+                {
+                    ChangeAnimationState(baseCurrent.GetPlayerJumpUp());
+                    rigid.AddForce(Vector3.up * jumpForce, (ForceMode2D)ForceMode.Impulse);
+                    audioSource.PlayOneShot(audioClip);
+                    animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length + 0.5f;
+                }
+                else
+                {
+                    ChangeAnimationState(baseCurrent.GetPlayerIdle());
+                    animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length;
+                }
+                break;
+            case "Slime_Hold_Jump_Red":
+                if (IsGrounded())
+                {
+                    ChangeAnimationState(baseCurrent.GetPlayerJumpUp());
+                    rigid.AddForce(Vector3.up * jumpForce, (ForceMode2D)ForceMode.Impulse);
+                    audioSource.PlayOneShot(audioClip);
+                    animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length + 0.5f;
+                }
+                else
+                {
+                    ChangeAnimationState(baseCurrent.GetPlayerIdle());
+                    animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length;
+                }
+                break;
+            case "Slime_Jump_Up":
+                ChangeAnimationState(baseCurrent.GetPlayerJumpToFall());
                 animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length;
                 break;
-            case PLAYER_JUMP_TO_FALL:
+            case "Slime_Jump_To_Fall":
                 if (IsGrounded())
                 {
-                    ChangeAnimationState(PLAYER_IDLE);
+                    ChangeAnimationState(baseCurrent.GetPlayerIdle());
                 } else
                 {
-                    ChangeAnimationState(PLAYER_JUMP_DOWN);
+                    ChangeAnimationState(baseCurrent.GetPlayerJumpDown());
                 }
                 animatorDeplay = 0f;
                 break;
-            case PLAYER_JUMP_DOWN:
+            case "Slime_Jump_Down":
                 if (IsGrounded())
                 {
-                    ChangeAnimationState(PLAYER_JUMP_LAND);
+                    ChangeAnimationState(baseCurrent.GetPlayerJumpLand());
                     animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length;
                 } else
                 {
                     animatorDeplay = 0f;
                 }
                 break;
-            case PLAYER_JUMP_LAND:
-                ChangeAnimationState(PLAYER_IDLE);
+            case "Slime_Jump_Land":
+                ChangeAnimationState(baseCurrent.GetPlayerIdle());
                 animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length;
                 jumpForce = 5f;
                 break;
         }
 
-        if (currentState != PLAYER_IDLE)
+        if (currentState != baseCurrent.GetPlayerIdle())
             Invoke("AnimationJump", animatorDeplay);
     }
 
