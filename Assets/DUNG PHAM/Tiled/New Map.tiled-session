@@ -3,13 +3,13 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "TileMap/Map 3.2.tmx",
+    "activeFile": "TileMap/Map 5.tmx",
     "automapping.whileDrawing": false,
     "expandedProjectPaths": [
-        "TileMap",
-        ".",
         "TileSet",
-        "TileRule"
+        "TileRule",
+        "TileMap",
+        "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -57,8 +57,8 @@
             "scale": 0.33,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 953.030303030303,
-                "y": 513.6363636363636
+                "x": 266.6666666666667,
+                "y": 401.5151515151514
             }
         },
         "TileMap/Map 3.2.tmx": {
@@ -68,8 +68,8 @@
             "scale": 0.33,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 101.5151515151515,
-                "y": 953.0303030303032
+                "x": 542.4242424242424,
+                "y": 401.5151515151514
             }
         },
         "TileMap/Map 3.3.tmx": {
@@ -124,11 +124,11 @@
             "expandedGroupLayers": [
                 21
             ],
-            "scale": 1.5,
+            "scale": 0.75,
             "selectedLayer": 9,
             "viewCenter": {
-                "x": 2661,
-                "y": 509
+                "x": 196.66666666666663,
+                "y": 483.33333333333337
             }
         },
         "TileMap/Map 6.tmx": {
@@ -312,7 +312,8 @@
         "TileMap/Map 4.1.tmx",
         "TileMap/Map 3.1.tmx",
         "TileMap/Map 3.2.tmx",
-        "TileMap/Map 3.3.tmx"
+        "TileMap/Map 3.3.tmx",
+        "TileMap/Map 5.tmx"
     ],
     "project": "New Map.tiled-project",
     "property.type": "string",
@@ -321,12 +322,12 @@
         "TileMap/Map 4.2.tmx",
         "TileMap/Map 4.1.tmx",
         "TileMap/Map 3.1.tmx",
-        "TileMap/Map 3.3.tmx",
         "TileMap/Map 3.2.tmx",
+        "TileMap/Map 3.3.tmx",
+        "TileMap/Map 5.tmx",
         "TileRule/rule_1.tmx",
         "TileRule/rule_2.tmx",
         "TileRule/rule_3.tmx",
-        "TileMap/Map 5.tmx",
         "TileMap/Map 6.tmx",
         "TileMap/Map 3.tmx"
     ],

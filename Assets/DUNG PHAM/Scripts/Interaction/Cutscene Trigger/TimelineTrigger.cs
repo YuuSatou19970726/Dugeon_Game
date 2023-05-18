@@ -7,7 +7,7 @@ public class TimelineTrigger : MonoBehaviour
     [SerializeField] int index;
     public KeyCode input;
     string PLAYER = "Player";
-    [HideInInspector] public bool playerOverTrigger = false;
+    [HideInInspector] public bool playerOverTrigger;
 
     void Update()
     {
@@ -22,7 +22,7 @@ public class TimelineTrigger : MonoBehaviour
             if (!Input.GetKeyDown(input)) return;
 
         TimelineObserver.instance.TimelineTriggerMethod(index);
-        this.enabled = (false);
+        this.enabled = false;
     }
     void OnTriggerEnter2D(Collider2D coli)
     {

@@ -9,7 +9,6 @@ public class TimelineObject : MonoBehaviour
     [SerializeField] int index;
     [SerializeField] float delayTime = 5;
 
-
     void Awake()
     {
         playableDirector = GetComponent<PlayableDirector>();

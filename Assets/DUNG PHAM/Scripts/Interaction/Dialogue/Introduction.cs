@@ -3,10 +3,10 @@ public class Introduction : MonoBehaviour
 {
     public string introMessage = "Hello World";
 
-    bool isTrigger = false;
+    bool isTriggered = false;
     void Update()
     {
-        if (!isTrigger) return;
+        if (!isTriggered) return;
 
         ShowIntroduction();
     }
@@ -22,7 +22,7 @@ public class Introduction : MonoBehaviour
     {
         if (!coli.CompareTag("Player")) return;
 
-        isTrigger = true;
+        isTriggered = true;
     }
 
 
@@ -31,6 +31,6 @@ public class Introduction : MonoBehaviour
     {
         DialogueManager.instance.introductionText.enabled = (false);
 
-        isTrigger = false;
+        isTriggered = false;
     }
 }

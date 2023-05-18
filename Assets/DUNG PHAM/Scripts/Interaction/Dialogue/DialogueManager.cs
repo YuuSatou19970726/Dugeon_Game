@@ -11,7 +11,7 @@ public class DialogueManager : MonoBehaviour
     public Text messageText;
     public RectTransform dialogueBox;
     public Text introductionText;
-    bool inConversation = false;
+    [SerializeField] bool inConversation = false;
 
     Message[] currentMessages;
     Actor[] currentActors;
@@ -25,21 +25,12 @@ public class DialogueManager : MonoBehaviour
     {
         dialogueBox.gameObject.SetActive(false);
         introductionText.enabled = false;
-
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && inConversation) NextMessage();
-
-        // if (inConversation)
-        // {
-        //     InputControllerNew.instance.canInput = false;
-        // }
-        // else
-        // {
-        //     InputControllerNew.instance.canInput = true;
-        // }
+        if (Input.GetMouseButtonDown(0) && inConversation)
+            NextMessage();
     }
 
     public void OpenConversation(Message[] messages, Actor[] actors)
@@ -49,6 +40,8 @@ public class DialogueManager : MonoBehaviour
         activeMessage = 0;
 
         inConversation = true;
+
+        // InputControllerNew.instance.canInput = false;
 
         DisplayMessage();
     }
@@ -76,7 +69,10 @@ public class DialogueManager : MonoBehaviour
         else
         {
             dialogueBox.gameObject.SetActive(false);
+
             inConversation = false;
+
+            // InputControllerNew.instance.canInput = true;
         }
     }
 }

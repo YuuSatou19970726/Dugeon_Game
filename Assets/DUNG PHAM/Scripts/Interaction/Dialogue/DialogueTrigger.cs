@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
@@ -7,6 +5,7 @@ public class DialogueTrigger : MonoBehaviour
     public Message[] messages;
     public Actor[] actors;
 
+    string PLAYER = "Player";
     bool playerTriggered = false;
 
     void Update()
@@ -22,12 +21,12 @@ public class DialogueTrigger : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D coli)
     {
-        if (coli.CompareTag("Player"))
+        if (coli.CompareTag(PLAYER))
             playerTriggered = true;
     }
     void OnTriggerExit2D(Collider2D coli)
     {
-        if (coli.CompareTag("Player"))
+        if (coli.CompareTag(PLAYER))
             playerTriggered = false;
     }
 }
