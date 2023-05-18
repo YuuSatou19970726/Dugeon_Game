@@ -3,11 +3,12 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "TileMap/Map 3.tmx",
+    "activeFile": "TileMap/Map 3.2.tmx",
+    "automapping.whileDrawing": false,
     "expandedProjectPaths": [
-        "TileSet",
         "TileMap",
         ".",
+        "TileSet",
         "TileRule"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
@@ -49,31 +50,93 @@
                 "y": 1303.6666666666665
             }
         },
-        "TileMap/Map 3.tmx": {
-            "scale": 1.5,
-            "selectedLayer": 6,
+        "TileMap/Map 3.1.tmx": {
+            "expandedObjectLayers": [
+                64
+            ],
+            "scale": 0.33,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 2655.6666666666665,
-                "y": 913.6666666666665
+                "x": 953.030303030303,
+                "y": 513.6363636363636
+            }
+        },
+        "TileMap/Map 3.2.tmx": {
+            "expandedObjectLayers": [
+                64
+            ],
+            "scale": 0.33,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 101.5151515151515,
+                "y": 953.0303030303032
+            }
+        },
+        "TileMap/Map 3.3.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 560,
+                "y": 401
+            }
+        },
+        "TileMap/Map 3.tmx": {
+            "scale": 3,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 524.5,
+                "y": 417.83333333333326
+            }
+        },
+        "TileMap/Map 4.1.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 559.3333333333333,
+                "y": 400.66666666666663
+            }
+        },
+        "TileMap/Map 4.2.tmx": {
+            "scale": 0.25,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 590,
+                "y": 402
+            }
+        },
+        "TileMap/Map 4.3.tmx": {
+            "scale": 0.25,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 322,
+                "y": 902
             }
         },
         "TileMap/Map 4.tmx": {
-            "scale": 0.5,
-            "selectedLayer": 4,
+            "scale": 1,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 1438,
-                "y": 3109
+                "x": 445.5,
+                "y": 2801.5
             }
         },
         "TileMap/Map 5.tmx": {
             "expandedGroupLayers": [
                 21
             ],
-            "scale": 0.75,
-            "selectedLayer": 3,
+            "scale": 1.5,
+            "selectedLayer": 9,
             "viewCenter": {
-                "x": 2120,
-                "y": 344.66666666666663
+                "x": 2661,
+                "y": 509
+            }
+        },
+        "TileMap/Map 6.tmx": {
+            "scale": 0.25,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 746,
+                "y": 766
             }
         },
         "TileMap/New Map.tmx": {
@@ -108,50 +171,58 @@
             "expandedObjectLayers": [
                 14
             ],
-            "scale": 0.5,
-            "selectedLayer": 2,
+            "scale": 3,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 359,
-                "y": 647
+                "x": 799.5,
+                "y": 719.5
             }
         },
         "TileRule/rule_2.tmx": {
-            "scale": 3,
-            "selectedLayer": 2,
+            "scale": 1,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 85.33333333333331,
-                "y": 236.5
+                "x": 288.5,
+                "y": 397.5
             }
         },
         "TileRule/rule_3.tmx": {
             "expandedObjectLayers": [
                 3
             ],
-            "scale": 4,
-            "selectedLayer": 0,
+            "scale": 1.5,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 399.5,
-                "y": 399.375
+                "x": 398.99999999999994,
+                "y": 399
             }
         },
         "TileRule/rule_4.tmx": {
-            "scale": 4,
+            "scale": 1.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 400,
-                "y": 399.875
+                "x": 219,
+                "y": 116.33333333333334
             }
         },
         "TileRule/rule_5.tmx": {
-            "scale": 5.5,
+            "scale": 3,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 83.81818181818183,
-                "y": 117.36363636363637
+                "x": 106.83333333333331,
+                "y": 124.83333333333333
             }
         },
         "TileSet/Assets.tsx": {
             "scaleInDock": 3,
+            "scaleInEditor": 1
+        },
+        "TileSet/SET1_background_obj.tsx": {
+            "scaleInDock": 0.5,
+            "scaleInEditor": 1
+        },
+        "TileSet/SET1_decorative_obj.tsx": {
+            "scaleInDock": 0.5,
             "scaleInEditor": 1
         },
         "TileSet/TX Village Props.tsx": {
@@ -169,6 +240,14 @@
         "TileSet/foreground.tsx": {
             "scaleInDock": 2
         },
+        "TileSet/ground.tsx": {
+            "scaleInDock": 5.5,
+            "scaleInEditor": 5.5
+        },
+        "TileSet/lava-tile.tsx": {
+            "scaleInDock": 5.5,
+            "scaleInEditor": 5.5
+        },
         "TileSet/main_lev_build_1.tsx": {
             "scaleInDock": 1,
             "scaleInEditor": 5.5
@@ -178,6 +257,10 @@
             "scaleInEditor": 1
         },
         "TileSet/mainlevbuild.tsx": {
+            "scaleInDock": 0.75,
+            "scaleInEditor": 1
+        },
+        "TileSet/sci-fi-environment-tileset.tsx": {
             "scaleInDock": 2,
             "scaleInEditor": 1
         },
@@ -217,35 +300,35 @@
         }
     },
     "last.externalTilesetPath": "D:/SOFTWARE/UNITY_PROJECT/Dungeon_Game_Project/Assets/DUNG PHAM/Tiled/TileSet",
-    "last.imagePath": "D:/SOFTWARE/UNITY_PROJECT/Dungeon_Game_Project/Assets/DUNG PHAM/Sprites/objects/caves",
+    "last.imagePath": "D:/SOFTWARE/UNITY_PROJECT/Dungeon_Game_Project/Assets/DUNG PHAM/Sprites/objects/_PNG",
     "map.height": 50,
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 16,
     "map.tileWidth": 16,
     "map.width": 50,
     "openFiles": [
-        "TileMap/Map 3.tmx",
-        "TileRule/rule_2.tmx",
-        "TileRule/rule_3.tmx",
-        "TileRule/rule_4.tmx",
-        "TileRule/rule_5.tmx",
-        "TileRule/rule_1.tmx"
+        "TileMap/Map 4.3.tmx",
+        "TileMap/Map 4.2.tmx",
+        "TileMap/Map 4.1.tmx",
+        "TileMap/Map 3.1.tmx",
+        "TileMap/Map 3.2.tmx",
+        "TileMap/Map 3.3.tmx"
     ],
     "project": "New Map.tiled-project",
     "property.type": "string",
     "recentFiles": [
+        "TileMap/Map 4.3.tmx",
+        "TileMap/Map 4.2.tmx",
+        "TileMap/Map 4.1.tmx",
+        "TileMap/Map 3.1.tmx",
+        "TileMap/Map 3.3.tmx",
+        "TileMap/Map 3.2.tmx",
         "TileRule/rule_1.tmx",
-        "TileRule/rule_5.tmx",
-        "TileRule/rule_4.tmx",
-        "TileRule/rule_3.tmx",
         "TileRule/rule_2.tmx",
-        "TileMap/Map 3.tmx",
-        "TileSet/mainlev_build.tsx",
-        "TileMap/Map 2.tmx",
+        "TileRule/rule_3.tmx",
         "TileMap/Map 5.tmx",
-        "TileMap/Map 4.tmx",
-        "TileMap/Map 1.tmx",
-        "TileMap/New Map.tmx"
+        "TileMap/Map 6.tmx",
+        "TileMap/Map 3.tmx"
     ],
     "resizeMap.removeObjects": true,
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",

@@ -21,11 +21,10 @@ public class EnemyAnimation : MonoBehaviour
     {
         if (CheckState(index)) return;
 
-        // if (CheckState(7)) return;                                      // Die Animation
+        if (CheckState(4)) return;                                      // Die Animation
 
-        // if (CheckState(6) && currentState.normalizedTime < 1) return;   // Hurt Animation
+        if (CheckState(3) && currentState.normalizedTime < 1) return;   // Hurt Animation
 
-        // if (CheckState(5) && currentState.normalizedTime < 1) return;   // Attack Animation
 
         animator.Play(animationClips[index].name);
     }

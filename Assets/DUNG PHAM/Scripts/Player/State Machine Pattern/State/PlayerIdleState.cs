@@ -50,10 +50,10 @@ public class PlayerIdleState : PlayerBaseState
         if (player.inputController.isDashPress)
             player.SwitchState(player.dashState);
 
-        if (player.playerMovementController.playerDatabase.isHurt)
+        if (player.playerMovementController.isHurt)
             player.SwitchState(player.hurtState);
 
-        if (player.playerMovementController.playerDatabase.isDied)
+        if (player.playerMovementController.isDied)
             player.SwitchState(player.dieState);
     }
 }

@@ -21,8 +21,6 @@ public class SceneTransfer : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D coli)
     {
-        if (!isLoaded) return;
-
         if (!coli.CompareTag(PLAYER_TAG)) return;
 
         SceneManager.UnloadSceneAsync(sceneName);

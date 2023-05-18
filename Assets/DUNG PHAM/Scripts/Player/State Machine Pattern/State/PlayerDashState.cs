@@ -24,7 +24,7 @@ public class PlayerDashState : PlayerBaseState
     {
 
         if (player.playerAnimation.currentState.IsName("Wall Jump")
-        && player.playerAnimation.currentState.normalizedTime > player.playerMovementController.playerDatabase.dashingTime)
+        && player.playerAnimation.currentState.normalizedTime > player.playerMovementController.dashingTime)
         {
             player.SwitchState(player.idleState);
         }

@@ -1,38 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BackgroundParallax : MonoBehaviour
 {
     private Transform cameraTranform;
     [Range(0, 2)] public float parallaxEffectX, parallaxEffectY;
-    private Vector3 lastCameraPositon;
-    private float textureUnitSizeX;
-
+    private Vector3 lastPosition;
+    [SerializeField] Transform playerTransform;
     void Start()
     {
-        cameraTranform = Camera.main.transform;
-        lastCameraPositon = cameraTranform.position;
+        playerTransform = FindObjectOfType<PlayerMovementController>().transform;
 
-        Sprite sprite = GetComponent<SpriteRenderer>().sprite;
-        Texture2D texture = sprite.texture;
-        textureUnitSizeX = texture.width / sprite.pixelsPerUnit;
+        lastPosition = playerTransform.position;
     }
     void Update()
     {
-        Vector3 distance = cameraTranform.position - lastCameraPositon;
-        transform.position += new Vector3(distance.x * parallaxEffectX, distance.y * parallaxEffectY, transform.position.z);
-        lastCameraPositon = cameraTranform.position;
-
-        // MoveBackground();
+        ParallaxEffect();
     }
-    void MoveBackground()
+
+    void ParallaxEffect()
     {
-        if (Mathf.Abs(cameraTranform.position.x - transform.position.x) >= textureUnitSizeX)
-        {
-            float offsetPositionX = (cameraTranform.position.x - transform.position.x) % textureUnitSizeX;
-            transform.position = new Vector3(cameraTranform.position.x + offsetPositionX, transform.position.y);
-        }
-    }
+        Vector3 cameraDistance = playerTransform.position - lastPosition;
+        Vector3 backgroundDistance = new Vector3(cameraDistance.x * parallaxEffectX, cameraDistance.y * parallaxEffectY, transform.position.z);
+        // Vector3 newPosition = transform.position + backgroundDistance;
 
+        // transform.position = Vector3.MoveTowards(transform.position, newPosition, 0.1f);
+        transform.position += backgroundDistance;
+
+        lastPosition = playerTransform.position;
+    }
 }
