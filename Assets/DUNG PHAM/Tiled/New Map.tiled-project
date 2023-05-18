@@ -1,0 +1,13 @@
+{
+    "automappingRulesFile": "TileRule/rules.txt",
+    "commands": [
+    ],
+    "compatibilityVersion": 1100,
+    "extensionsPath": "../../../../../Tiled",
+    "folders": [
+        ".",
+        "."
+    ],
+    "propertyTypes": [
+    ]
+}
