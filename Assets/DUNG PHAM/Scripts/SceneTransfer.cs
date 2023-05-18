@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class SceneTransfer : MonoBehaviour
 {
     [SerializeField] string sceneName;
-    bool isLoaded = false;
+    [SerializeField] bool isLoaded = false;
     string PLAYER_TAG = "Player";
 
     void OnTriggerEnter2D(Collider2D coli)

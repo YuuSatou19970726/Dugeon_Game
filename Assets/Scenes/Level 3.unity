@@ -1319,7 +1319,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1376838338}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: -28.2, z: -2}
+  m_LocalPosition: {x: 0.5, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1871,7 +1871,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1190133187, guid: 84fefba39f081834590cb3447279d6da, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -28.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1190133187, guid: 84fefba39f081834590cb3447279d6da, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1887,7 +1887,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2012270252228052870, guid: 84fefba39f081834590cb3447279d6da, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -28.2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2012270252228052878, guid: 84fefba39f081834590cb3447279d6da, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2012270252228052879, guid: 84fefba39f081834590cb3447279d6da, type: 3}
       propertyPath: attackDamage
