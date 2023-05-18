@@ -330,7 +330,7 @@ GameObject:
   - component: {fileID: 1967242466}
   - component: {fileID: 1967242468}
   - component: {fileID: 1967242467}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fragment Platform (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -507,7 +507,7 @@ GameObject:
   - component: {fileID: 2078399438}
   - component: {fileID: 2078399437}
   - component: {fileID: 2078399441}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fragment Platform (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

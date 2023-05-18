@@ -21,13 +21,15 @@ public class DialogueTrigger : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D coli)
     {
-        if (coli.CompareTag(PLAYER))
-            playerTriggered = true;
+        if (!coli.CompareTag(PLAYER)) return;
+
+        playerTriggered = true;
     }
     void OnTriggerExit2D(Collider2D coli)
     {
-        if (coli.CompareTag(PLAYER))
-            playerTriggered = false;
+        if (!coli.CompareTag(PLAYER)) return;
+        
+        playerTriggered = false;
     }
 }
 
