@@ -11,7 +11,7 @@ public class DialogueTrigger : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && playerTriggered)
+        if (InputControllerNew.instance.isInteractPress && playerTriggered)
             StartDialogue();
     }
 
