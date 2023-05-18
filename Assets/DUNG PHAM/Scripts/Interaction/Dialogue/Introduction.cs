@@ -13,7 +13,7 @@ public class Introduction : MonoBehaviour
 
     void ShowIntroduction()
     {
-        DialogueManager.instance.introductionText.transform.position = new Vector3(transform.position.x, transform.position.y + 1.5f);
+        DialogueManager.instance.introductionText.transform.position = new Vector3(transform.position.x, transform.position.y + 2f);
         DialogueManager.instance.introductionText.enabled = true;
         DialogueManager.instance.introductionText.text = introMessage;
     }

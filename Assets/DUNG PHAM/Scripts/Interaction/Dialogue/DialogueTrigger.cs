@@ -7,11 +7,11 @@ public class DialogueTrigger : MonoBehaviour
     public Message[] messages;
     public Actor[] actors;
 
-    bool playerTrigger = false;
+    bool playerTriggered = false;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && playerTrigger)
+        if (Input.GetKeyDown(KeyCode.E) && playerTriggered)
             StartDialogue();
     }
 
@@ -22,11 +22,13 @@ public class DialogueTrigger : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D coli)
     {
-        if (coli.CompareTag("Player")) playerTrigger = true;
+        if (coli.CompareTag("Player"))
+            playerTriggered = true;
     }
     void OnTriggerExit2D(Collider2D coli)
     {
-        if (coli.CompareTag("Player")) playerTrigger = false;
+        if (coli.CompareTag("Player"))
+            playerTriggered = false;
     }
 }
 

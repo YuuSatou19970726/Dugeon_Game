@@ -32,14 +32,14 @@ public class DialogueManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && inConversation) NextMessage();
 
-        if (inConversation)
-        {
-            InputControllerNew.instance.canInput = false;
-        }
-        else
-        {
-            InputControllerNew.instance.canInput = true;
-        }
+        // if (inConversation)
+        // {
+        //     InputControllerNew.instance.canInput = false;
+        // }
+        // else
+        // {
+        //     InputControllerNew.instance.canInput = true;
+        // }
     }
 
     public void OpenConversation(Message[] messages, Actor[] actors)

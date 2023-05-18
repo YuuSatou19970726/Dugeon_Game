@@ -13,7 +13,8 @@ public class InputControllerNew : MonoBehaviour
     public bool isJumpPress;
     public bool isJumpHold;
     public bool isDashPress;
-    public bool isQPress, isEPress, isTabPress, isTPress, isFPress, isRPress, isCtrlPress;
+    public bool isInteractPress;
+    public bool isQPress, isTabPress, isTPress, isFPress, isRPress, isCtrlPress;
     void Awake()
     {
         instance = this;
@@ -37,10 +38,10 @@ public class InputControllerNew : MonoBehaviour
         isJumpPress = Input.GetKeyDown(KeyCode.Space);
         isJumpHold = Input.GetKey(KeyCode.Space);
         isDashPress = Input.GetKeyDown(KeyCode.LeftShift);
+        isInteractPress = Input.GetKeyDown(KeyCode.E);
 
         isCtrlPress = Input.GetKeyDown(KeyCode.LeftControl);
         isQPress = Input.GetKeyDown(KeyCode.Q);
-        isEPress = Input.GetKeyDown(KeyCode.E);
         isRPress = Input.GetKeyDown(KeyCode.R);
         isTPress = Input.GetKeyDown(KeyCode.T);
         isFPress = Input.GetKeyDown(KeyCode.F);
