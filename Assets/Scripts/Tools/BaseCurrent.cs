@@ -18,6 +18,8 @@ public class BaseCurrent : MonoBehaviour
     const string PLAYER_DEATH = "Slime_Death";
 
     //cache data
+    //Level 1
+    const string CHECK_POINT_LEVEL_1 = "Check_Point_Level_1";
 
     //______________________________________________________________________
 
@@ -74,5 +76,10 @@ public class BaseCurrent : MonoBehaviour
     public string GetPlayerDeath()
     {
         return PLAYER_DEATH;
+    }
+
+    public string GetCheckPointLevel1()
+    {
+        return CHECK_POINT_LEVEL_1;
     }
 }

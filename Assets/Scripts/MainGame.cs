@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class MainGame : MonoBehaviour
 {
+    DataManager dataManager;
+
     [SerializeField]
     GameObject blueSlime;
 
@@ -17,19 +19,20 @@ public class MainGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PlayerPrefs.DeleteAll();
+        dataManager = gameObject.AddComponent<DataManager>();
         StartCoroutine(InstallBringer());
-    }
-
-    private void Update()
-    {
-
     }
 
     IEnumerator InstallBringer()
     {
         yield return new WaitForSeconds(.3f);
-        Vector2 position = new Vector2(-22.9f, 0f);
-        Instantiate(bringer, position, Quaternion.identity);
+
+        if (dataManager.GetCheckPoint() == -1)
+        {
+            Vector2 position = new Vector2(-22.9f, 0f);
+            Instantiate(bringer, position, Quaternion.identity);
+        }
 
         StartCoroutine(CreateBLueSlime());
 
@@ -39,6 +42,20 @@ public class MainGame : MonoBehaviour
     {
         yield return new WaitForSeconds(.3f);
         Vector2 position = new Vector2(-23f, 0f);
+        //dataManager.SaveCheckPoint(2);
+        switch (dataManager.GetCheckPoint())
+        {
+            case 1:
+                position = new Vector2(-0.75f, 0f);
+                break;
+            case 2:
+                position = new Vector2(31f, 0f);
+                break;
+            case 3:
+                position = new Vector2(79f, 4f);
+                break;
+        }
+
         Instantiate(blueSlime, position, Quaternion.identity);
     }
 

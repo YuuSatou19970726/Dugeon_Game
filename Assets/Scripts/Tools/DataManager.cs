@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DataManager : MonoBehaviour
 {
+    BaseCurrent baseCurrent;
+
     private void Awake()
     {
         DontDestroyOnLoad(this);
@@ -12,32 +14,20 @@ public class DataManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        baseCurrent = gameObject.AddComponent<BaseCurrent>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SaveCheckPoint(int position)
     {
-        
+        PlayerPrefs.SetInt(baseCurrent.GetCheckPointLevel1(), position);
     }
 
-    //private void IsTheFirstAppInstall()
-    //{
-    //    if (!PlayerPrefs.HasKey("IsTheFirstAppInstall"))
-    //    {
-    //        PlayerPrefs.SetInt(SCORE_KEY, 0);
-    //        PlayerPrefs.SetInt("IsTheFirstAppInstall", 0);
-    //    }
-
-    //}
-
-    //public void SaveScore(int score)
-    //{
-    //    PlayerPrefs.SetInt(SCORE_KEY, score);
-    //}
-
-    //public int GetScore()
-    //{
-    //    return PlayerPrefs.GetInt(SCORE_KEY);
-    //}
+    public int GetCheckPoint()
+    {
+        if (PlayerPrefs.HasKey(baseCurrent.GetCheckPointLevel1()))
+        {
+            return PlayerPrefs.GetInt(baseCurrent.GetCheckPointLevel1());
+        }
+        return -1;
+    }
 }

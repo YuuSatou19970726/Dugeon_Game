@@ -17,7 +17,7 @@ public class FloatingGravitation : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            StartCoroutine(KinematicGravitation());
+            collision.gameObject.transform.SetParent(transform);
         }
 
         if (collision.gameObject.CompareTag("Destroy"))
@@ -26,9 +26,18 @@ public class FloatingGravitation : MonoBehaviour
         }
     }
 
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.transform.SetParent(null);
+            StartCoroutine(KinematicGravitation());
+        }
+    }
+
     IEnumerator KinematicGravitation()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(.3f);
         rigid.isKinematic = false;
     }
 }

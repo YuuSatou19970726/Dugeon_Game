@@ -9,20 +9,33 @@ public class WaypointFollow : MonoBehaviour
 
     int currentWaypointIndex = 0;
 
-    [SerializeField]
     float speed = 4f;
+
+    bool checkPlayer = false;
 
     void Update()
     {
-        if (Vector2.Distance(waypoints[currentWaypointIndex].transform.position, transform.position) < .1f)
+        if (!checkPlayer)
         {
-            currentWaypointIndex++;
-            if (currentWaypointIndex >= waypoints.Length)
+            if (Vector2.Distance(waypoints[currentWaypointIndex].transform.position, transform.position) < .1f)
             {
-                currentWaypointIndex = 0;
-            }
+                currentWaypointIndex++;
+                if (currentWaypointIndex >= waypoints.Length)
+                {
+                    currentWaypointIndex = 0;
+                }
 
+            }
         }
+
         transform.position = Vector2.MoveTowards(transform.position, waypoints[currentWaypointIndex].transform.position, Time.deltaTime * speed);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            checkPlayer = true;
+        }
     }
 }
