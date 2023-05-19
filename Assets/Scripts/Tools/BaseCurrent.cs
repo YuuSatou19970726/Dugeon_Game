@@ -6,6 +6,7 @@ public class BaseCurrent : MonoBehaviour
 {
     //animation slime
     const string PLAYER_IDLE = "Slime_Idle_Animation";
+    const string PLAYER_MOVE = "Slime_Move";
     const string PLAYER_JUMP_START_UP = "Slime_Jump_Start_Up";
     const string PLAYER_HOLD_JUMP = "Slime_Hold_Jump";
     const string PLAYER_HOLD_JUMP_GREEN = "Slime_Hold_Jump_Green";
@@ -26,6 +27,11 @@ public class BaseCurrent : MonoBehaviour
     public string GetPlayerIdle ()
     {
         return PLAYER_IDLE;
+    }
+
+    public string GetPlayerMove()
+    {
+        return PLAYER_MOVE;
     }
 
     public string GetPlayerJumpStartUp()

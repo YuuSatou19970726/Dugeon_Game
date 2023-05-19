@@ -63,6 +63,9 @@ TagManager:
   - name: Door
     uniqueID: 2076183997
     locked: 0
+  - name: Elevator
+    uniqueID: 3095450335
+    locked: 0
   - name: BackTrap
     uniqueID: 1983543923
     locked: 0

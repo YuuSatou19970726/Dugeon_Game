@@ -42,7 +42,7 @@ public class MainGame : MonoBehaviour
     {
         yield return new WaitForSeconds(.3f);
         Vector2 position = new Vector2(-23f, 0f);
-        //dataManager.SaveCheckPoint(2);
+        //dataManager.SaveCheckPoint(3);
         switch (dataManager.GetCheckPoint())
         {
             case 1:

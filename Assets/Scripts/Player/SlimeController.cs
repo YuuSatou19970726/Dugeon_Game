@@ -56,11 +56,12 @@ public class SlimeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentState == baseCurrent.GetPlayerIdle())
+        if (currentState == baseCurrent.GetPlayerIdle() || currentState == baseCurrent.GetPlayerMove())
         {
             moveSpeed = 5f;
         }
-        else if (currentState == baseCurrent.GetPlayerHoldJump() || currentState == baseCurrent.GetPlayerHoldJumpGreen() || currentState == baseCurrent.GetPlayerHoldJumpRed())
+        else if (currentState == baseCurrent.GetPlayerJumpStartUp() || currentState == baseCurrent.GetPlayerHoldJump() ||
+            currentState == baseCurrent.GetPlayerHoldJumpGreen() || currentState == baseCurrent.GetPlayerHoldJumpRed())
         {
             moveSpeed = 3f;
         }
@@ -86,6 +87,14 @@ public class SlimeController : MonoBehaviour
             spriteRenderer.flipX = true;
         }
 
+        if (xDirection != 0 && IsGrounded() && currentState == baseCurrent.GetPlayerIdle())
+        {
+            ChangeAnimationState(baseCurrent.GetPlayerMove());
+        } else if (xDirection == 0 && currentState == baseCurrent.GetPlayerMove() && IsGrounded())
+        {
+            ChangeAnimationState(baseCurrent.GetPlayerIdle());
+        }
+
         if (isJumping)
         {
             isJumping = false;
@@ -107,6 +116,7 @@ public class SlimeController : MonoBehaviour
 
         if (moveSpeed != 0 && IsGrounded() && xDirection != 0)
         {
+            ChangeAnimationState(baseCurrent.GetPlayerMove());
             transform.position = transform.position + new Vector3(moveStep, 0, 0);
         }
 
@@ -141,7 +151,15 @@ public class SlimeController : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            isJumping = true;
+            if (currentState == baseCurrent.GetPlayerMove())
+            {
+                isJumping = false;
+            } else
+            {
+                if (currentState == baseCurrent.GetPlayerJumpStartUp() || currentState == baseCurrent.GetPlayerHoldJump() ||
+                currentState == baseCurrent.GetPlayerHoldJumpGreen() || currentState == baseCurrent.GetPlayerHoldJumpRed())
+                    isJumping = true;
+            }
         }
 
         if (currentState == baseCurrent.GetPlayerHoldJump() || currentState == baseCurrent.GetPlayerHoldJumpGreen() || currentState == baseCurrent.GetPlayerHoldJumpRed())
