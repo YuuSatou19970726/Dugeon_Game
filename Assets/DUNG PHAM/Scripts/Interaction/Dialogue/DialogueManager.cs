@@ -6,12 +6,12 @@ using UnityEngine.UI;
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager instance;
-    public Image actorAvatar;
-    public Text actorName;
-    public Text messageText;
-    public RectTransform dialogueBox;
+    [SerializeField] Image actorAvatar;
+    [SerializeField] Text actorName;
+    [SerializeField] Text messageText;
+    [SerializeField] RectTransform dialogueBox;
     public Text introductionText;
-    [SerializeField] bool inConversation = false;
+    [SerializeField] public bool inConversation = false;
 
     Message[] currentMessages;
     Actor[] currentActors;
@@ -29,7 +29,11 @@ public class DialogueManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && inConversation)
+        if (!inConversation) return;
+
+        InputControllerNew.instance.canInput = false;
+
+        if (Input.GetMouseButtonDown(0))
             NextMessage();
     }
 
@@ -40,8 +44,6 @@ public class DialogueManager : MonoBehaviour
         activeMessage = 0;
 
         inConversation = true;
-
-        // InputControllerNew.instance.canInput = false;
 
         DisplayMessage();
     }
@@ -69,10 +71,9 @@ public class DialogueManager : MonoBehaviour
         else
         {
             dialogueBox.gameObject.SetActive(false);
+            InputControllerNew.instance.canInput = true;
 
             inConversation = false;
-
-            // InputControllerNew.instance.canInput = true;
         }
     }
 }

@@ -28,7 +28,7 @@ public class DialogueTrigger : MonoBehaviour
     void OnTriggerExit2D(Collider2D coli)
     {
         if (!coli.CompareTag(PLAYER)) return;
-        
+
         playerTriggered = false;
     }
 }
