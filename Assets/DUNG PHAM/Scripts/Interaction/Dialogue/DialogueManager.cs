@@ -5,22 +5,27 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
-    public static DialogueManager instance;
     [SerializeField] Image actorAvatar;
     [SerializeField] Text actorName;
     [SerializeField] Text messageText;
     [SerializeField] RectTransform dialogueBox;
     public Text introductionText;
-    [SerializeField] public bool inConversation = false;
+    [SerializeField] bool inConversation = false;
 
     Message[] currentMessages;
     Actor[] currentActors;
     int activeMessage = 0;
 
+
+    #region Singleton Pattern
+    public static DialogueManager instance;
     void Awake()
     {
         instance = this;
     }
+    #endregion
+
+
     void Start()
     {
         dialogueBox.gameObject.SetActive(false);
@@ -39,11 +44,12 @@ public class DialogueManager : MonoBehaviour
 
     public void OpenConversation(Message[] messages, Actor[] actors)
     {
+        actors[0].sprite = FindObjectOfType<AvatarGetter>().avatar;
+        inConversation = true;
+
         currentMessages = messages;
         currentActors = actors;
         activeMessage = 0;
-
-        inConversation = true;
 
         DisplayMessage();
     }
@@ -76,4 +82,19 @@ public class DialogueManager : MonoBehaviour
             inConversation = false;
         }
     }
+}
+
+[System.Serializable]
+public class Message
+{
+    public int actorId;
+    [TextArea] public string message;
+}
+
+
+[System.Serializable]
+public class Actor
+{
+    public string name;
+    public Sprite sprite;
 }

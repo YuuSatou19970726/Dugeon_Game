@@ -100,14 +100,15 @@ public class PlayerMovementController : MonoBehaviour, IStopAttack
     {
         if (isGrounded)
         {
-            rigid.gravityScale = 1f;
+            rigid.gravityScale = 10f;
             return;
         }
+        
         if (!isGrounded)
         {
             if (isLeftWall || isRightWall)
             {
-                rigid.gravityScale = 0.5f;
+                rigid.gravityScale = 5f;
                 return;
             }
         }
@@ -116,13 +117,13 @@ public class PlayerMovementController : MonoBehaviour, IStopAttack
         if (inputController.isJumpHold)
         {
             if (rigid.velocity.y >= 0)
-                rigid.gravityScale = 1f;
+                rigid.gravityScale = 10f;
 
-            else rigid.gravityScale = 7f;
+            else rigid.gravityScale = 20f;
         }
         else
         {
-            rigid.gravityScale = 15f;
+            rigid.gravityScale = 40f;
         }
 
         rigid.velocity = new Vector2(rigid.velocity.x, Mathf.Max(rigid.velocity.y, -maxFallVelocity));

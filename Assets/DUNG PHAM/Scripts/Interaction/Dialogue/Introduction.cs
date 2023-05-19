@@ -1,9 +1,10 @@
 using UnityEngine;
 public class Introduction : MonoBehaviour
 {
-    public string introMessage = "Hello World";
+    public string introMessage;
 
     bool isTriggered = false;
+
     void Update()
     {
         if (!isTriggered) return;

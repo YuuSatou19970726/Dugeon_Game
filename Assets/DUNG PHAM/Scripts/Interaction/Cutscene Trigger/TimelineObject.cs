@@ -7,7 +7,7 @@ public class TimelineObject : MonoBehaviour
 {
     PlayableDirector playableDirector;
     [SerializeField] int index;
-    [SerializeField] float delayTime = 5;
+    [SerializeField] float delayTime;
 
     void Awake()
     {
@@ -16,6 +16,7 @@ public class TimelineObject : MonoBehaviour
     void Start()
     {
         TimelineObserver.instance.OnTimelineTrigger += CutscenePlay;
+        delayTime = (float)playableDirector.duration;
     }
 
 

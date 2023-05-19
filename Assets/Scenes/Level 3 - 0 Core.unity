@@ -1542,6 +1542,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: Level 3 - 4.2
   isLoaded: 0
+--- !u!1 &1649109495 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2012270252228052890, guid: 84fefba39f081834590cb3447279d6da, type: 3}
+  m_PrefabInstance: {fileID: 1794264625340455650}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1649109508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649109495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3021b6014c8f192449c32a54ea0b0f65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  climbSpeed: 15
+  swimSpeed: 15
+  isClimbing: 0
+  isSwimming: 0
 --- !u!1 &1849222168
 GameObject:
   m_ObjectHideFlags: 0
@@ -1836,6 +1857,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 666660771}
     m_Modifications:
+    - target: {fileID: 1359664482, guid: 84fefba39f081834590cb3447279d6da, type: 3}
+      propertyPath: m_XDamping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1359664482, guid: 84fefba39f081834590cb3447279d6da, type: 3}
+      propertyPath: m_YDamping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2012270252228052866, guid: 84fefba39f081834590cb3447279d6da, type: 3}
+      propertyPath: jumpForce
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2012270252228052868, guid: 84fefba39f081834590cb3447279d6da, type: 3}
+      propertyPath: m_GravityScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2012270252228052877, guid: 84fefba39f081834590cb3447279d6da, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5789537140831430401, guid: 84fefba39f081834590cb3447279d6da, type: 3}
       propertyPath: m_Name
       value: Player Full

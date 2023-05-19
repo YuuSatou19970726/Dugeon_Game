@@ -2,19 +2,22 @@ using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
-    public Message[] messages;
-    public Actor[] actors;
+    [SerializeField] KeyCode input;
+    [SerializeField] Message[] messages;
+    [SerializeField] Actor[] actors;
 
     string PLAYER = "Player";
     bool playerTriggered = false;
 
     void Update()
     {
-        if (InputControllerNew.instance.isInteractPress && playerTriggered)
+        if (!playerTriggered) return;
+
+        if (Input.GetKeyDown(input))
             StartDialogue();
     }
 
-    public void StartDialogue()
+    void StartDialogue()
     {
         DialogueManager.instance.OpenConversation(messages, actors);
     }
@@ -33,18 +36,3 @@ public class DialogueTrigger : MonoBehaviour
     }
 }
 
-
-[System.Serializable]
-public class Message
-{
-    public int actorId;
-    public string message;
-}
-
-
-[System.Serializable]
-public class Actor
-{
-    public string name;
-    public Sprite sprite;
-}

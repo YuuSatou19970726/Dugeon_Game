@@ -340,6 +340,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parallaxEffectX: 0.9
   parallaxEffectY: 0.4
+  playerTransform: {fileID: 0}
 --- !u!1 &286381633
 GameObject:
   m_ObjectHideFlags: 0
@@ -439,6 +440,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parallaxEffectX: 0.9
   parallaxEffectY: 0.4
+  playerTransform: {fileID: 0}
 --- !u!1 &411088323
 GameObject:
   m_ObjectHideFlags: 0
@@ -574,6 +576,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parallaxEffectX: 0.05
   parallaxEffectY: 0
+  playerTransform: {fileID: 0}
 --- !u!212 &439182747
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -847,7 +850,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3839279116065810610, guid: 9f5ffbd720328a9459fc5fc2e506be74, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 137.5
+      value: 127.5
       objectReference: {fileID: 0}
     - target: {fileID: -3839279116065810610, guid: 9f5ffbd720328a9459fc5fc2e506be74, type: 3}
       propertyPath: m_LocalPosition.y
