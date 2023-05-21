@@ -72,6 +72,9 @@ TagManager:
   - name: Trap
     uniqueID: 975054427
     locked: 0
+  - name: Food
+    uniqueID: 2280572057
+    locked: 0
   - name: Player
     uniqueID: 871894479
     locked: 0
@@ -83,4 +86,7 @@ TagManager:
     locked: 0
   - name: FontTrap
     uniqueID: 2413390143
+    locked: 0
+  - name: Display
+    uniqueID: 2210250571
     locked: 0
