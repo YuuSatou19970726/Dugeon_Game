@@ -12,6 +12,10 @@ public class BoardTutorial : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        boardMove.SetActive(false);
+        boardJump.SetActive(false);
+        boardHoldJump.SetActive(false);
+
         dataManager = gameObject.AddComponent<DataManager>();
         Invoke("VisibleBoardMove", 1.45f);
     }

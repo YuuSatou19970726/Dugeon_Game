@@ -7,6 +7,9 @@ public class CheckPoint : MonoBehaviour
     DataManager dataManager;
 
     [SerializeField]
+    GameObject food;
+
+    [SerializeField]
     int checkPoint;
 
     private void Start()
@@ -20,14 +23,25 @@ public class CheckPoint : MonoBehaviour
         {
             if (dataManager.GetCheckPoint() == -1)
             {
-                dataManager.SaveCheckPoint(1);
+                dataManager.SaveCheckPoint();
+                StartCoroutine(SpawnFood());
             } else
             {
                 if(dataManager.GetCheckPoint() + 1 == checkPoint)
                 {
-                    dataManager.SaveCheckPoint(checkPoint);
+                    dataManager.SaveCheckPoint();
+                    StartCoroutine(SpawnFood());
                 }
             }
         }
+    }
+
+    IEnumerator SpawnFood()
+    {
+        yield return new WaitForSeconds(.3f);
+
+        Vector2 position = transform.position;
+        position.y += 2f;
+        Instantiate(food, position, Quaternion.identity);
     }
 }

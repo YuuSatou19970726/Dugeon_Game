@@ -16,6 +16,13 @@ public class MainGame : MonoBehaviour
     [SerializeField]
     bool isMovie = false;
 
+    //Display
+    [SerializeField]
+    GameObject heart_1, heart_2, heart_3;
+
+    int heart = 0;
+    int score = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,10 +64,62 @@ public class MainGame : MonoBehaviour
         }
 
         Instantiate(blueSlime, position, Quaternion.identity);
+
+        if(dataManager.GetHeart() != -1)
+        {
+            heart = dataManager.GetHeart();
+        }
+
+        CheckHeart(heart);
     }
 
     public bool GetIsMovie()
     {
         return isMovie;
+    }
+
+    public void IncrementHeart()
+    {
+        heart++;
+        dataManager.SaveHeart(heart);
+        CheckHeart(heart);
+    }
+
+    public void DecreaseHeart()
+    {
+        heart--;
+        CheckHeart(heart);
+    }
+
+    void CheckHeart(int count)
+    {
+        switch (count)
+        {
+            case 1:
+                heart_1.SetActive(true);
+                heart_2.SetActive(false);
+                heart_3.SetActive(false);
+                break;
+            case 2:
+                heart_1.SetActive(true);
+                heart_2.SetActive(true);
+                heart_3.SetActive(false);
+                break;
+            case 3:
+                heart_1.SetActive(true);
+                heart_2.SetActive(true);
+                heart_3.SetActive(true);
+                break;
+            default:
+                heart_1.SetActive(false);
+                heart_2.SetActive(false);
+                heart_3.SetActive(false);
+                break;
+        }
+    }
+
+    public void SaveAll()
+    {
+
     }
 }
