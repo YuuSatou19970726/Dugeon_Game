@@ -22,6 +22,7 @@ public class BaseCurrent : MonoBehaviour
     //Level 1
     const string CHECK_POINT_LEVEL_1 = "Check_Point_Level_1";
     const string HEART_LEVEL_1 = "Heart_Level_1";
+    const string SCORE = "Score";
 
     //______________________________________________________________________
 
@@ -93,5 +94,10 @@ public class BaseCurrent : MonoBehaviour
     public string GetHeartLevel1()
     {
         return HEART_LEVEL_1;
+    }
+
+    public string GetScore()
+    {
+        return SCORE;
     }
 }

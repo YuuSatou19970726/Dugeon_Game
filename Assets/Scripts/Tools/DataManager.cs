@@ -51,4 +51,18 @@ public class DataManager : MonoBehaviour
         }
         return -1;
     }
+
+    public void SaveScore(int count)
+    {
+        PlayerPrefs.SetInt(baseCurrent.GetScore(), count);
+    }
+
+    public int GetScore()
+    {
+        if (PlayerPrefs.HasKey(baseCurrent.GetScore()))
+        {
+            return PlayerPrefs.GetInt(baseCurrent.GetScore());
+        }
+        return 0;
+    }
 }

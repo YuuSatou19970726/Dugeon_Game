@@ -78,6 +78,12 @@ TagManager:
   - name: Player
     uniqueID: 871894479
     locked: 0
+  - name: Coin
+    uniqueID: 3612621091
+    locked: 0
+  - name: Bullet
+    uniqueID: 3307486983
+    locked: 0
   - name: Fontground
     uniqueID: 3986441097
     locked: 0

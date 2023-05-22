@@ -5,12 +5,18 @@ using UnityEngine;
 public class CheckPoint : MonoBehaviour
 {
     DataManager dataManager;
+    MainGame mainGame;
 
     [SerializeField]
     GameObject food;
 
     [SerializeField]
     int checkPoint;
+
+    private void Awake()
+    {
+        mainGame = FindAnyObjectByType<MainGame>();
+    }
 
     private void Start()
     {
@@ -21,17 +27,10 @@ public class CheckPoint : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            if (dataManager.GetCheckPoint() == -1)
+            if (dataManager.GetCheckPoint() == -1 || dataManager.GetCheckPoint() + 1 == checkPoint)
             {
-                dataManager.SaveCheckPoint();
+                mainGame.ChangeCheckPoint();
                 StartCoroutine(SpawnFood());
-            } else
-            {
-                if(dataManager.GetCheckPoint() + 1 == checkPoint)
-                {
-                    dataManager.SaveCheckPoint();
-                    StartCoroutine(SpawnFood());
-                }
             }
         }
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class MainGame : MonoBehaviour
@@ -20,13 +21,16 @@ public class MainGame : MonoBehaviour
     [SerializeField]
     GameObject heart_1, heart_2, heart_3;
 
+    [SerializeField]
+    Text textScore;
+
     int heart = 0;
     int score = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
         dataManager = gameObject.AddComponent<DataManager>();
         StartCoroutine(InstallBringer());
     }
@@ -69,13 +73,32 @@ public class MainGame : MonoBehaviour
         {
             heart = dataManager.GetHeart();
         }
+        score = dataManager.GetScore();
 
+        SetScore();
         CheckHeart(heart);
     }
 
     public bool GetIsMovie()
     {
         return isMovie;
+    }
+
+    public void ChangeCheckPoint()
+    {
+        dataManager.SaveCheckPoint();
+        dataManager.SaveScore(this.score);
+    }
+
+    public void IncrementScore (int score)
+    {
+        this.score += score;
+        SetScore();
+    }
+
+    void SetScore()
+    {
+        textScore.text = $"{this.score:0000}";
     }
 
     public void IncrementHeart()
@@ -120,6 +143,7 @@ public class MainGame : MonoBehaviour
 
     public void SaveAll()
     {
-
+        dataManager.SaveHeart(heart);
+        dataManager.SaveScore(score);
     }
 }
