@@ -11,6 +11,7 @@ TagManager:
   - Water
   - Bridge
   - Trap
+  - Elevator
   layers:
   - Default
   - TransparentFX
@@ -62,6 +63,9 @@ TagManager:
     locked: 0
   - name: Door
     uniqueID: 2076183997
+    locked: 0
+  - name: Gate
+    uniqueID: 197785957
     locked: 0
   - name: Elevator
     uniqueID: 3095450335

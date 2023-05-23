@@ -60,20 +60,36 @@ public class CameraController : MonoBehaviour
     {
         if (!mainGame.GetIsMovie())
         {
+            float distanceY = 0f;
             if (!cultistBlueMagician.GetIsFallingWater())
             {
                 editDesiredHalfHeight = 0.95f;
+                distanceY = 3f;
             }
             else
             {
                 editDesiredHalfHeight = 1.5f;
+                distanceY = 0f;
             }
 
             float unitsPerPixel = sceneWidth / Screen.width;
             float desiredHalfHeight = editDesiredHalfHeight * unitsPerPixel * Screen.height;
 
             camera.orthographicSize = desiredHalfHeight;
-            this.transform.position = new Vector3(transform.position.x, transform.position.y, this.transform.position.z);
+            this.transform.position = new Vector3(transform.position.x, transform.position.y + distanceY, this.transform.position.z);
+        }
+    }
+
+    public void SetMoveCameraFinalZone(Transform transform)
+    {
+        if (!mainGame.GetIsMovie())
+        {
+            editDesiredHalfHeight = 0.95f;
+            float unitsPerPixel = sceneWidth / Screen.width;
+            float desiredHalfHeight = editDesiredHalfHeight * unitsPerPixel * Screen.height;
+
+            camera.orthographicSize = desiredHalfHeight;
+            this.transform.position = new Vector3(transform.position.x, transform.position.y + 3f, this.transform.position.z);
         }
     }
 }

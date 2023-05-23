@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class BlueCoin : MonoBehaviour
 {
+    MainGame mainGame;
 
     [SerializeField]
     GameObject coinBlue;
@@ -15,6 +16,7 @@ public class BlueCoin : MonoBehaviour
 
     private void Awake()
     {
+        mainGame = FindAnyObjectByType<MainGame>();
         cultistBlueMagician = FindAnyObjectByType<CultistBlueMagician>();
     }
 
@@ -36,6 +38,7 @@ public class BlueCoin : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            mainGame.IncrementScore(50);
             cultistBlueMagician.IncrementCoin();
             SpawnCoinBlue();
             Destroy(gameObject);

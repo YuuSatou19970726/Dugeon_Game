@@ -23,6 +23,7 @@ public class SlimeController : MonoBehaviour
 
     //value move
     float xDirection;
+    float fallDie = 0f;
 
     bool isJumping = false;
     float moveSpeed = 5f;
