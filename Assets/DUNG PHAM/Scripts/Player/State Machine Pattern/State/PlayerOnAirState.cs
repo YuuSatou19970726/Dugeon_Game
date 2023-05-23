@@ -20,18 +20,6 @@ public class PlayerOnAirState : PlayerBaseState
     {
         player.playerMovementController.MoveOnAir();
 
-        if (player.playerMovementController.isGrounded)
-        {
-            player.SwitchState(player.idleState);
-        }
-        else
-        {
-            if (player.playerMovementController.isLeftWall || player.playerMovementController.isRightWall)
-            {
-                player.SwitchState(player.wallSlideState);
-            }
-        }
-
         if (player.GetComponent<Rigidbody2D>().velocity.y < -2)
             if (player.playerAnimation.currentState.normalizedTime > 0.5f)
                 player.SwitchState(player.fallState);
@@ -39,11 +27,25 @@ public class PlayerOnAirState : PlayerBaseState
 
     public override void UpdateState(PlayerStateManager player)
     {
+        if (player.playerMovementController.isGrounded)
+        {
+            player.SwitchState(player.idleState);
+        }
 
+        if (player.playerMovementController.isRightEdge || player.playerMovementController.isLeftEdge)
+            player.SwitchState(player.wallEdge);
 
+        if (player.playerMovementController.isLeftWall || player.playerMovementController.isRightWall)
+        {
+            player.SwitchState(player.wallSlideState);
+        }
+
+        if (player.inputController.isDashPress)
+        {
+            player.SwitchState(player.dashState);
+        }
+
+        if (player.inputController.isJumpPress)
+            player.SwitchState(player.jumpState);
     }
-
-
-
-
 }

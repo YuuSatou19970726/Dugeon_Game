@@ -7,7 +7,8 @@ public class TimelineObject : MonoBehaviour
 {
     PlayableDirector playableDirector;
     [SerializeField] int index;
-    [SerializeField] float delayTime;
+    [SerializeField] float inputLockTime;
+    [SerializeField] bool undestroyAfterPlay;
 
     void Awake()
     {
@@ -16,7 +17,7 @@ public class TimelineObject : MonoBehaviour
     void Start()
     {
         TimelineObserver.instance.OnTimelineTrigger += CutscenePlay;
-        delayTime = (float)playableDirector.duration;
+        inputLockTime = (float)playableDirector.duration;
     }
 
 
@@ -26,7 +27,7 @@ public class TimelineObject : MonoBehaviour
         {
             playableDirector.Play();
 
-            StartCoroutine(DisableObjectDelay(delayTime));
+            StartCoroutine(DisableObjectDelay(inputLockTime));
         }
     }
     IEnumerator DisableObjectDelay(float delayTime)
@@ -37,6 +38,7 @@ public class TimelineObject : MonoBehaviour
 
         InputControllerNew.instance.canInput = true;
 
-        gameObject.SetActive(false);
+        if (!undestroyAfterPlay)
+            gameObject.SetActive(false);
     }
 }

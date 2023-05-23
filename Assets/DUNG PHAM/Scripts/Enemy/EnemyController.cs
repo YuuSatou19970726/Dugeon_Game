@@ -4,52 +4,54 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour, IDamageable
 {
+    #region VARIABLES DECLARE
+    EnemyDatabase enemyDatabase;
 
     [Header("Miscellaneous")]
-    public int originSpriteDirection = -1;
+    int originSpriteDirection;
     [HideInInspector] public int faceDirection;
     Rigidbody2D rigid;
-    public GameObject healthBar;
-    public GameObject healthBarHolder;
-    public float maxHealth = 100f;
+    GameObject healthBar;
+    GameObject healthBarHolder;
+    float maxHealth;
     [HideInInspector] public float health;
     float healthRate;
     public bool isHurt;
 
     [Header("Movement")]
-    [SerializeField] LayerMask groundLayer;
-    [SerializeField] float moveSpeed = 3f;
+    LayerMask groundLayer;
+    float moveSpeed;
     Vector3 groundCheckPoint;
     [SerializeField] bool isGrounded;
 
     [Header("Attack")]
-    public LayerMask guardLayer;
-    public LayerMask attackLayer;
-    public float attackDamage = 5;
-    public float attackSpeed = 0.1f;
-    public float reloadTime = 5f;
-    public float minAttackRange = 2;
-    public float maxAttackRange = 5;
+    LayerMask guardLayer;
+    float minAttackRange;
+    float maxAttackRange;
     [HideInInspector] public Collider2D playerColi;
     public bool playerInRange;
-    public bool canAttack = true;
+    public bool canAttack;
     public bool playerDied;
 
     [Header("Guard and Patrol")]
-    [SerializeField] float detectRange = 7;
-    public float idleTime = 2;
     public bool playerDetected;
+    float detectRange;
+    [HideInInspector] public float idleTime;
     [HideInInspector] public Transform target;
-    [SerializeField] Transform[] patrolPoints = new Transform[2];
+    Transform[] patrolPoints = new Transform[2];
     int index = 0;
-    public float dieDelayTime = 3;
+    float dieDelayTime;
+    #endregion
 
+    #region MONOBEHAVIOUS
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
+        enemyDatabase = GetComponent<EnemyDatabase>();
     }
     void Start()
     {
+        GetEnemyData();
         SetHealth();
     }
     void Update()
@@ -61,6 +63,37 @@ public class EnemyController : MonoBehaviour, IDamageable
 
         if (Input.GetKeyDown(KeyCode.T)) GetDamage(10);
     }
+    #endregion
+
+
+    #region DATA GETTER
+
+    void GetEnemyData()
+    {
+        originSpriteDirection = enemyDatabase.originSpriteDirection;
+
+        healthBar = enemyDatabase.healthBar;
+        healthBarHolder = enemyDatabase.healthBarHolder;
+
+        maxHealth = enemyDatabase.maxHealth;
+
+        groundLayer = enemyDatabase.groundLayer;
+        guardLayer = enemyDatabase.guardLayer;
+
+        minAttackRange = enemyDatabase.minAttackRange;
+        maxAttackRange = enemyDatabase.maxAttackRange;
+        detectRange = enemyDatabase.detectRange;
+
+        idleTime = enemyDatabase.idleTime;
+        patrolPoints = enemyDatabase.patrolPoints;
+        moveSpeed = enemyDatabase.moveSpeed;
+
+        dieDelayTime = enemyDatabase.dieDelayTime;
+    }
+    #endregion
+
+
+    #region FIND PLAYER
     public void FindPlayer()
     {
         playerColi = Physics2D.OverlapCircle(rigid.transform.position, detectRange, guardLayer);
@@ -72,7 +105,9 @@ public class EnemyController : MonoBehaviour, IDamageable
         else
             target = patrolPoints[index];
     }
+    #endregion
 
+    #region MOVEMENT
     public void MoveToTarget(Vector3 target)
     {
         faceDirection = Mathf.RoundToInt(Mathf.Sign(target.x - rigid.transform.position.x)) * originSpriteDirection;
@@ -131,31 +166,31 @@ public class EnemyController : MonoBehaviour, IDamageable
         playerInRange = true;
         return 0;
     }
-
-    void CheckGround()
-    {
-        Bounds bounds = GetComponent<Collider2D>().bounds;
-        groundCheckPoint = bounds.center - new Vector3(0, bounds.size.y / 2, 0);
-
-        Collider2D ground = Physics2D.OverlapCircle(groundCheckPoint, 0.1f, groundLayer);
-
-        isGrounded = ground ? true : false;
-    }
+    #endregion
 
 
+    #region ATTACK
     public void Attack()
     {
         if (!canAttack) return;
 
-        GetComponent<IAttacker>().Attack(attackDamage);
-        StartCoroutine(AttackCooldown());
+        GetComponent<IAttacker>().Attack();
     }
-    IEnumerator AttackCooldown()
+
+    public void RunAttackCooldownCoroutine()
+    {
+        StartCoroutine(AttackCooldownCoroutine());
+    }
+    IEnumerator AttackCooldownCoroutine()
     {
         canAttack = false;
-        yield return new WaitForSeconds(reloadTime);
+        yield return new WaitForSeconds(enemyDatabase.attackCooldown);
         canAttack = true;
     }
+    #endregion
+
+
+    #region GET DAMAGES
     public void GetDamage(float damage)
     {
         health -= damage;
@@ -163,10 +198,11 @@ public class EnemyController : MonoBehaviour, IDamageable
         isHurt = true;
     }
 
-    public void SetHealth()
+    void SetHealth()
     {
         health = maxHealth;
     }
+
     void DisplayHealth()
     {
         if (health <= 0) health = 0;
@@ -175,16 +211,18 @@ public class EnemyController : MonoBehaviour, IDamageable
 
         healthBar.transform.localScale = new Vector3(healthRate, healthBar.transform.localScale.y, 0f);
 
-        float healthBarHeight = transform.position.y + GetComponent<SpriteRenderer>().bounds.size.y;
-
-        healthBarHolder.transform.position = new Vector3(transform.position.x - 0.5f, healthBarHeight);
+        healthBarHolder.transform.position = new Vector3(transform.position.x, healthBarHolder.transform.position.y);
     }
+    #endregion
 
+
+    #region DEATH
     public void DieTimeDelay()
     {
-        rigid.velocity = new Vector2(0, rigid.velocity.y);
+        rigid.velocity = Vector2.zero;
         StartCoroutine(ObjectDie());
     }
+
     IEnumerator ObjectDie()
     {
         rigid.isKinematic = true;
@@ -200,9 +238,21 @@ public class EnemyController : MonoBehaviour, IDamageable
         transform.position = position;
         rigid.isKinematic = false;
         GetComponent<Collider2D>().enabled = true;
+        canAttack = true;
+    }
+    #endregion 
+
+    #region COLLISION DETECT
+    void CheckGround()
+    {
+        Bounds bounds = GetComponent<Collider2D>().bounds;
+        groundCheckPoint = bounds.center - new Vector3(0, bounds.size.y / 2, 0);
+
+        Collider2D ground = Physics2D.OverlapCircle(groundCheckPoint, 0.1f, groundLayer);
+
+        isGrounded = ground ? true : false;
     }
 
-    #region Debug
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

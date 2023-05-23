@@ -7,7 +7,7 @@ public class PlayerStateManager : MonoBehaviour
     [HideInInspector] public PlayerAnimation playerAnimation;
     [HideInInspector] public PlayerAttackManager playerAttack;
     [HideInInspector] public SoundEffect soundEffect;
-    PlayerBaseState currentState;
+    [SerializeField] PlayerBaseState currentState;
 
     #region ALL STATE
     public PlayerIdleState idleState = new PlayerIdleState();

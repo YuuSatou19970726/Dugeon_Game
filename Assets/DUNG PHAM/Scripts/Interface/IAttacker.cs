@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IAttacker
 {
-    void Attack(float damage);
+    void Attack();
 }

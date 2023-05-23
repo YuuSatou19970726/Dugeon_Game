@@ -5,7 +5,7 @@ public class DialogueTrigger : MonoBehaviour
     [SerializeField] KeyCode input;
     [SerializeField] Message[] messages;
     [SerializeField] Actor[] actors;
-
+    [SerializeField] GameObject activeAfterDialog;
     string PLAYER = "Player";
     bool playerTriggered = false;
 
@@ -19,7 +19,7 @@ public class DialogueTrigger : MonoBehaviour
 
     void StartDialogue()
     {
-        DialogueManager.instance.OpenConversation(messages, actors);
+        DialogueManager.instance.OpenConversation(messages, actors, activeAfterDialog);
     }
 
     void OnTriggerEnter2D(Collider2D coli)

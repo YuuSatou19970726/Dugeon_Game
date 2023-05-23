@@ -7,6 +7,8 @@ public class EnemyAttackState : EnemyBaseState
     public override void EnterState(EnemyStateMachine enemy)
     {
         enemy.enemyAnimation.PlayAnimation(2);
+        
+        enemy.enemyController.Attack();
     }
 
     public override void ExitState(EnemyStateMachine enemy)
@@ -20,14 +22,8 @@ public class EnemyAttackState : EnemyBaseState
 
     public override void UpdateState(EnemyStateMachine enemy)
     {
-        if (!enemy.enemyAnimation.CheckState(2)) return;
 
-        if (enemy.enemyAnimation.currentState.normalizedTime > 0.8f)
-        {
-            enemy.enemyController.Attack();
-        }
-
-        if (enemy.enemyAnimation.currentState.normalizedTime > 1)
+        if (enemy.enemyAnimation.CheckState(2) && enemy.enemyAnimation.currentState.normalizedTime > 1)
             enemy.SwitchState(enemy.idleState);
     }
 }

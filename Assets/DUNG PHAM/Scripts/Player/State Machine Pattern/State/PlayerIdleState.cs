@@ -27,8 +27,6 @@ public class PlayerIdleState : PlayerBaseState
 
     public override void UpdateState(PlayerStateManager player)
     {
-        if (!player.playerMovementController.isGrounded) return;
-
         if (player.inputController.inputX != 0)
         {
             player.SwitchState(player.walkState);
@@ -55,5 +53,10 @@ public class PlayerIdleState : PlayerBaseState
 
         if (player.playerMovementController.isDied)
             player.SwitchState(player.dieState);
+
+        if (player.playerMovementController.isGrounded) return;
+
+        if (player.playerMovementController.isLeftWall || player.playerMovementController.isRightWall)
+            player.SwitchState(player.wallSlideState);
     }
 }

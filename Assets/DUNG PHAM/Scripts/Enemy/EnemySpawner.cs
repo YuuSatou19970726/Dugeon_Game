@@ -17,7 +17,7 @@ public class EnemySpawner : MonoBehaviour
     {
         if (enemy.activeInHierarchy) return;
 
-        StartCoroutine(ObjectRespawn());
+        StartCoroutine(RespawnObject());
     }
 
     void FirstTimeSpawn()
@@ -26,13 +26,12 @@ public class EnemySpawner : MonoBehaviour
         enemy.transform.parent = transform;
     }
 
-    IEnumerator ObjectRespawn()
+    IEnumerator RespawnObject()
     {
-        yield return new WaitForSeconds(spawnCooldownTime);
-        enemy.gameObject.SetActive(true);
-
-        // enemy.GetComponentInChildren<EnemyController>().SetHealth();
-        // enemy.GetComponentInChildren<EnemyController>().transform.position = transform.position;
         enemy.GetComponentInChildren<EnemyController>().ObjectRespawn(transform.position);
+
+        yield return new WaitForSeconds(spawnCooldownTime);
+
+        enemy.gameObject.SetActive(true);
     }
 }

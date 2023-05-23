@@ -5,25 +5,54 @@ using UnityEngine;
 public class EnemyMeleeAttack : MonoBehaviour, IAttacker
 {
     EnemyController enemyController;
+    EnemyDatabase enemyDatabase;
+    [SerializeField] Collider2D[] attackColliders;
+    [SerializeField] ContactFilter2D targetFilter;
+    Collider2D enemyColi;
+    List<Collider2D> hits = new List<Collider2D>();
 
     void Awake()
     {
         enemyController = GetComponent<EnemyController>();
+        enemyDatabase = GetComponent<EnemyDatabase>();
+        enemyColi = GetComponent<Collider2D>();
+
     }
 
-    public void Attack(float damage)
+    public void Attack()
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, enemyController.maxAttackRange, enemyController.attackLayer);
+        StartCoroutine(AttackCoroutine());
+    }
+
+    IEnumerator AttackCoroutine()
+    {
+        for (int x = 0; x < attackColliders.Length; x++)
+        {
+            StartCoroutine(AttackLaunch(x));
+
+            yield return new WaitForSeconds(enemyDatabase.timePerAttack);
+        }
+    }
+
+    IEnumerator AttackLaunch(int coliIndex)
+    {
+        //Delay to fix with animation
+        yield return new WaitForSeconds(enemyDatabase.attackDelay);
+
+        int count = Physics2D.OverlapCollider(attackColliders[coliIndex], targetFilter, hits);
 
         foreach (Collider2D hitColi in hits)
         {
-            if (hitColi.GetComponent<IDamageable>() == null) continue;
+            if (hitColi == enemyColi) continue;
 
-            hitColi.GetComponent<IDamageable>().GetDamage(damage);
+            if (hitColi.GetComponent<IDamageable>() != null)
+                hitColi.GetComponent<IDamageable>().GetDamage(enemyDatabase.attackDamage);
 
             if (hitColi.GetComponent<IStopAttack>() != null)
                 enemyController.playerDied = hitColi.GetComponent<IStopAttack>().StopAttack();
         }
 
+        enemyController.RunAttackCooldownCoroutine();
     }
+
 }

@@ -23,7 +23,17 @@ public class PlayerWallEdgeState : PlayerBaseState
     {
         player.playerMovementController.WallEdgeGrab();
 
-        if (player.inputController.inputY > 0) player.SwitchState(player.wallClimb);
-        if (player.inputController.inputY < 0 || player.inputController.inputX != 0) { player.SwitchState(player.fallState); }
+        if (player.inputController.inputY > 0)
+            player.SwitchState(player.wallClimb);
+
+        if (player.inputController.inputY < 0)
+        {
+            player.SwitchState(player.fallState);
+        }
+
+        if (player.inputController.isJumpPress)
+        {
+            player.SwitchState(player.wallJumpState);
+        }
     }
 }

@@ -10,6 +10,7 @@ public class PlayerAttackManager : MonoBehaviour, IDamageable
     int hitCount = 0;
     Collider2D[] target = new Collider2D[5];
     PlayerMovementController playerMovementController;
+    PlayerDatabase playerDatabase;
     public ParticleSystem playerBlood;
     public ParticleSystem enemyBlood;
     float health;
@@ -21,11 +22,12 @@ public class PlayerAttackManager : MonoBehaviour, IDamageable
         instance = this;
 
         playerMovementController = GetComponent<PlayerMovementController>();
+        playerDatabase = GetComponent<PlayerDatabase>();
     }
 
     void Start()
     {
-        health = playerMovementController.maxHealth;
+        health = playerDatabase.maxHealth;
         playerMovementController.isHurt = false;
         playerMovementController.isDied = false;
 

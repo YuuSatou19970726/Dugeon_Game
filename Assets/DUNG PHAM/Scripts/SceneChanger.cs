@@ -6,13 +6,27 @@ using UnityEngine.SceneManagement;
 public class SceneChanger : MonoBehaviour
 {
     [SerializeField] string sceneName;
-    void Update()
+    CrossfadeEffect crossfade;
+
+    void Awake()
     {
-        if (Input.GetMouseButtonDown(0))
-            ChangeScene();
+        crossfade = FindObjectOfType<CrossfadeEffect>();
+    }
+    void OnEnable()
+    {
+        StartCoroutine(SceneChangeCoroutine());
     }
     void ChangeScene()
     {
         SceneManager.LoadSceneAsync(sceneName);
+    }
+
+    IEnumerator SceneChangeCoroutine()
+    {
+        crossfade.PlayCrossfadeOut();
+
+        yield return new WaitForSeconds(1);
+
+        ChangeScene();
     }
 }

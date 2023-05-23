@@ -11,10 +11,10 @@ public class FirstTargetBullet : MonoBehaviour, IBullet
     {
         if (coli.gameObject.CompareTag(ENEMY)) return;
 
-        if (coli.gameObject.GetComponent<IDamageable>() != null) coli.gameObject.GetComponent<IDamageable>().GetDamage(bulletDamage);
-        
-        gameObject.SetActive(false);
+        if (coli.gameObject.GetComponent<IDamageable>() != null)
+            coli.gameObject.GetComponent<IDamageable>().GetDamage(bulletDamage);
 
+        gameObject.SetActive(false);
     }
 
     public void GetInitDamage(float damage)

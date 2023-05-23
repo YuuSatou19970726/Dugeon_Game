@@ -10,7 +10,7 @@ public class InputDisable : MonoBehaviour
         if (!coli.CompareTag(PLAYER_TAG)) return;
 
         coli.GetComponent<InputControllerNew>().canInput = false;
-
+        // coli.GetComponent<PlayerStateManager>().SwitchState(GetComponent<PlayerStateManager>().idleState);
     }
 
     void OnTriggerExit2D(Collider2D coli)

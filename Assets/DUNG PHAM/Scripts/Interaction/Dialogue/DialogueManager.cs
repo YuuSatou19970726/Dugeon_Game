@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -9,15 +10,15 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] Text actorName;
     [SerializeField] Text messageText;
     [SerializeField] RectTransform dialogueBox;
-    public Text introductionText;
+    [SerializeField] TextMeshProUGUI introductionTextMesh;
     [SerializeField] bool inConversation = false;
 
     Message[] currentMessages;
     Actor[] currentActors;
     int activeMessage = 0;
+    GameObject activeAfterDialog;
 
-
-    #region Singleton Pattern
+    #region SINGLETON PATTERN
     public static DialogueManager instance;
     void Awake()
     {
@@ -25,11 +26,12 @@ public class DialogueManager : MonoBehaviour
     }
     #endregion
 
-
+    #region MONOBEHAVIOUS
     void Start()
     {
         dialogueBox.gameObject.SetActive(false);
-        introductionText.enabled = false;
+
+        introductionTextMesh.enabled = false;
     }
 
     void Update()
@@ -41,10 +43,12 @@ public class DialogueManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
             NextMessage();
     }
+    #endregion
 
-    public void OpenConversation(Message[] messages, Actor[] actors)
+    #region DIALOGUE
+    public void OpenConversation(Message[] messages, Actor[] actors, GameObject activeAfterDialog)
     {
-        actors[0].sprite = FindObjectOfType<AvatarGetter>().avatar;
+        actors[0].sprite = FindObjectOfType<PlayerDatabase>().avatar;
         inConversation = true;
 
         currentMessages = messages;
@@ -52,6 +56,8 @@ public class DialogueManager : MonoBehaviour
         activeMessage = 0;
 
         DisplayMessage();
+
+        this.activeAfterDialog = activeAfterDialog;
     }
 
     void DisplayMessage()
@@ -80,8 +86,53 @@ public class DialogueManager : MonoBehaviour
             InputControllerNew.instance.canInput = true;
 
             inConversation = false;
+
+            if (activeAfterDialog)
+                activeAfterDialog.SetActive(true);
         }
     }
+    #endregion
+
+    #region INTRODUCTION
+    public void ShowIntroduction(string introMessage, Vector2 position, int minScale, int maxScale)
+    {
+        ShowDialogue(introMessage, position);
+
+        StartCoroutine(TransformIntroduction(0.5f, minScale, maxScale));
+    }
+
+    public void PositionUpdate(Vector2 position)
+    {
+        introductionTextMesh.transform.position = position;
+    }
+
+    void ShowDialogue(string introMessage, Vector2 position)
+    {
+        introductionTextMesh.enabled = true;
+        introductionTextMesh.text = introMessage;
+        introductionTextMesh.transform.position = position;
+    }
+
+    public void CloseIntroduction()
+    {
+        introductionTextMesh.enabled = false;
+
+        StopAllCoroutines();
+    }
+
+    IEnumerator TransformIntroduction(float delayTime, int minScale, int maxScale)
+    {
+        introductionTextMesh.fontSize = minScale;
+
+        yield return new WaitForSeconds(delayTime);
+
+        introductionTextMesh.fontSize = maxScale;
+
+        yield return new WaitForSeconds(delayTime);
+
+        StartCoroutine(TransformIntroduction(delayTime, minScale, maxScale));
+    }
+    #endregion
 }
 
 [System.Serializable]

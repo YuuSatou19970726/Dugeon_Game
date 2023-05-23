@@ -27,18 +27,19 @@ public class PlayerJumpState : PlayerBaseState
             if (!player.playerMovementController.isLeftWall && !player.playerMovementController.isRightWall)
                 player.SwitchState(player.onAirState);
 
-        if (player.playerMovementController.isLeftWall || player.playerMovementController.isRightWall)
-            player.SwitchState(player.wallSlideState);
     }
 
     public override void UpdateState(PlayerStateManager player)
     {
+        if (player.playerMovementController.isLeftWall || player.playerMovementController.isRightWall)
+            player.SwitchState(player.wallSlideState);
 
 
         if (player.inputController.isLeftMousePress)
             player.SwitchState(player.airAttackState);
 
-
+        if (player.inputController.isJumpPress)
+            player.SwitchState(player.jumpState);
 
         if (player.inputController.isDashPress)
             player.SwitchState(player.dashState);
