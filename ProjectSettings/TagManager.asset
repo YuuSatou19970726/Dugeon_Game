@@ -23,8 +23,8 @@ TagManager:
   - 
   - Player
   - Attackable
+  - Enemy
   - Ground
-  - 
   - 
   - 
   - 
@@ -81,6 +81,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 871894479
+    locked: 0
+  - name: Enemy
+    uniqueID: 1516502943
     locked: 0
   - name: Coin
     uniqueID: 3612621091
