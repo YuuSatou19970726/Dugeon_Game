@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: bfeede70efd14484683f5956b4f1194b
-AssetOrigin:
-  serializedVersion: 1
-  productId: 228568
-  packageName: Slime Enemy - Pixel Art
-  packageVersion: 1.0
-  assetPath: Assets/Sprites/Slime/Idle/Blue/Sprite Sheet - Blue Idle.png
-  uploadId: 531930
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -48,12 +41,11 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMipmapLimit: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -92,7 +84,6 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
-  swizzle: 50462976
   cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
@@ -174,9 +165,9 @@ TextureImporter:
       name: Sprite Sheet - Blue Idle_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 30
         y: 0
-        width: 96
+        width: 36
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -335,8 +326,9 @@ TextureImporter:
       Sprite Sheet - Blue Idle_4: -8839626087033448230
       Sprite Sheet - Blue Idle_5: 8474644945731991183
       Sprite Sheet - Blue Idle_6: -3195334159281410377
-  mipmapLimitGroupName: 
+  spritePackingTag: 
   pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

@@ -1,0 +1,201 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "",
+    "automapping.whileDrawing": false,
+    "expandedProjectPaths": [
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        ":/automap-tiles.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "Assets.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "New Map.tmx": {
+            "scale": 0.25,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 2156,
+                "y": 1610
+            }
+        },
+        "SET1_Main_bckgrdlev_build.tsx": {
+            "scaleInDock": 4,
+            "scaleInEditor": 2
+        },
+        "SET1_Mainlev_build.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 2
+        },
+        "atlas.tsx": {
+            "scaleInDock": 1.5,
+            "scaleInEditor": 3
+        },
+        "foreground.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 3
+        },
+        "main_lev_build.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "main_lev_build_1.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 2,
+            "scaleInEditor": 1
+        },
+        "main_lev_build_2.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "mist-forest-background-tiles.tsx": {
+            "scaleInDock": 0.0625,
+            "scaleInEditor": 2
+        },
+        "old-dark-castle-interior-tileset.tsx": {
+            "scaleInDock": 0.015625,
+            "scaleInEditor": 3
+        },
+        "other_lev_build.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1.5
+        },
+        "prototype.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 5.5
+        },
+        "prototype16.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 4,
+            "scaleInEditor": 3
+        },
+        "prototype_rule_1.tmx": {
+            "scale": 2,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 144.5,
+                "y": 444.25
+            }
+        },
+        "prototype_rule_2.tmx": {
+            "scale": 2,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 231.5,
+                "y": 126.75
+            }
+        },
+        "protoype_rule_2.tmx": {
+            "scale": 1.0519270833333332,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 480.0712977174828,
+                "y": 320.83972867257523
+            }
+        },
+        "rocks.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "rule.tmx": {
+            "expandedObjectLayers": [
+                4
+            ],
+            "scale": 1.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 166.66666666666669,
+                "y": 227
+            }
+        },
+        "rule_1.tmx": {
+            "expandedObjectLayers": [
+                4
+            ],
+            "scale": 3,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 168.66666666666663,
+                "y": 552.8333333333333
+            }
+        },
+        "rule_prototype_1.tmx": {
+            "scale": 3,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 74.33333333333334,
+                "y": 135.83333333333334
+            }
+        },
+        "rule_prototype_2.tmx": {
+            "scale": 4,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 239.75,
+                "y": 159.625
+            }
+        },
+        "spr_Props.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 4
+        },
+        "tileset.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 3
+        },
+        "tilesetd.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 4
+        },
+        "untitled.tmx": {
+            "scale": 0.33,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 536.3636363636363,
+                "y": 825.7575757575758
+            }
+        },
+        "window_small_1.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1.5
+        }
+    },
+    "last.externalTilesetPath": "D:/SOFTWARE/UNITY_PROJECT/Dungeon_Game_Project/Assets/DUNG PHAM/Tiled",
+    "last.imagePath": "E:/GAME ASSETS/Sprites/PIXEL/PLATFORM GAME/ENVIRONMENT/Environments/sunny-rocky-mountains/PNG",
+    "map.height": 100,
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 100,
+    "openFiles": [
+    ],
+    "project": "Test.tiled-project",
+    "recentFiles": [
+        "rule_1.tmx",
+        "New Map.tmx",
+        "foreground.tsx",
+        "prototype16.tsx",
+        "Assets.tsx",
+        "prototype16.tsx",
+        "New Map.tmx",
+        "rule_prototype_1.tmx",
+        "untitled.tmx",
+        "rule_prototype_2.tmx",
+        "prototype_rule_1.tmx",
+        "prototype_rule_2.tmx"
+    ],
+    "resizeMap.removeObjects": false,
+    "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
+}
