@@ -73,7 +73,7 @@ public class Controller : MonoBehaviour
             ChangeAnimationState(PLAYER_JUMP);
             isJumping = false;
 
-            animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length;
+            animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length + 0.5f;
             Invoke("AnimationIdle", animatorDeplay);
         }
     }
