@@ -41,9 +41,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     Transform[] patrolPoints = new Transform[2];
     int index = 0;
     float dieDelayTime;
-
-    [HideInInspector] public bool isDied = false;
-
+    public bool isDied = false;
     #endregion
 
     #region MONOBEHAVIOUS
@@ -240,8 +238,8 @@ public class EnemyController : MonoBehaviour, IDamageable
     {
         SetHealth();
         transform.position = position;
-        rigid.isKinematic = false;
         GetComponent<Collider2D>().enabled = true;
+        rigid.isKinematic = false;
         canAttack = true;
         isDied = false;
     }
