@@ -55,6 +55,9 @@ TagManager:
   - name: Ground
     uniqueID: 295398379
     locked: 0
+  - name: Wall
+    uniqueID: 3334846749
+    locked: 0
   - name: BackTerrain
     uniqueID: 3710783131
     locked: 0
