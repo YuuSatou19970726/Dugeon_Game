@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Interact_Tile : MonoBehaviour
+public class PlayerInteractTile : MonoBehaviour
 {
     #region Variables Declared
     Rigidbody2D rigid;

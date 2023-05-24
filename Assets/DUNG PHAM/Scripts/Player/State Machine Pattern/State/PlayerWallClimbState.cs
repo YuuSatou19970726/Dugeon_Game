@@ -10,7 +10,7 @@ public class PlayerWallClimbState : PlayerBaseState
     {
         player.playerAnimation.PlayAnimatorClip("Wall Climb");
 
-
+        player.playerController.WallClimb();
     }
 
     public override void ExitState(PlayerStateManager player)
@@ -24,9 +24,8 @@ public class PlayerWallClimbState : PlayerBaseState
 
     public override void UpdateState(PlayerStateManager player)
     {
-        player.playerMovementController.WallClimb();
-
-        if (player.playerAnimation.currentState.IsName("Wall Climb") && player.playerAnimation.currentState.normalizedTime >= 0.9f)
+        if (player.playerAnimation.currentState.IsName("Wall Climb")
+         && player.playerAnimation.currentState.normalizedTime >= 0.9f)
         {
             player.SwitchState(player.idleState);
         }

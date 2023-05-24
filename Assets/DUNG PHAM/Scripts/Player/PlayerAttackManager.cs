@@ -9,7 +9,7 @@ public class PlayerAttackManager : MonoBehaviour, IDamageable
     public static PlayerAttackManager instance;
     int hitCount = 0;
     Collider2D[] target = new Collider2D[5];
-    PlayerMovementController playerMovementController;
+    PlayerController playerController;
     PlayerDatabase playerDatabase;
     public ParticleSystem playerBlood;
     public ParticleSystem enemyBlood;
@@ -21,15 +21,15 @@ public class PlayerAttackManager : MonoBehaviour, IDamageable
     {
         instance = this;
 
-        playerMovementController = GetComponent<PlayerMovementController>();
+        playerController = GetComponent<PlayerController>();
         playerDatabase = GetComponent<PlayerDatabase>();
     }
 
     void Start()
     {
         health = playerDatabase.maxHealth;
-        playerMovementController.isHurt = false;
-        playerMovementController.isDied = false;
+        playerDatabase.isHurt = false;
+        playerDatabase.isDied = false;
 
         healthBar.SetMaxHealth(health);
     }
@@ -62,10 +62,10 @@ public class PlayerAttackManager : MonoBehaviour, IDamageable
 
     public void GetDamage(float damage)
     {
-        if (playerMovementController.isHurt) return;
+        if (playerDatabase.isHurt) return;
 
         health -= damage;
-        playerMovementController.isHurt = true;
+        playerDatabase.isHurt = true;
         playerBlood.Play();
 
         healthBar.SetHealth(health);
@@ -75,7 +75,7 @@ public class PlayerAttackManager : MonoBehaviour, IDamageable
     {
         if (health > 0) return;
 
-        playerMovementController.isDied = true;
+        playerDatabase.isDied = true;
     }
 }
 

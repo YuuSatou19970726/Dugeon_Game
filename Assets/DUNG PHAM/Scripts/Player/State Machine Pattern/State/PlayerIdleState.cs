@@ -19,7 +19,7 @@ public class PlayerIdleState : PlayerBaseState
 
     public override void FixedUpdateState(PlayerStateManager player)
     {
-        if (player.playerMovementController.isGrounded) return;
+        if (player.playerDatabase.isGrounded) return;
 
         if (player.GetComponent<Rigidbody2D>().velocity.y < 0)
             player.SwitchState(player.fallState);
@@ -48,15 +48,15 @@ public class PlayerIdleState : PlayerBaseState
         if (player.inputController.isDashPress)
             player.SwitchState(player.dashState);
 
-        if (player.playerMovementController.isHurt)
+        if (player.playerDatabase.isHurt)
             player.SwitchState(player.hurtState);
 
-        if (player.playerMovementController.isDied)
+        if (player.playerDatabase.isDied)
             player.SwitchState(player.dieState);
 
-        if (player.playerMovementController.isGrounded) return;
+        if (player.playerDatabase.isGrounded) return;
 
-        if (player.playerMovementController.isLeftWall || player.playerMovementController.isRightWall)
+        if (player.playerDatabase.isLeftWall || player.playerDatabase.isRightWall)
             player.SwitchState(player.wallSlideState);
     }
 }

@@ -18,7 +18,7 @@ public class PlayerOnAirState : PlayerBaseState
 
     public override void FixedUpdateState(PlayerStateManager player)
     {
-        player.playerMovementController.MoveOnAir();
+        player.playerController.MoveOnAir();
 
         if (player.GetComponent<Rigidbody2D>().velocity.y < -2)
             if (player.playerAnimation.currentState.normalizedTime > 0.5f)
@@ -27,15 +27,12 @@ public class PlayerOnAirState : PlayerBaseState
 
     public override void UpdateState(PlayerStateManager player)
     {
-        if (player.playerMovementController.isGrounded)
+        if (player.playerDatabase.isGrounded)
         {
             player.SwitchState(player.idleState);
         }
 
-        if (player.playerMovementController.isRightEdge || player.playerMovementController.isLeftEdge)
-            player.SwitchState(player.wallEdge);
-
-        if (player.playerMovementController.isLeftWall || player.playerMovementController.isRightWall)
+        if (player.playerDatabase.isLeftWall || player.playerDatabase.isRightWall)
         {
             player.SwitchState(player.wallSlideState);
         }

@@ -20,4 +20,14 @@ public class PlayerAnimation : MonoBehaviour
     {
         animator.CrossFade(clip, 0);
     }
+
+    public bool CheckCurrentClip(string name)
+    {
+        return currentState.IsName(name);
+    }
+
+    public float CurrentClipNormalize()
+    {
+        return currentState.normalizedTime;
+    }
 }

@@ -15,7 +15,7 @@ public class PlayerWalkState : PlayerBaseState
 
     public override void FixedUpdateState(PlayerStateManager player)
     {
-        player.playerMovementController.Movement();
+        player.playerController.Movement();
     }
 
     public override void UpdateState(PlayerStateManager player)

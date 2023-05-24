@@ -17,24 +17,24 @@ public class PlayerWallSlideState : PlayerBaseState
 
     public override void FixedUpdateState(PlayerStateManager player)
     {
-        player.playerMovementController.MoveOnAir();
-        player.playerMovementController.WallSlide();
+        player.playerController.MoveOnAir();
+        player.playerController.WallSlide();
     }
 
     public override void UpdateState(PlayerStateManager player)
     {
         if (player.inputController.isJumpPress)
-        {
             player.SwitchState(player.wallJumpState);
-        }
 
-        if (player.playerMovementController.isGrounded)
+        if (player.playerDatabase.isGrounded)
             player.SwitchState(player.idleState);
 
-        if (player.playerMovementController.isRightEdge || player.playerMovementController.isLeftEdge)
+        if (player.playerDatabase.isLeftEdge || player.playerDatabase.isRightEdge)
+        {            
             player.SwitchState(player.wallEdge);
+        }
 
-        if (!player.playerMovementController.isLeftWall && !player.playerMovementController.isRightWall)
+        if (!player.playerDatabase.isLeftWall && !player.playerDatabase.isRightWall)
             player.SwitchState(player.fallState);
     }
 }

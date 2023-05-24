@@ -9,7 +9,7 @@ public class PlayerJumpState : PlayerBaseState
     {
         player.playerAnimation.PlayAnimatorClip("Jump");
 
-        player.playerMovementController.Jump();
+        player.playerController.Jump();
 
         player.soundEffect.PlayAudio(2);
     }
@@ -21,19 +21,21 @@ public class PlayerJumpState : PlayerBaseState
 
     public override void FixedUpdateState(PlayerStateManager player)
     {
-        player.playerMovementController.MoveOnAir();
+        player.playerController.MoveOnAir();
 
         if (Mathf.Abs(player.GetComponent<Rigidbody2D>().velocity.y) < 2)
-            if (!player.playerMovementController.isLeftWall && !player.playerMovementController.isRightWall)
+            if (!player.playerDatabase.isLeftWall && !player.playerDatabase.isRightWall)
                 player.SwitchState(player.onAirState);
 
     }
 
     public override void UpdateState(PlayerStateManager player)
     {
-        if (player.playerMovementController.isLeftWall || player.playerMovementController.isRightWall)
+        if (player.playerDatabase.isLeftWall || player.playerDatabase.isRightWall)
             player.SwitchState(player.wallSlideState);
 
+        if (player.playerDatabase.isLeftEdge || player.playerDatabase.isRightEdge)
+            player.SwitchState(player.wallEdge);
 
         if (player.inputController.isLeftMousePress)
             player.SwitchState(player.airAttackState);

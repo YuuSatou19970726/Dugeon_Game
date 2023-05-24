@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AfterImagePool : MonoBehaviour
 {
-    public static AfterImagePool instance;
     public GameObject spritePrefab;
     [SerializeField] List<GameObject> sprites = new List<GameObject>();
     public Transform player;
@@ -12,10 +11,7 @@ public class AfterImagePool : MonoBehaviour
     [SerializeField] float timePerImage = 0.05f;
     [SerializeField] float beginAlpha = 0.95f;
     [SerializeField] float displayTime = 0.2f;
-    void Awake()
-    {
-        instance = this;
-    }
+
     void Start()
     {
         AddSprites(numberImage);
