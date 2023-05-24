@@ -41,6 +41,9 @@ public class EnemyController : MonoBehaviour, IDamageable
     Transform[] patrolPoints = new Transform[2];
     int index = 0;
     float dieDelayTime;
+
+    [HideInInspector] public bool isDied = false;
+
     #endregion
 
     #region MONOBEHAVIOUS
@@ -219,12 +222,13 @@ public class EnemyController : MonoBehaviour, IDamageable
     #region DEATH
     public void DieTimeDelay()
     {
-        rigid.velocity = Vector2.zero;
         StartCoroutine(ObjectDie());
     }
 
     IEnumerator ObjectDie()
     {
+        isDied = true;
+        rigid.velocity = Vector2.zero;
         rigid.isKinematic = true;
         GetComponent<Collider2D>().enabled = false;
 
@@ -239,6 +243,7 @@ public class EnemyController : MonoBehaviour, IDamageable
         rigid.isKinematic = false;
         GetComponent<Collider2D>().enabled = true;
         canAttack = true;
+        isDied = false;
     }
     #endregion 
 

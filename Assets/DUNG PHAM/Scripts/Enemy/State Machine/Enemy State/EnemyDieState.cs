@@ -21,7 +21,4 @@ public class EnemyDieState : EnemyBaseState
     {
         enemy.enemyController.DieTimeDelay();
     }
-
-
-
 }
