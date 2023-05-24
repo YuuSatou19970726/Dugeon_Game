@@ -130,9 +130,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4070440}
   - component: {fileID: 4070439}
-  - component: {fileID: 4070441}
   - component: {fileID: 4070438}
   - component: {fileID: 4070437}
+  - component: {fileID: 4070441}
   m_Layer: 10
   m_Name: part
   m_TagString: Bridge
@@ -290,7 +290,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4070436}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 590c6466e7f9f4cd9a3254c0a395abac, type: 3}
+  m_Script: {fileID: 11500000, guid: ed1d9d5e456444ae887b521c35c64ec4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8172117
@@ -470,9 +470,9 @@ GameObject:
   m_Component:
   - component: {fileID: 33532622}
   - component: {fileID: 33532626}
-  - component: {fileID: 33532625}
   - component: {fileID: 33532624}
   - component: {fileID: 33532623}
+  - component: {fileID: 33532627}
   m_Layer: 10
   m_Name: part (5)
   m_TagString: Bridge
@@ -569,18 +569,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &33532625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 33532621}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 590c6466e7f9f4cd9a3254c0a395abac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &33532626
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -633,6 +621,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &33532627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33532621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed1d9d5e456444ae887b521c35c64ec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &41141656
 GameObject:
   m_ObjectHideFlags: 0
@@ -1091,11 +1091,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 77502533}
   m_CullTransparentMesh: 1
---- !u!1 &99333524 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9053868647857060831, guid: e6f05b3340797487cb80ca335358aa2d, type: 3}
-  m_PrefabInstance: {fileID: 780625282}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &104461528
 GameObject:
   m_ObjectHideFlags: 0
@@ -1105,9 +1100,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 104461529}
-  - component: {fileID: 104461532}
   - component: {fileID: 104461530}
   - component: {fileID: 104461533}
+  - component: {fileID: 104461534}
   m_Layer: 0
   m_Name: Part2
   m_TagString: Untagged
@@ -1182,20 +1177,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &104461532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 104461528}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e446c2e9ec07e480c87e80644238dd1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  food: {fileID: 7110965497119785186, guid: c4f1fa1e5dff04f67880532d02fcd42e, type: 3}
-  checkPoint: 2
 --- !u!61 &104461533
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1242,6 +1223,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.8125, y: 3.375}
   m_EdgeRadius: 0
+--- !u!114 &104461534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104461528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7151c871c51e142e9bf578f7b5ff414b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  food: {fileID: 0}
+  checkPoint: 2
 --- !u!1 &109947202
 GameObject:
   m_ObjectHideFlags: 0
@@ -1411,9 +1406,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 109947202}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53844fad7b6c44a28a0ead086dbfdc82, type: 3}
+  m_Script: {fileID: 11500000, guid: 35e94cdbc054a4908834433e426edd1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blueMagician: {fileID: 0}
 --- !u!1 &150156809
 GameObject:
   m_ObjectHideFlags: 0
@@ -2682,11 +2678,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &242520780 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9053868647857060831, guid: e6f05b3340797487cb80ca335358aa2d, type: 3}
-  m_PrefabInstance: {fileID: 1375108866}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &296815607
 GameObject:
   m_ObjectHideFlags: 0
@@ -12670,9 +12661,9 @@ GameObject:
   m_Component:
   - component: {fileID: 561932370}
   - component: {fileID: 561932374}
-  - component: {fileID: 561932373}
   - component: {fileID: 561932372}
   - component: {fileID: 561932371}
+  - component: {fileID: 561932375}
   m_Layer: 10
   m_Name: part (9)
   m_TagString: Bridge
@@ -12769,18 +12760,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &561932373
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 561932369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 590c6466e7f9f4cd9a3254c0a395abac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &561932374
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12833,6 +12812,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &561932375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561932369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed1d9d5e456444ae887b521c35c64ec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &563090785
 GameObject:
   m_ObjectHideFlags: 0
@@ -12843,9 +12834,9 @@ GameObject:
   m_Component:
   - component: {fileID: 563090786}
   - component: {fileID: 563090790}
-  - component: {fileID: 563090789}
   - component: {fileID: 563090788}
   - component: {fileID: 563090787}
+  - component: {fileID: 563090791}
   m_Layer: 10
   m_Name: part (11)
   m_TagString: Bridge
@@ -12942,18 +12933,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &563090789
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 563090785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 590c6466e7f9f4cd9a3254c0a395abac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &563090790
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13006,6 +12985,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &563090791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 563090785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed1d9d5e456444ae887b521c35c64ec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &564733342
 GameObject:
   m_ObjectHideFlags: 0
@@ -13016,9 +13007,9 @@ GameObject:
   m_Component:
   - component: {fileID: 564733343}
   - component: {fileID: 564733347}
-  - component: {fileID: 564733346}
   - component: {fileID: 564733345}
   - component: {fileID: 564733344}
+  - component: {fileID: 564733348}
   m_Layer: 10
   m_Name: part (7)
   m_TagString: Bridge
@@ -13115,18 +13106,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &564733346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 564733342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 590c6466e7f9f4cd9a3254c0a395abac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &564733347
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13179,6 +13158,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &564733348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564733342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed1d9d5e456444ae887b521c35c64ec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &572686187
 GameObject:
   m_ObjectHideFlags: 0
@@ -13225,9 +13216,9 @@ GameObject:
   m_Component:
   - component: {fileID: 577374523}
   - component: {fileID: 577374527}
-  - component: {fileID: 577374526}
   - component: {fileID: 577374525}
   - component: {fileID: 577374524}
+  - component: {fileID: 577374528}
   m_Layer: 10
   m_Name: part (13)
   m_TagString: Bridge
@@ -13324,18 +13315,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &577374526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 577374522}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 590c6466e7f9f4cd9a3254c0a395abac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &577374527
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13388,6 +13367,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &577374528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577374522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed1d9d5e456444ae887b521c35c64ec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &595566722
 GameObject:
   m_ObjectHideFlags: 0
@@ -13398,9 +13389,9 @@ GameObject:
   m_Component:
   - component: {fileID: 595566723}
   - component: {fileID: 595566727}
-  - component: {fileID: 595566726}
   - component: {fileID: 595566725}
   - component: {fileID: 595566724}
+  - component: {fileID: 595566728}
   m_Layer: 10
   m_Name: part (12)
   m_TagString: Bridge
@@ -13497,18 +13488,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &595566726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 595566722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 590c6466e7f9f4cd9a3254c0a395abac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &595566727
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13561,6 +13540,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &595566728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 595566722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed1d9d5e456444ae887b521c35c64ec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &612036185
 GameObject:
   m_ObjectHideFlags: 0
@@ -13625,9 +13616,9 @@ GameObject:
   m_Component:
   - component: {fileID: 623100313}
   - component: {fileID: 623100317}
-  - component: {fileID: 623100316}
   - component: {fileID: 623100315}
   - component: {fileID: 623100314}
+  - component: {fileID: 623100318}
   m_Layer: 10
   m_Name: part (6)
   m_TagString: Bridge
@@ -13724,18 +13715,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &623100316
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 623100312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 590c6466e7f9f4cd9a3254c0a395abac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &623100317
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13788,6 +13767,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &623100318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623100312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed1d9d5e456444ae887b521c35c64ec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &648619787
 GameObject:
   m_ObjectHideFlags: 0
@@ -14277,16 +14268,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 812198717}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fbe12e0c0ae54523b9d632b14ef91f6, type: 3}
+  m_Script: {fileID: 11500000, guid: 2c61e95b4471440238d3fc9b4fe2dd50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blueSlime: {fileID: 3046449283407899687, guid: e5309253057af4a7f8c0f69b33e64dbb, type: 3}
-  bringer: {fileID: 7700525824025429798, guid: 713309f97406c4b9b9bf1b2e6e85051f, type: 3}
+  blueSlime: {fileID: 5056594613576492060, guid: 1dd987d1b5d5842f9951000da66a5496, type: 3}
+  bringer: {fileID: 0}
   isMovie: 0
-  heart_1: {fileID: 99333524}
-  heart_2: {fileID: 1101823590}
-  heart_3: {fileID: 242520780}
-  textScore: {fileID: 1574730558}
+  heart_1: {fileID: 0}
+  heart_2: {fileID: 0}
+  heart_3: {fileID: 0}
+  textScore: {fileID: 0}
 --- !u!1 &838001982
 GameObject:
   m_ObjectHideFlags: 0
@@ -14653,9 +14644,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 920169990}
-  - component: {fileID: 920169993}
   - component: {fileID: 920169991}
   - component: {fileID: 920169994}
+  - component: {fileID: 920169995}
   m_Layer: 0
   m_Name: Part3
   m_TagString: Untagged
@@ -14730,20 +14721,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &920169993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 920169989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e446c2e9ec07e480c87e80644238dd1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  food: {fileID: 7110965497119785186, guid: c4f1fa1e5dff04f67880532d02fcd42e, type: 3}
-  checkPoint: 3
 --- !u!61 &920169994
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14790,6 +14767,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.8125, y: 3.375}
   m_EdgeRadius: 0
+--- !u!114 &920169995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920169989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7151c871c51e142e9bf578f7b5ff414b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  food: {fileID: 0}
+  checkPoint: 3
 --- !u!1 &920515268
 GameObject:
   m_ObjectHideFlags: 0
@@ -15396,7 +15387,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 986077877}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51cf3c726ec3d41908ae5177be6d4df2, type: 3}
+  m_Script: {fileID: 11500000, guid: 87cd9ea161fb545f1ab74de2cbf73655, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   boardMove: {fileID: 1632073539}
@@ -30120,9 +30111,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1008693349}
   - component: {fileID: 1008693353}
-  - component: {fileID: 1008693352}
   - component: {fileID: 1008693351}
   - component: {fileID: 1008693350}
+  - component: {fileID: 1008693354}
   m_Layer: 10
   m_Name: part (1)
   m_TagString: Bridge
@@ -30219,18 +30210,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1008693352
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1008693348}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 590c6466e7f9f4cd9a3254c0a395abac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &1008693353
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -30283,6 +30262,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1008693354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008693348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed1d9d5e456444ae887b521c35c64ec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1027421923
 GameObject:
   m_ObjectHideFlags: 0
@@ -30708,11 +30699,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1101823590 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9053868647857060831, guid: e6f05b3340797487cb80ca335358aa2d, type: 3}
-  m_PrefabInstance: {fileID: 975359754}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1111778503
 GameObject:
   m_ObjectHideFlags: 0
@@ -30829,7 +30815,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1111778503}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6defdbe8ebb00418e971a65abf6f8750, type: 3}
+  m_Script: {fileID: 11500000, guid: dfefe0c1e90eb416f9ee5412c52180f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1114167082
@@ -30877,9 +30863,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1181281284}
-  - component: {fileID: 1181281286}
   - component: {fileID: 1181281283}
   - component: {fileID: 1181281287}
+  - component: {fileID: 1181281288}
   m_Layer: 0
   m_Name: Part1
   m_TagString: Untagged
@@ -30954,20 +30940,6 @@ Transform:
   m_Father: {fileID: 1881320814}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1181281286
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1181281282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e446c2e9ec07e480c87e80644238dd1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  food: {fileID: 7110965497119785186, guid: c4f1fa1e5dff04f67880532d02fcd42e, type: 3}
-  checkPoint: 1
 --- !u!61 &1181281287
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -31014,6 +30986,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.8125, y: 3.375}
   m_EdgeRadius: 0
+--- !u!114 &1181281288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181281282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7151c871c51e142e9bf578f7b5ff414b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  food: {fileID: 0}
+  checkPoint: 1
 --- !u!1 &1194007469
 GameObject:
   m_ObjectHideFlags: 0
@@ -31865,9 +31851,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1374695071}
   - component: {fileID: 1374695075}
-  - component: {fileID: 1374695074}
   - component: {fileID: 1374695073}
   - component: {fileID: 1374695072}
+  - component: {fileID: 1374695076}
   m_Layer: 10
   m_Name: part (8)
   m_TagString: Bridge
@@ -31964,18 +31950,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1374695074
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1374695070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 590c6466e7f9f4cd9a3254c0a395abac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &1374695075
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -32028,6 +32002,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1374695076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1374695070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed1d9d5e456444ae887b521c35c64ec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1375108866
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32932,9 +32918,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1557536485}
   - component: {fileID: 1557536489}
-  - component: {fileID: 1557536488}
   - component: {fileID: 1557536487}
   - component: {fileID: 1557536486}
+  - component: {fileID: 1557536490}
   m_Layer: 10
   m_Name: part (10)
   m_TagString: Bridge
@@ -33031,18 +33017,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1557536488
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1557536484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 590c6466e7f9f4cd9a3254c0a395abac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &1557536489
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -33095,6 +33069,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1557536490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1557536484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed1d9d5e456444ae887b521c35c64ec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1559989544
 GameObject:
   m_ObjectHideFlags: 0
@@ -34280,9 +34266,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1808319694}
   - component: {fileID: 1808319698}
-  - component: {fileID: 1808319697}
   - component: {fileID: 1808319696}
   - component: {fileID: 1808319695}
+  - component: {fileID: 1808319699}
   m_Layer: 10
   m_Name: part (2)
   m_TagString: Bridge
@@ -34379,18 +34365,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1808319697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1808319693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 590c6466e7f9f4cd9a3254c0a395abac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &1808319698
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -34443,6 +34417,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1808319699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808319693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed1d9d5e456444ae887b521c35c64ec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1817060525
 GameObject:
   m_ObjectHideFlags: 0
@@ -34556,8 +34542,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1834094397}
-  - component: {fileID: 1834094402}
   - component: {fileID: 1834094401}
+  - component: {fileID: 1834094402}
   - component: {fileID: 1834094400}
   - component: {fileID: 1834094399}
   - component: {fileID: 1834094398}
@@ -34717,12 +34703,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1834094396}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89f8347da682f46279dbe782e8d971bd, type: 3}
+  m_Script: {fileID: 11500000, guid: ef3aae18519d94a9c968f48af7eb2697, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypoints:
-  - {fileID: 1290433653}
-  - {fileID: 200502330}
 --- !u!114 &1834094402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34732,9 +34715,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1834094396}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e87bf85b78f1e4a7fa3fac6e79314989, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e579c70a9edd4fbc9ea91296da25ea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waypoints:
+  - {fileID: 1290433653}
+  - {fileID: 200502330}
 --- !u!1 &1835190213
 GameObject:
   m_ObjectHideFlags: 0
@@ -38369,8 +38355,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1879149680}
-  - component: {fileID: 1879149684}
   - component: {fileID: 1879149685}
+  - component: {fileID: 1879149684}
   - component: {fileID: 1879149681}
   - component: {fileID: 1879149683}
   - component: {fileID: 1879149682}
@@ -38530,9 +38516,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1879149679}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e87bf85b78f1e4a7fa3fac6e79314989, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e579c70a9edd4fbc9ea91296da25ea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waypoints:
+  - {fileID: 62161019}
+  - {fileID: 1771793908}
 --- !u!114 &1879149685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38542,12 +38531,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1879149679}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89f8347da682f46279dbe782e8d971bd, type: 3}
+  m_Script: {fileID: 11500000, guid: ef3aae18519d94a9c968f48af7eb2697, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypoints:
-  - {fileID: 62161019}
-  - {fileID: 1771793908}
 --- !u!1 &1881320813
 GameObject:
   m_ObjectHideFlags: 0
@@ -38623,9 +38609,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1903847572}
   - component: {fileID: 1903847576}
-  - component: {fileID: 1903847575}
   - component: {fileID: 1903847574}
   - component: {fileID: 1903847573}
+  - component: {fileID: 1903847577}
   m_Layer: 10
   m_Name: part (3)
   m_TagString: Bridge
@@ -38722,18 +38708,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1903847575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1903847571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 590c6466e7f9f4cd9a3254c0a395abac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &1903847576
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -38786,6 +38760,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1903847577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903847571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed1d9d5e456444ae887b521c35c64ec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1914217310
 GameObject:
   m_ObjectHideFlags: 0
@@ -38963,9 +38949,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1937663142}
   - component: {fileID: 1937663146}
-  - component: {fileID: 1937663145}
   - component: {fileID: 1937663144}
   - component: {fileID: 1937663143}
+  - component: {fileID: 1937663147}
   m_Layer: 10
   m_Name: part (4)
   m_TagString: Bridge
@@ -39062,18 +39048,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1937663145
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1937663141}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 590c6466e7f9f4cd9a3254c0a395abac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &1937663146
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -39126,6 +39100,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1937663147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937663141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed1d9d5e456444ae887b521c35c64ec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1951123208
 GameObject:
   m_ObjectHideFlags: 0
