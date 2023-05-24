@@ -3340,18 +3340,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 666660771}
     m_Modifications:
-    - target: {fileID: 2012270252228052877, guid: 84fefba39f081834590cb3447279d6da, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2012270252228052877, guid: 84fefba39f081834590cb3447279d6da, type: 3}
-      propertyPath: m_SortingOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2012270252228052877, guid: 84fefba39f081834590cb3447279d6da, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: f93276622fcbc3a439e90fae51b569ab, type: 2}
     - target: {fileID: 5789537140831430401, guid: 84fefba39f081834590cb3447279d6da, type: 3}
       propertyPath: m_Name
       value: Player Full
@@ -3419,10 +3407,6 @@ PrefabInstance:
     - target: {fileID: 6098330862590839679, guid: 84fefba39f081834590cb3447279d6da, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9010505153522086907, guid: 84fefba39f081834590cb3447279d6da, type: 3}
-      propertyPath: wallCheckDentaY
-      value: 1.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84fefba39f081834590cb3447279d6da, type: 3}
