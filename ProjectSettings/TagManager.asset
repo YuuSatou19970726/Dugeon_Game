@@ -12,6 +12,7 @@ TagManager:
   - Bridge
   - Trap
   - Elevator
+  - OneWayPlatform
   layers:
   - Default
   - TransparentFX
@@ -25,7 +26,7 @@ TagManager:
   - Attackable
   - Enemy
   - Ground
-  - 
+  - Grapplable
   - 
   - 
   - 

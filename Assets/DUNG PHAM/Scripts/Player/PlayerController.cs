@@ -2,245 +2,165 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IStopAttack
 {
-    #region Fields
-    Vector3 lowPoint, leftPoint, rightPoint;
-    Collider2D coli;
-    Rigidbody2D rigid;
-    bool isGrounded, isJumping, isLeftWall, isRightWall, isWallJumping;
-    [HideInInspector] public bool moveOnAir;
-    [SerializeField] float maxSpeed, jumpForce;
-    float runSpeed;
-    float accelerationRate = 0.5f;
-    [SerializeField] LayerMask groundLayer;
-    int direction;
-    [HideInInspector] public string IDLE = "Idle";
-    const string RUN = "Run";
-    const string IDLE_RUN = "Idle To Run";
-    const string RUN_IDLE = "Run To Idle";
-    const string JUMP = "Jump";
-    const string ONAIR = "On Air";
-    const string FALL = "Fall";
-    const string HURT = "Hurt";
-    const string WALL_JUMP = "Wall Jump";
-    const string WALL_SIDE = "Wall Side";
-    [HideInInspector] public string[] ATTACK = { "Attack 1", "Attack 2", "Attack 3" };
-    string DEATH = "Death";
-    [HideInInspector] public Animator animator;
-    public AnimatorStateInfo state;
+    #region MISCELLANEOUS
+    InputControllerNew inputController;
+    PlayerDatabase playerDatabase;
+    PlayerJump playerJump;
+    PlayerDash playerDash;
+    PlayerWallSlideAndJump playerWallSlideAndJump;
+    PlayerWallLedgeGrabAndClimb playerWallLedgeGrabAndClimb;
+    Rigidbody2D playerRigid;
+    Collider2D playerColi;
+    Vector2 groundCheckPoint;
+
+
+    public bool StopAttack()
+    {
+        return playerDatabase.isDied;
+    }
     #endregion
 
-    #region Monobehaviour
+    #region MONOBEHAVIOUR
     void Awake()
     {
-        coli = GetComponent<Collider2D>();
-        rigid = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        inputController = GetComponent<InputControllerNew>();
+        playerDatabase = GetComponent<PlayerDatabase>();
+        playerJump = GetComponent<PlayerJump>();
+        playerDash = GetComponent<PlayerDash>();
+        playerWallSlideAndJump = GetComponent<PlayerWallSlideAndJump>();
+        playerWallLedgeGrabAndClimb = GetComponent<PlayerWallLedgeGrabAndClimb>();
+        playerRigid = GetComponent<Rigidbody2D>();
+        playerColi = GetComponent<Collider2D>();
     }
-    void Start()
-    {
-        isJumping = isWallJumping = false;
-        runSpeed = 0;
-    }
+
     void Update()
     {
-        state = animator.GetCurrentAnimatorStateInfo(0);
+        GroundCheck();
 
-        CheckGround();
-        CheckWall();
-        CheckJumpCondition();
+        FallGravityChange();
+        MaxFallVelocity();
     }
-    void FixedUpdate()
-    {
-        Movement();
-        GroundJump();
-        WallJump();
-        Falling();
-    }
+
     #endregion
 
-    #region Movement
-    void Movement()
+    #region COLLISION DETECT
+    void GroundCheck()
     {
-        float input = Input.GetAxisRaw("Horizontal");
+        groundCheckPoint = playerColi.bounds.center - new Vector3(0f, playerColi.bounds.size.y / 2, 0f);
 
-        if (input > 0) { direction = 1; Acceleration(); }
-        else if (input < 0) { direction = -1; Acceleration(); }
-        else if (input == 0) { direction = 0; Decceleration(); }
-        if (direction != 0)
-            transform.localScale = new Vector3(direction, 1, 1);
-        if (moveOnAir)
-            rigid.velocity = new Vector2(direction * runSpeed, rigid.velocity.y);
-    }
-    void Acceleration()
-    {
-        if (runSpeed < maxSpeed)
-        {
-            runSpeed += accelerationRate;
-            if (runSpeed < 1)
-            {
-                MoveAnim(IDLE_RUN);
-            }
-        }
+        if (Physics2D.OverlapCircle(groundCheckPoint, 0.1f, playerDatabase.groundLayer))
+            playerDatabase.isGrounded = true;
         else
-        {
-            runSpeed = maxSpeed;
-            MoveAnim(RUN);
-        }
-    }
-    void Decceleration()
-    {
-        if (runSpeed > 0)
-        {
-            runSpeed -= accelerationRate;
-            if (runSpeed < 4)
-            {
-                MoveAnim(RUN_IDLE);
-            }
-        }
-        else
-        {
-            runSpeed = 0;
-            MoveAnim(IDLE);
-        }
-    }
-    void CheckJumpCondition()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (isGrounded)
-            {
-                isJumping = true;
-                moveOnAir = true;
-            }
-            else
-            {
-                if (isLeftWall || isRightWall) isWallJumping = true;
-                moveOnAir = false;
-            }
-        }
-    }
-    void GroundJump()
-    {
-        if (!isJumping) return;
-
-        rigid.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-
-        isJumping = false;
-
-        if (rigid.velocity.y > 1f)
-        {
-            PlayAnimation(JUMP);
-        }
-    }
-    void WallJump()
-    {
-        if (isGrounded) return;
-
-        if (isLeftWall || isRightWall)
-        {
-            PlayAnimation(WALL_SIDE);
-        }
-
-        if (isWallJumping)
-        {
-            // float delta = wallChecker.position.x - transform.position.x;
-            // if (delta > 0) { jumpWay = -1; } else { jumpWay = 1; }
-            int jumpWay;
-
-            if (isLeftWall) { jumpWay = 1; } else { jumpWay = -1; }
-            rigid.AddForce(new Vector2(jumpWay * maxSpeed * 2, jumpForce), ForceMode2D.Impulse);
-
-            isWallJumping = false;
-
-            if (rigid.velocity.y > 1f)
-            {
-                PlayAnimation(WALL_JUMP);
-            }
-
-            transform.localScale = new Vector3(jumpWay, 1, 0);
-        }
-    }
-    void Falling()
-    {
-        if (isGrounded || isLeftWall || isRightWall) return;
-
-        if (rigid.velocity.y <= -1f)
-        {
-            PlayAnimation(FALL);
-        }
-        else if (Mathf.Abs(rigid.velocity.y) < 1f)
-            PlayAnimation(ONAIR);
-    }
-    #endregion
-
-    #region Check Environment
-    void CheckGround()
-    {
-        lowPoint = coli.bounds.center - new Vector3(0f, coli.bounds.size.y / 2, 0f);
-
-        if (Physics2D.OverlapCircle(lowPoint, 0.1f, groundLayer)) { isGrounded = true; moveOnAir = true; } else { isGrounded = false; }
-    }
-    void CheckWall()
-    {
-        leftPoint = coli.bounds.center - new Vector3(coli.bounds.size.x / 2, 0f);
-        rightPoint = coli.bounds.center + new Vector3(coli.bounds.size.x / 2, 0f);
-
-        if (Physics2D.OverlapCircle(leftPoint, 0.2f, groundLayer))
-        {
-            isLeftWall = true;
-        }
-        else { isLeftWall = false; }
-        if (Physics2D.OverlapCircle(rightPoint, 0.2f, groundLayer))
-        {
-            isRightWall = true;
-        }
-        else { isRightWall = false; }
-    }
-    #endregion
-
-    #region Animation
-    public void PlayAnimation(string clip)
-    {
-        if (state.IsName(clip)) return;
-
-        animator.CrossFade(clip, 0, 0);
-    }
-    public void MoveAnim(string clip)
-    {
-        if (state.IsName(ATTACK[0]) || state.IsName(ATTACK[1]) || state.IsName(ATTACK[2]) || state.IsName(HURT) || state.IsName(DEATH))
-        {
-            if (state.normalizedTime < 1) return;
-        }
-        if (isGrounded)
-            animator.CrossFade(clip, 0);
-    }
-    #endregion
-
-    #region Hurt and Die
-    public void BeDamagedAnim()
-    {
-        PlayAnimation(HURT);
-
-        MoveAnim(IDLE);
+            playerDatabase.isGrounded = false;
     }
 
-    public IEnumerator BeDeath()
-    {
-        PlayAnimation(DEATH);
-
-        yield return new WaitForSeconds(1f);
-    }
-    #endregion
-
-    #region Debug
     void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(leftPoint, 0.2f);
-        Gizmos.DrawWireSphere(rightPoint, 0.2f);
-        Gizmos.DrawWireSphere(lowPoint, 0.1f);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(groundCheckPoint, 0.1f);
+    }
+    #endregion
+
+    #region HORIZONTAL MOVEMENT
+
+    public void Movement()
+    {
+        playerRigid.velocity = new Vector2(playerDatabase.moveSpeed * inputController.inputX, playerRigid.velocity.y);
+
+        if (inputController.inputXRaw != 0) transform.localScale = new Vector2(inputController.inputXRaw, 1);
+    }
+
+    public void MoveOnAir()
+    {
+        playerRigid.velocity = new Vector2(playerDatabase.moveSpeed * inputController.inputX, playerRigid.velocity.y);
+
+        if (inputController.inputXRaw != 0) transform.localScale = new Vector2(inputController.inputXRaw, 1);
+    }
+    #endregion
+
+    #region GROUND JUMP
+
+    public void Jump() =>
+        playerJump.Jump();
+
+    public void StopJump(float time) =>
+        playerJump.StopJump(time);
+
+    #endregion
+
+    #region DASH
+
+    public void Dash() =>
+        playerDash.Dash();
+
+    #endregion
+
+    #region WALL
+    public void WallSlide() =>
+        playerWallSlideAndJump.WallSlide();
+
+    public bool isWallJumping;
+    public void WallJump() =>
+        playerWallSlideAndJump.WallJump();
+
+    public void WallEdgeGrab() =>
+        playerWallLedgeGrabAndClimb.WallEdgeGrab();
+
+    public void WallClimb() =>
+        playerWallLedgeGrabAndClimb.WallClimb();
+
+    #endregion
+
+    #region CROUCH
+    public void EnterCrouch()
+    {
+        playerDatabase.head.position = transform.position;
+    }
+
+    public void ExitCrouch()
+    {
+        playerDatabase.head.position = transform.position + Vector3.up / 2;
+    }
+    #endregion
+
+    #region GRAVITY
+    void FallGravityChange()
+    {
+        if (playerWallSlideAndJump.wallTimer <= 0.4f)
+        {
+            playerRigid.gravityScale = playerDatabase.gravity / 2;
+            return;
+        }
+
+        if (playerDatabase.isLeftEdge || playerDatabase.isRightEdge)
+        {
+            playerRigid.gravityScale = 0;
+            return;
+        }
+
+        if (playerRigid.velocity.y < 0)
+        {
+            if (playerDatabase.isLeftWall || playerDatabase.isRightWall)
+            {
+                playerRigid.gravityScale = playerDatabase.gravity / 2;
+                return;
+            }
+
+            playerRigid.gravityScale = playerDatabase.gravity * 2;
+
+            return;
+        }
+
+
+        playerRigid.gravityScale = playerDatabase.gravity;
+    }
+
+
+    void MaxFallVelocity()
+    {
+        playerRigid.velocity = new Vector2(playerRigid.velocity.x, Mathf.Max(playerRigid.velocity.y, -playerDatabase.maxFallVelocity));
     }
     #endregion
 }

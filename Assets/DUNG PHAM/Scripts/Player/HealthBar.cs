@@ -2,32 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class HealthBar : MonoBehaviour
 {
-    public Slider healthBar;
-    public Gradient healthBarFill;
+    [Header("Slider Control")]
+    public Slider slider;
     public Image fill;
-    public PlayerHealth playerHealth;
-    void Start()
+    public Gradient gradient;
+    public void SetMaxHealth(float maxHealth)
     {
-        SetMaxHealth();
+        slider.maxValue = maxHealth;
+        slider.value = maxHealth;
+        fill.color = gradient.Evaluate(1f);
     }
-    void Update()
+    public void SetHealth(float health)
     {
-        DisplayHealthBar();
+        slider.value = health;
+        fill.color = gradient.Evaluate(slider.normalizedValue);
     }
-
-    void DisplayHealthBar()
-    {
-        healthBar.value = playerHealth.health;
-        fill.color = healthBarFill.Evaluate(healthBar.normalizedValue);
-    }
-
-    public void SetMaxHealth()
-    {
-        healthBar.maxValue = playerHealth.maxHealth;
-        healthBar.value = playerHealth.maxHealth;
-        fill.color = healthBarFill.Evaluate(1f);
-    }
+    // // Quay Health Bar theo Camera (3D)
+    // [Header("Face to Camera")]
+    // public Transform tCamera;
+    // void LateUpdate()
+    // {
+    //     transform.LookAt(transform.position + tCamera.position);
+    // }
 }
