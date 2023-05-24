@@ -2,12 +2,13 @@ using UnityEngine;
 
 public class PlayerStateManager : MonoBehaviour
 {
-    [HideInInspector] public PlayerMovementController playerMovementController;
+    [HideInInspector] public PlayerDatabase playerDatabase;
+    [HideInInspector] public PlayerController playerController;
     [HideInInspector] public InputControllerNew inputController;
     [HideInInspector] public PlayerAnimation playerAnimation;
     [HideInInspector] public PlayerAttackManager playerAttack;
     [HideInInspector] public SoundEffect soundEffect;
-    PlayerBaseState currentState;
+    [SerializeField] PlayerBaseState currentState;
 
     #region ALL STATE
     public PlayerIdleState idleState = new PlayerIdleState();
@@ -34,11 +35,11 @@ public class PlayerStateManager : MonoBehaviour
 
     void Awake()
     {
-        playerMovementController = GetComponent<PlayerMovementController>();
+        playerController = GetComponent<PlayerController>();
         playerAttack = GetComponent<PlayerAttackManager>();
         playerAnimation = GetComponent<PlayerAnimation>();
         inputController = GetComponent<InputControllerNew>();
-
+        playerDatabase = GetComponent<PlayerDatabase>();
         soundEffect = GetComponentInChildren<SoundEffect>();
     }
     void Start()

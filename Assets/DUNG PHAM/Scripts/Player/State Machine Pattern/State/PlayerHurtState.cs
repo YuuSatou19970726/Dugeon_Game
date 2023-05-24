@@ -22,7 +22,7 @@ public class PlayerHurtState : PlayerBaseState
         if (player.playerAnimation.currentState.IsName("Hurt") && player.playerAnimation.currentState.normalizedTime > 1)
         {
             player.SwitchState(player.idleState);
-            player.playerMovementController.isHurt = false;
+            player.playerDatabase.isHurt = false;
         }
     }
 

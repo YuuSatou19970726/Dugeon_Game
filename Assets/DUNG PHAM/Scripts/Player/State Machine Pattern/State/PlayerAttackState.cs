@@ -8,7 +8,6 @@ public class PlayerAttackState : PlayerBaseState
     {
         player.playerAnimation.PlayAnimatorClip("Attack 1");
 
-
         player.playerAttack.AttackCast(0);
     }
 

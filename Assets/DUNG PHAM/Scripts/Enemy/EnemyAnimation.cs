@@ -19,13 +19,6 @@ public class EnemyAnimation : MonoBehaviour
     }
     public void PlayAnimation(int index)
     {
-        if (CheckState(index)) return;
-
-        if (CheckState(4)) return;                                      // Die Animation
-
-        if (CheckState(3) && currentState.normalizedTime < 1) return;   // Hurt Animation
-
-
         animator.Play(animationClips[index].name);
     }
     public bool CheckState(int index)

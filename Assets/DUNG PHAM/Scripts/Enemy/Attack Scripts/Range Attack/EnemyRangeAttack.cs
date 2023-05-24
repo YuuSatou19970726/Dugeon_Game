@@ -4,25 +4,33 @@ using UnityEngine;
 
 public class EnemyRangeAttack : MonoBehaviour, IAttacker
 {
-    #region Variables
+    #region VARIABLES
     EnemyController enemyController;
+    EnemyDatabase enemyDatabase;
+    Collider2D enemyColi;
 
     [Header("Bullet")]
-    public GameObject bulletPrefab;
-    List<GameObject> bullets = new List<GameObject>();
-    [SerializeField] float bulletSpeed;
-    [SerializeField] float bulletSize;
-    [SerializeField] int bulletCount;
+    [SerializeField] GameObject bulletPrefab;
+    [SerializeField] float bulletSpeed = 10;
+    [SerializeField] float bulletSize = 1;
+    [SerializeField] int multipleDistance = 3;
+    [SerializeField] ContactFilter2D targetFilter;
 
+    [SerializeField] int bulletCount;
+    [SerializeField] List<GameObject> bullets = new List<GameObject>();
+    List<Collider2D> hits = new List<Collider2D>();
     #endregion
 
 
     void Awake()
     {
         enemyController = GetComponent<EnemyController>();
+        enemyDatabase = GetComponent<EnemyDatabase>();
+        enemyColi = GetComponent<Collider2D>();
     }
     void Start()
     {
+        bulletCount = enemyDatabase.attackNumber;
         CreateObject();
     }
 
@@ -30,17 +38,13 @@ public class EnemyRangeAttack : MonoBehaviour, IAttacker
     {
         DestroyOutRangeBullet();
 
-        if (bullets.Count > 0)
+        foreach (GameObject b in bullets)
         {
-            foreach (GameObject b in bullets)
-            {
-                BulletImpacted(b, enemyController.attackDamage);
-            }
+            BulletImpacted(b, enemyDatabase.attackDamage);
         }
-
     }
 
-    #region Bullet Pool
+    #region BULLET POOL
     void CreateObject()
     {
         for (int i = 0; i < bulletCount; i++)
@@ -59,55 +63,67 @@ public class EnemyRangeAttack : MonoBehaviour, IAttacker
         foreach (GameObject bullet in bullets)
         {
             float distance = Vector2.Distance(bullet.transform.position, transform.position);
-            int multipleDistance = 3;
 
-            if (distance > enemyController.maxAttackRange * multipleDistance)
+            if (distance > enemyDatabase.maxAttackRange * multipleDistance)
             {
                 bullet.SetActive(false);
             }
         }
     }
-    Vector3 GetBulletSpawnPosition()
+    Vector2 GetBulletSpawnPosition()
     {
-        float bulletDirection = enemyController.faceDirection * enemyController.originSpriteDirection;
+        float bulletDirection = enemyController.faceDirection * enemyDatabase.originSpriteDirection;
 
-        float bulletSpawnDistance = enemyController.minAttackRange * bulletDirection * 0.5f;
+        float bulletSpawnDistance = enemyDatabase.minAttackRange * bulletDirection * 0.5f;
 
-        Vector3 spawnPosition = new Vector3(transform.position.x + bulletSpawnDistance, transform.position.y, 0);
+        Vector2 spawnPosition = new Vector2(transform.position.x + bulletSpawnDistance, transform.position.y);
 
         return spawnPosition;
     }
 
     Vector2 GetBulletVelocity()
     {
-        return Vector2.right * bulletSpeed * enemyController.faceDirection * enemyController.originSpriteDirection;
+        Vector2 velocity = Vector2.right * bulletSpeed * enemyController.faceDirection * enemyDatabase.originSpriteDirection;
+
+        return velocity;
     }
 
     void BulletImpacted(GameObject bullet, float damage)
     {
         if (!bullet.activeInHierarchy) return;
 
-        Collider2D coli = Physics2D.OverlapCircle(bullet.transform.position, bulletSize / 2, enemyController.attackLayer);
+        int count = Physics2D.OverlapCollider(bullet.GetComponent<Collider2D>(), targetFilter, hits);
 
-        if (coli.GetComponent<IDamageable>() == null) return;
+        foreach (Collider2D coli in hits)
+        {
+            if (coli == enemyColi) continue;
 
-        coli.GetComponent<IDamageable>().GetDamage(damage);
+            if (coli.GetComponent<IStopAttack>() != null)
+                enemyController.playerDied = coli.GetComponent<IStopAttack>().StopAttack();
 
-        if (coli.GetComponent<IStopAttack>() != null)
-            enemyController.playerDied = coli.GetComponent<IStopAttack>().StopAttack();
+            if (coli.GetComponent<IDamageable>() != null)
+            {
+                coli.GetComponent<IDamageable>().GetDamage(damage);
+                bullet.gameObject.SetActive(false);
+            }
 
-        bullet.gameObject.SetActive(false);
+            if (coli.gameObject.layer == LayerMask.NameToLayer("Ground"))
+                bullet.gameObject.SetActive(false);
+        }
     }
     #endregion
 
 
     #region IAttacker
-    public void Attack(float damage)
+    public void Attack()
     {
-        StartCoroutine(AttackDelay());
+        StartCoroutine(AttackLaunchCoroutine());
     }
-    IEnumerator AttackDelay()
+    IEnumerator AttackLaunchCoroutine()
     {
+        // Delay to fix with animation
+        yield return new WaitForSeconds(1.2f);
+
         foreach (GameObject bullet in bullets)
         {
             if (!bullet.activeInHierarchy)
@@ -117,8 +133,10 @@ public class EnemyRangeAttack : MonoBehaviour, IAttacker
                 bullet.GetComponent<Rigidbody2D>().velocity = GetBulletVelocity();
             }
 
-            yield return new WaitForSeconds(enemyController.attackSpeed);
+            yield return new WaitForSeconds(enemyDatabase.timePerAttack);
         }
+
+        enemyController.RunAttackCooldownCoroutine();
     }
 
 

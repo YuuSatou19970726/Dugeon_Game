@@ -45,7 +45,7 @@ public class PlayerOneWayPlatform : MonoBehaviour
     {
         Collider2D platformCollider = oneWayPlatform.GetComponent<Collider2D>();
         Collider2D playerCollider = GetComponent<Collider2D>();
-        Collider2D headCollider = GetComponent<PlayerMovementController>()  .head.GetComponent<Collider2D>();
+        Collider2D headCollider = GetComponent<PlayerDatabase>().head.GetComponent<Collider2D>();
 
         Physics2D.IgnoreCollision(playerCollider, platformCollider);
         Physics2D.IgnoreCollision(headCollider, platformCollider);

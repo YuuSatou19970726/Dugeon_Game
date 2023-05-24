@@ -8,18 +8,18 @@ public class PlayerCrouchMoveState : PlayerBaseState
     {
         player.playerAnimation.PlayAnimatorClip("Crouch Move");
 
-        player.playerMovementController.EnterCrouch();
+        player.playerController.EnterCrouch();
     }
 
     public override void ExitState(PlayerStateManager player)
     {
-        player.playerMovementController.ExitCrouch();
+        player.playerController.ExitCrouch();
     }
 
     public override void FixedUpdateState(PlayerStateManager player)
     {
         if (player.inputController.inputY < 0 && player.inputController.inputX != 0)
-            player.playerMovementController.Movement();
+            player.playerController.Movement();
     }
 
     public override void UpdateState(PlayerStateManager player)

@@ -9,7 +9,7 @@ public class PlayerWallJumpState : PlayerBaseState
     {
         player.playerAnimation.PlayAnimatorClip("Wall Jump");
 
-        player.playerMovementController.WallJump();
+        player.playerController.WallJump();
 
         player.soundEffect.PlayAudio(2);
 

@@ -18,20 +18,20 @@ public class PlayerRunState : PlayerBaseState
 
     public override void FixedUpdateState(PlayerStateManager player)
     {
-        player.playerMovementController.Movement();
+        player.playerController.Movement();
 
-        if (player.playerMovementController.isGrounded) return;
+        if (player.playerDatabase.isGrounded) return;
 
         player.SwitchState(player.fallState);
 
-        if (player.playerMovementController.isLeftWall || player.playerMovementController.isRightWall)
+        if (player.playerDatabase.isLeftWall || player.playerDatabase.isRightWall)
             player.SwitchState(player.wallSlideState);
 
     }
 
     public override void UpdateState(PlayerStateManager player)
     {
-        if (!player.playerMovementController.isGrounded) return;
+        if (!player.playerDatabase.isGrounded) return;
 
         if (player.inputController.inputX == 0)
         {

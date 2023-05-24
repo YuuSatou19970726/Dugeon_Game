@@ -1,23 +1,35 @@
+using System.Collections;
 using UnityEngine;
 public class Introduction : MonoBehaviour
 {
-    public string introMessage;
-
+    [SerializeField] string introMessage;
+    [SerializeField] int minScale = 50;
+    [SerializeField] int maxScale = 70;
     bool isTriggered = false;
+    bool isShowed;
 
     void Update()
     {
-        if (!isTriggered) return;
+        if (isTriggered)
+        {
+            Vector3 position = new Vector3(transform.position.x, transform.position.y + 3f);
 
-        ShowIntroduction();
+            if (isShowed)
+            {
+                DialogueManager.instance.PositionUpdate(position);
+                return;
+            }
+
+            DialogueManager.instance.ShowIntroduction(introMessage, position, minScale, maxScale);
+
+            isShowed = true;
+        }
+        else
+        {
+            DialogueManager.instance.CloseIntroduction();
+        }
     }
 
-    void ShowIntroduction()
-    {
-        DialogueManager.instance.introductionText.transform.position = new Vector3(transform.position.x, transform.position.y + 2f);
-        DialogueManager.instance.introductionText.enabled = true;
-        DialogueManager.instance.introductionText.text = introMessage;
-    }
 
     void OnTriggerEnter2D(Collider2D coli)
     {
@@ -26,12 +38,11 @@ public class Introduction : MonoBehaviour
         isTriggered = true;
     }
 
-
-
     void OnTriggerExit2D(Collider2D coli)
     {
-        DialogueManager.instance.introductionText.enabled = (false);
+        if (!coli.CompareTag("Player")) return;
 
         isTriggered = false;
+        isShowed = false;
     }
 }

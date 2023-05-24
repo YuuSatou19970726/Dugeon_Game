@@ -21,9 +21,19 @@ public class PlayerWallEdgeState : PlayerBaseState
 
     public override void UpdateState(PlayerStateManager player)
     {
-        player.playerMovementController.WallEdgeGrab();
+        player.playerController.WallEdgeGrab();
+        
+        if (player.inputController.inputY > 0)
+            player.SwitchState(player.wallClimb);
 
-        if (player.inputController.inputY > 0) player.SwitchState(player.wallClimb);
-        if (player.inputController.inputY < 0 || player.inputController.inputX != 0) { player.SwitchState(player.fallState); }
+        if (player.inputController.inputY < 0)
+        {
+            player.SwitchState(player.fallState);
+        }
+
+        if (player.inputController.isJumpPress)
+        {
+            player.SwitchState(player.wallJumpState);
+        }
     }
 }

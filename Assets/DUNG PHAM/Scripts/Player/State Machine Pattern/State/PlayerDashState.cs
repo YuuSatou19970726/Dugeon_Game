@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class PlayerDashState : PlayerBaseState
 {
+    string DASH = "Wall Jump";
     public override void EnterState(PlayerStateManager player)
     {
-        player.playerAnimation.PlayAnimatorClip("Wall Jump");
-        player.playerMovementController.Dash();
+        player.playerAnimation.PlayAnimatorClip(DASH);
+        player.playerController.Dash();
     }
 
     public override void ExitState(PlayerStateManager player)
@@ -22,9 +23,8 @@ public class PlayerDashState : PlayerBaseState
 
     public override void UpdateState(PlayerStateManager player)
     {
-
-        if (player.playerAnimation.currentState.IsName("Wall Jump")
-        && player.playerAnimation.currentState.normalizedTime > player.playerMovementController.dashingTime)
+        if (player.playerAnimation.CheckCurrentClip(DASH)
+        && player.playerAnimation.CurrentClipNormalize() > player.playerDatabase.dashingTime)
         {
             player.SwitchState(player.idleState);
         }

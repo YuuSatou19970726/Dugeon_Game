@@ -7,6 +7,8 @@ public class PlayerFallState : PlayerBaseState
     public override void EnterState(PlayerStateManager player)
     {
         player.playerAnimation.PlayAnimatorClip("Fall");
+
+        player.soundEffect.PlayAudio(0);
     }
 
     public override void ExitState(PlayerStateManager player)
@@ -16,27 +18,22 @@ public class PlayerFallState : PlayerBaseState
 
     public override void FixedUpdateState(PlayerStateManager player)
     {
-        player.playerMovementController.MoveOnAir();
+        player.playerController.MoveOnAir();
 
-        if (player.playerMovementController.isGrounded)
-        {
-            // if (player.GetComponent<Rigidbody2D>().velocity.y > -player.playerMovementController.playerDatabase.maxFallVelocity / 2)
-            // {
-            //     player.SwitchState(player.idleState);
-            // }
-            // else
-            // {
-                player.SwitchState(player.crouchState);
-                player.soundEffect.PlayAudio(3);
-            // }
-        }
     }
 
     public override void UpdateState(PlayerStateManager player)
     {
-        if (player.playerMovementController.isGrounded) return;
+        if (player.playerDatabase.isGrounded)
+        {
+            player.SwitchState(player.crouchState);
+            player.soundEffect.PlayAudio(3);
+        }
 
-        if (player.playerMovementController.isLeftWall || player.playerMovementController.isRightWall)
+        // if (player.playerController.isRightEdge || player.playerController.isLeftEdge)
+        //     player.SwitchState(player.wallEdge);
+
+        if (player.playerDatabase.isLeftWall || player.playerDatabase.isRightWall)
         {
             player.SwitchState(player.wallSlideState);
         }
@@ -46,5 +43,13 @@ public class PlayerFallState : PlayerBaseState
         {
             player.SwitchState(player.airAttackState);
         }
+
+        if (player.inputController.isDashPress)
+        {
+            player.SwitchState(player.dashState);
+        }
+
+        if (player.inputController.isJumpPress)
+            player.SwitchState(player.jumpState);
     }
 }

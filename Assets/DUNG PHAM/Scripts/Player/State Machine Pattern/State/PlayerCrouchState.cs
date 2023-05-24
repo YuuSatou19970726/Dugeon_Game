@@ -9,12 +9,12 @@ public class PlayerCrouchState : PlayerBaseState
     {
         player.playerAnimation.PlayAnimatorClip("Crouch");
 
-        player.playerMovementController.EnterCrouch();
+        player.playerController.EnterCrouch();
     }
 
     public override void ExitState(PlayerStateManager player)
     {
-        player.playerMovementController.ExitCrouch();
+        player.playerController.ExitCrouch();
     }
 
     public override void FixedUpdateState(PlayerStateManager player)
