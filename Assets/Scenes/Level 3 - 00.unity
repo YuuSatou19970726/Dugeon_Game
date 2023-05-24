@@ -38,7 +38,11 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+<<<<<<< HEAD
   m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+=======
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+>>>>>>> e6519d382eef19785810f518c76a9a81137e504e
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -833,7 +837,6 @@ GameObject:
   - component: {fileID: 219814540}
   - component: {fileID: 219814539}
   - component: {fileID: 219814538}
-  - component: {fileID: 219814542}
   - component: {fileID: 219814546}
   - component: {fileID: 219814545}
   m_Layer: 8
@@ -1066,49 +1069,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &219814542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 219814529}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05495f6dee98333448ff11083016b632, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  avatar: {fileID: 21300000, guid: 349b02a58fc1c3c4993bf3edba2fcd60, type: 3}
-  head: {fileID: 95685571}
-  maxHealth: 100
-  isHurt: 0
-  isDied: 0
-  moveSpeed: 20
-  isGrounded: 0
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 1024
-  jumpForce: 30
-  maxCoyoteTime: 0.1
-  maxFallVelocity: 20
-  jumpNumber: 1
-  gravity: 9.81
-  wallLayer:
-    serializedVersion: 2
-    m_Bits: 1024
-  isLeftWall: 0
-  isRightWall: 0
-  isLeftEdge: 0
-  isRightEdge: 0
-  leftWallCheckPoint: {x: 0, y: 0}
-  rightWallCheckPoint: {x: 0, y: 0}
-  wallCheckDentaY: 1.3
-  upperLeftWallCheckPoint: {x: 0, y: 0}
-  upperRightWallCheckPoint: {x: 0, y: 0}
-  upperWallCheckDentaY: 1.36
-  dashingPower: 30
-  dashingCooldown: 1
-  dashingTime: 0.5
 --- !u!114 &219814543
 MonoBehaviour:
   m_ObjectHideFlags: 0

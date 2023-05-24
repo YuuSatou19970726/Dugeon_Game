@@ -5390,7 +5390,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: f93276622fcbc3a439e90fae51b569ab, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5410,7 +5410,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Time: 5
   m_Parameters:
     serializedVersion: 3
@@ -5513,7 +5513,7 @@ MonoBehaviour:
   isRightEdge: 0
   leftWallCheckPoint: {x: 0, y: 0}
   rightWallCheckPoint: {x: 0, y: 0}
-  wallCheckDentaY: 1
+  wallCheckDentaY: 1.2
   upperLeftWallCheckPoint: {x: 0, y: 0}
   upperRightWallCheckPoint: {x: 0, y: 0}
   upperWallCheckDentaY: 1.36
@@ -5579,6 +5579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155b18f6048327e42816c16e2985e0d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isWallJumping: 0
 --- !u!114 &6801439539498502256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5693,6 +5694,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpDirection: 0
+  wallTimer: 0
 --- !u!114 &335900232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5705,10 +5707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 224cf4f124ecbfd4881466307b2c9787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallEdge: {fileID: 0}
   wallEdgePoint: {x: 0, y: 0}
-  posX: 0
-  posY: 0
 --- !u!1 &2012270252472231330
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,13 +3,13 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "TileMap/Map 3.3.tmx",
+    "activeFile": "TileSet/TX Village Props.tsx",
     "automapping.whileDrawing": false,
     "expandedProjectPaths": [
-        "TileRule",
+        "TileMap",
         ".",
-        "TileSet",
-        "TileMap"
+        "TileRule",
+        "TileSet"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -73,8 +73,8 @@
             "scale": 3,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 1052.5,
-                "y": 475.16666666666663
+                "x": 1052.1666666666665,
+                "y": 474.83333333333326
             }
         },
         "TileMap/Map 3.tmx": {
@@ -307,7 +307,9 @@
         "TileMap/Map 1.tmx",
         "TileMap/Map 4.3.tmx",
         "TileMap/New Map.tmx",
-        "TileMap/Map 3.3.tmx"
+        "TileMap/Map 3.3.tmx",
+        "TileSet/Assets.tsx",
+        "TileSet/TX Village Props.tsx"
     ],
     "project": "New Map.tiled-project",
     "property.type": "string",
@@ -316,14 +318,14 @@
         "TileMap/Map 4.3.tmx",
         "TileMap/New Map.tmx",
         "TileMap/Map 3.3.tmx",
+        "TileSet/Assets.tsx",
+        "TileSet/TX Village Props.tsx",
         "TileMap/untitled.tmx",
         "TileMap/Map 4.1.tmx",
         "TileRule/rule_1.tmx",
         "TileMap/Map 4.2.tmx",
         "TileMap/Map 3.1.tmx",
-        "TileMap/Map 3.2.tmx",
-        "TileMap/Map 2.tmx",
-        "TileMap/Map 6.tmx"
+        "TileMap/Map 3.2.tmx"
     ],
     "resizeMap.removeObjects": true,
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
