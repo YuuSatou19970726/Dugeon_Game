@@ -50,12 +50,12 @@ public class PlayerIdleState : IState
         if (player.playerDatabase.isDied)
             player.SwitchState(player.dieState);
 
-        if (player.playerDatabase.isGrounded) return;
+        if (player.playerCollision.isGrounded) return;
 
         if (player.GetComponent<Rigidbody2D>().velocity.y < 0)
             player.SwitchState(player.fallState);
 
-        if (player.playerDatabase.isLeftWall || player.playerDatabase.isRightWall)
+        if (player.playerCollision.isLeftWall || player.playerCollision.isRightWall)
             player.SwitchState(player.wallSlideState);
     }
 }

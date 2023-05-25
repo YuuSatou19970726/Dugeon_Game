@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class PlayerWallEdgeState : IState
 {
+    string GRAB = "Wall Grab";
+    PlayerWallLedgeGrabAndClimb playerLedge;
+    public PlayerWallEdgeState(PlayerWallLedgeGrabAndClimb _playerLedge)
+    {
+        playerLedge = _playerLedge;
+    }
     public void EnterState(PlayerStateManager player)
     {
-        player.playerAnimation.PlayAnimatorClip("Wall Grab");
+        player.playerAnimation.PlayAnimatorClip(GRAB);
 
     }
 
@@ -21,7 +27,7 @@ public class PlayerWallEdgeState : IState
 
     public void UpdateState(PlayerStateManager player)
     {
-        player.playerController.WallEdgeGrab();
+        playerLedge.WallEdgeGrab();
 
         if (player.inputController.inputY > 0)
             player.SwitchState(player.wallClimb);

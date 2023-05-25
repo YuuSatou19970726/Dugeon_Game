@@ -6,10 +6,17 @@ public class PlayerDashState : IState
 {
     string DASH = "Wall Jump";
 
+    PlayerDash playerDash;
+
+    public PlayerDashState(PlayerDash _playerDash)
+    {
+        playerDash = _playerDash;
+    }
+
     public void EnterState(PlayerStateManager player)
     {
         player.playerAnimation.PlayAnimatorClip(DASH);
-        player.playerController.Dash();
+        playerDash.Dash();
     }
 
     public void ExitState(PlayerStateManager player)

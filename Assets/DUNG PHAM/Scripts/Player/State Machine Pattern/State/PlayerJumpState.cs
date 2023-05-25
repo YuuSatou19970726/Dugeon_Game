@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class PlayerJumpState : IState
 {
+    PlayerJump playerJump;
+
+    public PlayerJumpState(PlayerJump _playerJump)
+    {
+        playerJump = _playerJump;
+    }
+
+
     public void EnterState(PlayerStateManager player)
     {
         player.playerAnimation.PlayAnimatorClip("Jump");
 
-        player.playerController.Jump();
+        playerJump.Jump();
 
         player.soundEffect.PlayAudio(2);
     }
@@ -26,13 +34,13 @@ public class PlayerJumpState : IState
     public void UpdateState(PlayerStateManager player)
     {
         if (Mathf.Abs(player.GetComponent<Rigidbody2D>().velocity.y) < 2)
-            if (!player.playerDatabase.isLeftWall && !player.playerDatabase.isRightWall)
+            if (!player.playerCollision.isLeftWall && !player.playerCollision.isRightWall)
                 player.SwitchState(player.onAirState);
 
-        if (player.playerDatabase.isLeftWall || player.playerDatabase.isRightWall)
+        if (player.playerCollision.isLeftWall || player.playerCollision.isRightWall)
             player.SwitchState(player.wallSlideState);
 
-        if (player.playerDatabase.isLeftEdge || player.playerDatabase.isRightEdge)
+        if (player.playerCollision.isLeftEdge || player.playerCollision.isRightEdge)
             player.SwitchState(player.wallEdge);
 
         if (player.inputController.isLeftMousePress)

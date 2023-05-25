@@ -30,14 +30,14 @@ public class PlayerOnAirState : IState
             if (player.playerAnimation.currentState.normalizedTime > 0.5f)
                 player.SwitchState(player.fallState);
 
-        if (player.playerDatabase.isGrounded)
+        if (player.playerCollision.isGrounded)
         {
             player.SwitchState(player.idleState);
         }
 
-        if (player.playerDatabase.isLeftWall || player.playerDatabase.isRightWall)
+        if (player.playerCollision.isLeftWall || player.playerCollision.isRightWall)
         {
-            if (player.playerDatabase.isLeftEdge || player.playerDatabase.isRightEdge)
+            if (player.playerCollision.isLeftEdge || player.playerCollision.isRightEdge)
                 player.SwitchState(player.wallEdge);
 
             player.SwitchState(player.wallSlideState);

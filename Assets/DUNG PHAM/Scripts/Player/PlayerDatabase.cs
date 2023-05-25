@@ -15,7 +15,6 @@ public class PlayerDatabase : MonoBehaviour
     public float moveSpeed = 20f;
 
     [Header("Ground Jump")]
-    public bool isGrounded;
     public LayerMask groundLayer;
     public float jumpForce = 30f;
     public float maxCoyoteTime = 0.1f;
@@ -25,13 +24,6 @@ public class PlayerDatabase : MonoBehaviour
 
     [Header("Wall Jump")]
     public LayerMask wallLayer;
-    public bool isLeftWall, isRightWall;
-    public bool isLeftEdge, isRightEdge;
-    public Vector2 leftWallCheckPoint, rightWallCheckPoint;
-    public float wallCheckDentaY = 1.3f;
-
-    public Vector2 upperLeftWallCheckPoint, upperRightWallCheckPoint;
-    public float upperWallCheckDentaY = 1.36f;
 
     [Header("Dash")]
     public float dashingPower = 30f;

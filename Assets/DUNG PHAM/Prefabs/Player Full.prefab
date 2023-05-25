@@ -5221,6 +5221,7 @@ GameObject:
   - component: {fileID: 2012270252228052871}
   - component: {fileID: 2012270252228052877}
   - component: {fileID: 9010505153522086907}
+  - component: {fileID: 2406888882263892685}
   - component: {fileID: 2012270252228052878}
   - component: {fileID: 2012270252228052864}
   - component: {fileID: 2012270252228052866}
@@ -5507,19 +5508,32 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 1024
-  isLeftWall: 0
-  isRightWall: 0
-  isLeftEdge: 0
-  isRightEdge: 0
-  leftWallCheckPoint: {x: 0, y: 0}
-  rightWallCheckPoint: {x: 0, y: 0}
-  wallCheckDentaY: 1.2
-  upperLeftWallCheckPoint: {x: 0, y: 0}
-  upperRightWallCheckPoint: {x: 0, y: 0}
-  upperWallCheckDentaY: 1.36
   dashingPower: 30
   dashingCooldown: 1
   dashingTime: 0.5
+--- !u!114 &2406888882263892685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2012270252228052890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b82996c8013809a44a771498842531a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundCheckPoint: {x: 0, y: -1.1, z: 0}
+  isGrounded: 0
+  isLeftWall: 0
+  isRightWall: 0
+  ledgePoint: {fileID: 0}
+  leftWallCheckpoint: {x: -0.25, y: 0.8, z: 0}
+  rightWallCheckpoint: {x: 0.25, y: 0.8, z: 0}
+  isLeftEdge: 0
+  isRightEdge: 0
+  upperLeftWallCheckpoint: {x: -0.25, y: 0.95, z: 0}
+  upperRightWallCheckpoint: {x: 0.25, y: 0.95, z: 0}
 --- !u!114 &2012270252228052878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5563,10 +5577,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerDatabase: {fileID: 0}
   playerController: {fileID: 0}
+  playerCollision: {fileID: 0}
   inputController: {fileID: 0}
   playerAnimation: {fileID: 0}
-  playerAttack: {fileID: 0}
   soundEffect: {fileID: 0}
+  playerAttack: {fileID: 0}
 --- !u!114 &2012270252228052866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5579,7 +5594,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155b18f6048327e42816c16e2985e0d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isWallJumping: 0
 --- !u!114 &6801439539498502256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5693,8 +5707,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d82edb2d1d6f77a4cb1d18b292f45a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpDirection: 0
   wallTimer: 0
+  jumpDirection: 0
 --- !u!114 &335900232
 MonoBehaviour:
   m_ObjectHideFlags: 0

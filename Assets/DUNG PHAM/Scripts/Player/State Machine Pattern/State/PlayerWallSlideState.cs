@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class PlayerWallSlideState : IState
 {
+    string WALLSLIDE = "Wall Slide";
+    PlayerWallSlideAndJump playerWall;
+    PlayerWallLedgeGrabAndClimb playerLedge;
+    public PlayerWallSlideState(PlayerWallSlideAndJump playerWall)
+    {
+        this.playerWall = playerWall;
+    }
     public void EnterState(PlayerStateManager player)
     {
-        player.playerAnimation.PlayAnimatorClip("Wall Slide");
+        player.playerAnimation.PlayAnimatorClip(WALLSLIDE);
 
         player.soundEffect.PlayAudio(0);
     }
@@ -18,7 +25,7 @@ public class PlayerWallSlideState : IState
     public void FixedUpdateState(PlayerStateManager player)
     {
         player.playerController.MoveOnAir();
-        player.playerController.WallSlide();
+        playerWall.WallSlide();
     }
 
     public void UpdateState(PlayerStateManager player)
@@ -26,15 +33,15 @@ public class PlayerWallSlideState : IState
         if (player.inputController.isJumpPress)
             player.SwitchState(player.wallJumpState);
 
-        if (player.playerDatabase.isGrounded)
+        if (player.playerCollision.isGrounded)
             player.SwitchState(player.idleState);
 
-        if (player.playerDatabase.isLeftEdge || player.playerDatabase.isRightEdge)
+        if (player.playerCollision.isLeftEdge || player.playerCollision.isRightEdge)
         {
             player.SwitchState(player.wallEdge);
         }
 
-        if (!player.playerDatabase.isLeftWall && !player.playerDatabase.isRightWall)
+        if (!player.playerCollision.isLeftWall && !player.playerCollision.isRightWall)
             player.SwitchState(player.fallState);
     }
 }
