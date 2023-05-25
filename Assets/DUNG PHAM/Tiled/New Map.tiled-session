@@ -3,13 +3,13 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "TileMap/Map 2.tmx",
+    "activeFile": "TileSet/SET1_decorative_obj.tsx",
     "automapping.whileDrawing": false,
     "expandedProjectPaths": [
+        ".",
         "TileMap",
-        "TileSet",
         "TileRule",
-        "."
+        "TileSet"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -38,16 +38,16 @@
             "scale": 1.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 642.6666666666666,
-                "y": 489
+                "x": 864,
+                "y": 1287.6666666666665
             }
         },
         "TileMap/Map 2.tmx": {
             "scale": 0.75,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": -21.33333333333337,
-                "y": 2056.6666666666665
+                "x": -22.666666666666742,
+                "y": 2055.333333333333
             }
         },
         "TileMap/Map 3.1.tmx": {
@@ -89,8 +89,8 @@
             "scale": 0.75,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 541.9999999999999,
-                "y": 632.6666666666665
+                "x": 538.6666666666667,
+                "y": 628.6666666666665
             }
         },
         "TileMap/Map 4.2.tmx": {
@@ -169,10 +169,10 @@
                 14
             ],
             "scale": 4,
-            "selectedLayer": 2,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 800,
-                "y": 719.875
+                "x": 799.75,
+                "y": 719.625
             }
         },
         "TileRule/rule_2.tmx": {
@@ -235,7 +235,8 @@
             "scaleInEditor": 1
         },
         "TileSet/foreground.tsx": {
-            "scaleInDock": 2
+            "scaleInDock": 2,
+            "scaleInEditor": 1
         },
         "TileSet/ground.tsx": {
             "scaleInDock": 5.5,
@@ -304,30 +305,33 @@
     "map.tileWidth": 16,
     "map.width": 50,
     "openFiles": [
-        "TileMap/Map 1.tmx",
-        "TileMap/Map 4.3.tmx",
-        "TileMap/New Map.tmx",
-        "TileMap/Map 3.3.tmx",
         "TileSet/Assets.tsx",
-        "TileSet/TX Village Props.tsx",
-        "TileRule/rule_1.tmx",
-        "TileMap/Map 2.tmx"
+        "TileSet/atlas.tsx",
+        "TileSet/bakcground_night1.tsx",
+        "TileSet/foreground.tsx",
+        "TileSet/ground.tsx",
+        "TileSet/lava-tile.tsx",
+        "TileSet/main_lev_build_1.tsx",
+        "TileSet/mainlev_build.tsx",
+        "TileSet/mainlevbuild.tsx",
+        "TileSet/SET1_background_obj.tsx",
+        "TileSet/SET1_decorative_obj.tsx"
     ],
     "project": "New Map.tiled-project",
     "property.type": "file",
     "recentFiles": [
-        "TileMap/Map 1.tmx",
-        "TileMap/Map 4.3.tmx",
-        "TileMap/New Map.tmx",
-        "TileMap/Map 3.3.tmx",
         "TileSet/Assets.tsx",
-        "TileSet/TX Village Props.tsx",
-        "TileRule/rule_1.tmx",
-        "TileMap/Map 2.tmx",
-        "TileMap/untitled.tmx",
-        "TileMap/Map 4.1.tmx",
-        "TileMap/Map 4.2.tmx",
-        "TileMap/Map 3.1.tmx"
+        "TileSet/atlas.tsx",
+        "TileSet/bakcground_night1.tsx",
+        "TileSet/foreground.tsx",
+        "TileSet/ground.tsx",
+        "TileSet/lava-tile.tsx",
+        "TileSet/main_lev_build_1.tsx",
+        "TileSet/mainlev_build.tsx",
+        "TileSet/mainlevbuild.tsx",
+        "TileSet/SET1_background_obj.tsx",
+        "TileSet/SET1_decorative_obj.tsx",
+        "TileSet/TX Village Props.tsx"
     ],
     "resizeMap.removeObjects": true,
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
