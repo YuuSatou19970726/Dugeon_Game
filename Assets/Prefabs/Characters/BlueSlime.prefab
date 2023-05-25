@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9206959862501510456}
+  - component: {fileID: -3020228801225657487}
   - component: {fileID: 5252797162829707041}
   - component: {fileID: 7363789501958094509}
   - component: {fileID: 7462460685052123200}
   - component: {fileID: 8455471647544016958}
   - component: {fileID: 7723207037500179261}
-  - component: {fileID: -3020228801225657487}
   m_Layer: 8
   m_Name: BlueSlime
   m_TagString: Player
@@ -37,6 +37,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-3020228801225657487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5056594613576492060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec9d5465a88c04ebabc911c5d6a855ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 7723207037500179261}
+  audioClip: {fileID: 8300000, guid: 08650318ce3e14171b2b1045b5ec999f, type: 3}
+  jumpableGround:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!212 &5252797162829707041
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -281,20 +298,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &-3020228801225657487
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5056594613576492060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec9d5465a88c04ebabc911c5d6a855ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioSource: {fileID: 7723207037500179261}
-  audioClip: {fileID: 8300000, guid: 08650318ce3e14171b2b1045b5ec999f, type: 3}
-  jumpableGround:
-    serializedVersion: 2
-    m_Bits: 2048
