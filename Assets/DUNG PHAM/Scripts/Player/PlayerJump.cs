@@ -6,6 +6,7 @@ public class PlayerJump : MonoBehaviour
 {
     PlayerDatabase playerDatabase;
     PlayerController playerController;
+    PlayerCollisionDetector playerCollision;
     Rigidbody2D rigid;
     Collider2D coli;
     int jumpCount;
@@ -14,6 +15,7 @@ public class PlayerJump : MonoBehaviour
 
     void Awake()
     {
+        playerCollision = GetComponent<PlayerCollisionDetector>();
         playerController = GetComponent<PlayerController>();
         playerDatabase = GetComponent<PlayerDatabase>();
         rigid = GetComponent<Rigidbody2D>();
@@ -39,7 +41,7 @@ public class PlayerJump : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space)) return;
 
-        if (playerDatabase.isGrounded) jumpCount = playerDatabase.jumpNumber;
+        if (playerCollision.isGrounded) jumpCount = playerDatabase.jumpNumber;
     }
     public void StopJump(float time)
     {
@@ -58,14 +60,14 @@ public class PlayerJump : MonoBehaviour
 
     void CoyoteJumpCheck()
     {
-        if (playerDatabase.isGrounded)
+        if (playerCollision.isGrounded)
             lastGroundTime = 0f;
         else lastGroundTime += Time.deltaTime;
 
         if (lastGroundTime <= playerDatabase.maxCoyoteTime)
-            playerDatabase.isGrounded = true;
+            playerCollision.isGrounded = true;
     }
-    
+
     IEnumerator StopJumpCoroutine(float time)
     {
         yield return new WaitForSeconds(time);

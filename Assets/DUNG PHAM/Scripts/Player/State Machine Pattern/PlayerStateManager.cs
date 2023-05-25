@@ -8,11 +8,15 @@ public class PlayerStateManager : MonoBehaviour
     #region MONO BEHAVIOUR 
     [HideInInspector] public PlayerDatabase playerDatabase;
     [HideInInspector] public PlayerController playerController;
+    [HideInInspector] public PlayerCollisionDetector playerCollision;
     [HideInInspector] public InputControllerNew inputController;
     [HideInInspector] public PlayerAnimation playerAnimation;
-    [HideInInspector] public PlayerAttackManager playerAttack;
     [HideInInspector] public SoundEffect soundEffect;
-
+    [HideInInspector] public PlayerAttackManager playerAttack;
+    PlayerJump playerJump;
+    PlayerDash playerDash;
+    PlayerWallLedgeGrabAndClimb playerLedge;
+    PlayerWallSlideAndJump playerWall;
     void Awake()
     {
         playerController = GetComponent<PlayerController>();
@@ -21,6 +25,11 @@ public class PlayerStateManager : MonoBehaviour
         inputController = GetComponent<InputControllerNew>();
         playerDatabase = GetComponent<PlayerDatabase>();
         soundEffect = GetComponentInChildren<SoundEffect>();
+        playerJump = GetComponent<PlayerJump>();
+        playerDash = GetComponent<PlayerDash>();
+        playerLedge = GetComponent<PlayerWallLedgeGrabAndClimb>();
+        playerWall = GetComponent<PlayerWallSlideAndJump>();
+        playerCollision = GetComponent<PlayerCollisionDetector>();
 
         StateDeclaration();
     }
@@ -59,21 +68,21 @@ public class PlayerStateManager : MonoBehaviour
     {
         idleState = new PlayerIdleState();
         walkState = new PlayerWalkState();
-        jumpState = new PlayerJumpState();
+        jumpState = new PlayerJumpState(playerJump);
         runState = new PlayerRunState();
         fallState = new PlayerFallState();
         onAirState = new PlayerOnAirState();
-        dashState = new PlayerDashState();
+        dashState = new PlayerDashState(playerDash);
         attackState = new PlayerAttackState();
         attackState1 = new PlayerAttackState1();
         attackState2 = new PlayerAttackState2();
         airAttackState = new PlayerAirAttackState();
         crouchState = new PlayerCrouchState();
         crouchMoveState = new PlayerCrouchMoveState();
-        wallSlideState = new PlayerWallSlideState();
-        wallJumpState = new PlayerWallJumpState();
-        wallEdge = new PlayerWallEdgeState();
-        wallClimb = new PlayerWallClimbState();
+        wallSlideState = new PlayerWallSlideState(playerWall);
+        wallJumpState = new PlayerWallJumpState(playerWall);
+        wallEdge = new PlayerWallEdgeState(playerLedge);
+        wallClimb = new PlayerWallClimbState(playerLedge);
         hurtState = new PlayerHurtState();
         dieState = new PlayerDieState();
     }

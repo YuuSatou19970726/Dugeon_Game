@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class PlayerWallJumpState : IState
 {
+    string WALLJUMP = "Wall Jump";
+
+    PlayerWallSlideAndJump playerWall;
+    public PlayerWallJumpState(PlayerWallSlideAndJump _playerWall)
+    {
+        playerWall = _playerWall;
+    }
 
     public void EnterState(PlayerStateManager player)
     {
-        player.playerAnimation.PlayAnimatorClip("Wall Jump");
+        player.playerAnimation.PlayAnimatorClip(WALLJUMP);
 
-        player.playerController.WallJump();
+        playerWall.WallJump();
 
         player.soundEffect.PlayAudio(2);
 

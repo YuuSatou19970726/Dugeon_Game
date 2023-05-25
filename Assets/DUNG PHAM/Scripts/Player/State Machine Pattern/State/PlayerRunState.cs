@@ -27,7 +27,7 @@ public class PlayerRunState : IState
 
     public void UpdateState(PlayerStateManager player)
     {
-        if (!player.playerDatabase.isGrounded) return;
+        if (!player.playerCollision.isGrounded) return;
 
         if (player.inputController.inputX == 0)
         {
@@ -52,11 +52,11 @@ public class PlayerRunState : IState
         if (player.inputController.isDashPress)
             player.SwitchState(player.dashState);
 
-        if (player.playerDatabase.isGrounded) return;
+        if (player.playerCollision.isGrounded) return;
 
         player.SwitchState(player.fallState);
 
-        if (player.playerDatabase.isLeftWall || player.playerDatabase.isRightWall)
+        if (player.playerCollision.isLeftWall || player.playerCollision.isRightWall)
             player.SwitchState(player.wallSlideState);
     }
 

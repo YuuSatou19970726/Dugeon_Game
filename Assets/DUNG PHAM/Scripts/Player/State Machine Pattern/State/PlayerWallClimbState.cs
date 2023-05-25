@@ -6,11 +6,17 @@ public class PlayerWallClimbState : IState
 {
     string WALLCLB = "Wall Climb";
 
+    PlayerWallLedgeGrabAndClimb playerLedge;
+    public PlayerWallClimbState(PlayerWallLedgeGrabAndClimb _playerLedge)
+    {
+        playerLedge = _playerLedge;
+    }
+
     public void EnterState(PlayerStateManager player)
     {
         player.playerAnimation.PlayAnimatorClip(WALLCLB);
 
-        player.playerController.WallClimb();
+        playerLedge.WallClimb();
     }
 
     public void ExitState(PlayerStateManager player)

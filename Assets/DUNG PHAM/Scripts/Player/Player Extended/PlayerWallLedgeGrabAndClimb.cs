@@ -4,19 +4,22 @@ using UnityEngine;
 
 public class PlayerWallLedgeGrabAndClimb : MonoBehaviour
 {
-    PlayerController playerController;
+    InputControllerNew inputController;
     PlayerDatabase playerDatabase;
     Rigidbody2D playerRigid;
     Collider2D playerColi;
-    public Vector2 wallEdgePoint;
+    PlayerCollisionDetector playerCollision;
     int ledgeSide;
+    public Vector2 wallEdgePoint;
+
 
     /**************************************************************************************************************************************************/
 
     void Awake()
     {
+        inputController = GetComponent<InputControllerNew>();
         playerDatabase = GetComponent<PlayerDatabase>();
-        playerController = GetComponent<PlayerController>();
+        playerCollision = GetComponent<PlayerCollisionDetector>();
         playerRigid = GetComponent<Rigidbody2D>();
         playerColi = GetComponent<Collider2D>();
     }
@@ -25,61 +28,16 @@ public class PlayerWallLedgeGrabAndClimb : MonoBehaviour
 
     void Update()
     {
-        LeftLedgeCheck();
-        RightLedgeCheck();
+        if (playerCollision.isLeftEdge)
+            ledgeSide = -1;
+        else if (playerCollision.isRightEdge)
+            ledgeSide = 1;
     }
 
     /**************************************************************************************************************************************************/
 
     #region COLLISION DETECT
-    void LeftLedgeCheck()
-    {
-        playerDatabase.upperLeftWallCheckPoint = playerColi.bounds.center + new Vector3(-playerColi.bounds.size.x / 2, playerDatabase.upperWallCheckDentaY, 0f);
 
-        if (!playerDatabase.isLeftWall || Input.GetAxisRaw("Vertical") < 0)
-        {
-            playerDatabase.isLeftEdge = false;
-            return;
-        }
-
-        RaycastHit2D leftUpper = Physics2D.Raycast(playerDatabase.upperLeftWallCheckPoint, Vector2.left, 0.2f, playerDatabase.wallLayer);
-
-        if (leftUpper.collider) return;
-
-        playerDatabase.isLeftEdge = true;
-
-        ledgeSide = -1;
-    }
-
-    /**************************************************************************************************************************************************/
-
-    void RightLedgeCheck()
-    {
-        playerDatabase.upperRightWallCheckPoint = playerColi.bounds.center + new Vector3(playerColi.bounds.size.x / 2, playerDatabase.upperWallCheckDentaY, 0f);
-
-        if (!playerDatabase.isRightWall || Input.GetAxisRaw("Vertical") < 0)
-        {
-            playerDatabase.isRightEdge = false;
-            return;
-        }
-
-        RaycastHit2D rightUpper = Physics2D.Raycast(playerDatabase.upperRightWallCheckPoint, Vector2.right, 0.2f, playerDatabase.wallLayer);
-
-        if (rightUpper.collider) return;
-
-        playerDatabase.isRightEdge = true;
-
-        ledgeSide = 1;
-    }
-
-    /**************************************************************************************************************************************************/
-
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawLine(playerDatabase.upperLeftWallCheckPoint, playerDatabase.upperLeftWallCheckPoint + Vector2.left * 0.2f);
-        Gizmos.DrawLine(playerDatabase.upperRightWallCheckPoint, playerDatabase.upperRightWallCheckPoint + Vector2.right * 0.2f);
-    }
     #endregion
 
     /**************************************************************************************************************************************************/
@@ -88,7 +46,7 @@ public class PlayerWallLedgeGrabAndClimb : MonoBehaviour
     #region LEDGE GRAB
     public void WallEdgeGrab()
     {
-        if (playerDatabase.isLeftEdge || playerDatabase.isRightEdge)
+        if (playerCollision.isLeftEdge || playerCollision.isRightEdge)
         {
             playerRigid.velocity = Vector2.zero;
             playerRigid.gravityScale = 0;
@@ -129,20 +87,14 @@ public class PlayerWallLedgeGrabAndClimb : MonoBehaviour
         {
             case -1:
                 {
-                    Collider2D leftHit = Physics2D.OverlapArea(
-                                playerDatabase.leftWallCheckPoint,
-                                new Vector2(playerDatabase.leftWallCheckPoint.x - 0.2f, playerDatabase.leftWallCheckPoint.y),
-                                playerDatabase.wallLayer);
+                    Collider2D leftHit = playerCollision.ledgePoint;
 
                     wallEdgePoint = leftHit.bounds.center + new Vector3(leftHit.bounds.size.x / 2, leftHit.bounds.size.y / 2, 0);
                     break;
                 }
             case 1:
                 {
-                    Collider2D rightHit = Physics2D.OverlapArea(
-                                playerDatabase.rightWallCheckPoint,
-                                new Vector2(playerDatabase.rightWallCheckPoint.x + 0.2f, playerDatabase.rightWallCheckPoint.y),
-                                playerDatabase.wallLayer);
+                    Collider2D rightHit = playerCollision.ledgePoint;
 
                     wallEdgePoint = rightHit.bounds.center + new Vector3(-rightHit.bounds.size.x / 2, rightHit.bounds.size.y / 2, 0);
                     break;

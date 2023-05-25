@@ -24,16 +24,16 @@ public class PlayerFallState : IState
 
     public void UpdateState(PlayerStateManager player)
     {
-        if (player.playerDatabase.isGrounded)
+        if (player.playerCollision.isGrounded)
         {
             player.SwitchState(player.crouchState);
             player.soundEffect.PlayAudio(3);
         }
 
-        // if (player.playerController.isRightEdge || player.playerController.isLeftEdge)
-        //     player.SwitchState(player.wallEdge);
+        if (player.playerCollision.isRightEdge || player.playerCollision.isLeftEdge)
+            player.SwitchState(player.wallEdge);
 
-        if (player.playerDatabase.isLeftWall || player.playerDatabase.isRightWall)
+        if (player.playerCollision.isLeftWall || player.playerCollision.isRightWall)
         {
             player.SwitchState(player.wallSlideState);
         }
