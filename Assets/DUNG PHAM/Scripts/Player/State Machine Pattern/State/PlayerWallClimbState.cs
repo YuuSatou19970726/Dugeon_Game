@@ -2,29 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerWallClimbState : PlayerBaseState
+public class PlayerWallClimbState : IState
 {
+    string WALLCLB = "Wall Climb";
 
-
-    public override void EnterState(PlayerStateManager player)
+    public void EnterState(PlayerStateManager player)
     {
-        player.playerAnimation.PlayAnimatorClip("Wall Climb");
+        player.playerAnimation.PlayAnimatorClip(WALLCLB);
 
         player.playerController.WallClimb();
     }
 
-    public override void ExitState(PlayerStateManager player)
+    public void ExitState(PlayerStateManager player)
     {
 
     }
 
-    public override void FixedUpdateState(PlayerStateManager player)
+    public void FixedUpdateState(PlayerStateManager player)
     {
     }
 
-    public override void UpdateState(PlayerStateManager player)
+    public void UpdateState(PlayerStateManager player)
     {
-        if (player.playerAnimation.currentState.IsName("Wall Climb")
+        if (player.playerAnimation.currentState.IsName(WALLCLB)
          && player.playerAnimation.currentState.normalizedTime >= 0.9f)
         {
             player.SwitchState(player.idleState);

@@ -2,25 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHurtState : PlayerBaseState
+public class PlayerHurtState : IState
 {
-    public override void EnterState(PlayerStateManager player)
+    string HURT = "Hurt";
+    public void EnterState(PlayerStateManager player)
     {
-        player.playerAnimation.PlayAnimatorClip("Hurt");
+        player.playerAnimation.PlayAnimatorClip(HURT);
     }
 
-    public override void ExitState(PlayerStateManager player)
+    public void ExitState(PlayerStateManager player)
     {
     }
 
-    public override void FixedUpdateState(PlayerStateManager player)
+    public void FixedUpdateState(PlayerStateManager player)
     {
         player.playerController.Movement();
     }
 
-    public override void UpdateState(PlayerStateManager player)
+    public void UpdateState(PlayerStateManager player)
     {
-        if (player.playerAnimation.currentState.IsName("Hurt") && player.playerAnimation.currentState.normalizedTime > 1)
+        if (player.playerAnimation.currentState.IsName(HURT) && player.playerAnimation.currentState.normalizedTime > 1)
         {
             player.SwitchState(player.idleState);
             player.playerDatabase.isHurt = false;

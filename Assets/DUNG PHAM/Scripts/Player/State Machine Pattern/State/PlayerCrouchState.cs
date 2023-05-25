@@ -2,26 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCrouchState : PlayerBaseState
+public class PlayerCrouchState : IState
 {
     float timer = 0;
-    public override void EnterState(PlayerStateManager player)
+    public void EnterState(PlayerStateManager player)
     {
         player.playerAnimation.PlayAnimatorClip("Crouch");
 
         player.playerController.EnterCrouch();
     }
 
-    public override void ExitState(PlayerStateManager player)
+    public void ExitState(PlayerStateManager player)
     {
         player.playerController.ExitCrouch();
     }
 
-    public override void FixedUpdateState(PlayerStateManager player)
+    public void FixedUpdateState(PlayerStateManager player)
     {
     }
 
-    public override void UpdateState(PlayerStateManager player)
+    public void UpdateState(PlayerStateManager player)
     {
         timer += Time.deltaTime;
 

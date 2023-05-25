@@ -2,23 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerWalkState : PlayerBaseState
+public class PlayerWalkState : IState
 {
-    public override void EnterState(PlayerStateManager player)
+    public void EnterState(PlayerStateManager player)
     {
         player.playerAnimation.PlayAnimatorClip("Walk");
     }
 
-    public override void ExitState(PlayerStateManager player)
+    public void ExitState(PlayerStateManager player)
     {
     }
 
-    public override void FixedUpdateState(PlayerStateManager player)
+    public void FixedUpdateState(PlayerStateManager player)
     {
         player.playerController.Movement();
     }
 
-    public override void UpdateState(PlayerStateManager player)
+    public void UpdateState(PlayerStateManager player)
     {
 
         if (player.inputController.inputX != 0)

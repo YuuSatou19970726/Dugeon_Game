@@ -2,34 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerRunState : PlayerBaseState
+public class PlayerRunState : IState
 {
-    public override void EnterState(PlayerStateManager player)
+    //========= Contruction to use other class ========//
+    public PlayerRunState()
+    {
+    }
+    //=================================================//
+
+    public void EnterState(PlayerStateManager player)
     {
         player.playerAnimation.PlayAnimatorClip("Run");
         player.soundEffect.PlayAudio(1);
     }
 
-
-
-    public override void ExitState(PlayerStateManager player)
+    public void ExitState(PlayerStateManager player)
     {
     }
 
-    public override void FixedUpdateState(PlayerStateManager player)
+    public void FixedUpdateState(PlayerStateManager player)
     {
         player.playerController.Movement();
-
-        if (player.playerDatabase.isGrounded) return;
-
-        player.SwitchState(player.fallState);
-
-        if (player.playerDatabase.isLeftWall || player.playerDatabase.isRightWall)
-            player.SwitchState(player.wallSlideState);
-
     }
 
-    public override void UpdateState(PlayerStateManager player)
+    public void UpdateState(PlayerStateManager player)
     {
         if (!player.playerDatabase.isGrounded) return;
 
@@ -44,6 +40,7 @@ public class PlayerRunState : PlayerBaseState
             player.SwitchState(player.jumpState);
         }
 
+
         if (player.inputController.isLeftMousePress)
             player.SwitchState(player.attackState);
 
@@ -54,6 +51,13 @@ public class PlayerRunState : PlayerBaseState
 
         if (player.inputController.isDashPress)
             player.SwitchState(player.dashState);
+
+        if (player.playerDatabase.isGrounded) return;
+
+        player.SwitchState(player.fallState);
+
+        if (player.playerDatabase.isLeftWall || player.playerDatabase.isRightWall)
+            player.SwitchState(player.wallSlideState);
     }
 
 }

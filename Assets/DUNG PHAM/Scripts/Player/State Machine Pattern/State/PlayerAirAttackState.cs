@@ -2,24 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAirAttackState : PlayerBaseState
+public class PlayerAirAttackState : IState
 {
-    public override void EnterState(PlayerStateManager player)
+    public void EnterState(PlayerStateManager player)
     {
         player.playerAnimation.PlayAnimatorClip("Attack Jump 1");
 
         player.playerAttack.AttackCast(3);
     }
 
-    public override void ExitState(PlayerStateManager player)
+    public void ExitState(PlayerStateManager player)
     {
     }
 
-    public override void FixedUpdateState(PlayerStateManager player)
+    public void FixedUpdateState(PlayerStateManager player)
     {
     }
 
-    public override void UpdateState(PlayerStateManager player)
+    public void UpdateState(PlayerStateManager player)
     {
         if (player.playerAnimation.currentState.normalizedTime <= 1) return;
 
