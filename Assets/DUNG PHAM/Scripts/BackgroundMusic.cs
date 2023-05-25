@@ -6,9 +6,14 @@ public class BackgroundMusic : MonoBehaviour
 {
     [SerializeField] AudioClip[] audioClips;
     AudioSource audioSource;
+    
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+    }
+    void Start()
+    {
+        DontDestroyOnLoad(gameObject);
     }
 
     void Update()
