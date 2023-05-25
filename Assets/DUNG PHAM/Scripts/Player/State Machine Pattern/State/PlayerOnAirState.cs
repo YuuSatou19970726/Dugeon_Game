@@ -34,6 +34,9 @@ public class PlayerOnAirState : PlayerBaseState
 
         if (player.playerDatabase.isLeftWall || player.playerDatabase.isRightWall)
         {
+            if (player.playerDatabase.isLeftEdge || player.playerDatabase.isRightEdge)
+                player.SwitchState(player.wallEdge);
+
             player.SwitchState(player.wallSlideState);
         }
 
