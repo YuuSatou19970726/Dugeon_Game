@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerJumpState : PlayerBaseState
+public class PlayerJumpState : IState
 {
-
-    public override void EnterState(PlayerStateManager player)
+    public void EnterState(PlayerStateManager player)
     {
         player.playerAnimation.PlayAnimatorClip("Jump");
 
@@ -15,22 +14,21 @@ public class PlayerJumpState : PlayerBaseState
     }
 
 
-    public override void ExitState(PlayerStateManager player)
+    public void ExitState(PlayerStateManager player)
     {
     }
 
-    public override void FixedUpdateState(PlayerStateManager player)
+    public void FixedUpdateState(PlayerStateManager player)
     {
         player.playerController.MoveOnAir();
+    }
 
+    public void UpdateState(PlayerStateManager player)
+    {
         if (Mathf.Abs(player.GetComponent<Rigidbody2D>().velocity.y) < 2)
             if (!player.playerDatabase.isLeftWall && !player.playerDatabase.isRightWall)
                 player.SwitchState(player.onAirState);
 
-    }
-
-    public override void UpdateState(PlayerStateManager player)
-    {
         if (player.playerDatabase.isLeftWall || player.playerDatabase.isRightWall)
             player.SwitchState(player.wallSlideState);
 

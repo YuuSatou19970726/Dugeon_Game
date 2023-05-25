@@ -2,26 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerWallSlideState : PlayerBaseState
+public class PlayerWallSlideState : IState
 {
-    public override void EnterState(PlayerStateManager player)
+    public void EnterState(PlayerStateManager player)
     {
         player.playerAnimation.PlayAnimatorClip("Wall Slide");
 
         player.soundEffect.PlayAudio(0);
     }
 
-    public override void ExitState(PlayerStateManager player)
+    public void ExitState(PlayerStateManager player)
     {
     }
 
-    public override void FixedUpdateState(PlayerStateManager player)
+    public void FixedUpdateState(PlayerStateManager player)
     {
         player.playerController.MoveOnAir();
         player.playerController.WallSlide();
     }
 
-    public override void UpdateState(PlayerStateManager player)
+    public void UpdateState(PlayerStateManager player)
     {
         if (player.inputController.isJumpPress)
             player.SwitchState(player.wallJumpState);
@@ -30,7 +30,7 @@ public class PlayerWallSlideState : PlayerBaseState
             player.SwitchState(player.idleState);
 
         if (player.playerDatabase.isLeftEdge || player.playerDatabase.isRightEdge)
-        {            
+        {
             player.SwitchState(player.wallEdge);
         }
 

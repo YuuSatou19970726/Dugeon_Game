@@ -2,36 +2,16 @@ using UnityEngine;
 
 public class PlayerStateManager : MonoBehaviour
 {
+    /***************************************************************************************************************************************/
+    /***************************************************************************************************************************************/
+
+    #region MONO BEHAVIOUR 
     [HideInInspector] public PlayerDatabase playerDatabase;
     [HideInInspector] public PlayerController playerController;
     [HideInInspector] public InputControllerNew inputController;
     [HideInInspector] public PlayerAnimation playerAnimation;
     [HideInInspector] public PlayerAttackManager playerAttack;
     [HideInInspector] public SoundEffect soundEffect;
-    [SerializeField] PlayerBaseState currentState;
-
-    #region ALL STATE
-    public PlayerIdleState idleState = new PlayerIdleState();
-    public PlayerWalkState walkState = new PlayerWalkState();
-    public PlayerRunState runState = new PlayerRunState();
-    public PlayerJumpState jumpState = new PlayerJumpState();
-    public PlayerOnAirState onAirState = new PlayerOnAirState();
-    public PlayerFallState fallState = new PlayerFallState();
-    public PlayerDashState dashState = new PlayerDashState();
-    public PlayerAttackState attackState = new PlayerAttackState();
-    public PlayerAttackState1 attackState1 = new PlayerAttackState1();
-    public PlayerAttackState2 attackState2 = new PlayerAttackState2();
-    public PlayerAirAttackState airAttackState = new PlayerAirAttackState();
-    public PlayerCrouchState crouchState = new PlayerCrouchState();
-    public PlayerCrouchMoveState crouchMoveState = new PlayerCrouchMoveState();
-    public PlayerWallSlideState wallSlideState = new PlayerWallSlideState();
-    public PlayerWallJumpState wallJumpState = new PlayerWallJumpState();
-    public PlayerWallEdgeState wallEdge = new PlayerWallEdgeState();
-    public PlayerWallClimbState wallClimb = new PlayerWallClimbState();
-    public PlayerHurtState hurtState = new PlayerHurtState();
-    public PlayerDieState dieState = new PlayerDieState();
-    #endregion
-
 
     void Awake()
     {
@@ -41,7 +21,63 @@ public class PlayerStateManager : MonoBehaviour
         inputController = GetComponent<InputControllerNew>();
         playerDatabase = GetComponent<PlayerDatabase>();
         soundEffect = GetComponentInChildren<SoundEffect>();
+
+        StateDeclaration();
     }
+    #endregion
+
+    /***************************************************************************************************************************************/
+    /***************************************************************************************************************************************/
+    #region  ALL STATE
+
+    public IState currentState;
+    public IState previousState;
+    bool inTransition = false;
+
+    public PlayerIdleState idleState;
+    public PlayerWalkState walkState;
+    public PlayerRunState runState;
+    public PlayerJumpState jumpState;
+    public PlayerOnAirState onAirState;
+    public PlayerFallState fallState;
+    public PlayerDashState dashState;
+    public PlayerAttackState attackState;
+    public PlayerAttackState1 attackState1;
+    public PlayerAttackState2 attackState2;
+    public PlayerAirAttackState airAttackState;
+    public PlayerCrouchState crouchState;
+    public PlayerCrouchMoveState crouchMoveState;
+    public PlayerWallSlideState wallSlideState;
+    public PlayerWallJumpState wallJumpState;
+    public PlayerWallEdgeState wallEdge;
+    public PlayerWallClimbState wallClimb;
+    public PlayerHurtState hurtState;
+    public PlayerDieState dieState;
+
+
+    void StateDeclaration()
+    {
+        idleState = new PlayerIdleState();
+        walkState = new PlayerWalkState();
+        jumpState = new PlayerJumpState();
+        runState = new PlayerRunState();
+        fallState = new PlayerFallState();
+        onAirState = new PlayerOnAirState();
+        dashState = new PlayerDashState();
+        attackState = new PlayerAttackState();
+        attackState1 = new PlayerAttackState1();
+        attackState2 = new PlayerAttackState2();
+        airAttackState = new PlayerAirAttackState();
+        crouchState = new PlayerCrouchState();
+        crouchMoveState = new PlayerCrouchMoveState();
+        wallSlideState = new PlayerWallSlideState();
+        wallJumpState = new PlayerWallJumpState();
+        wallEdge = new PlayerWallEdgeState();
+        wallClimb = new PlayerWallClimbState();
+        hurtState = new PlayerHurtState();
+        dieState = new PlayerDieState();
+    }
+
     void Start()
     {
         currentState = idleState;
@@ -49,26 +85,59 @@ public class PlayerStateManager : MonoBehaviour
         currentState.EnterState(this);
     }
 
-    void Update()
+    /***************************************************************************************************************************************/
+    /***************************************************************************************************************************************/
+    public void Update()
     {
-        currentState.UpdateState(this);
+        if (currentState != null && !inTransition)
+            currentState.UpdateState(this);
+
+        Debug.Log(currentState);
     }
 
-    void FixedUpdate()
+    public void FixedUpdate()
     {
-        currentState.FixedUpdateState(this);
+        if (currentState != null && !inTransition)
+            currentState.FixedUpdateState(this);
     }
 
-    public void SwitchState(PlayerBaseState state)
+    /***************************************************************************************************************************************/
+    /***************************************************************************************************************************************/
+    public void SwitchState(IState newState)
     {
-        if (state != currentState)
+        if (currentState == newState || inTransition)
+            return;
+
+        ChangeStateRoutine(newState);
+    }
+
+    void ChangeStateRoutine(IState newState)
+    {
+        inTransition = true;
+
+        if (currentState != null)
             currentState.ExitState(this);
 
+        if (previousState != null)
+            previousState = currentState;
 
-        currentState = state;
+        currentState = newState;
 
-        currentState.EnterState(this);
+        if (currentState != null)
+            currentState.EnterState(this);
 
-        // Debug.Log(currentState);
+        inTransition = false;
     }
+
+    /***************************************************************************************************************************************/
+    /***************************************************************************************************************************************/
+    public void RevertState()
+    {
+        if (previousState != null)
+            SwitchState(previousState);
+    }
+    /***************************************************************************************************************************************/
+    /***************************************************************************************************************************************/
+
+    #endregion
 }

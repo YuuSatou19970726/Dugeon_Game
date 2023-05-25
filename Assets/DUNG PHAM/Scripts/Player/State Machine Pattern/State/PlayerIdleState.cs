@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerIdleState : PlayerBaseState
+public class PlayerIdleState : IState
 {
-    public override void EnterState(PlayerStateManager player)
+    public void EnterState(PlayerStateManager player)
     {
         player.playerAnimation.PlayAnimatorClip("Idle");
 
@@ -12,20 +12,16 @@ public class PlayerIdleState : PlayerBaseState
     }
 
 
-
-    public override void ExitState(PlayerStateManager player)
+    public void ExitState(PlayerStateManager player)
     {
     }
 
-    public override void FixedUpdateState(PlayerStateManager player)
+    public void FixedUpdateState(PlayerStateManager player)
     {
-        if (player.playerDatabase.isGrounded) return;
 
-        if (player.GetComponent<Rigidbody2D>().velocity.y < 0)
-            player.SwitchState(player.fallState);
     }
 
-    public override void UpdateState(PlayerStateManager player)
+    public void UpdateState(PlayerStateManager player)
     {
         if (player.inputController.inputX != 0)
         {
@@ -55,6 +51,9 @@ public class PlayerIdleState : PlayerBaseState
             player.SwitchState(player.dieState);
 
         if (player.playerDatabase.isGrounded) return;
+
+        if (player.GetComponent<Rigidbody2D>().velocity.y < 0)
+            player.SwitchState(player.fallState);
 
         if (player.playerDatabase.isLeftWall || player.playerDatabase.isRightWall)
             player.SwitchState(player.wallSlideState);

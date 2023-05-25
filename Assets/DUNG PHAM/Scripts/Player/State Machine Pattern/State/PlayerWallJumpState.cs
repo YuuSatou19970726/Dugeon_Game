@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerWallJumpState : PlayerBaseState
+public class PlayerWallJumpState : IState
 {
 
-    public override void EnterState(PlayerStateManager player)
+    public void EnterState(PlayerStateManager player)
     {
         player.playerAnimation.PlayAnimatorClip("Wall Jump");
 
@@ -15,11 +15,11 @@ public class PlayerWallJumpState : PlayerBaseState
 
     }
 
-    public override void ExitState(PlayerStateManager player)
+    public void ExitState(PlayerStateManager player)
     {
     }
 
-    public override void FixedUpdateState(PlayerStateManager player)
+    public void FixedUpdateState(PlayerStateManager player)
     {
 
         if (player.GetComponent<Rigidbody2D>().velocity.y < 0)
@@ -28,7 +28,7 @@ public class PlayerWallJumpState : PlayerBaseState
         }
     }
 
-    public override void UpdateState(PlayerStateManager player)
+    public void UpdateState(PlayerStateManager player)
     {
     }
 }
