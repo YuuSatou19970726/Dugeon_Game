@@ -15,6 +15,7 @@ public class PlayerHurtState : PlayerBaseState
 
     public override void FixedUpdateState(PlayerStateManager player)
     {
+        player.playerController.Movement();
     }
 
     public override void UpdateState(PlayerStateManager player)
