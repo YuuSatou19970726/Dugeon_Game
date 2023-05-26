@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public class FireballBullet : MonoBehaviour
 {
-    float speed = 5f;
+    float speed = 1f;
 
     private void Start()
     {

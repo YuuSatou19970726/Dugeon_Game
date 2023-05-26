@@ -32,6 +32,13 @@ public class MainGame : MonoBehaviour
     int countGate_1 = 2;
     int countGate_2 = 2;
 
+    FireBallZone fireBallZone;
+
+    private void Awake()
+    {
+        fireBallZone = FindAnyObjectByType<FireBallZone>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -164,11 +171,13 @@ public class MainGame : MonoBehaviour
     {
         countGate_1 = 1;
         countGate_2 = 1;
+        fireBallZone.SetActiveBullet();
     }
 
     public void SetCountGate2()
     {
         countGate_2 = 2;
+        fireBallZone.SetActiveBullet();
     }
 
     public void SaveAll()
