@@ -135,9 +135,11 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     int GetMoveDirection(Vector3 target)
     {
-        playerInRange = false;
+        GetAttackRange();
 
         if (!playerDetected) return (rigid.transform.position.x < target.x) ? 1 : -1;
+
+        if (Mathf.Abs(rigid.transform.position.x - target.x) < 0.5f) return 0;
 
         float distance = Vector2.Distance(rigid.transform.position, target);
 
@@ -164,13 +166,23 @@ public class EnemyController : MonoBehaviour, IDamageable
             }
         }
 
-        playerInRange = true;
         return 0;
     }
     #endregion
 
-
     #region ATTACK
+    Vector2 minAtkPoint;
+    Vector2 maxAtkPoint;
+
+    void GetAttackRange()
+    {
+        minAtkPoint = new Vector2(transform.position.x + minAttackRange * faceDirection * originSpriteDirection, transform.position.y);
+        maxAtkPoint = new Vector2(transform.position.x + maxAttackRange * faceDirection * originSpriteDirection, transform.position.y);
+
+        Collider2D hit = Physics2D.OverlapArea(minAtkPoint, maxAtkPoint, enemyDatabase.guardLayer);
+        if (hit) playerInRange = true;
+        else playerInRange = false;
+    }
     public void Attack()
     {
         if (!canAttack) return;
@@ -256,13 +268,17 @@ public class EnemyController : MonoBehaviour, IDamageable
         isGrounded = ground ? true : false;
     }
 
+
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
+
         Gizmos.DrawWireSphere(groundCheckPoint, 0.1f);
-        Gizmos.DrawWireSphere(transform.position, minAttackRange);
-        Gizmos.DrawWireSphere(transform.position, maxAttackRange);
         Gizmos.DrawWireSphere(transform.position, detectRange);
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(minAtkPoint, maxAtkPoint);
     }
     #endregion
 }

@@ -416,14 +416,29 @@ MonoBehaviour:
   health: 0
   groundLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 2048
   moveSpeed: 3
   attackDamage: 5
   attackNumber: 1
   timePerAttack: 0.5
+  attackDelay: 0.1
   attackCooldown: 5
   minAttackRange: 0
   maxAttackRange: 1
+  targetFilter:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 768
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
   guardLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -447,6 +462,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyAnimation: {fileID: 0}
   enemyController: {fileID: 0}
+  enemyDatabase: {fileID: 0}
 --- !u!114 &9032104568810716231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -470,6 +486,7 @@ MonoBehaviour:
   playerDetected: 0
   idleTime: 2
   target: {fileID: 0}
+  isDied: 0
 --- !u!114 &9032104568810716230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -502,20 +519,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackColliders:
   - {fileID: 1414987775}
-  targetFilter:
-    useTriggers: 0
-    useLayerMask: 1
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 768
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
 --- !u!212 &9032104568810716228
 SpriteRenderer:
   m_ObjectHideFlags: 0

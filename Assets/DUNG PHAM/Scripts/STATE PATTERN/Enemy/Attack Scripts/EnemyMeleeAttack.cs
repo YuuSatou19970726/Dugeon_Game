@@ -7,7 +7,6 @@ public class EnemyMeleeAttack : MonoBehaviour, IAttacker
     EnemyController enemyController;
     EnemyDatabase enemyDatabase;
     [SerializeField] Collider2D[] attackColliders;
-    [SerializeField] ContactFilter2D targetFilter;
     Collider2D enemyColi;
     List<Collider2D> hits = new List<Collider2D>();
 
@@ -39,7 +38,7 @@ public class EnemyMeleeAttack : MonoBehaviour, IAttacker
         //Delay to fix with animation
         yield return new WaitForSeconds(enemyDatabase.attackDelay);
 
-        int count = Physics2D.OverlapCollider(attackColliders[coliIndex], targetFilter, hits);
+        int count = Physics2D.OverlapCollider(attackColliders[coliIndex], enemyDatabase.targetFilter, hits);
 
         foreach (Collider2D hitColi in hits)
         {

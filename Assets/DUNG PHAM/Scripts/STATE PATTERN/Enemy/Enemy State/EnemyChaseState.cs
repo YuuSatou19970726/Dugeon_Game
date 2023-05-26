@@ -38,6 +38,4 @@ public class EnemyChaseState : IState
         if (enemy.enemyController.isHurt)
             enemy.SwitchState(enemy.hurtState);
     }
-
-
 }

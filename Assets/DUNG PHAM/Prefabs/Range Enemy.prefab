@@ -277,9 +277,24 @@ MonoBehaviour:
   attackDamage: 5
   attackNumber: 5
   timePerAttack: 0.1
+  attackDelay: 0.1
   attackCooldown: 5
   minAttackRange: 2
   maxAttackRange: 5
+  targetFilter:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 768
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
   guardLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -303,6 +318,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyAnimation: {fileID: 0}
   enemyController: {fileID: 0}
+  enemyDatabase: {fileID: 0}
 --- !u!114 &487135976241014839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,6 +342,7 @@ MonoBehaviour:
   playerDetected: 0
   idleTime: 2
   target: {fileID: 0}
+  isDied: 0
 --- !u!114 &487135976241014836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,20 +377,6 @@ MonoBehaviour:
   bulletSpeed: 10
   bulletSize: 1
   multipleDistance: 3
-  targetFilter:
-    useTriggers: 0
-    useLayerMask: 1
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 1792
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
   bulletCount: 0
   bullets: []
 --- !u!212 &487135976241014834

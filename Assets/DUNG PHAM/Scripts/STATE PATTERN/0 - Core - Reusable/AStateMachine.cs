@@ -14,8 +14,6 @@ public abstract class AStateMachine : MonoBehaviour
     {
         if (currentState != null && !inTransition)
             currentState.UpdateState();
-
-        Debug.Log(currentState);
     }
 
     public void FixedUpdate()
@@ -61,4 +59,9 @@ public abstract class AStateMachine : MonoBehaviour
     }
     /***************************************************************************************************************************************/
     /***************************************************************************************************************************************/
+
+    public void DisplayCurrentState()
+    {
+        Debug.Log(currentState);
+    }
 }

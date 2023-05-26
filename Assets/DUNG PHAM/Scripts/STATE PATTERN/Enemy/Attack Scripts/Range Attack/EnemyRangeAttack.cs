@@ -14,7 +14,6 @@ public class EnemyRangeAttack : MonoBehaviour, IAttacker
     [SerializeField] float bulletSpeed = 10;
     [SerializeField] float bulletSize = 1;
     [SerializeField] int multipleDistance = 3;
-    [SerializeField] ContactFilter2D targetFilter;
 
     [SerializeField] int bulletCount;
     [SerializeField] List<GameObject> bullets = new List<GameObject>();
@@ -92,7 +91,7 @@ public class EnemyRangeAttack : MonoBehaviour, IAttacker
     {
         if (!bullet.activeInHierarchy) return;
 
-        int count = Physics2D.OverlapCollider(bullet.GetComponent<Collider2D>(), targetFilter, hits);
+        int count = Physics2D.OverlapCollider(bullet.GetComponent<Collider2D>(), enemyDatabase.targetFilter, hits);
 
         foreach (Collider2D coli in hits)
         {
