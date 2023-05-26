@@ -12,6 +12,7 @@ TagManager:
   - Bridge
   - Trap
   - Elevator
+  - Bullet
   - OneWayPlatform
   layers:
   - Default
