@@ -27,6 +27,9 @@ public class EnemyPatrolState : IState
 
     public void UpdateState()
     {
+        if (enemy.enemyController.isHurt)
+            enemy.SwitchState(enemy.hurtState);
+
         enemy.enemyController.MoveToTarget(enemy.enemyController.target.position);
 
         if (Vector2.Distance(enemy.transform.position, enemy.enemyController.target.position) < 0.5f) enemy.SwitchState(enemy.idleState);

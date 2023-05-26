@@ -29,6 +29,9 @@ public class EnemyIdleState : IState
 
     public void UpdateState()
     {
+        if (enemy.enemyController.isHurt)
+            enemy.SwitchState(enemy.hurtState);
+
         if (enemy.enemyController.playerDetected && !enemy.enemyController.playerDied)
         {
             enemy.SwitchState(enemy.chaseState);
@@ -45,7 +48,6 @@ public class EnemyIdleState : IState
         {
             enemy.SwitchState(enemy.patrolState);
         }
-
     }
 
 

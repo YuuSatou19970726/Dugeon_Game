@@ -29,8 +29,13 @@ public class EnemyAttackState : IState
     }
     public void UpdateState()
     {
+        if (enemy.enemyAnimation.CheckState(2))
+        {
+            if (enemy.enemyAnimation.currentState.normalizedTime > 0.5f && enemy.enemyController.isHurt)
+                enemy.SwitchState(enemy.hurtState);
 
-        if (enemy.enemyAnimation.CheckState(2) && enemy.enemyAnimation.currentState.normalizedTime > 1)
-            enemy.SwitchState(enemy.idleState);
+            if (enemy.enemyAnimation.currentState.normalizedTime > 1)
+                enemy.SwitchState(enemy.idleState);
+        }
     }
 }
