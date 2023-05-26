@@ -20,8 +20,6 @@ public class MainGame : MonoBehaviour
     //Display
     [SerializeField]
     GameObject heart_1, heart_2, heart_3;
-    [SerializeField]
-    GameObject spark_1, spark_2, spark_3;
 
     [SerializeField]
     Text textScore;
@@ -30,10 +28,14 @@ public class MainGame : MonoBehaviour
     int heart = 0;
     int score = 0;
 
+    //Gates
+    int countGate_1 = 2;
+    int countGate_2 = 2;
+
     // Start is called before the first frame update
     void Start()
     {
-        //PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();  
         dataManager = gameObject.AddComponent<DataManager>();
         StartCoroutine(InstallBringer());
     }
@@ -42,13 +44,14 @@ public class MainGame : MonoBehaviour
     {
         yield return new WaitForSeconds(.3f);
 
-        if (dataManager.GetCheckPoint() == -1)
+        if (dataManager.GetCheckPoint() == -1 && !isMovie)
         {
             Vector2 position = new Vector2(-22.9f, 0f);
             Instantiate(bringer, position, Quaternion.identity);
         }
 
-        StartCoroutine(CreateBLueSlime());
+        if (!isMovie)
+            StartCoroutine(CreateBLueSlime());
 
     }
 
@@ -70,9 +73,6 @@ public class MainGame : MonoBehaviour
                 break;
             case 3:
                 position = new Vector2(79f, 4f);
-                spark_1.SetActive(true);
-                spark_2.SetActive(true);
-                spark_3.SetActive(true);
                 break;
         }
 
@@ -97,13 +97,6 @@ public class MainGame : MonoBehaviour
         positionCheckPoint++;
         dataManager.SaveCheckPoint();
         dataManager.SaveScore(this.score);
-
-        if(positionCheckPoint == 3)
-        {
-            spark_1.SetActive(true);
-            spark_2.SetActive(true);
-            spark_3.SetActive(true);
-        }
     }
 
     public void IncrementScore (int score)
@@ -155,6 +148,27 @@ public class MainGame : MonoBehaviour
                 heart_3.SetActive(false);
                 break;
         }
+    }
+
+    public int GetCountGate1()
+    {
+        return countGate_1;
+    }
+
+    public int GetCountGate2()
+    {
+        return countGate_2;
+    }
+
+    public void SetCountGates()
+    {
+        countGate_1 = 1;
+        countGate_2 = 1;
+    }
+
+    public void SetCountGate2()
+    {
+        countGate_2 = 2;
     }
 
     public void SaveAll()

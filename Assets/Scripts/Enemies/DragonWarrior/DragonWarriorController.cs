@@ -6,6 +6,8 @@ public class DragonWarriorController : MonoBehaviour
 {
     BaseCurrent baseCurrent;
 
+    MainGame mainGame;
+
     Rigidbody2D rigid;
     BoxCollider2D boxCollider2D;
     SpriteRenderer spriteRenderer;
@@ -14,17 +16,10 @@ public class DragonWarriorController : MonoBehaviour
     float colliderDistance = 0.75f;
 
     [SerializeField]
-    LayerMask jumpableGround;
-
-    [SerializeField]
     LayerMask playerLayer;
 
     [SerializeField]
     BoxCollider2D boxCollider2DCallGate;
-
-    //Gates
-    int countGate_1 = 2;
-    int countGate_2 = 2;
 
     //Animation States
     string currentState = "Slime_Idle_Animation";
@@ -33,6 +28,10 @@ public class DragonWarriorController : MonoBehaviour
     Animator animator;
     float animatorDeplay = 0.3f;
 
+    private void Awake()
+    {
+        mainGame = FindAnyObjectByType<MainGame>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -50,8 +49,8 @@ public class DragonWarriorController : MonoBehaviour
     {
         if (PlayerInSight())
         {
-            countGate_1 = 1;
-            countGate_2 = 1;
+            mainGame.SetCountGates();
+            gameObject.SetActive(false);
         }
     }
 
@@ -68,21 +67,6 @@ public class DragonWarriorController : MonoBehaviour
         //Gizmos.color = Color.red;
         //Gizmos.DrawWireCube(boxCollider2DCallGate.bounds.center + transform.right * rangeCharacter * transform.localScale.x * colliderDistance,
         //    new Vector3(boxCollider2DCallGate.bounds.size.x * rangeCharacter, boxCollider2DCallGate.bounds.size.y, boxCollider2DCallGate.bounds.size.z));
-    }
-
-    public int GetCountGate1()
-    {
-        return countGate_1;
-    }
-
-    public int GetCountGate2()
-    {
-        return countGate_2;
-    }
-
-    bool IsGrounded()
-    {
-        return Physics2D.BoxCast(boxCollider2D.bounds.center, boxCollider2D.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
     }
 
     void ChangeAnimationState(string newState)
