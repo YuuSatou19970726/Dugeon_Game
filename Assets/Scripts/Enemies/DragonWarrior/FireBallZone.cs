@@ -15,7 +15,7 @@ public class FireBallZone : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Fire();
+        //Fire();
     }
 
     void Fire()

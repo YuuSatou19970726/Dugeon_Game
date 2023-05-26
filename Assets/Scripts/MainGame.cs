@@ -20,10 +20,13 @@ public class MainGame : MonoBehaviour
     //Display
     [SerializeField]
     GameObject heart_1, heart_2, heart_3;
+    [SerializeField]
+    GameObject spark_1, spark_2, spark_3;
 
     [SerializeField]
     Text textScore;
 
+    int positionCheckPoint = 0;
     int heart = 0;
     int score = 0;
 
@@ -53,7 +56,11 @@ public class MainGame : MonoBehaviour
     {
         yield return new WaitForSeconds(.3f);
         Vector2 position = new Vector2(-23f, 0f);
-        switch (dataManager.GetCheckPoint())
+
+        if (dataManager.GetCheckPoint() != -1)
+            positionCheckPoint = dataManager.GetCheckPoint();
+
+        switch (positionCheckPoint)
         {
             case 1:
                 position = new Vector2(-0.75f, 0f);
@@ -63,15 +70,17 @@ public class MainGame : MonoBehaviour
                 break;
             case 3:
                 position = new Vector2(79f, 4f);
+                spark_1.SetActive(true);
+                spark_2.SetActive(true);
+                spark_3.SetActive(true);
                 break;
         }
 
         Instantiate(blueSlime, position, Quaternion.identity);
 
-        if(dataManager.GetHeart() != -1)
-        {
+        if (dataManager.GetHeart() != -1)
             heart = dataManager.GetHeart();
-        }
+
         score = dataManager.GetScore();
 
         SetScore();
@@ -85,8 +94,16 @@ public class MainGame : MonoBehaviour
 
     public void ChangeCheckPoint()
     {
+        positionCheckPoint++;
         dataManager.SaveCheckPoint();
         dataManager.SaveScore(this.score);
+
+        if(positionCheckPoint == 3)
+        {
+            spark_1.SetActive(true);
+            spark_2.SetActive(true);
+            spark_3.SetActive(true);
+        }
     }
 
     public void IncrementScore (int score)

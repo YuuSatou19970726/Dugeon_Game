@@ -68,8 +68,8 @@ public class CameraController : MonoBehaviour
             }
             else
             {
-                editDesiredHalfHeight = 1.5f;
-                distanceY = 0f;
+                editDesiredHalfHeight = 0.75f;
+                distanceY = -1.5f;
             }
 
             float unitsPerPixel = sceneWidth / Screen.width;
