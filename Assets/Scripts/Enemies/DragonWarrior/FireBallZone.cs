@@ -4,17 +4,32 @@ using UnityEngine;
 
 public class FireBallZone : MonoBehaviour
 {
-    BoxCollider2D boxCollider2D;
-    // Start is called before the first frame update
-    void Start()
+    MainGame mainGame;
+
+    bool isActiveBullet = false;
+    float deplayTime = .75f;
+
+    private void Awake()
     {
-        boxCollider2D = GetComponent<BoxCollider2D>();
+        mainGame = FindAnyObjectByType<MainGame>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Fire();
+        if (isActiveBullet)
+        {
+            Fire();
+
+            if (deplayTime > 0)
+            {
+                deplayTime -= Time.deltaTime;
+            }
+            else
+            {
+                Coin();
+            }
+        }
     }
 
     void Fire()
@@ -22,12 +37,31 @@ public class FireBallZone : MonoBehaviour
         GameObject bullet = FireBallPool.instance.GetPooledFireBall();
 
         Vector2 bodyPosition = transform.position;
-        bodyPosition.x += Random.Range(0f, boxCollider2D.size.magnitude);
+        bodyPosition.x += Random.Range(-10f, 10f);
 
         if (bullet != null)
         {
             bullet.transform.position = bodyPosition;
             bullet.SetActive(true);
         }
+    }
+
+    void Coin()
+    {
+        GameObject coin = FireBallPool.instance.GetPooledPinkCoin();
+
+        Vector2 bodyPosition = transform.position;
+        bodyPosition.x += Random.Range(-10f, 10f);
+
+        if (coin != null)
+        {
+            coin.transform.position = bodyPosition;
+            coin.SetActive(true);
+        }
+    }
+
+    public void SetActiveBullet()
+    {
+        isActiveBullet = !isActiveBullet;
     }
 }

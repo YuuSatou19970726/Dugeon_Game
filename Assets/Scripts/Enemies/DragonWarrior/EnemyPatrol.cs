@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyPatrol : MonoBehaviour
 {
+    DragonWarriorController dragonWarriorController;
+
     [SerializeField]
     Transform leftEdge, rightEdge;
 
@@ -15,11 +17,14 @@ public class EnemyPatrol : MonoBehaviour
     bool movingLeft;
 
     //Idle Behaviour
-    float idleDuration = 1f;
+    float idleDuration = 3f;
     float idleTimer;
+
+    bool isDisable = false;
 
     private void Awake()
     {
+        dragonWarriorController = FindAnyObjectByType<DragonWarriorController>();
         initScale = enemy.localScale;
     }
 
@@ -29,28 +34,40 @@ public class EnemyPatrol : MonoBehaviour
     {
         if (movingLeft)
         {
-            if (enemy != null)
+            if (enemy != null && !isDisable)
             {
                 if (enemy.position.x >= leftEdge.position.x)
+                {
+                    dragonWarriorController.GetDragonWarriorMove();
                     MoveInDirection(-1);
+                }
                 else
+                {
+                    dragonWarriorController.GetPlayerIdle();
                     DirectionChange();
+                }
             }
         } else
         {
-            if (enemy != null)
+            if (enemy != null && !isDisable)
             {
                 if (enemy.position.x <= rightEdge.position.x)
+                {
+                    dragonWarriorController.GetDragonWarriorMove();
                     MoveInDirection(1);
+                }
                 else
+                {
+                    dragonWarriorController.GetPlayerIdle();
                     DirectionChange();
+                }
             }
         }
     }
 
     private void OnDisable()
     {
-        //Change Animation
+        isDisable = true;
     }
 
     void DirectionChange()

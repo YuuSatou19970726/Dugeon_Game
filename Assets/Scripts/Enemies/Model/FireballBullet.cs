@@ -5,8 +5,6 @@ using UnityEngine.UIElements;
 
 public class FireballBullet : MonoBehaviour
 {
-    float speed = 5f;
-
     private void Start()
     {
         transform.Rotate(0, 0, -90);
@@ -17,17 +15,19 @@ public class FireballBullet : MonoBehaviour
         FireBallMovement();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Ground"))
-            gameObject.SetActive(false);
-    }
-
     void FireBallMovement()
     {
         Vector2 speedVector2 = transform.position;
-        float speedRandom = speed + Random.Range(1f, 3f);
+        float speedRandom = Random.Range(1f, 4f);
         speedVector2.y -= speedRandom * Time.deltaTime;
         transform.position = speedVector2;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Ground"))
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

@@ -8,6 +8,8 @@ public class DragonWarriorController : MonoBehaviour
 
     MainGame mainGame;
 
+    EnemyPatrol enemyPatrol;
+
     Rigidbody2D rigid;
     BoxCollider2D boxCollider2D;
     SpriteRenderer spriteRenderer;
@@ -22,7 +24,7 @@ public class DragonWarriorController : MonoBehaviour
     BoxCollider2D boxCollider2DCallGate;
 
     //Animation States
-    string currentState = "Slime_Idle_Animation";
+    string currentState = "Dragon_Warrior_Idle_Animation";
 
     //animator
     Animator animator;
@@ -31,6 +33,7 @@ public class DragonWarriorController : MonoBehaviour
     private void Awake()
     {
         mainGame = FindAnyObjectByType<MainGame>();
+        enemyPatrol = GetComponentInParent<EnemyPatrol>();
     }
 
     // Start is called before the first frame update
@@ -49,9 +52,19 @@ public class DragonWarriorController : MonoBehaviour
     {
         if (PlayerInSight())
         {
-            mainGame.SetCountGates();
-            gameObject.SetActive(false);
+            ChangeAnimationState(baseCurrent.GetDragonWarriorDie());
+            float animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length + 0.3f;
+            Invoke("FireBallBattle", animatorDeplay);
         }
+
+        if (enemyPatrol != null)
+            enemyPatrol.enabled = !PlayerInSight();
+    }
+
+    void FireBallBattle()
+    {
+        mainGame.SetCountGates();
+        gameObject.SetActive(false);
     }
 
     bool PlayerInSight()
@@ -67,6 +80,18 @@ public class DragonWarriorController : MonoBehaviour
         //Gizmos.color = Color.red;
         //Gizmos.DrawWireCube(boxCollider2DCallGate.bounds.center + transform.right * rangeCharacter * transform.localScale.x * colliderDistance,
         //    new Vector3(boxCollider2DCallGate.bounds.size.x * rangeCharacter, boxCollider2DCallGate.bounds.size.y, boxCollider2DCallGate.bounds.size.z));
+    }
+
+    public void GetPlayerIdle()
+    {
+        if (currentState != baseCurrent.GetDragonWarriorDie())
+        ChangeAnimationState(baseCurrent.GetDragonWarriorIdle());
+    }
+
+    public void GetDragonWarriorMove()
+    {
+        if (currentState != baseCurrent.GetDragonWarriorDie())
+            ChangeAnimationState(baseCurrent.GetDragonWarriorMove());
     }
 
     void ChangeAnimationState(string newState)
