@@ -11,6 +11,8 @@ public class PlayerDatabase : MonoBehaviour
     public bool isHurt;
     public bool isDied;
 
+    public AfterImagePool afterImage;
+
     [Header("Movement")]
     public float moveSpeed = 20f;
 

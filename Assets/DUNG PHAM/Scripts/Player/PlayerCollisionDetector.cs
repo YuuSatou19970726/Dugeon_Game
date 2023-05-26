@@ -5,11 +5,11 @@ using UnityEngine;
 public class PlayerCollisionDetector : MonoBehaviour
 {
     PlayerDatabase playerDatabase;
-    [SerializeField] Vector3 groundCheckPoint;
+    [SerializeField] Vector3 groundCheckpoint, headCheckpoint;
     [SerializeField] Vector3 leftWallCheckpoint, rightWallCheckpoint;
     [SerializeField] Vector3 upperLeftWallCheckpoint, upperRightWallCheckpoint;
     public Collider2D ledgePoint;
-    public bool isGrounded;
+    public bool isGrounded, isHead;
     public bool isLeftWall, isRightWall;
     public bool isLeftEdge, isRightEdge;
     Vector3 checkpoint;
@@ -21,6 +21,7 @@ public class PlayerCollisionDetector : MonoBehaviour
     void Update()
     {
         GroundCheck();
+        HeadCheck();
 
         LeftWallCheck();
         RightWallCheck();
@@ -32,19 +33,29 @@ public class PlayerCollisionDetector : MonoBehaviour
 
     void GroundCheck()
     {
-        Vector3 checkpoint = transform.position + groundCheckPoint;
+        Vector3 checkpoint = transform.position + groundCheckpoint;
         Collider2D groundHit = Physics2D.OverlapCircle(checkpoint, 0.1f, playerDatabase.groundLayer);
 
         isGrounded = groundHit ? true : false;
+    }
 
+    void HeadCheck()
+    {
+        Vector3 checkpoint = transform.position + headCheckpoint;
+
+        Collider2D headHit = Physics2D.OverlapCircle(checkpoint, 0.1f, playerDatabase.groundLayer);
+
+        isHead = headHit ? true : false;
     }
 
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
 
-        Vector3 checkpoint = transform.position + groundCheckPoint;
-        Gizmos.DrawWireSphere(checkpoint, 0.1f);
+        Vector3 groundPoint = transform.position + groundCheckpoint;
+        Gizmos.DrawWireSphere(groundPoint, 0.1f);
+        Vector3 headPoint = transform.position + headCheckpoint;
+        Gizmos.DrawWireSphere(headPoint, 0.1f);
 
         Gizmos.color = Color.yellow;
 
@@ -107,7 +118,7 @@ public class PlayerCollisionDetector : MonoBehaviour
 
     void LeftLedgeCheck()
     {
-        if (!isLeftWall || Input.GetAxisRaw("Vertical") < 0)
+        if (!isLeftWall || isHead || Input.GetAxisRaw("Vertical") < 0)
         {
             isLeftEdge = false;
             return;
@@ -125,7 +136,7 @@ public class PlayerCollisionDetector : MonoBehaviour
 
     void RightLedgeCheck()
     {
-        if (!isRightWall || Input.GetAxisRaw("Vertical") < 0)
+        if (!isRightWall || isHead || Input.GetAxisRaw("Vertical") < 0)
         {
             isRightEdge = false;
             return;

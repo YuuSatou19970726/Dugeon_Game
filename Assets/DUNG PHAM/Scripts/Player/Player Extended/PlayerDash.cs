@@ -8,7 +8,6 @@ public class PlayerDash : MonoBehaviour
     InputControllerNew inputController;
     PlayerDatabase playerDatabase;
     Rigidbody2D rigid;
-    [SerializeField] AfterImagePool afterImage;
     float dashTimer;
 
     void Awake()
@@ -34,7 +33,7 @@ public class PlayerDash : MonoBehaviour
 
         rigid.AddForce(new Vector2(dashX, inputController.inputYRaw) * playerDatabase.dashingPower, ForceMode2D.Impulse);
 
-        afterImage.DisplaySprite();
+        playerDatabase.afterImage.DisplaySprite();
 
         dashTimer = 0;
     }

@@ -3203,14 +3203,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9010505153522086907, guid: 84fefba39f081834590cb3447279d6da, type: 3}
-      propertyPath: wallLayer.m_Bits
-      value: 9216
-      objectReference: {fileID: 0}
-    - target: {fileID: 9010505153522086907, guid: 84fefba39f081834590cb3447279d6da, type: 3}
-      propertyPath: groundLayer.m_Bits
-      value: 3584
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84fefba39f081834590cb3447279d6da, type: 3}
 --- !u!4 &1794264625340455651 stripped
