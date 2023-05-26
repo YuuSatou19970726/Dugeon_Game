@@ -145,7 +145,7 @@ public class SlimeController : MonoBehaviour
             if (currentState != baseCurrent.GetPlayerHoldJump())
             {
                 ChangeAnimationState(baseCurrent.GetPlayerJumpStartUp());
-                animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length;
+                animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length - 0.5f;
                 Invoke("AnimationHoldJump", animatorDeplay);
             }
         }
