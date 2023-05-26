@@ -3119,6 +3119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireBallPrefab: {fileID: 2717663229641576938, guid: 72791578c9fb74e8e9321957d7b83b89, type: 3}
+  pinkCoinPrefab: {fileID: 4605412073052463342, guid: d3a436eb8dd444bf2ace5ba7cf66a52d, type: 3}
 --- !u!1001 &278523063
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18497,6 +18498,7 @@ GameObject:
   - component: {fileID: 838001983}
   - component: {fileID: 838001986}
   - component: {fileID: 838001987}
+  - component: {fileID: 838001988}
   m_Layer: 10
   m_Name: DragonWarrior
   m_TagString: Enemy
@@ -18660,6 +18662,28 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   boxCollider2DCallGate: {fileID: 838001983}
+--- !u!95 &838001988
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838001982}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 005e9fc47d91547e8b1521b69ed8ed91, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &838069950
 PrefabInstance:
   m_ObjectHideFlags: 0

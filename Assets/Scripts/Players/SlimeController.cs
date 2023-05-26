@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SlimeController : MonoBehaviour
 {
     BaseCurrent baseCurrent;
+    MainGame mainGame;
     CameraController cameraController;
     BoardTutorial boardTutorial;
 
@@ -26,6 +28,9 @@ public class SlimeController : MonoBehaviour
     float fallDie = 0f;
 
     bool isJumping = false;
+    bool isHurt = false;
+    bool isDeath = false;
+
     float moveSpeed = 5f;
     float jumpForce = 5f;
 
@@ -39,6 +44,7 @@ public class SlimeController : MonoBehaviour
 
     private void Awake()
     {
+        mainGame = FindAnyObjectByType<MainGame>();
         cameraController = FindAnyObjectByType<CameraController>();
         boardTutorial = FindAnyObjectByType<BoardTutorial>();
     }
@@ -57,55 +63,69 @@ public class SlimeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentState == baseCurrent.GetPlayerIdle() || currentState == baseCurrent.GetPlayerMove())
+        if (!isDeath)
         {
-            moveSpeed = 5f;
-        }
-        else if (currentState == baseCurrent.GetPlayerJumpStartUp() || currentState == baseCurrent.GetPlayerHoldJump() ||
-            currentState == baseCurrent.GetPlayerHoldJumpGreen() || currentState == baseCurrent.GetPlayerHoldJumpRed())
-        {
-            moveSpeed = 3f;
-        }
-        else
-        {
-            moveSpeed = 0f;
-        }
+            if (!isHurt)
+            {
+                if (currentState == baseCurrent.GetPlayerIdle() || currentState == baseCurrent.GetPlayerMove())
+                {
+                    moveSpeed = 5f;
+                }
+                else if (currentState == baseCurrent.GetPlayerJumpStartUp() || currentState == baseCurrent.GetPlayerHoldJump() ||
+                    currentState == baseCurrent.GetPlayerHoldJumpGreen() || currentState == baseCurrent.GetPlayerHoldJumpRed())
+                {
+                    moveSpeed = 3f;
+                }
+                else
+                {
+                    moveSpeed = 0f;
+                }
 
-        SlimeMove();
-        SlimeJump();
-        cameraController.SetMoveCamera(transform);
-        boardTutorial.CheckTransform(transform);
+                SlimeMove();
+                SlimeJump();
+                cameraController.SetMoveCamera(transform);
+                boardTutorial.CheckTransform(transform);
+            }
+        }
     }
 
     private void FixedUpdate()
     {
-        if (xDirection > 0)
+        if (!isDeath)
         {
-            spriteRenderer.flipX = false;
-        }
-        else if (xDirection < 0)
-        {
-            spriteRenderer.flipX = true;
-        }
-
-        if (xDirection != 0 && IsGrounded() && currentState == baseCurrent.GetPlayerIdle())
-        {
-            ChangeAnimationState(baseCurrent.GetPlayerMove());
-        } else if (xDirection == 0 && currentState == baseCurrent.GetPlayerMove() && IsGrounded())
-        {
-            ChangeAnimationState(baseCurrent.GetPlayerIdle());
-        }
-
-        if (isJumping)
-        {
-            isJumping = false;
-            if (IsGrounded())
+            if (!isHurt)
             {
-                animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length;
-                Invoke("AnimationJump", animatorDeplay);
-            } else
-            {
-                ChangeAnimationState(baseCurrent.GetPlayerIdle());
+                if (xDirection > 0)
+                {
+                    spriteRenderer.flipX = false;
+                }
+                else if (xDirection < 0)
+                {
+                    spriteRenderer.flipX = true;
+                }
+
+                if (xDirection != 0 && IsGrounded() && currentState == baseCurrent.GetPlayerIdle())
+                {
+                    ChangeAnimationState(baseCurrent.GetPlayerMove());
+                }
+                else if (xDirection == 0 && currentState == baseCurrent.GetPlayerMove() && IsGrounded())
+                {
+                    ChangeAnimationState(baseCurrent.GetPlayerIdle());
+                }
+
+                if (isJumping)
+                {
+                    isJumping = false;
+                    if (IsGrounded())
+                    {
+                        animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length;
+                        Invoke("AnimationJump", animatorDeplay);
+                    }
+                    else
+                    {
+                        ChangeAnimationState(baseCurrent.GetPlayerIdle());
+                    }
+                }
             }
         }
     }
@@ -291,5 +311,40 @@ public class SlimeController : MonoBehaviour
         animator.Play(newState);
 
         currentState = newState;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            mainGame.DecreaseHeart();
+
+            if (mainGame.GetHeart() == 0)
+            {
+                ChangeAnimationState(baseCurrent.GetPlayerDeath());
+                isDeath = true;
+                animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length;
+                Invoke("RestartGame", animatorDeplay);
+            } else
+            {
+                ChangeAnimationState(baseCurrent.GetPlayerHurt());
+                isHurt = true;
+                animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length;
+                Invoke("SetHurt", animatorDeplay);
+            }
+        }
+    }
+
+    void SetHurt()
+    {
+        isHurt = false;
+        ChangeAnimationState(baseCurrent.GetPlayerIdle());
+    }
+
+    void RestartGame()
+    {
+        isDeath = false;
+        ChangeAnimationState(baseCurrent.GetPlayerIdle());
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

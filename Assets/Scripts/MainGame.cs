@@ -29,6 +29,7 @@ public class MainGame : MonoBehaviour
     int score = 0;
 
     //Gates
+    int countOpenGate = 5; 
     int countGate_1 = 2;
     int countGate_2 = 2;
 
@@ -130,6 +131,11 @@ public class MainGame : MonoBehaviour
         CheckHeart(heart);
     }
 
+    public int GetHeart()
+    {
+        return heart;
+    }
+
     void CheckHeart(int count)
     {
         switch (count)
@@ -157,6 +163,20 @@ public class MainGame : MonoBehaviour
         }
     }
 
+    public void DecreaseCountOpenGate()
+    {
+        if (countOpenGate != 0)
+            countOpenGate--;
+
+        if (countOpenGate == 0)
+            SetCountGate2();
+    }
+
+    public int GetCountOpenGate()
+    {
+        return countOpenGate;
+    }
+
     public int GetCountGate1()
     {
         return countGate_1;
@@ -176,7 +196,7 @@ public class MainGame : MonoBehaviour
 
     public void SetCountGate2()
     {
-        countGate_2 = 2;
+        countGate_2 = 0;
         fireBallZone.SetActiveBullet();
     }
 
