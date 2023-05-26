@@ -11,7 +11,7 @@ public class CameraController : MonoBehaviour
 
     float editDesiredHalfHeight = 0.7f;
     float sceneWidth = 10f;
-    Camera camera;
+    new Camera camera;
 
     private void Awake()
     {

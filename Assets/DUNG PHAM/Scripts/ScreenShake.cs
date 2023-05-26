@@ -10,8 +10,9 @@ public class ScreenShake : MonoBehaviour
     public float duration = 0.5f;
     public float amplitude = 5f;
     public float frequency = 1f;
+    [SerializeField] Transform playerTranform;
 
-    void Start()
+    void Awake()
     {
         virtualCamera = GetComponent<CinemachineVirtualCamera>();
         cinemachineBasicMultiChannelPerlin = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
@@ -19,11 +20,23 @@ public class ScreenShake : MonoBehaviour
 
     void Update()
     {
+        CameraFollowPlayer();
     }
 
-    public IEnumerator cameraShaking()
+    void CameraFollowPlayer()
     {
+        Vector2 cameraPosition = transform.position;
+        Vector2 playerPosition = playerTranform.position;
 
+        transform.position = Vector2.MoveTowards(cameraPosition, playerPosition, 0.1f);
+    }
+
+    public void ShakeCamera()
+    {
+        StartCoroutine(CameraShaking());
+    }
+    IEnumerator CameraShaking()
+    {
         cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = amplitude;
         cinemachineBasicMultiChannelPerlin.m_FrequencyGain = frequency;
 
