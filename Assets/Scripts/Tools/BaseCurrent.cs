@@ -18,6 +18,12 @@ public class BaseCurrent : MonoBehaviour
     const string PLAYER_HURT = "Slime_Hurt";
     const string PLAYER_DEATH = "Slime_Death";
 
+    //animation dragon warrior
+    const string DRAGON_WARRIOR_IDLE = "Dragon_Warrior_Idle_Animation";
+    const string DRAGON_WARRIOR_MOVE = "Dragon_Warrior_Move_Animation";
+    const string DRAGON_WARRIOR_DIE = "Dragon_Warrior_Die_Animation";
+
+
     //cache data
     //Level 1
     const string CHECK_POINT_LEVEL_1 = "Check_Point_Level_1";
@@ -26,6 +32,7 @@ public class BaseCurrent : MonoBehaviour
 
     //______________________________________________________________________
 
+    //Slime Animation
     public string GetPlayerIdle ()
     {
         return PLAYER_IDLE;
@@ -84,6 +91,22 @@ public class BaseCurrent : MonoBehaviour
     public string GetPlayerDeath()
     {
         return PLAYER_DEATH;
+    }
+
+    //Dragon Warrior Animation
+    public string GetDragonWarriorIdle()
+    {
+        return DRAGON_WARRIOR_IDLE;
+    }
+
+    public string GetDragonWarriorMove()
+    {
+        return DRAGON_WARRIOR_MOVE;
+    }
+
+    public string GetDragonWarriorDie()
+    {
+        return DRAGON_WARRIOR_DIE;
     }
 
     public string GetCheckPointLevel1()

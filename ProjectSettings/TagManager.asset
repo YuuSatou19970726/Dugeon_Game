@@ -12,6 +12,7 @@ TagManager:
   - Bridge
   - Trap
   - Elevator
+  - Bullet
   - OneWayPlatform
   layers:
   - Default
@@ -56,6 +57,9 @@ TagManager:
   - name: Ground
     uniqueID: 295398379
     locked: 0
+  - name: Fontground
+    uniqueID: 3986441097
+    locked: 0
   - name: Wall
     uniqueID: 3334846749
     locked: 0
@@ -64,6 +68,9 @@ TagManager:
     locked: 0
   - name: Terrain
     uniqueID: 1627272463
+    locked: 0
+  - name: FontTerrain
+    uniqueID: 239838479
     locked: 0
   - name: Door
     uniqueID: 2076183997
@@ -80,6 +87,9 @@ TagManager:
   - name: Trap
     uniqueID: 975054427
     locked: 0
+  - name: FontTrap
+    uniqueID: 2413390143
+    locked: 0
   - name: Food
     uniqueID: 2280572057
     locked: 0
@@ -94,15 +104,6 @@ TagManager:
     locked: 0
   - name: Bullet
     uniqueID: 3307486983
-    locked: 0
-  - name: Fontground
-    uniqueID: 3986441097
-    locked: 0
-  - name: FontTerrain
-    uniqueID: 239838479
-    locked: 0
-  - name: FontTrap
-    uniqueID: 2413390143
     locked: 0
   - name: Display
     uniqueID: 2210250571
