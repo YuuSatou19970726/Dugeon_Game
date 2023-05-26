@@ -3,5 +3,5 @@
  <properties>
   <property name="unity:material" type="file" value="Sprite-Lit-Default"/>
  </properties>
- <image source="../../../Sprites/Tiles_2/TX Village Props.png" width="1024" height="1024"/>
+ <image source="TX Village Props.png" width="1024" height="1024"/>
 </tileset>

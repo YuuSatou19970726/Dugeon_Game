@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class PlayerRunState : IState
 {
-    //========= Contruction to use other class ========//
-    public PlayerRunState()
-    {
-    }
-    //=================================================//
-
     public void EnterState(PlayerStateManager player)
     {
         player.playerAnimation.PlayAnimatorClip("Run");
@@ -27,37 +21,40 @@ public class PlayerRunState : IState
 
     public void UpdateState(PlayerStateManager player)
     {
-        if (!player.playerCollision.isGrounded) return;
+        if (player.playerCollision.isGrounded)
 
-        if (player.inputController.inputX == 0)
         {
-            if (Mathf.Abs(player.GetComponent<Rigidbody2D>().velocity.x) < 5)
-                player.SwitchState(player.walkState);
+            if (player.inputController.inputX == 0)
+            {
+                if (Mathf.Abs(player.GetComponent<Rigidbody2D>().velocity.x) < 5)
+                    player.SwitchState(player.walkState);
+            }
+
+            if (player.inputController.isJumpPress)
+            {
+                player.SwitchState(player.jumpState);
+            }
+
+
+            if (player.inputController.isLeftMousePress)
+                player.SwitchState(player.attackState);
+
+            if (player.inputController.inputY < 0 && player.inputController.inputX != 0)
+            {
+                player.SwitchState(player.crouchMoveState);
+            }
+
+            if (player.inputController.isDashPress)
+                player.SwitchState(player.dashState);
         }
 
-        if (player.inputController.isJumpPress)
+        if (!player.playerCollision.isGrounded)
         {
-            player.SwitchState(player.jumpState);
+            player.SwitchState(player.fallState);
+
+            if (player.playerCollision.isLeftWall || player.playerCollision.isRightWall)
+                player.SwitchState(player.wallSlideState);
         }
-
-
-        if (player.inputController.isLeftMousePress)
-            player.SwitchState(player.attackState);
-
-        if (player.inputController.inputY < 0 && player.inputController.inputX != 0)
-        {
-            player.SwitchState(player.crouchMoveState);
-        }
-
-        if (player.inputController.isDashPress)
-            player.SwitchState(player.dashState);
-
-        if (player.playerCollision.isGrounded) return;
-
-        player.SwitchState(player.fallState);
-
-        if (player.playerCollision.isLeftWall || player.playerCollision.isRightWall)
-            player.SwitchState(player.wallSlideState);
     }
 
 }

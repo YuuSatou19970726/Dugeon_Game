@@ -26,17 +26,23 @@ public class PlayerFallState : IState
     {
         if (player.playerCollision.isGrounded)
         {
-            player.SwitchState(player.crouchState);
-            player.soundEffect.PlayAudio(3);
+            if (player.GetComponent<Rigidbody2D>().velocity.y < -player.playerDatabase.maxFallVelocity / 2)
+            {
+                player.SwitchState(player.crouchState);
+                player.soundEffect.PlayAudio(3);
+            }
+            else
+            {
+                player.SwitchState(player.idleState);
+            }
         }
 
         if (player.playerCollision.isRightEdge || player.playerCollision.isLeftEdge)
             player.SwitchState(player.wallEdge);
 
         if (player.playerCollision.isLeftWall || player.playerCollision.isRightWall)
-        {
             player.SwitchState(player.wallSlideState);
-        }
+
 
 
         if (player.inputController.isLeftMousePress)
