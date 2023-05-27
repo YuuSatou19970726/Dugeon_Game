@@ -32,6 +32,8 @@ public class PlayerFallState : IState
 
     public void UpdateState()
     {
+        PriorityState();
+        
         if (player.playerCollision.isGrounded)
         {
             if (player.GetComponent<Rigidbody2D>().velocity.y < -player.playerDatabase.maxFallVelocity / 2)
@@ -65,5 +67,14 @@ public class PlayerFallState : IState
 
         if (player.inputController.isJumpPress)
             player.SwitchState(player.jumpState);
+    }
+
+    void PriorityState()
+    {
+        if (player.playerDatabase.isHurt)
+            player.SwitchState(player.hurtState);
+
+        if (player.playerDatabase.isDied)
+            player.SwitchState(player.dieState);
     }
 }

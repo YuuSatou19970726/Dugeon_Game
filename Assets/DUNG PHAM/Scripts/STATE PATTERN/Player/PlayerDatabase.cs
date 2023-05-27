@@ -7,6 +7,7 @@ public class PlayerDatabase : MonoBehaviour
     [Header("Miscellaneous")]
     public Sprite avatar;
     public Transform head;
+    public HealthBar healthBar;
     public float maxHealth = 100f;
     public bool isHurt;
     public bool isDied;
@@ -31,4 +32,8 @@ public class PlayerDatabase : MonoBehaviour
     public float dashingPower = 30f;
     public float dashingCooldown = 1f;
     public float dashingTime = 0.5f;
+
+    [Header("Attack")]
+    public float attackDamage = 10f;
+    public float hitResetTime = 3f;
 }

@@ -5,9 +5,11 @@ using UnityEngine;
 public class PlayerHurtState : IState
 {
     PlayerStateManager player;
-    public PlayerHurtState(PlayerStateManager player)
+    PlayerAttackManager playerAttack;
+    public PlayerHurtState(PlayerStateManager player, PlayerAttackManager playerAttack)
     {
         this.player = player;
+        this.playerAttack = playerAttack;
     }
 
 
@@ -28,6 +30,8 @@ public class PlayerHurtState : IState
 
     public void UpdateState()
     {
+        PriorityState();
+
         if (player.playerAnimation.currentState.IsName(HURT) && player.playerAnimation.currentState.normalizedTime > 1)
         {
             player.SwitchState(player.idleState);
@@ -35,5 +39,9 @@ public class PlayerHurtState : IState
         }
     }
 
-
+    void PriorityState()
+    {
+        if (player.playerDatabase.isDied)
+            player.SwitchState(player.dieState);
+    }
 }

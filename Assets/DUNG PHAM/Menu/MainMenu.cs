@@ -5,14 +5,23 @@ using UnityEngine.UI;
 using TMPro;
 public class MainMenu : MonoBehaviour
 {
+    [Header("Main Menu")]
     public GameObject mainMenu;
+
+    [Header("Option Menu")]
     public GameObject optionMenu;
-    public Dropdown difficultOption;
+    public TMP_Dropdown difficultOption;
+    int difficult;
     public Slider volumnSlider;
+    float volume;
+
+    [Header("Level Select")]
+    public GameObject levelSelectScene;
+
+    [Header("Loading Scene")]
     public GameObject loadingScrene;
     public Slider loadingSlider;
     public TextMeshProUGUI percentText;
-
 
     void Start()
     {
@@ -20,6 +29,79 @@ public class MainMenu : MonoBehaviour
     }
 
 
+    //********************************************************************************************************************************************//
+    //********************************************************************************************************************************************//
+    #region BUTTON FUNCTION
+    public void ShowMainMenu()
+    {
+        mainMenu.SetActive(true);
+
+        loadingScrene.SetActive(false);
+        optionMenu.SetActive(false);
+        levelSelectScene.SetActive(false);
+    }
+
+    public void ShowOptionMenu()
+    {
+        optionMenu.SetActive(true);
+        mainMenu.SetActive(false);
+
+        SetData();
+
+        volumnSlider.value = volume;
+        difficultOption.value = difficult;
+    }
+
+    public void ShowLevelSelectMenu()
+    {
+        levelSelectScene.SetActive(true);
+
+        mainMenu.SetActive(false);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+    public void BackToMainMenuButton()
+    {
+        ShowMainMenu();
+        GetData();
+    }
+
+    public void ResetGameButton()
+    {
+        GameManager.instance.ResetGameJson();
+        ShowOptionMenu();
+    }
+    #endregion
+    //********************************************************************************************************************************************//
+    //********************************************************************************************************************************************//
+    #region OPTION DATA
+    void SetData()
+    {
+        volume = GameManager.instance.SetVolume();
+        difficult = GameManager.instance.SetDifficult();
+    }
+
+    void GetData()
+    {
+        GameManager.instance.GetGameData(difficult, volume);
+    }
+
+    public void GetDifficult(int choice)
+    {
+        difficult = choice;
+    }
+
+    public void GetVolume(float value)
+    {
+        volume = value;
+    }
+    #endregion
+    //********************************************************************************************************************************************//
+    //********************************************************************************************************************************************//
+    #region LOADING SCENE
     public void LoadLevel(int sceneIndex)
     {
         StartCoroutine(LoadAsynchronously(sceneIndex));
@@ -27,11 +109,11 @@ public class MainMenu : MonoBehaviour
     IEnumerator LoadAsynchronously(int sceneIndex)
     {
         loadingScrene.SetActive(true);
+        levelSelectScene.SetActive(false);
 
         float x = 0f;
         float t = 0f;
 
-        // while (!operation.isDone)
         while (loadingSlider.value < 1)
         {
             if (x > 1) x = 1;
@@ -48,38 +130,8 @@ public class MainMenu : MonoBehaviour
         if (loadingSlider.value == 1)
             SceneManager.LoadSceneAsync(sceneIndex);
     }
-
-    public void ShowOptionMenu()
-    {
-        optionMenu.SetActive(true);
-        mainMenu.SetActive(false);
-
-        volumnSlider.value = GameManager.instance.volume;
-        difficultOption.value = GameManager.instance.difficult;
-    }
-
-    public void ShowMainMenu()
-    {
-        mainMenu.SetActive(true);
-
-        loadingScrene.SetActive(false);
-        optionMenu.SetActive(false);
-    }
-
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
-
-    public void GetDifficult(int choice)
-    {
-        GameManager.instance.difficult = choice;
-    }
-
-    public void GetVolumn(float value)
-    {
-        GameManager.instance.volume = value;
-    }
-
+    #endregion
+    //********************************************************************************************************************************************//
+    //********************************************************************************************************************************************//
 
 }

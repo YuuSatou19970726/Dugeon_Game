@@ -8,6 +8,7 @@ public class PlayerOneWayPlatform : MonoBehaviour
     GameObject oneWayPlatform;
     InputControllerNew inputController;
     string ONEWAYPLATFORM = "OneWayPlatform";
+    [SerializeField] float ignoreTime = 0.5f;
     void Awake()
     {
         instance = this;
@@ -50,7 +51,7 @@ public class PlayerOneWayPlatform : MonoBehaviour
         Physics2D.IgnoreCollision(playerCollider, platformCollider);
         Physics2D.IgnoreCollision(headCollider, platformCollider);
 
-        yield return new WaitForSeconds(01f);
+        yield return new WaitForSeconds(ignoreTime);
 
         Physics2D.IgnoreCollision(playerCollider, platformCollider, false);
         Physics2D.IgnoreCollision(headCollider, platformCollider, false);

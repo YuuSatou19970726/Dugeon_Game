@@ -38,8 +38,8 @@ public class PlayerCrouchState : IState
 
             if (timer < 0.5f) return;
 
-            player.SwitchState(player.idleState);
             timer = 0;
+            player.SwitchState(player.idleState);
         }
 
         if (player.inputController.inputY < 0 && player.inputController.inputX != 0)

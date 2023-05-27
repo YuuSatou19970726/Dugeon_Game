@@ -24,7 +24,7 @@ public class BackgroundMusic : MonoBehaviour
     void PlayMusic()
     {
         int index = GetRandomClip();
-        audioSource.volume = GameManager.instance.volume;
+        audioSource.volume = GameManager.instance.SetVolume();
         audioSource.clip = audioClips[index];
         audioSource.Play();
     }

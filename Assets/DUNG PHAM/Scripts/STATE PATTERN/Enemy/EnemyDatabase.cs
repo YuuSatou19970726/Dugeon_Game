@@ -13,7 +13,6 @@ public class EnemyDatabase : MonoBehaviour
     float healthRate;
 
     [Header("Movement")]
-    public LayerMask groundLayer;
     public float moveSpeed = 3f;
 
     [Header("Attack")]
@@ -39,7 +38,7 @@ public class EnemyDatabase : MonoBehaviour
     }
     void ApplyDifficult()
     {
-        int ratio = GameManager.instance.difficult;
+        int ratio = GameManager.instance.SetDifficult();
 
         maxHealth *= ratio;
         attackDamage *= ratio;

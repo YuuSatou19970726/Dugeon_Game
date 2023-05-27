@@ -5,16 +5,18 @@ using UnityEngine;
 public class PlayerAttackState : IState
 {
     PlayerStateManager player;
-    public PlayerAttackState(PlayerStateManager player)
+    PlayerAttackManager playerAttack;
+    public PlayerAttackState(PlayerStateManager player, PlayerAttackManager playerAttack)
     {
         this.player = player;
+        this.playerAttack = playerAttack;
     }
 
     public void EnterState()
     {
         player.playerAnimation.PlayAnimatorClip("Attack 1");
 
-        player.playerAttack.AttackCast(0);
+        playerAttack.AttackCast(0);
     }
 
     public void ExitState()

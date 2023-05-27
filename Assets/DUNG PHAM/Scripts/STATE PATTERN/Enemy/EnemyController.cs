@@ -19,10 +19,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     public bool isHurt;
 
     [Header("Movement")]
-    LayerMask groundLayer;
     float moveSpeed;
-    Vector3 groundCheckPoint;
-    [SerializeField] bool isGrounded;
 
     [Header("Attack")]
     LayerMask guardLayer;
@@ -57,7 +54,6 @@ public class EnemyController : MonoBehaviour, IDamageable
     }
     void Update()
     {
-        CheckGround();
         FindPlayer();
 
         DisplayHealth();
@@ -78,7 +74,6 @@ public class EnemyController : MonoBehaviour, IDamageable
 
         maxHealth = enemyDatabase.maxHealth;
 
-        groundLayer = enemyDatabase.groundLayer;
         guardLayer = enemyDatabase.guardLayer;
 
         minAttackRange = enemyDatabase.minAttackRange;
@@ -210,7 +205,10 @@ public class EnemyController : MonoBehaviour, IDamageable
 
         isHurt = true;
     }
-
+    public float GetHealth()
+    {
+        return health;
+    }
     void SetHealth()
     {
         health = maxHealth;
@@ -257,28 +255,14 @@ public class EnemyController : MonoBehaviour, IDamageable
     }
     #endregion 
 
-    #region COLLISION DETECT
-    void CheckGround()
-    {
-        Bounds bounds = GetComponent<Collider2D>().bounds;
-        groundCheckPoint = bounds.center - new Vector3(0, bounds.size.y / 2, 0);
-
-        Collider2D ground = Physics2D.OverlapCircle(groundCheckPoint, 0.1f, groundLayer);
-
-        isGrounded = ground ? true : false;
-    }
-
-
-
+ 
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
 
-        Gizmos.DrawWireSphere(groundCheckPoint, 0.1f);
         Gizmos.DrawWireSphere(transform.position, detectRange);
 
         Gizmos.color = Color.green;
         Gizmos.DrawLine(minAtkPoint, maxAtkPoint);
     }
-    #endregion
 }
