@@ -15,8 +15,11 @@ public class PlayerInteractTile : MonoBehaviour
 
     public float climbSpeed, swimSpeed;
     [SerializeField] bool isClimbing, isSwimming;
-    float swimTimer;
+    float stayTimer;
     #endregion
+
+    /**********************************************************************************************************************************/
+    /**********************************************************************************************************************************/
 
     void Start()
     {
@@ -29,6 +32,9 @@ public class PlayerInteractTile : MonoBehaviour
         LadderClimb();
     }
 
+    /**********************************************************************************************************************************/
+    /**********************************************************************************************************************************/
+
     void OnTriggerEnter2D(Collider2D coli)
     {
         if (playerDatabase.isDied) return;
@@ -38,35 +44,35 @@ public class PlayerInteractTile : MonoBehaviour
             isClimbing = true;
         }
 
-        if (coli.gameObject.tag == (WATER))
-        {
-            isSwimming = true;
-        }
-
-        if (coli.gameObject.layer == LayerMask.NameToLayer(ENEMY))
-        {
-            BeKnockBack(coli.transform);
-
-            GetComponent<IDamageable>().GetDamage(10);
-        }
+        WaterHurt(coli);
+        SpikeHurt(coli);
     }
+
+    /**********************************************************************************************************************************/
 
     void OnTriggerStay2D(Collider2D coli)
     {
         if (playerDatabase.isDied) return;
 
-        if (coli.gameObject.tag == (WATER))
-        {
-            swimTimer += Time.deltaTime;
+        stayTimer += Time.deltaTime;
 
-            if (swimTimer > 0.5f)
-            {
-                GetComponent<IDamageable>().GetDamage(10);
-                swimTimer = 0f;
-            }
+        if (stayTimer > 0.5f)
+        {
+            WaterHurt(coli);
+        }
+    }
+    /**********************************************************************************************************************************/
+
+    void OnTriggerExit2D(Collider2D coli)
+    {
+        if (coli.gameObject.tag == (LADDER))
+        {
+            isClimbing = false;
         }
     }
 
+    /**********************************************************************************************************************************/
+    /**********************************************************************************************************************************/
     void BeKnockBack(Transform knocker)
     {
         Vector2 knockWay = transform.position - knocker.position;
@@ -76,19 +82,33 @@ public class PlayerInteractTile : MonoBehaviour
 
         knockWay = new Vector2(knockX, knockY);
 
-        rigid.velocity = knockWay * 20f;
+        rigid.velocity = knockWay * 15f;
     }
 
-    void OnTriggerExit2D(Collider2D coli)
+    /**********************************************************************************************************************************/
+    /**********************************************************************************************************************************/
+    void SpikeHurt(Collider2D coli)
     {
-        if (coli.gameObject.tag == (LADDER))
-        {
-            isClimbing = false;
-        }
+        if (coli.gameObject.layer != LayerMask.NameToLayer(ENEMY)) return;
 
-        if (coli.gameObject.tag == (WATER)) isSwimming = false;
+        GetComponent<IDamageable>().GetDamage(10);
+        BeKnockBack(coli.transform);
+
+        stayTimer = 0f;
     }
 
+    /**********************************************************************************************************************************/
+
+    void WaterHurt(Collider2D coli)
+    {
+        if (coli.gameObject.tag != (WATER)) return;
+
+        GetComponent<IDamageable>().GetDamage(10);
+        stayTimer = 0f;
+    }
+
+    /**********************************************************************************************************************************/
+    /**********************************************************************************************************************************/
 
     void LadderClimb()
     {
@@ -115,5 +135,7 @@ public class PlayerInteractTile : MonoBehaviour
         }
     }
 
+    /**********************************************************************************************************************************/
+    /**********************************************************************************************************************************/
 
 }

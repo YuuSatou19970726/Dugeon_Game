@@ -7,9 +7,9 @@
     "automapping.whileDrawing": false,
     "expandedProjectPaths": [
         ".",
-        "TileMap",
         "TileRule",
-        "TileSet"
+        "TileSet",
+        "TileMap"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -62,19 +62,19 @@
             }
         },
         "TileMap/Map 3.2.tmx": {
-            "scale": 1,
+            "scale": 0.33,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 640,
-                "y": 399.5
+                "x": 639.3939393939394,
+                "y": 401.5151515151514
             }
         },
         "TileMap/Map 3.3.tmx": {
             "scale": 0.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 664,
-                "y": 401
+                "x": 662,
+                "y": 399
             }
         },
         "TileMap/Map 3.tmx": {
