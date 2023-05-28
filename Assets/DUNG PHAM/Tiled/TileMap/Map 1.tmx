@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="70" height="207" tilewidth="16" tileheight="16" infinite="0" nextlayerid="47" nextobjectid="67813">
+ <properties>
+  <property name="unity:layer" value="Ground"/>
+ </properties>
  <tileset firstgid="1" source="../prototype/prototype16.tsx"/>
  <tileset firstgid="155" source="../TileSet/Assets.tsx"/>
  <tileset firstgid="477" source="../TileSet/atlas.tsx"/>
@@ -643,6 +646,9 @@
 </data>
   </layer>
   <objectgroup id="28" name="upper collider">
+   <properties>
+    <property name="unity:layer" value="Ground"/>
+   </properties>
    <object id="63448" x="640" y="0">
     <polygon points="0,0 16,-16 16,0"/>
    </object>

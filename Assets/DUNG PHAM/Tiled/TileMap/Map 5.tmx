@@ -151,6 +151,9 @@
 </data>
   </layer>
   <objectgroup id="28" name="upper collider" offsetx="0.666667" offsety="319.333">
+   <properties>
+    <property name="unity:layer" value="Ground"/>
+   </properties>
    <object id="31901" x="96" y="-160">
     <polyline points="0,0 32,0 32,144 16,144 16,160 -16,160 16,128 16,16 0,16 0,0"/>
    </object>
