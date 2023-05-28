@@ -3,13 +3,13 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "TileMap/Map 3.2.tmx",
+    "activeFile": "TileMap/Map 3.3.tmx",
     "automapping.whileDrawing": false,
     "expandedProjectPaths": [
         ".",
-        "TileSet",
+        "TileMap",
         "TileRule",
-        "TileMap"
+        "TileSet"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -62,19 +62,19 @@
             }
         },
         "TileMap/Map 3.2.tmx": {
-            "scale": 0.5,
-            "selectedLayer": 2,
+            "scale": 1,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 884,
-                "y": 31
+                "x": 640,
+                "y": 399.5
             }
         },
         "TileMap/Map 3.3.tmx": {
-            "scale": 3,
+            "scale": 0.5,
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 664,
-                "y": 399.8333333333333
+                "y": 401
             }
         },
         "TileMap/Map 3.tmx": {
@@ -86,8 +86,11 @@
             }
         },
         "TileMap/Map 4.1.tmx": {
+            "expandedObjectLayers": [
+                85
+            ],
             "scale": 2,
-            "selectedLayer": 0,
+            "selectedLayer": 4,
             "viewCenter": {
                 "x": 608,
                 "y": 399.75
@@ -168,11 +171,11 @@
             "expandedObjectLayers": [
                 14
             ],
-            "scale": 1.5,
-            "selectedLayer": 0,
+            "scale": 1,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 799.6666666666666,
-                "y": 719.6666666666666
+                "x": 799.5,
+                "y": 719.5
             }
         },
         "TileRule/rule_2.tmx": {
@@ -198,11 +201,11 @@
             "expandedObjectLayers": [
                 3
             ],
-            "scale": 8,
+            "scale": 5.5,
             "selectedLayer": 2,
             "viewCenter": {
                 "x": 400,
-                "y": 399.9375
+                "y": 399.9090909090909
             }
         },
         "TileRule/rule_5.tmx": {
@@ -329,6 +332,7 @@
         "TileRule/rule_1.tmx",
         "TileMap/Map 3.1.tmx",
         "TileRule/rule_4.tmx",
+        "TileMap/Map 3.2.tmx",
         "TileMap/Map 1.tmx",
         "TileMap/Map 5.tmx",
         "TileRule/rule_5.tmx",
@@ -336,7 +340,6 @@
         "TileMap/Map 4.2.tmx",
         "TileMap/Map 4.1.tmx",
         "TileMap/Map 3.3.tmx",
-        "TileMap/Map 3.2.tmx",
         "TileMap/Map 2.tmx"
     ],
     "resizeMap.removeObjects": true,

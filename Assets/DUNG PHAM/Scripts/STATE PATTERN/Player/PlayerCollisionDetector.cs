@@ -13,6 +13,10 @@ public class PlayerCollisionDetector : MonoBehaviour
     public bool isLeftWall, isRightWall;
     public bool isLeftEdge, isRightEdge;
     Vector3 checkpoint;
+    public float longLine = 0.3f;
+
+    /**************************************************************************************************************************************************/
+    /**************************************************************************************************************************************************/
 
     void Awake()
     {
@@ -30,6 +34,8 @@ public class PlayerCollisionDetector : MonoBehaviour
         RightLedgeCheck();
     }
 
+    /**************************************************************************************************************************************************/
+    /**************************************************************************************************************************************************/
 
     void GroundCheck()
     {
@@ -39,14 +45,20 @@ public class PlayerCollisionDetector : MonoBehaviour
         isGrounded = groundHit ? true : false;
     }
 
+    /**************************************************************************************************************************************************/
+
     void HeadCheck()
     {
-        Vector3 checkpoint = transform.position + headCheckpoint;
+        Vector3 checkpointA = transform.position + headCheckpoint;
+        Vector3 checkpointB = new Vector3(checkpointA.x, checkpointA.y + 1f);
 
-        Collider2D headHit = Physics2D.OverlapCircle(checkpoint, 0.1f, playerDatabase.groundLayer);
+        Collider2D headHit = Physics2D.OverlapArea(checkpointA, checkpointB, playerDatabase.groundLayer);
 
         isHead = headHit ? true : false;
     }
+
+    /**************************************************************************************************************************************************/
+    /**************************************************************************************************************************************************/
 
     void OnDrawGizmosSelected()
     {
@@ -54,40 +66,48 @@ public class PlayerCollisionDetector : MonoBehaviour
 
         Vector3 groundPoint = transform.position + groundCheckpoint;
         Gizmos.DrawWireSphere(groundPoint, 0.1f);
-        Vector3 headPoint = transform.position + headCheckpoint;
-        Gizmos.DrawWireSphere(headPoint, 0.1f);
+
+        Vector3 headPointA = transform.position + headCheckpoint;
+        Vector3 headPointB = new Vector3(headPointA.x, headPointA.y + 1f);
+        Gizmos.DrawLine(headPointA, headPointB);
 
         Gizmos.color = Color.yellow;
 
-        Vector3 leftCheckpoint = transform.position + leftWallCheckpoint;
-        Vector3 rightCheckpoint = transform.position + rightWallCheckpoint;
+        Vector3 leftCheckpointA = transform.position + leftWallCheckpoint;
+        Vector3 leftCheckpointB = new Vector3(leftCheckpointA.x - longLine, leftCheckpointA.y);
+        Gizmos.DrawLine(leftCheckpointA, leftCheckpointB);
 
-        Gizmos.DrawLine(leftCheckpoint, new Vector2(leftCheckpoint.x - 0.2f, leftCheckpoint.y));
-        Gizmos.DrawLine(rightCheckpoint, new Vector2(rightCheckpoint.x + 0.2f, rightCheckpoint.y));
+        Vector3 rightCheckpointA = transform.position + rightWallCheckpoint;
+        Vector3 rightCheckpointB = new Vector3(rightCheckpointA.x + longLine, rightCheckpointA.y);
+        Gizmos.DrawLine(rightCheckpointA, rightCheckpointB);
 
         Gizmos.color = Color.green;
 
-        Vector3 upLeftPoint = transform.position + upperLeftWallCheckpoint;
-        Vector3 upRightPoint = transform.position + upperRightWallCheckpoint;
+        Vector3 upLeftPointA = transform.position + upperLeftWallCheckpoint;
+        Vector3 upLeftPointB = new Vector3(upLeftPointA.x - longLine, upLeftPointA.y);
+        Gizmos.DrawLine(upLeftPointA, upLeftPointB);
 
-        Gizmos.DrawLine(upLeftPoint, upLeftPoint + Vector3.left * 0.2f);
-        Gizmos.DrawLine(upRightPoint, upRightPoint + Vector3.right * 0.2f);
+        Vector3 upRightPointA = transform.position + upperRightWallCheckpoint;
+        Vector3 upRightPointB = new Vector3(upRightPointA.x + longLine, upRightPointA.y);
+        Gizmos.DrawLine(upRightPointA, upRightPointB);
     }
 
 
     /**************************************************************************************************************************************************/
     /**************************************************************************************************************************************************/
+
     void LeftWallCheck()
     {
-        Vector3 checkpoint = transform.position + leftWallCheckpoint;
+        Vector3 leftCheckpointA = transform.position + leftWallCheckpoint;
+        Vector3 leftCheckpointB = new Vector3(leftCheckpointA.x - longLine, leftCheckpointA.y);
 
-        RaycastHit2D leftHit = Physics2D.Raycast(checkpoint, Vector2.left, 0.2f, playerDatabase.wallLayer);
+        Collider2D leftHit = Physics2D.OverlapArea(leftCheckpointA, leftCheckpointB, playerDatabase.wallLayer);
 
         if (leftHit)
         {
             isLeftWall = true;
 
-            ledgePoint = Physics2D.OverlapArea(checkpoint, new Vector2(checkpoint.x - 0.2f, checkpoint.y), playerDatabase.wallLayer);
+            ledgePoint = leftHit;
         }
         else
         {
@@ -95,17 +115,20 @@ public class PlayerCollisionDetector : MonoBehaviour
         }
     }
 
+    /**************************************************************************************************************************************************/
+
     void RightWallCheck()
     {
-        Vector3 checkpoint = transform.position + rightWallCheckpoint;
+        Vector3 rightCheckpointA = transform.position + rightWallCheckpoint;
+        Vector3 rightCheckpointB = new Vector3(rightCheckpointA.x + longLine, rightCheckpointA.y);
 
-        RaycastHit2D rightHit = Physics2D.Raycast(checkpoint, Vector2.right, 0.2f, playerDatabase.wallLayer);
+        Collider2D rightHit = Physics2D.OverlapArea(rightCheckpointA, rightCheckpointB, playerDatabase.wallLayer);
 
         if (rightHit)
         {
             isRightWall = true;
 
-            ledgePoint = Physics2D.OverlapArea(checkpoint, new Vector2(checkpoint.x - 0.2f, checkpoint.y), playerDatabase.wallLayer);
+            ledgePoint = rightHit;
         }
         else
         {
@@ -124,10 +147,12 @@ public class PlayerCollisionDetector : MonoBehaviour
             return;
         }
 
-        Vector3 upLeftPoint = transform.position + upperLeftWallCheckpoint;
-        RaycastHit2D leftUpper = Physics2D.Raycast(upLeftPoint, Vector2.left, 0.2f, playerDatabase.wallLayer);
+        Vector3 upLeftPointA = transform.position + upperLeftWallCheckpoint;
+        Vector3 upLeftPointB = new Vector3(upLeftPointA.x - longLine, upLeftPointA.y);
 
-        if (leftUpper.collider) return;
+        Collider2D leftUpper = Physics2D.OverlapArea(upLeftPointA, upLeftPointB, playerDatabase.wallLayer);
+
+        if (leftUpper) return;
 
         isLeftEdge = true;
     }
@@ -142,15 +167,17 @@ public class PlayerCollisionDetector : MonoBehaviour
             return;
         }
 
-        Vector3 upRightPoint = transform.position + upperRightWallCheckpoint;
+        Vector3 upRightPointA = transform.position + upperRightWallCheckpoint;
+        Vector3 upRightPointB = new Vector3(upRightPointA.x + longLine, upRightPointA.y);
 
-        RaycastHit2D rightUpper = Physics2D.Raycast(upRightPoint, Vector2.right, 0.2f, playerDatabase.wallLayer);
+        Collider2D rightUpper = Physics2D.OverlapArea(upRightPointA, upRightPointB, playerDatabase.wallLayer);
 
-        if (rightUpper.collider) return;
+        if (rightUpper) return;
 
         isRightEdge = true;
     }
 
+    /**************************************************************************************************************************************************/
     /**************************************************************************************************************************************************/
 
 

@@ -5528,8 +5528,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundCheckpoint: {x: 0, y: -1.1, z: 0}
   headCheckpoint: {x: 0, y: 0.7, z: 0}
-  leftWallCheckpoint: {x: -0.25, y: 0.5, z: 0}
-  rightWallCheckpoint: {x: 0.25, y: 0.5, z: 0}
+  leftWallCheckpoint: {x: -0.25, y: 0.65, z: 0}
+  rightWallCheckpoint: {x: 0.25, y: 0.65, z: 0}
   upperLeftWallCheckpoint: {x: -0.25, y: 0.95, z: 0}
   upperRightWallCheckpoint: {x: 0.25, y: 0.95, z: 0}
   ledgePoint: {fileID: 0}
@@ -5539,6 +5539,7 @@ MonoBehaviour:
   isRightWall: 0
   isLeftEdge: 0
   isRightEdge: 0
+  longLine: 0.3
 --- !u!114 &2012270252228052878
 MonoBehaviour:
   m_ObjectHideFlags: 0

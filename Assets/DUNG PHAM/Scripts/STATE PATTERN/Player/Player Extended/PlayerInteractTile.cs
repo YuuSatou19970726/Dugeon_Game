@@ -8,11 +8,14 @@ public class PlayerInteractTile : MonoBehaviour
 
     PlayerDatabase playerDatabase;
     Rigidbody2D rigid;
+
     const string LADDER = "Ladder";
     const string WATER = "Water";
     const string ENEMY = "Enemy";
+
     public float climbSpeed, swimSpeed;
     [SerializeField] bool isClimbing, isSwimming;
+    float swimTimer;
     #endregion
 
     void Start()
@@ -24,12 +27,12 @@ public class PlayerInteractTile : MonoBehaviour
     void Update()
     {
         LadderClimb();
-
-
     }
 
     void OnTriggerEnter2D(Collider2D coli)
     {
+        if (playerDatabase.isDied) return;
+
         if (coli.gameObject.tag == (LADDER))
         {
             isClimbing = true;
@@ -38,7 +41,6 @@ public class PlayerInteractTile : MonoBehaviour
         if (coli.gameObject.tag == (WATER))
         {
             isSwimming = true;
-            playerDatabase.isDied = true;
         }
 
         if (coli.gameObject.layer == LayerMask.NameToLayer(ENEMY))
@@ -46,6 +48,22 @@ public class PlayerInteractTile : MonoBehaviour
             BeKnockBack(coli.transform);
 
             GetComponent<IDamageable>().GetDamage(10);
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D coli)
+    {
+        if (playerDatabase.isDied) return;
+
+        if (coli.gameObject.tag == (WATER))
+        {
+            swimTimer += Time.deltaTime;
+
+            if (swimTimer > 0.5f)
+            {
+                GetComponent<IDamageable>().GetDamage(10);
+                swimTimer = 0f;
+            }
         }
     }
 

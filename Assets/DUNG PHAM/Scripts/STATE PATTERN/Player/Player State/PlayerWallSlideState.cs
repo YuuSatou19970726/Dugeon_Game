@@ -23,6 +23,7 @@ public class PlayerWallSlideState : IState
         player.playerAnimation.PlayAnimatorClip(WALLSLIDE);
 
         player.soundEffect.PlayAudio(0);
+        player.playerController.UnGravity(0.05f);
     }
 
     public void ExitState()

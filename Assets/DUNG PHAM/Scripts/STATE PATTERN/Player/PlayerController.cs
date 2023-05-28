@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour, IStopAttack
     }
     void Start()
     {
-        StartCoroutine(UnGravityCoroutine());
+        UnGravity(0.5f);
     }
 
     void Update()
@@ -115,10 +115,14 @@ public class PlayerController : MonoBehaviour, IStopAttack
         playerRigid.gravityScale = playerDatabase.gravity;
     }
 
-    IEnumerator UnGravityCoroutine()
+    public void UnGravity(float time)
+    {
+        StartCoroutine(UnGravityCoroutine(time));
+    }
+    IEnumerator UnGravityCoroutine(float time)
     {
         unGravity = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(time);
         unGravity = false;
     }
 
