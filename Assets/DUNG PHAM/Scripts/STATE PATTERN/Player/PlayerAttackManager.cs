@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerAttackManager : MonoBehaviour, IDamageable
 {
-    public static PlayerAttackManager instance;
     PlayerController playerController;
     PlayerDatabase playerDatabase;
     public List<Collider2D> attackColliders = new List<Collider2D>();
@@ -18,8 +17,6 @@ public class PlayerAttackManager : MonoBehaviour, IDamageable
 
     void Awake()
     {
-        instance = this;
-
         playerController = GetComponent<PlayerController>();
         playerDatabase = GetComponent<PlayerDatabase>();
     }

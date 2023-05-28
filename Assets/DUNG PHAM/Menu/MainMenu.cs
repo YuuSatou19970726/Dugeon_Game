@@ -101,34 +101,10 @@ public class MainMenu : MonoBehaviour
     #endregion
     //********************************************************************************************************************************************//
     //********************************************************************************************************************************************//
-    #region LOADING SCENE
-    public void LoadLevel(int sceneIndex)
+    #region LEVEL SELECT
+    public void LevelSelect(int index)
     {
-        StartCoroutine(LoadAsynchronously(sceneIndex));
-    }
-    IEnumerator LoadAsynchronously(int sceneIndex)
-    {
-        loadingScrene.SetActive(true);
-        levelSelectScene.SetActive(false);
-
-        float x = 0f;
-        float t = 0f;
-
-        while (loadingSlider.value < 1)
-        {
-            if (x > 1) x = 1;
-            loadingSlider.value = Mathf.Lerp(0, 1, x);
-
-            percentText.text = $"{(int)(x * 100)} %";
-
-            t = Random.Range(0, 0.5f);
-            yield return new WaitForSeconds(t);
-
-            x += Random.Range(0, 0.2f);
-        }
-
-        if (loadingSlider.value == 1)
-            SceneManager.LoadSceneAsync(sceneIndex);
+        GameManager.instance.LoadLevel(index);
     }
     #endregion
     //********************************************************************************************************************************************//

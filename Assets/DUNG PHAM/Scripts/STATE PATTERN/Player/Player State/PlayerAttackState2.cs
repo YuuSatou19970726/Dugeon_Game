@@ -37,12 +37,12 @@ public class PlayerAttackState2 : IState
         if (player.inputController.isJumpPress)
             player.SwitchState(player.jumpState);
 
-        if (player.playerAnimation.currentState.normalizedTime <= 1f) return;
+        // if (player.playerAnimation.currentState.normalizedTime <= 0.8f) return;
 
         if (player.inputController.isLeftMousePress)
             player.SwitchState(player.attackState);
 
-        if (player.playerAnimation.currentState.normalizedTime <= 1.5f) return;
+        if (player.playerAnimation.currentState.normalizedTime <= 1f) return;
 
         if (!player.inputController.isLeftMousePress)
             player.SwitchState(player.idleState);

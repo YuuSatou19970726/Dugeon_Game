@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -81,7 +82,7 @@ public class GameManager : MonoBehaviour
         savePoint = defaultSavepoint;
         playerHealth = defaultHealth;
 
-        PlayerPrefs.DeleteAll();  
+        PlayerPrefs.DeleteAll();
 
         SaveToJson();
     }
@@ -98,6 +99,18 @@ public class GameManager : MonoBehaviour
     {
         return savePoint;
     }
+    /***************************************************************************************************************************************************/
+    public void LoadLevel(int index)
+    {
+        SceneManager.LoadSceneAsync("LoadingScene");
+
+        this.index = index;
+        // SceneManager.LoadSceneAsync(index, LoadSceneMode.Additive);
+    }
+
+    public int index;
+
+
 }
 
 /***************************************************************************************************************************************************/
