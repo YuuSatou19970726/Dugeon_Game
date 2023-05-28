@@ -643,9 +643,6 @@
 </data>
   </layer>
   <objectgroup id="28" name="upper collider">
-   <properties>
-    <property name="unity:layer" value="Wall"/>
-   </properties>
    <object id="63448" x="640" y="0">
     <polygon points="0,0 16,-16 16,0"/>
    </object>
