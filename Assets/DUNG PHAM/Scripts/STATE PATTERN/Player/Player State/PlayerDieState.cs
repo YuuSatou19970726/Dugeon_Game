@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerDieState : IState
 {
-
+    float timer;
     PlayerStateManager player;
     public PlayerDieState(PlayerStateManager player)
     {
@@ -15,6 +16,8 @@ public class PlayerDieState : IState
     public void EnterState()
     {
         player.playerAnimation.PlayAnimatorClip("Die");
+
+        timer = 0f;
     }
 
     public void ExitState()
@@ -27,6 +30,10 @@ public class PlayerDieState : IState
 
     public void UpdateState()
     {
+        timer += Time.deltaTime;
+
+        if (timer > 5f)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
 

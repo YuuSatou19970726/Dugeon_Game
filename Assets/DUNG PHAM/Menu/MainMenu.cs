@@ -5,14 +5,23 @@ using UnityEngine.UI;
 using TMPro;
 public class MainMenu : MonoBehaviour
 {
+    [Header("Main Menu")]
     public GameObject mainMenu;
+
+    [Header("Option Menu")]
     public GameObject optionMenu;
-    public Dropdown difficultOption;
+    public TMP_Dropdown difficultOption;
+    int difficult;
     public Slider volumnSlider;
+    float volume;
+
+    [Header("Level Select")]
+    public GameObject levelSelectScene;
+
+    [Header("Loading Scene")]
     public GameObject loadingScrene;
     public Slider loadingSlider;
     public TextMeshProUGUI percentText;
-
 
     void Start()
     {
@@ -20,33 +29,16 @@ public class MainMenu : MonoBehaviour
     }
 
 
-    public void LoadLevel(int sceneIndex)
+    //********************************************************************************************************************************************//
+    //********************************************************************************************************************************************//
+    #region BUTTON FUNCTION
+    public void ShowMainMenu()
     {
-        StartCoroutine(LoadAsynchronously(sceneIndex));
-    }
-    IEnumerator LoadAsynchronously(int sceneIndex)
-    {
-        loadingScrene.SetActive(true);
+        mainMenu.SetActive(true);
 
-        float x = 0f;
-        float t = 0f;
-
-        // while (!operation.isDone)
-        while (loadingSlider.value < 1)
-        {
-            if (x > 1) x = 1;
-            loadingSlider.value = Mathf.Lerp(0, 1, x);
-
-            percentText.text = $"{(int)(x * 100)} %";
-
-            t = Random.Range(0, 0.5f);
-            yield return new WaitForSeconds(t);
-
-            x += Random.Range(0, 0.2f);
-        }
-
-        if (loadingSlider.value == 1)
-            SceneManager.LoadSceneAsync(sceneIndex);
+        loadingScrene.SetActive(false);
+        optionMenu.SetActive(false);
+        levelSelectScene.SetActive(false);
     }
 
     public void ShowOptionMenu()
@@ -54,32 +46,68 @@ public class MainMenu : MonoBehaviour
         optionMenu.SetActive(true);
         mainMenu.SetActive(false);
 
-        volumnSlider.value = GameManager.instance.volume;
-        difficultOption.value = GameManager.instance.difficult;
+        SetData();
+
+        volumnSlider.value = volume;
+        difficultOption.value = difficult;
     }
 
-    public void ShowMainMenu()
+    public void ShowLevelSelectMenu()
     {
-        mainMenu.SetActive(true);
+        levelSelectScene.SetActive(true);
 
-        loadingScrene.SetActive(false);
-        optionMenu.SetActive(false);
+        mainMenu.SetActive(false);
     }
 
     public void QuitGame()
     {
         Application.Quit();
     }
+    public void BackToMainMenuButton()
+    {
+        ShowMainMenu();
+        GetData();
+    }
+
+    public void ResetGameButton()
+    {
+        GameManager.instance.ResetGameJson();
+        ShowOptionMenu();
+    }
+    #endregion
+    //********************************************************************************************************************************************//
+    //********************************************************************************************************************************************//
+    #region OPTION DATA
+    void SetData()
+    {
+        volume = GameManager.instance.SetVolume();
+        difficult = GameManager.instance.SetDifficult();
+    }
+
+    void GetData()
+    {
+        GameManager.instance.GetGameData(difficult, volume);
+    }
 
     public void GetDifficult(int choice)
     {
-        GameManager.instance.difficult = choice;
+        difficult = choice;
     }
 
-    public void GetVolumn(float value)
+    public void GetVolume(float value)
     {
-        GameManager.instance.volume = value;
+        volume = value;
     }
-
+    #endregion
+    //********************************************************************************************************************************************//
+    //********************************************************************************************************************************************//
+    #region LEVEL SELECT
+    public void LevelSelect(int index)
+    {
+        GameManager.instance.LoadLevel(index);
+    }
+    #endregion
+    //********************************************************************************************************************************************//
+    //********************************************************************************************************************************************//
 
 }

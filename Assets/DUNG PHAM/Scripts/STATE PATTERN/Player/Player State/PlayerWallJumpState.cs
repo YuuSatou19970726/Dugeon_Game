@@ -6,6 +6,7 @@ public class PlayerWallJumpState : IState
 {
     PlayerStateManager player;
     PlayerWallSlideAndJump playerWall;
+    Rigidbody2D playerRigid;
     string WALLJUMP = "Wall Jump";
 
 
@@ -17,12 +18,13 @@ public class PlayerWallJumpState : IState
 
     public void EnterState()
     {
+        GetObjectComponents();
+
         player.playerAnimation.PlayAnimatorClip(WALLJUMP);
 
         playerWall.WallJump();
 
         player.soundEffect.PlayAudio(2);
-
     }
 
     public void ExitState()
@@ -32,13 +34,18 @@ public class PlayerWallJumpState : IState
     public void FixedUpdateState()
     {
 
-        if (player.GetComponent<Rigidbody2D>().velocity.y < 0)
+    }
+
+    public void UpdateState()
+    {
+        if (playerRigid.velocity.y < 0)
         {
             player.SwitchState(player.onAirState);
         }
     }
 
-    public void UpdateState()
+    void GetObjectComponents()
     {
+        playerRigid = player.GetComponent<Rigidbody2D>();
     }
 }

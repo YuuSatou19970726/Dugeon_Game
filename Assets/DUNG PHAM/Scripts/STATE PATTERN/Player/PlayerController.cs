@@ -7,11 +7,21 @@ public class PlayerController : MonoBehaviour, IStopAttack
     #region MISCELLANEOUS
     InputControllerNew inputController;
     PlayerDatabase playerDatabase;
+    PlayerWallSlideAndJump playerWall;
+    PlayerCollisionDetector playerCollision;
     Rigidbody2D playerRigid;
     Collider2D playerColi;
-    PlayerWallSlideAndJump playerWall;
-    PlayerWallLedgeGrabAndClimb playerLedge;
-    PlayerCollisionDetector playerCollision;
+    bool unGravity = false;
+    void GetObjectComponents()
+    {
+        playerCollision = GetComponent<PlayerCollisionDetector>();
+        inputController = GetComponent<InputControllerNew>();
+        playerDatabase = GetComponent<PlayerDatabase>();
+        playerWall = GetComponent<PlayerWallSlideAndJump>();
+        playerRigid = GetComponent<Rigidbody2D>();
+        playerColi = GetComponent<Collider2D>();
+    }
+
     public bool StopAttack()
     {
         return playerDatabase.isDied;
@@ -21,13 +31,11 @@ public class PlayerController : MonoBehaviour, IStopAttack
     #region MONOBEHAVIOUR
     void Awake()
     {
-        playerCollision = GetComponent<PlayerCollisionDetector>();
-        inputController = GetComponent<InputControllerNew>();
-        playerDatabase = GetComponent<PlayerDatabase>();
-        playerLedge = GetComponent<PlayerWallLedgeGrabAndClimb>();
-        playerWall = GetComponent<PlayerWallSlideAndJump>();
-        playerRigid = GetComponent<Rigidbody2D>();
-        playerColi = GetComponent<Collider2D>();
+        GetObjectComponents();
+    }
+    void Start()
+    {
+        UnGravity(0.5f);
     }
 
     void Update()
@@ -72,6 +80,12 @@ public class PlayerController : MonoBehaviour, IStopAttack
     #region GRAVITY
     void FallGravityChange()
     {
+        if (unGravity)
+        {
+            playerRigid.gravityScale = 0;
+            return;
+        }
+
         if (playerWall.wallTimer <= 0.4f)
         {
             playerRigid.gravityScale = playerDatabase.gravity / 2;
@@ -99,6 +113,17 @@ public class PlayerController : MonoBehaviour, IStopAttack
 
 
         playerRigid.gravityScale = playerDatabase.gravity;
+    }
+
+    public void UnGravity(float time)
+    {
+        StartCoroutine(UnGravityCoroutine(time));
+    }
+    IEnumerator UnGravityCoroutine(float time)
+    {
+        unGravity = true;
+        yield return new WaitForSeconds(time);
+        unGravity = false;
     }
 
 

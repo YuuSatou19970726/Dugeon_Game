@@ -5,16 +5,18 @@ using UnityEngine;
 public class PlayerAirAttackState : IState
 {
     PlayerStateManager player;
-    public PlayerAirAttackState(PlayerStateManager player)
+    PlayerAttackManager playerAttack;
+    public PlayerAirAttackState(PlayerStateManager player, PlayerAttackManager playerAttack)
     {
         this.player = player;
+        this.playerAttack = playerAttack;
     }
-    
+
     public void EnterState()
     {
         player.playerAnimation.PlayAnimatorClip("Attack Jump 1");
 
-        player.playerAttack.AttackCast(3);
+        playerAttack.AttackCast(3);
     }
 
     public void ExitState()

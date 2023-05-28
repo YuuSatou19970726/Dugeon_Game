@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
-    [SerializeField] string sceneName;
+    [SerializeField] int sceneIndex;
     CrossfadeEffect crossfade;
 
     void Awake()
@@ -18,7 +18,7 @@ public class SceneChanger : MonoBehaviour
     }
     void ChangeScene()
     {
-        SceneManager.LoadSceneAsync(sceneName);
+        SceneManager.LoadSceneAsync(sceneIndex);
     }
 
     IEnumerator SceneChangeCoroutine()

@@ -23,6 +23,7 @@ public class PlayerWallSlideState : IState
         player.playerAnimation.PlayAnimatorClip(WALLSLIDE);
 
         player.soundEffect.PlayAudio(0);
+        player.playerController.UnGravity(0.05f);
     }
 
     public void ExitState()
@@ -37,6 +38,8 @@ public class PlayerWallSlideState : IState
 
     public void UpdateState()
     {
+        PriorityState();
+
         if (player.inputController.isJumpPress)
             player.SwitchState(player.wallJumpState);
 
@@ -50,5 +53,14 @@ public class PlayerWallSlideState : IState
 
         if (!player.playerCollision.isLeftWall && !player.playerCollision.isRightWall)
             player.SwitchState(player.fallState);
+    }
+
+    void PriorityState()
+    {
+        if (player.playerDatabase.isHurt)
+            player.SwitchState(player.hurtState);
+
+        if (player.playerDatabase.isDied)
+            player.SwitchState(player.dieState);
     }
 }

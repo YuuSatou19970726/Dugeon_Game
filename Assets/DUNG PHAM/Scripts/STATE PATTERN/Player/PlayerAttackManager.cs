@@ -4,23 +4,19 @@ using UnityEngine;
 
 public class PlayerAttackManager : MonoBehaviour, IDamageable
 {
-    public List<Collider2D> attackColliders = new List<Collider2D>();
-    public ContactFilter2D filter;
-    public static PlayerAttackManager instance;
-    int hitCount = 0;
-    Collider2D[] target = new Collider2D[5];
     PlayerController playerController;
     PlayerDatabase playerDatabase;
+    public List<Collider2D> attackColliders = new List<Collider2D>();
+    public ContactFilter2D filter;
+    Collider2D[] target = new Collider2D[5];
     public ParticleSystem playerBlood;
     public ParticleSystem enemyBlood;
     float health;
-    [SerializeField] float attackDamage;
-    [SerializeField] HealthBar healthBar;
+    int hitCount = 0;
+    float hitTimer;
 
     void Awake()
     {
-        instance = this;
-
         playerController = GetComponent<PlayerController>();
         playerDatabase = GetComponent<PlayerDatabase>();
     }
@@ -31,20 +27,22 @@ public class PlayerAttackManager : MonoBehaviour, IDamageable
         playerDatabase.isHurt = false;
         playerDatabase.isDied = false;
 
-        healthBar.SetMaxHealth(health);
+        playerDatabase.healthBar.SetMaxHealth(health);
     }
 
     void Update()
     {
-        // Debug.Log(health);
-
         if (Input.GetKeyDown(KeyCode.P)) GetDamage(10);
 
         BeDead();
+
+        hitTimer += Time.deltaTime;
     }
 
     public void AttackCast(int id)
     {
+        hitReset();
+
         int count = Physics2D.OverlapCollider(attackColliders[id].GetComponent<Collider2D>(), filter, target);
 
         if (count == 0) return;
@@ -53,10 +51,18 @@ public class PlayerAttackManager : MonoBehaviour, IDamageable
         {
             hitCount += 1;
 
-            target[x].GetComponent<IDamageable>().GetDamage(attackDamage);
+            target[x].GetComponent<IDamageable>().GetDamage(playerDatabase.attackDamage);
             enemyBlood.Play();
+        }
 
-            Debug.Log(hitCount);
+        hitTimer = 0;
+    }
+
+    void hitReset()
+    {
+        if (hitTimer > playerDatabase.hitResetTime)
+        {
+            hitCount = 0;
         }
     }
 
@@ -68,7 +74,22 @@ public class PlayerAttackManager : MonoBehaviour, IDamageable
         playerDatabase.isHurt = true;
         playerBlood.Play();
 
-        healthBar.SetHealth(health);
+        playerDatabase.healthBar.SetHealth(health);
+
+        StartCoroutine(BeDamagedDelay());
+    }
+
+    Rigidbody2D rigid;
+    void BeKnockBack(Vector2 knockWay)
+    {
+        rigid = GetComponent<Rigidbody2D>();
+        rigid.velocity = new Vector2(knockWay.x, rigid.velocity.y + knockWay.y);
+    }
+
+    IEnumerator BeDamagedDelay()
+    {
+        yield return new WaitForSeconds(1f);
+        playerDatabase.isHurt = false;
     }
 
     public void BeDead()
@@ -76,6 +97,11 @@ public class PlayerAttackManager : MonoBehaviour, IDamageable
         if (health > 0) return;
 
         playerDatabase.isDied = true;
+    }
+
+    public float GetHealth()
+    {
+        return health;
     }
 }
 

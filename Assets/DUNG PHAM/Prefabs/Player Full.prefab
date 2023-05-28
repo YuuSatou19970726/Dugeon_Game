@@ -262,7 +262,7 @@ Transform:
   m_Children:
   - {fileID: 690151128}
   m_Father: {fileID: 5789537140831430406}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1190133186
 MonoBehaviour:
@@ -5256,6 +5256,7 @@ Transform:
   - {fileID: 2012270254235987615}
   - {fileID: 2012270252209663076}
   - {fileID: 221761801}
+  - {fileID: 4246069868097841786}
   m_Father: {fileID: 5789537140831430406}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5491,6 +5492,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   avatar: {fileID: 21300000, guid: 349b02a58fc1c3c4993bf3edba2fcd60, type: 3}
   head: {fileID: 2012270252932906193}
+  healthBar: {fileID: 6098330862061981509}
   maxHealth: 100
   isHurt: 0
   isDied: 0
@@ -5498,7 +5500,7 @@ MonoBehaviour:
   moveSpeed: 20
   groundLayer:
     serializedVersion: 2
-    m_Bits: 2560
+    m_Bits: 3584
   jumpForce: 30
   maxCoyoteTime: 0.1
   maxFallVelocity: 20
@@ -5510,6 +5512,8 @@ MonoBehaviour:
   dashingPower: 30
   dashingCooldown: 1
   dashingTime: 0.5
+  attackDamage: 10
+  hitResetTime: 3
 --- !u!114 &2406888882263892685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5524,8 +5528,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundCheckpoint: {x: 0, y: -1.1, z: 0}
   headCheckpoint: {x: 0, y: 0.7, z: 0}
-  leftWallCheckpoint: {x: -0.25, y: 0.5, z: 0}
-  rightWallCheckpoint: {x: 0.25, y: 0.5, z: 0}
+  leftWallCheckpoint: {x: -0.25, y: 0.65, z: 0}
+  rightWallCheckpoint: {x: 0.25, y: 0.65, z: 0}
   upperLeftWallCheckpoint: {x: -0.25, y: 0.95, z: 0}
   upperRightWallCheckpoint: {x: 0.25, y: 0.95, z: 0}
   ledgePoint: {fileID: 0}
@@ -5535,6 +5539,7 @@ MonoBehaviour:
   isRightWall: 0
   isLeftEdge: 0
   isRightEdge: 0
+  longLine: 0.3
 --- !u!114 &2012270252228052878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5582,7 +5587,6 @@ MonoBehaviour:
   inputController: {fileID: 0}
   playerAnimation: {fileID: 0}
   soundEffect: {fileID: 0}
-  playerAttack: {fileID: 0}
 --- !u!114 &2012270252228052866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5665,8 +5669,6 @@ MonoBehaviour:
     maxNormalAngle: 0
   playerBlood: {fileID: 1304049046000826802}
   enemyBlood: {fileID: 3323680380671530727}
-  attackDamage: 50
-  healthBar: {fileID: 6098330862061981509}
 --- !u!114 &2012270252228052876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5679,6 +5681,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52c3bd865aef1b742b35b8b1428b34a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ignoreTime: 0.15
 --- !u!114 &335900230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20634,7 +20637,6 @@ Transform:
   m_Children:
   - {fileID: 2012270252228052870}
   - {fileID: 8544242835758429599}
-  - {fileID: 4246069868097841786}
   - {fileID: 1190133187}
   - {fileID: 6098330861704929495}
   m_Father: {fileID: 0}
@@ -20670,8 +20672,8 @@ Transform:
   m_Children:
   - {fileID: 1304049046000826813}
   - {fileID: 3323680380671530728}
-  m_Father: {fileID: 5789537140831430406}
-  m_RootOrder: 2
+  m_Father: {fileID: 2012270252228052870}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6098330861704929491
 GameObject:
@@ -20706,7 +20708,7 @@ RectTransform:
   m_Children:
   - {fileID: 6098330862061981511}
   m_Father: {fileID: 5789537140831430406}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
