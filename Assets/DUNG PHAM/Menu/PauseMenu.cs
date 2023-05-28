@@ -2,11 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class PauseMenu : MonoBehaviour
 {
-    public static bool isPaused = false;
+    public bool isPaused = false;
     public GameObject pauseMenuUI;
+    public TMP_Dropdown difficultOption;
+    int difficult;
+    public Slider volumnSlider;
+    float volume;
+
+
     void Start()
     {
         pauseMenuUI.SetActive(false);
@@ -17,7 +25,8 @@ public class PauseMenu : MonoBehaviour
         {
             if (isPaused)
                 Resume();
-            else Pause();
+            else
+                Pause();
         }
     }
     public void Resume()
@@ -31,13 +40,42 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
+
+        SetData();
+
+        volumnSlider.value = volume;
+        difficultOption.value = difficult;
     }
-    public void Quit()
+    public void ResetGameButton()
     {
-        Application.Quit();
+        GameManager.instance.ResetGameJson();
+        Pause();
     }
     public void MainMenu()
     {
-        SceneManager.LoadScene("Main Menu");
+        SceneManager.LoadScene(0);
     }
+
+    #region OPTION DATA
+    void SetData()
+    {
+        volume = GameManager.instance.SetVolume();
+        difficult = GameManager.instance.SetDifficult();
+    }
+
+    void GetData()
+    {
+        GameManager.instance.GetGameData(difficult, volume);
+    }
+
+    public void GetDifficult(int choice)
+    {
+        difficult = choice;
+    }
+
+    public void GetVolume(float value)
+    {
+        volume = value;
+    }
+    #endregion
 }

@@ -6,9 +6,14 @@ public class BackgroundMusic : MonoBehaviour
 {
     [SerializeField] AudioClip[] audioClips;
     AudioSource audioSource;
+    
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+    }
+    void Start()
+    {
+        DontDestroyOnLoad(gameObject);
     }
 
     void Update()
@@ -19,7 +24,7 @@ public class BackgroundMusic : MonoBehaviour
     void PlayMusic()
     {
         int index = GetRandomClip();
-        audioSource.volume = GameManager.instance.volume;
+        audioSource.volume = GameManager.instance.SetVolume();
         audioSource.clip = audioClips[index];
         audioSource.Play();
     }

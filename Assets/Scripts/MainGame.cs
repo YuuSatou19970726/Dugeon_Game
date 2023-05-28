@@ -24,13 +24,26 @@ public class MainGame : MonoBehaviour
     [SerializeField]
     Text textScore;
 
+    int positionCheckPoint = 0;
     int heart = 0;
     int score = 0;
+
+    //Gates
+    int countOpenGate = 5; 
+    int countGate_1 = 2;
+    int countGate_2 = 2;
+
+    FireBallZone fireBallZone;
+
+    private void Awake()
+    {
+        fireBallZone = FindAnyObjectByType<FireBallZone>();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        //PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();  
         dataManager = gameObject.AddComponent<DataManager>();
         StartCoroutine(InstallBringer());
     }
@@ -39,13 +52,14 @@ public class MainGame : MonoBehaviour
     {
         yield return new WaitForSeconds(.3f);
 
-        if (dataManager.GetCheckPoint() == -1)
+        if (dataManager.GetCheckPoint() == -1 && !isMovie)
         {
             Vector2 position = new Vector2(-22.9f, 0f);
             Instantiate(bringer, position, Quaternion.identity);
         }
 
-        StartCoroutine(CreateBLueSlime());
+        if (!isMovie)
+            StartCoroutine(CreateBLueSlime());
 
     }
 
@@ -53,7 +67,11 @@ public class MainGame : MonoBehaviour
     {
         yield return new WaitForSeconds(.3f);
         Vector2 position = new Vector2(-23f, 0f);
-        switch (dataManager.GetCheckPoint())
+
+        if (dataManager.GetCheckPoint() != -1)
+            positionCheckPoint = dataManager.GetCheckPoint();
+
+        switch (positionCheckPoint)
         {
             case 1:
                 position = new Vector2(-0.75f, 0f);
@@ -68,10 +86,9 @@ public class MainGame : MonoBehaviour
 
         Instantiate(blueSlime, position, Quaternion.identity);
 
-        if(dataManager.GetHeart() != -1)
-        {
+        if (dataManager.GetHeart() != -1)
             heart = dataManager.GetHeart();
-        }
+
         score = dataManager.GetScore();
 
         SetScore();
@@ -85,6 +102,7 @@ public class MainGame : MonoBehaviour
 
     public void ChangeCheckPoint()
     {
+        positionCheckPoint++;
         dataManager.SaveCheckPoint();
         dataManager.SaveScore(this.score);
     }
@@ -113,6 +131,11 @@ public class MainGame : MonoBehaviour
         CheckHeart(heart);
     }
 
+    public int GetHeart()
+    {
+        return heart;
+    }
+
     void CheckHeart(int count)
     {
         switch (count)
@@ -138,6 +161,43 @@ public class MainGame : MonoBehaviour
                 heart_3.SetActive(false);
                 break;
         }
+    }
+
+    public void DecreaseCountOpenGate()
+    {
+        if (countOpenGate != 0)
+            countOpenGate--;
+
+        if (countOpenGate == 0)
+            SetCountGate2();
+    }
+
+    public int GetCountOpenGate()
+    {
+        return countOpenGate;
+    }
+
+    public int GetCountGate1()
+    {
+        return countGate_1;
+    }
+
+    public int GetCountGate2()
+    {
+        return countGate_2;
+    }
+
+    public void SetCountGates()
+    {
+        countGate_1 = 1;
+        countGate_2 = 1;
+        fireBallZone.SetActiveBullet();
+    }
+
+    public void SetCountGate2()
+    {
+        countGate_2 = 0;
+        fireBallZone.SetActiveBullet();
     }
 
     public void SaveAll()

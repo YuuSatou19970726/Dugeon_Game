@@ -6,6 +6,10 @@ public class DragonWarriorController : MonoBehaviour
 {
     BaseCurrent baseCurrent;
 
+    MainGame mainGame;
+
+    EnemyPatrol enemyPatrol;
+
     Rigidbody2D rigid;
     BoxCollider2D boxCollider2D;
     SpriteRenderer spriteRenderer;
@@ -14,25 +18,23 @@ public class DragonWarriorController : MonoBehaviour
     float colliderDistance = 0.75f;
 
     [SerializeField]
-    LayerMask jumpableGround;
-
-    [SerializeField]
     LayerMask playerLayer;
 
     [SerializeField]
     BoxCollider2D boxCollider2DCallGate;
 
-    //Gates
-    int countGate_1 = 2;
-    int countGate_2 = 2;
-
     //Animation States
-    string currentState = "Slime_Idle_Animation";
+    string currentState = "Dragon_Warrior_Idle_Animation";
 
     //animator
     Animator animator;
     float animatorDeplay = 0.3f;
 
+    private void Awake()
+    {
+        mainGame = FindAnyObjectByType<MainGame>();
+        enemyPatrol = GetComponentInParent<EnemyPatrol>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -50,9 +52,19 @@ public class DragonWarriorController : MonoBehaviour
     {
         if (PlayerInSight())
         {
-            countGate_1 = 1;
-            countGate_2 = 1;
+            ChangeAnimationState(baseCurrent.GetDragonWarriorDie());
+            float animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length + 0.3f;
+            Invoke("FireBallBattle", animatorDeplay);
         }
+
+        if (enemyPatrol != null)
+            enemyPatrol.enabled = !PlayerInSight();
+    }
+
+    void FireBallBattle()
+    {
+        mainGame.SetCountGates();
+        gameObject.SetActive(false);
     }
 
     bool PlayerInSight()
@@ -70,19 +82,16 @@ public class DragonWarriorController : MonoBehaviour
         //    new Vector3(boxCollider2DCallGate.bounds.size.x * rangeCharacter, boxCollider2DCallGate.bounds.size.y, boxCollider2DCallGate.bounds.size.z));
     }
 
-    public int GetCountGate1()
+    public void GetPlayerIdle()
     {
-        return countGate_1;
+        if (currentState != baseCurrent.GetDragonWarriorDie())
+        ChangeAnimationState(baseCurrent.GetDragonWarriorIdle());
     }
 
-    public int GetCountGate2()
+    public void GetDragonWarriorMove()
     {
-        return countGate_2;
-    }
-
-    bool IsGrounded()
-    {
-        return Physics2D.BoxCast(boxCollider2D.bounds.center, boxCollider2D.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
+        if (currentState != baseCurrent.GetDragonWarriorDie())
+            ChangeAnimationState(baseCurrent.GetDragonWarriorMove());
     }
 
     void ChangeAnimationState(string newState)

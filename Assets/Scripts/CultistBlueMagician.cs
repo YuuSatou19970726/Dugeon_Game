@@ -41,10 +41,10 @@ public class CultistBlueMagician : MonoBehaviour
 
     public void IncrementCoin()
     {
-        if(countCoinBlue == 3)
+        countCoinBlue++;
+        if (countCoinBlue == 3)
         {
             this.isFallingWater = false;
         }
-        countCoinBlue++;
     }
 }

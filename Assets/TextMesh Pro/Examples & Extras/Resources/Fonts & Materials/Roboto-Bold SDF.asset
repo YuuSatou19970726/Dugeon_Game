@@ -9,9 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Roboto-Bold SDF Material
   m_Shader: {fileID: 4800000, guid: fe393ace9b354375a9cb14cdbbc28be4, type: 3}
-  m_ValidKeywords:
-  - OUTLINE_ON
-  - UNDERLAY_ON
+  m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
@@ -69,7 +67,7 @@ Material:
     - _OutlineSoftness: 0
     - _OutlineUVSpeedX: 0
     - _OutlineUVSpeedY: 0
-    - _OutlineWidth: 0.083
+    - _OutlineWidth: 0.1
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
     - _ScaleRatioA: 0.9
@@ -162,6 +160,21 @@ MonoBehaviour:
       m_Y: 0
       m_Width: 0
       m_Height: 0
+    m_Scale: 1
+    m_AtlasIndex: 0
+    m_ClassDefinitionType: 0
+  - m_Index: 5
+    m_Metrics:
+      m_Width: 14.1875
+      m_Height: 64.6875
+      m_HorizontalBearingX: 5.453125
+      m_HorizontalBearingY: 63.984375
+      m_HorizontalAdvance: 24.484375
+    m_GlyphRect:
+      m_X: 215
+      m_Y: 93
+      m_Width: 15
+      m_Height: 65
     m_Scale: 1
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
@@ -450,25 +463,14 @@ MonoBehaviour:
     m_Scale: 1
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
-  - m_Index: 5
-    m_Metrics:
-      m_Width: 14.1875
-      m_Height: 64.6875
-      m_HorizontalBearingX: 5.453125
-      m_HorizontalBearingY: 63.984375
-      m_HorizontalAdvance: 24.484375
-    m_GlyphRect:
-      m_X: 215
-      m_Y: 93
-      m_Width: 15
-      m_Height: 65
-    m_Scale: 1
-    m_AtlasIndex: 0
-    m_ClassDefinitionType: 0
   m_CharacterTable:
   - m_ElementType: 1
     m_Unicode: 32
     m_GlyphIndex: 4
+    m_Scale: 1
+  - m_ElementType: 1
+    m_Unicode: 33
+    m_GlyphIndex: 5
     m_Scale: 1
   - m_ElementType: 1
     m_Unicode: 65
@@ -545,10 +547,6 @@ MonoBehaviour:
   - m_ElementType: 1
     m_Unicode: 8230
     m_GlyphIndex: 399
-    m_Scale: 1
-  - m_ElementType: 1
-    m_Unicode: 33
-    m_GlyphIndex: 5
     m_Scale: 1
   m_AtlasTextures:
   - {fileID: 28204114720316640}

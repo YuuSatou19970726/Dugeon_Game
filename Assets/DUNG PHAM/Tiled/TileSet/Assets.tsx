@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset version="1.10" tiledversion="1.10.1" name="Assets" tilewidth="16" tileheight="16" tilecount="322" columns="23">
+ <properties>
+  <property name="unity:material" type="file" value="Sprite-Lit-Default"/>
+ </properties>
  <image source="Assets.png" width="368" height="224"/>
  <tile id="93" probability="0.02"/>
  <tile id="117" probability="0.02"/>
