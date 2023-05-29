@@ -50,7 +50,7 @@ public class DragonWarriorController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerInSight())
+        if (PlayerInSight() && currentState != baseCurrent.GetDragonWarriorDie())
         {
             ChangeAnimationState(baseCurrent.GetDragonWarriorDie());
             float animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length + 0.3f;
