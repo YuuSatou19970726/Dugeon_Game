@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class MainGame : MonoBehaviour
 {
@@ -43,7 +44,7 @@ public class MainGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //PlayerPrefs.DeleteAll();  
+        //PlayerPrefs.DeleteAll();
         dataManager = gameObject.AddComponent<DataManager>();
         StartCoroutine(InstallBringer());
     }
@@ -66,31 +67,16 @@ public class MainGame : MonoBehaviour
     IEnumerator CreateBLueSlime()
     {
         yield return new WaitForSeconds(.3f);
-        Vector2 position = new Vector2(-23f, 0f);
 
         if (dataManager.GetCheckPoint() != -1)
             positionCheckPoint = dataManager.GetCheckPoint();
-
-        switch (positionCheckPoint)
-        {
-            case 1:
-                position = new Vector2(-0.75f, 0f);
-                break;
-            case 2:
-                position = new Vector2(31f, 0f);
-                break;
-            case 3:
-                position = new Vector2(79f, 4f);
-                break;
-        }
-
-        Instantiate(blueSlime, position, Quaternion.identity);
 
         if (dataManager.GetHeart() != -1)
             heart = dataManager.GetHeart();
 
         score = dataManager.GetScore();
 
+        CheckSavePoint(positionCheckPoint);
         SetScore();
         CheckHeart(heart);
     }
@@ -161,6 +147,26 @@ public class MainGame : MonoBehaviour
                 heart_3.SetActive(false);
                 break;
         }
+    }
+
+    void CheckSavePoint (int checkPoint)
+    {
+        Vector2 position = new Vector2(-23f, 0f);
+
+        switch (positionCheckPoint)
+        {
+            case 1:
+                position = new Vector2(-0.75f, 0f);
+                break;
+            case 2:
+                position = new Vector2(31f, 0f);
+                break;
+            case 3:
+                position = new Vector2(79f, 4f);
+                break;
+        }
+
+        Instantiate(blueSlime, position, Quaternion.identity);
     }
 
     public void DecreaseCountOpenGate()
