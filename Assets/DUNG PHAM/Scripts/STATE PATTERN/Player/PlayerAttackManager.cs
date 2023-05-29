@@ -9,10 +9,8 @@ public class PlayerAttackManager : MonoBehaviour, IDamageable
     public List<Collider2D> attackColliders = new List<Collider2D>();
     public ContactFilter2D filter;
     Collider2D[] target = new Collider2D[5];
-    public ParticleSystem playerBlood;
-    public ParticleSystem enemyBlood;
     Rigidbody2D rigid;
-
+    [SerializeField] GameObject bloodPrefab;
     float health;
     int hitCount = 0;
     float hitTimer;
@@ -35,6 +33,8 @@ public class PlayerAttackManager : MonoBehaviour, IDamageable
 
         playerDatabase.isHurt = false;
         playerDatabase.isDied = false;
+
+        InitBloodEffect(20);
     }
 
     void Update()
@@ -43,6 +43,8 @@ public class PlayerAttackManager : MonoBehaviour, IDamageable
 
         hitTimer += Time.deltaTime;
         hurtTimer += Time.deltaTime;
+
+        BloodEffectReset();
     }
 
     /**********************************************************************************************************************************/
@@ -62,7 +64,7 @@ public class PlayerAttackManager : MonoBehaviour, IDamageable
 
             target[x].GetComponent<IDamageable>().GetDamage(playerDatabase.attackDamage, attackColliders[id].transform);
 
-            enemyBlood.Play();
+            BloodSplit(target[x].transform.position, attackColliders[id].transform.position);
 
             // Recovery(1);
         }
@@ -100,9 +102,10 @@ public class PlayerAttackManager : MonoBehaviour, IDamageable
         health -= damage;
 
         playerDatabase.isHurt = true;
-        playerBlood.Play();
+
         playerDatabase.healthBar.ShowHealth(health);
 
+        BloodSplit(transform.position, knocker.position);
         BeKnockBack(knocker);
     }
 
@@ -118,6 +121,51 @@ public class PlayerAttackManager : MonoBehaviour, IDamageable
         rigid.velocity = knockWay * 5f;
     }
 
+    int direction;
+
+    void BloodSplit(Vector2 position, Vector2 knocker)
+    {
+        if (knocker.x < position.x)
+            direction = -1;
+        else
+            direction = 1;
+
+        Quaternion rotate = Quaternion.Euler(0, 0, 30 * direction);
+
+        foreach (GameObject b in bloods)
+        {
+            if (b.activeInHierarchy) continue;
+
+            b.transform.position = position;
+            b.transform.rotation = rotate;
+            b.SetActive(true);
+
+            break;
+        }
+    }
+
+    void BloodEffectReset()
+    {
+        foreach (GameObject b in bloods)
+        {
+            if (b.GetComponent<ParticleSystem>().isPlaying) return;
+
+            b.SetActive(false);
+        }
+    }
+
+    List<GameObject> bloods = new List<GameObject>();
+    void InitBloodEffect(int number)
+    {
+        for (int x = 0; x < number; x++)
+        {
+            GameObject blood = Instantiate(bloodPrefab);
+            blood.transform.parent = transform.parent;
+            blood.SetActive(false);
+
+            bloods.Add(blood);
+        }
+    }
     /**********************************************************************************************************************************/
     /**********************************************************************************************************************************/
 

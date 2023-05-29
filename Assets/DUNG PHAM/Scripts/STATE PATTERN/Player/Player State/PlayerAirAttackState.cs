@@ -15,7 +15,7 @@ public class PlayerAirAttackState : IState
     public void EnterState()
     {
         player.playerAnimation.PlayAnimatorClip("Attack Jump 1");
-        player.soundEffect.PlayAudio(6);
+        player.soundEffect.PlayAudio(5);
         playerAttack.AttackCast(3);
     }
 

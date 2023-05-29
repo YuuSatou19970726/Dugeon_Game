@@ -421,8 +421,8 @@ MonoBehaviour:
   attackDamage: 5
   attackNumber: 1
   timePerAttack: 0.5
-  attackDelay: 0.1
-  attackCooldown: 5
+  attackDelay: 0.5
+  attackCooldown: 2
   minAttackRange: 0
   maxAttackRange: 1
   targetFilter:

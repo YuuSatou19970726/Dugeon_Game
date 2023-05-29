@@ -15,7 +15,7 @@ public class PlayerAttackState1 : IState
     public void EnterState()
     {
         player.playerAnimation.PlayAnimatorClip("Attack 2");
-        player.soundEffect.PlayAudio(6);
+        player.soundEffect.PlayAudio(5);
         playerAttack.AttackCast(1);
     }
 
