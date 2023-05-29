@@ -35,6 +35,12 @@ public class PlayerJumpState : IState
 
     public void UpdateState()
     {
+        if (player.playerDatabase.isHurt)
+            player.SwitchState(player.hurtState);
+
+        if (player.playerDatabase.isDied)
+            player.SwitchState(player.dieState);
+
         if (Mathf.Abs(player.GetComponent<Rigidbody2D>().velocity.y) < 2)
             if (!player.playerCollision.isLeftWall && !player.playerCollision.isRightWall)
                 player.SwitchState(player.onAirState);

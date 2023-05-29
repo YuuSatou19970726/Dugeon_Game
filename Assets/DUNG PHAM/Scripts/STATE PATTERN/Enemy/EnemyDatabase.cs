@@ -12,6 +12,8 @@ public class EnemyDatabase : MonoBehaviour
     [HideInInspector] public float health;
     float healthRate;
 
+    public AudioClip[] sounds;
+
     [Header("Movement")]
     public float moveSpeed = 3f;
 

@@ -37,6 +37,12 @@ public class PlayerDashState : IState
 
     public void UpdateState()
     {
+        if (player.playerDatabase.isHurt)
+            player.SwitchState(player.hurtState);
+
+        if (player.playerDatabase.isDied)
+            player.SwitchState(player.dieState);
+
         if (player.playerAnimation.CheckCurrentClip(DASH)
         && player.playerAnimation.CurrentClipNormalize() > player.playerDatabase.dashingTime)
         {

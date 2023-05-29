@@ -38,7 +38,11 @@ public class PlayerWallSlideState : IState
 
     public void UpdateState()
     {
-        PriorityState();
+        if (player.playerDatabase.isHurt)
+            player.SwitchState(player.hurtState);
+
+        if (player.playerDatabase.isDied)
+            player.SwitchState(player.dieState);
 
         if (player.inputController.isJumpPress)
             player.SwitchState(player.wallJumpState);
@@ -47,20 +51,9 @@ public class PlayerWallSlideState : IState
             player.SwitchState(player.idleState);
 
         if (player.playerCollision.isLeftEdge || player.playerCollision.isRightEdge)
-        {
             player.SwitchState(player.wallEdge);
-        }
 
         if (!player.playerCollision.isLeftWall && !player.playerCollision.isRightWall)
             player.SwitchState(player.fallState);
-    }
-
-    void PriorityState()
-    {
-        if (player.playerDatabase.isHurt)
-            player.SwitchState(player.hurtState);
-
-        if (player.playerDatabase.isDied)
-            player.SwitchState(player.dieState);
     }
 }

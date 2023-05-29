@@ -14,6 +14,7 @@ public class EnemyDieState : IState
     public void EnterState()
     {
         enemy.enemyAnimation.PlayAnimation(4);
+        enemy.enemyController.DieTimeDelay();
     }
 
     public void ExitState()
@@ -26,6 +27,5 @@ public class EnemyDieState : IState
 
     public void UpdateState()
     {
-        enemy.enemyController.DieTimeDelay();
     }
 }

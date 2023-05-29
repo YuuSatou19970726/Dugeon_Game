@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
 
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
     }
+    /***************************************************************************************************************************************************/
+    /***************************************************************************************************************************************************/
 
     public void GetGameData(int difficult, float volume)
     {
@@ -46,10 +48,12 @@ public class GameManager : MonoBehaviour
     {
         this.savePoint = savePoint;
         this.playerHealth = playerHealth;
-
+        Debug.Log(playerHealth);
         SaveToJson();
     }
 
+    /***************************************************************************************************************************************************/
+    /***************************************************************************************************************************************************/
 
     public void SaveToJson()
     {
@@ -86,6 +90,8 @@ public class GameManager : MonoBehaviour
 
         SaveToJson();
     }
+    /***************************************************************************************************************************************************/
+    /***************************************************************************************************************************************************/
 
     public float SetVolume()
     {
@@ -99,16 +105,20 @@ public class GameManager : MonoBehaviour
     {
         return savePoint;
     }
+    public float SetHealth()
+    {
+        return playerHealth;
+    }
+
     /***************************************************************************************************************************************************/
+    public int index;
     public void LoadLevel(int index)
     {
         SceneManager.LoadSceneAsync("LoadingScene");
 
         this.index = index;
-        // SceneManager.LoadSceneAsync(index, LoadSceneMode.Additive);
     }
 
-    public int index;
 
 
 }

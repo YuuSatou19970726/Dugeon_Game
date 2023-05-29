@@ -7,14 +7,15 @@ public class PlayerInteractTile : MonoBehaviour
     #region Variables Declared
 
     PlayerDatabase playerDatabase;
+    PlayerAttackManager playerAttack;
     Rigidbody2D rigid;
-
+    Collider2D knocker;
     const string LADDER = "Ladder";
     const string WATER = "Water";
-    const string ENEMY = "Enemy";
+    const string SPIKE = "Trap";
 
     public float climbSpeed, swimSpeed;
-    [SerializeField] bool isClimbing, isSwimming;
+    [SerializeField] bool isClimbing, isSwimming, isSpiking;
     float stayTimer;
     #endregion
 
@@ -25,11 +26,21 @@ public class PlayerInteractTile : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         playerDatabase = GetComponent<PlayerDatabase>();
+        playerAttack = GetComponent<PlayerAttackManager>();
     }
 
     void Update()
     {
+        if (playerDatabase.isDied) return;
+
         LadderClimb();
+
+        if (isSwimming || isSpiking)
+            if (playerAttack.hurtTimer > 2f)
+            {
+                WaterHurt(knocker);
+                SpikeHurt(knocker);
+            }
     }
 
     /**********************************************************************************************************************************/
@@ -37,62 +48,69 @@ public class PlayerInteractTile : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D coli)
     {
-        if (playerDatabase.isDied) return;
-
-        if (coli.gameObject.tag == (LADDER))
+        if (coli.CompareTag(LADDER))
         {
             isClimbing = true;
         }
 
-        WaterHurt(coli);
-        SpikeHurt(coli);
+        if (coli.CompareTag(WATER))
+        {
+            isSwimming = true;
+            knocker = coli;
+            WaterHurt(knocker);
+        }
+
+        if (coli.CompareTag(SPIKE))
+        {
+            isSpiking = true;
+            knocker = coli;
+            SpikeHurt(knocker);
+        }
     }
 
     /**********************************************************************************************************************************/
-
-    void OnTriggerStay2D(Collider2D coli)
-    {
-        if (playerDatabase.isDied) return;
-
-        stayTimer += Time.deltaTime;
-
-        if (stayTimer > 0.5f)
-        {
-            WaterHurt(coli);
-        }
-    }
     /**********************************************************************************************************************************/
 
     void OnTriggerExit2D(Collider2D coli)
     {
-        if (coli.gameObject.tag == (LADDER))
+        if (coli.CompareTag(LADDER))
         {
             isClimbing = false;
+        }
+
+        if (coli.CompareTag(WATER))
+        {
+            isSwimming = false;
+        }
+
+        if (coli.CompareTag(SPIKE))
+        {
+            isSpiking = false;
         }
     }
 
     /**********************************************************************************************************************************/
-    /**********************************************************************************************************************************/
-    void BeKnockBack(Transform knocker)
+
+    void LadderClimb()
     {
-        Vector2 knockWay = transform.position - knocker.position;
+        if (!isClimbing) return;
 
-        int knockX = knockWay.x < 0 ? -1 : 1;
-        int knockY = knockWay.y < 0 ? -1 : 1;
+        rigid.gravityScale = 0f;
 
-        knockWay = new Vector2(knockX, knockY);
+        rigid.velocity = new Vector3(rigid.velocity.x, Input.GetAxisRaw("Vertical") * climbSpeed, 0);
 
-        rigid.velocity = knockWay * 15f;
     }
+    /**********************************************************************************************************************************/
+    /**********************************************************************************************************************************/
+
 
     /**********************************************************************************************************************************/
     /**********************************************************************************************************************************/
     void SpikeHurt(Collider2D coli)
     {
-        if (coli.gameObject.layer != LayerMask.NameToLayer(ENEMY)) return;
+        if (!isSpiking) return;
 
-        GetComponent<IDamageable>().GetDamage(10);
-        BeKnockBack(coli.transform);
+        playerAttack.GetDamage(10, coli.transform);
 
         stayTimer = 0f;
     }
@@ -101,24 +119,15 @@ public class PlayerInteractTile : MonoBehaviour
 
     void WaterHurt(Collider2D coli)
     {
-        if (coli.gameObject.tag != (WATER)) return;
+        if (!isSwimming) return;
 
-        GetComponent<IDamageable>().GetDamage(10);
+        GetComponentInChildren<SoundEffect>().PlayAudio(5);
+
+        playerAttack.GetDamage(10, coli.transform);
         stayTimer = 0f;
     }
 
     /**********************************************************************************************************************************/
-    /**********************************************************************************************************************************/
-
-    void LadderClimb()
-    {
-        if (isClimbing)
-        {
-            rigid.gravityScale = 0f;
-
-            rigid.velocity = new Vector3(rigid.velocity.x, Input.GetAxisRaw("Vertical") * climbSpeed, 0);
-        }
-    }
 
     void Swimming()
     {

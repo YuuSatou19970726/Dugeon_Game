@@ -14,12 +14,11 @@ public class PlayerWallJumpState : IState
     {
         this.player = player;
         this.playerWall = playerWall;
+        playerRigid = player.GetComponent<Rigidbody2D>();
     }
 
     public void EnterState()
     {
-        GetObjectComponents();
-
         player.playerAnimation.PlayAnimatorClip(WALLJUMP);
 
         playerWall.WallJump();
@@ -38,14 +37,15 @@ public class PlayerWallJumpState : IState
 
     public void UpdateState()
     {
+        if (player.playerDatabase.isHurt)
+            player.SwitchState(player.hurtState);
+
+        if (player.playerDatabase.isDied)
+            player.SwitchState(player.dieState);
+
         if (playerRigid.velocity.y < 0)
         {
             player.SwitchState(player.onAirState);
         }
-    }
-
-    void GetObjectComponents()
-    {
-        playerRigid = player.GetComponent<Rigidbody2D>();
     }
 }

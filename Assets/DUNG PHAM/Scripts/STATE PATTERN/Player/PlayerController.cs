@@ -12,6 +12,10 @@ public class PlayerController : MonoBehaviour, IStopAttack
     Rigidbody2D playerRigid;
     Collider2D playerColi;
     bool unGravity = false;
+
+    /**********************************************************************************************************************************/
+    /**********************************************************************************************************************************/
+
     void GetObjectComponents()
     {
         playerCollision = GetComponent<PlayerCollisionDetector>();
@@ -27,6 +31,9 @@ public class PlayerController : MonoBehaviour, IStopAttack
         return playerDatabase.isDied;
     }
     #endregion
+
+    /**********************************************************************************************************************************/
+    /**********************************************************************************************************************************/
 
     #region MONOBEHAVIOUR
     void Awake()
@@ -46,7 +53,8 @@ public class PlayerController : MonoBehaviour, IStopAttack
 
     #endregion
 
-
+    /**********************************************************************************************************************************/
+    /**********************************************************************************************************************************/
 
     #region HORIZONTAL MOVEMENT
 
@@ -65,6 +73,9 @@ public class PlayerController : MonoBehaviour, IStopAttack
     }
     #endregion
 
+    /**********************************************************************************************************************************/
+    /**********************************************************************************************************************************/
+
     #region CROUCH
     public void EnterCrouch()
     {
@@ -77,10 +88,13 @@ public class PlayerController : MonoBehaviour, IStopAttack
     }
     #endregion
 
+    /**********************************************************************************************************************************/
+    /**********************************************************************************************************************************/
+
     #region GRAVITY
     void FallGravityChange()
     {
-        if (unGravity)
+        if (unGravity || playerCollision.isLeftEdge || playerCollision.isRightEdge)
         {
             playerRigid.gravityScale = 0;
             return;
@@ -89,12 +103,6 @@ public class PlayerController : MonoBehaviour, IStopAttack
         if (playerWall.wallTimer <= 0.4f)
         {
             playerRigid.gravityScale = playerDatabase.gravity / 2;
-            return;
-        }
-
-        if (playerCollision.isLeftEdge || playerCollision.isRightEdge)
-        {
-            playerRigid.gravityScale = 0;
             return;
         }
 
@@ -107,7 +115,6 @@ public class PlayerController : MonoBehaviour, IStopAttack
             }
 
             playerRigid.gravityScale = playerDatabase.gravity * 2;
-
             return;
         }
 
@@ -126,6 +133,8 @@ public class PlayerController : MonoBehaviour, IStopAttack
         unGravity = false;
     }
 
+    /**********************************************************************************************************************************/
+    /**********************************************************************************************************************************/
 
     void MaxFallVelocity()
     {
@@ -133,6 +142,8 @@ public class PlayerController : MonoBehaviour, IStopAttack
     }
     #endregion
 
+    /**********************************************************************************************************************************/
+    /**********************************************************************************************************************************/
 
 
 }

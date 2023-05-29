@@ -8,6 +8,10 @@ public class Savepoint : MonoBehaviour
     void OnTriggerEnter2D(Collider2D coli)
     {
         if (coli.CompareTag(PLAYER))
-            GameManager.instance.GetPlayerData(transform.position, coli.GetComponent<IDamageable>().GetHealth());
+        {
+            float health = coli.GetComponent<IDamageable>().GetHealth();
+
+            GameManager.instance.GetPlayerData(transform.position, health);
+        }
     }
 }

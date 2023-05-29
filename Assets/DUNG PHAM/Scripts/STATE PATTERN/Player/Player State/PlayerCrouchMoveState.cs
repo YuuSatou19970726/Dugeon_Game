@@ -31,6 +31,12 @@ public class PlayerCrouchMoveState : IState
 
     public void UpdateState()
     {
+        if (player.playerDatabase.isHurt)
+            player.SwitchState(player.hurtState);
+
+        if (player.playerDatabase.isDied)
+            player.SwitchState(player.dieState);
+
         if (player.inputController.inputY >= 0)
             player.SwitchState(player.idleState);
 

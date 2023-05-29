@@ -27,6 +27,11 @@ public class PlayerWalkState : IState
 
     public void UpdateState()
     {
+        if (player.playerDatabase.isHurt)
+            player.SwitchState(player.hurtState);
+
+        if (player.playerDatabase.isDied)
+            player.SwitchState(player.dieState);
 
         if (player.inputController.inputX != 0)
             if (Mathf.Abs(player.GetComponent<Rigidbody2D>().velocity.x) > 5)

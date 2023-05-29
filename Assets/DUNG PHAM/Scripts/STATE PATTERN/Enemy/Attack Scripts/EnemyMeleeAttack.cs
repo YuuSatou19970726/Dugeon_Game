@@ -45,7 +45,7 @@ public class EnemyMeleeAttack : MonoBehaviour, IAttacker
             if (hitColi == enemyColi) continue;
 
             if (hitColi.GetComponent<IDamageable>() != null)
-                hitColi.GetComponent<IDamageable>().GetDamage(enemyDatabase.attackDamage);
+                hitColi.GetComponent<IDamageable>().GetDamage(enemyDatabase.attackDamage, transform);
 
             if (hitColi.GetComponent<IStopAttack>() != null)
                 enemyController.playerDied = hitColi.GetComponent<IStopAttack>().StopAttack();

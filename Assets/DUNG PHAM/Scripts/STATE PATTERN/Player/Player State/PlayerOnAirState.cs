@@ -34,6 +34,12 @@ public class PlayerOnAirState : IState
 
     public void UpdateState()
     {
+        if (player.playerDatabase.isHurt)
+            player.SwitchState(player.hurtState);
+
+        if (player.playerDatabase.isDied)
+            player.SwitchState(player.dieState);
+
         if (player.GetComponent<Rigidbody2D>().velocity.y < -2)
             if (player.playerAnimation.currentState.normalizedTime > 0.5f)
                 player.SwitchState(player.fallState);

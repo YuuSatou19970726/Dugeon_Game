@@ -17,15 +17,18 @@ public class PlayerHurtState : IState
     public void EnterState()
     {
         player.playerAnimation.PlayAnimatorClip(HURT);
+
+        player.soundEffect.PlayAudio(4);
     }
 
     public void ExitState()
     {
+        player.playerDatabase.isHurt = false;
     }
 
     public void FixedUpdateState()
     {
-        player.playerController.Movement();
+        // player.playerController.Movement();
     }
 
     public void UpdateState()
@@ -35,13 +38,14 @@ public class PlayerHurtState : IState
         if (player.playerAnimation.currentState.IsName(HURT) && player.playerAnimation.currentState.normalizedTime > 1)
         {
             player.SwitchState(player.idleState);
-            player.playerDatabase.isHurt = false;
         }
     }
 
     void PriorityState()
     {
-        if (player.playerDatabase.isDied)
+        if (playerAttack.GetHealth() <= 0)
+        {
             player.SwitchState(player.dieState);
+        }
     }
 }

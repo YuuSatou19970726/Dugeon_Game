@@ -14,6 +14,8 @@ public class EnemyHurtState : IState
     public void EnterState()
     {
         enemy.enemyAnimation.PlayAnimation(3);
+
+        enemy.enemyController.SoundPlayer(0);
     }
 
     public void ExitState()
@@ -28,7 +30,8 @@ public class EnemyHurtState : IState
 
     public void UpdateState()
     {
-        if (enemy.enemyController.health <= 0) enemy.SwitchState(enemy.dieState);
+        if (enemy.enemyController.health <= 0)
+            enemy.SwitchState(enemy.dieState);
 
         if (enemy.enemyAnimation.CheckState(3) && enemy.enemyAnimation.currentState.normalizedTime > 1)
             enemy.SwitchState(enemy.idleState);

@@ -15,7 +15,7 @@ public class PlayerAttackState : IState
     public void EnterState()
     {
         player.playerAnimation.PlayAnimatorClip("Attack 1");
-
+        player.soundEffect.PlayAudio(6);
         playerAttack.AttackCast(0);
     }
 
@@ -33,6 +33,12 @@ public class PlayerAttackState : IState
     public void UpdateState()
     {
         if (player.playerAnimation.currentState.normalizedTime <= 0.5f) return;
+
+        if (player.playerDatabase.isHurt)
+            player.SwitchState(player.hurtState);
+
+        if (player.playerDatabase.isDied)
+            player.SwitchState(player.dieState);
 
         if (player.inputController.isJumpPress)
             player.SwitchState(player.jumpState);

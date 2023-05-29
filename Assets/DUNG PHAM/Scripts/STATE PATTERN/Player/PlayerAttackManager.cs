@@ -11,39 +11,48 @@ public class PlayerAttackManager : MonoBehaviour, IDamageable
     Collider2D[] target = new Collider2D[5];
     public ParticleSystem playerBlood;
     public ParticleSystem enemyBlood;
+    Rigidbody2D rigid;
+
     float health;
     int hitCount = 0;
     float hitTimer;
+    public float hurtTimer;
+
+    /**********************************************************************************************************************************/
+    /**********************************************************************************************************************************/
 
     void Awake()
     {
         playerController = GetComponent<PlayerController>();
         playerDatabase = GetComponent<PlayerDatabase>();
+        rigid = GetComponent<Rigidbody2D>();
     }
 
     void Start()
     {
-        health = playerDatabase.maxHealth;
+        playerDatabase.healthBar.ShowMaxHealth(playerDatabase.maxHealth);
+        playerDatabase.healthBar.ShowHealth(health);
+
         playerDatabase.isHurt = false;
         playerDatabase.isDied = false;
-
-        playerDatabase.healthBar.SetMaxHealth(health);
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P)) GetDamage(10);
-
-        BeDead();
+        if (Input.GetKeyDown(KeyCode.P)) GetDamage(10, transform);
 
         hitTimer += Time.deltaTime;
+        hurtTimer += Time.deltaTime;
     }
+
+    /**********************************************************************************************************************************/
+    /**********************************************************************************************************************************/
 
     public void AttackCast(int id)
     {
         hitReset();
 
-        int count = Physics2D.OverlapCollider(attackColliders[id].GetComponent<Collider2D>(), filter, target);
+        int count = Physics2D.OverlapCollider(attackColliders[id], filter, target);
 
         if (count == 0) return;
 
@@ -51,8 +60,11 @@ public class PlayerAttackManager : MonoBehaviour, IDamageable
         {
             hitCount += 1;
 
-            target[x].GetComponent<IDamageable>().GetDamage(playerDatabase.attackDamage);
+            target[x].GetComponent<IDamageable>().GetDamage(playerDatabase.attackDamage, attackColliders[id].transform);
+
             enemyBlood.Play();
+
+            // Recovery(1);
         }
 
         hitTimer = 0;
@@ -66,42 +78,62 @@ public class PlayerAttackManager : MonoBehaviour, IDamageable
         }
     }
 
-    public void GetDamage(float damage)
+    public void Recovery(float amount)
     {
-        if (playerDatabase.isHurt) return;
+        if (health >= playerDatabase.maxHealth)
+        {
+            health = playerDatabase.maxHealth;
+            return;
+        }
 
+        health += amount;
+        playerDatabase.healthBar.ShowHealth(health);
+    }
+    /**********************************************************************************************************************************/
+    /**********************************************************************************************************************************/
+
+    public void GetDamage(float damage, Transform knocker)
+    {
+        if (hurtTimer < 2f) return;
+
+        hurtTimer = 0f;
         health -= damage;
+
         playerDatabase.isHurt = true;
         playerBlood.Play();
+        playerDatabase.healthBar.ShowHealth(health);
 
-        playerDatabase.healthBar.SetHealth(health);
-
-        StartCoroutine(BeDamagedDelay());
+        BeKnockBack(knocker);
     }
 
-    Rigidbody2D rigid;
-    void BeKnockBack(Vector2 knockWay)
+    void BeKnockBack(Transform knocker)
     {
-        rigid = GetComponent<Rigidbody2D>();
-        rigid.velocity = new Vector2(knockWay.x, rigid.velocity.y + knockWay.y);
+        Vector2 knockWay = transform.position - knocker.position;
+        Debug.Log(knockWay);
+
+        int knockX = knockWay.x < 0 ? -1 : 1;
+        int knockY = knockWay.y < 0 ? -2 : 2;
+
+        knockWay = new Vector2(knockX, knockY);
+
+
+        rigid.velocity = knockWay * 5f;
     }
 
-    IEnumerator BeDamagedDelay()
-    {
-        yield return new WaitForSeconds(1f);
-        playerDatabase.isHurt = false;
-    }
-
-    public void BeDead()
-    {
-        if (health > 0) return;
-
-        playerDatabase.isDied = true;
-    }
+    /**********************************************************************************************************************************/
+    /**********************************************************************************************************************************/
 
     public float GetHealth()
     {
         return health;
     }
+    public void SetHealth(float health)
+    {
+        this.health = health;
+    }
+
+    /**********************************************************************************************************************************/
+    /**********************************************************************************************************************************/
+
 }
 

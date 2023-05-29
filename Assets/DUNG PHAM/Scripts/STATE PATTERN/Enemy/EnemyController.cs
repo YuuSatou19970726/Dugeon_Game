@@ -17,6 +17,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     [HideInInspector] public float health;
     float healthRate;
     public bool isHurt;
+    public AudioSource audioSource;
 
     [Header("Movement")]
     float moveSpeed;
@@ -46,6 +47,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     {
         rigid = GetComponent<Rigidbody2D>();
         enemyDatabase = GetComponent<EnemyDatabase>();
+        audioSource = GetComponent<AudioSource>();
     }
     void Start()
     {
@@ -58,7 +60,7 @@ public class EnemyController : MonoBehaviour, IDamageable
 
         DisplayHealth();
 
-        if (Input.GetKeyDown(KeyCode.T)) GetDamage(10);
+        if (Input.GetKeyDown(KeyCode.T)) GetDamage(10, transform);
     }
     #endregion
 
@@ -88,6 +90,11 @@ public class EnemyController : MonoBehaviour, IDamageable
     }
     #endregion
 
+    public void SoundPlayer(int index)
+    {
+        audioSource.clip = enemyDatabase.sounds[index];
+        audioSource.Play();
+    }
 
     #region FIND PLAYER
     public void FindPlayer()
@@ -199,12 +206,29 @@ public class EnemyController : MonoBehaviour, IDamageable
 
 
     #region GET DAMAGES
-    public void GetDamage(float damage)
+    public void GetDamage(float damage, Transform knocker)
     {
         health -= damage;
 
         isHurt = true;
+
+        BeKnockBack(knocker);
     }
+
+    void BeKnockBack(Transform knocker)
+    {
+        Vector2 knockWay = transform.position - knocker.position;
+
+        int knockX = knockWay.x < 0 ? -1 : 1;
+        int knockY = knockWay.y < 0 ? -1 : 1;
+
+        knockWay = new Vector2(knockX, knockY);
+
+        // Debug.Log(knockWay);
+
+        rigid.velocity = knockWay * 5f;
+    }
+
     public float GetHealth()
     {
         return health;
@@ -239,6 +263,7 @@ public class EnemyController : MonoBehaviour, IDamageable
         rigid.velocity = Vector2.zero;
         rigid.isKinematic = true;
         GetComponent<Collider2D>().enabled = false;
+        FindObjectOfType<PlayerAttackManager>().Recovery(10);
 
         yield return new WaitForSeconds(dieDelayTime);
         transform.parent.gameObject.SetActive(false);
@@ -253,9 +278,9 @@ public class EnemyController : MonoBehaviour, IDamageable
         canAttack = true;
         isDied = false;
     }
-    #endregion 
+    #endregion
 
- 
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

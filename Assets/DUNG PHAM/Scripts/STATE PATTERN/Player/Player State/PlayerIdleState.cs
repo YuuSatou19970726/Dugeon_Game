@@ -31,7 +31,11 @@ public class PlayerIdleState : IState
 
     public void UpdateState()
     {
-        PriorityState();
+        if (player.playerDatabase.isHurt)
+            player.SwitchState(player.hurtState);
+
+        if (player.playerDatabase.isDied)
+            player.SwitchState(player.dieState);
 
         if (player.inputController.inputX != 0)
         {
@@ -61,14 +65,5 @@ public class PlayerIdleState : IState
 
         if (player.playerCollision.isLeftWall || player.playerCollision.isRightWall)
             player.SwitchState(player.wallSlideState);
-    }
-
-    void PriorityState()
-    {
-        if (player.playerDatabase.isHurt)
-            player.SwitchState(player.hurtState);
-
-        if (player.playerDatabase.isDied)
-            player.SwitchState(player.dieState);
     }
 }

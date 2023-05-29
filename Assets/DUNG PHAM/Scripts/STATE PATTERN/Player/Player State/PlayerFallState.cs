@@ -32,7 +32,11 @@ public class PlayerFallState : IState
 
     public void UpdateState()
     {
-        PriorityState();
+        if (player.playerDatabase.isHurt)
+            player.SwitchState(player.hurtState);
+
+        if (player.playerDatabase.isDied)
+            player.SwitchState(player.dieState);
         
         if (player.playerCollision.isGrounded)
         {
@@ -67,14 +71,5 @@ public class PlayerFallState : IState
 
         if (player.inputController.isJumpPress)
             player.SwitchState(player.jumpState);
-    }
-
-    void PriorityState()
-    {
-        if (player.playerDatabase.isHurt)
-            player.SwitchState(player.hurtState);
-
-        if (player.playerDatabase.isDied)
-            player.SwitchState(player.dieState);
     }
 }

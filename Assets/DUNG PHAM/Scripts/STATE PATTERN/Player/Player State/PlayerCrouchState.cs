@@ -30,6 +30,12 @@ public class PlayerCrouchState : IState
 
     public void UpdateState()
     {
+        if (player.playerDatabase.isHurt)
+            player.SwitchState(player.hurtState);
+
+        if (player.playerDatabase.isDied)
+            player.SwitchState(player.dieState);
+
         timer += Time.deltaTime;
 
         if (player.inputController.inputY >= 0)

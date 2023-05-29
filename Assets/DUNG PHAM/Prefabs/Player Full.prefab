@@ -50,6 +50,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 241b159c44f664a448d751b8e6dfcf15, type: 3}
   - {fileID: 8300000, guid: 8403f6a83f83d1b4bbcaf269974a4022, type: 3}
   - {fileID: 8300000, guid: b79abb651d6f4fa409a5735159e9b97c, type: 3}
+  - {fileID: 8300000, guid: e645a36bfc9e0b94b97fecbd06913259, type: 3}
+  - {fileID: 8300000, guid: a5323183a43011a4bb069927881ac085, type: 3}
+  - {fileID: 8300000, guid: 8744be858315fee45b3398b49ce160dc, type: 3}
 --- !u!82 &221761802
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5497,13 +5500,13 @@ MonoBehaviour:
   isHurt: 0
   isDied: 0
   afterImage: {fileID: 8544242835758429598}
-  moveSpeed: 20
+  moveSpeed: 15
   groundLayer:
     serializedVersion: 2
     m_Bits: 3584
-  jumpForce: 30
+  jumpForce: 25
   maxCoyoteTime: 0.1
-  maxFallVelocity: 20
+  maxFallVelocity: 30
   jumpNumber: 1
   gravity: 9.81
   wallLayer:
@@ -5669,6 +5672,7 @@ MonoBehaviour:
     maxNormalAngle: 0
   playerBlood: {fileID: 1304049046000826802}
   enemyBlood: {fileID: 3323680380671530727}
+  hurtTimer: 0
 --- !u!114 &2012270252228052876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5698,6 +5702,7 @@ MonoBehaviour:
   swimSpeed: 15
   isClimbing: 0
   isSwimming: 0
+  isSpiking: 0
 --- !u!114 &335900231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21020,7 +21025,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -2.502533, y: 0}
   m_SizeDelta: {x: 5.0049, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

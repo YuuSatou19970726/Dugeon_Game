@@ -2,15 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Teleport : MonoBehaviour
+public class TeleportPoint : MonoBehaviour
 {
     public LayerMask playerLayer;
-    Transform player;
     public Transform[] teleports;
     void Start()
     {
-        player = FindObjectOfType<PlayerController>().transform;
         StartCoroutine(TeleportToNextPoint());
+
+        if (GameManager.instance.SetDifficult() == 0)
+            gameObject.SetActive(true);
+        else
+            gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -20,18 +23,22 @@ public class Teleport : MonoBehaviour
     IEnumerator TeleportToNextPoint()
     {
         yield return null;
+
         for (int i = 0; i < teleports.Length; i++)
         {
-            if (Physics2D.OverlapCircle(teleports[i].position, 0.3f, playerLayer))
+            Collider2D player = Physics2D.OverlapCircle(teleports[i].position, 0.3f, playerLayer);
+
+            if (player)
             {
-                MovetoPoint(i);
+                MovetoPoint(i, player.transform);
                 break;
             }
         }
+        
         StartCoroutine(TeleportToNextPoint());
     }
 
-    void MovetoPoint(int index)
+    void MovetoPoint(int index, Transform player)
     {
         if (Input.GetKeyDown(KeyCode.E))
         {

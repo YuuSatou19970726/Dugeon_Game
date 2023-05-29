@@ -15,6 +15,8 @@ public class PlayerDieState : IState
 
     public void EnterState()
     {
+        player.playerDatabase.isDied = true;
+
         player.playerAnimation.PlayAnimatorClip("Die");
 
         timer = 0f;
@@ -32,7 +34,7 @@ public class PlayerDieState : IState
     {
         timer += Time.deltaTime;
 
-        if (timer > 5f)
+        if (timer > 3)
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

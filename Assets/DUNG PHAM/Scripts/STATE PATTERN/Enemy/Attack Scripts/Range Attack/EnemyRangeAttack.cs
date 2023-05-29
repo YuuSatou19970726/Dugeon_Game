@@ -102,7 +102,7 @@ public class EnemyRangeAttack : MonoBehaviour, IAttacker
 
             if (coli.GetComponent<IDamageable>() != null)
             {
-                coli.GetComponent<IDamageable>().GetDamage(damage);
+                coli.GetComponent<IDamageable>().GetDamage(damage, transform);
                 bullet.gameObject.SetActive(false);
             }
 

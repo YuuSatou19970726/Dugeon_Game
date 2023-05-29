@@ -33,6 +33,12 @@ public class PlayerWallEdgeState : IState
     {
         playerLedge.WallEdgeGrab();
 
+        if (player.playerDatabase.isDied)
+            player.SwitchState(player.dieState);
+
+        if (player.playerDatabase.isHurt)
+            player.SwitchState(player.hurtState);
+
         if (player.inputController.inputY > 0)
             player.SwitchState(player.wallClimb);
 

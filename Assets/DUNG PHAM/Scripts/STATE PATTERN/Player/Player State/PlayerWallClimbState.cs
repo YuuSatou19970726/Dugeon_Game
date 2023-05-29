@@ -36,6 +36,12 @@ public class PlayerWallClimbState : IState
 
     public void UpdateState()
     {
+        if (player.playerDatabase.isHurt)
+            player.SwitchState(player.hurtState);
+
+        if (player.playerDatabase.isDied)
+            player.SwitchState(player.dieState);
+
         if (player.playerAnimation.currentState.IsName(WALLCLB)
          && player.playerAnimation.currentState.normalizedTime >= 0.9f)
         {

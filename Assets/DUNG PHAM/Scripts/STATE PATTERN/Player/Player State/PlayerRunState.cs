@@ -30,8 +30,13 @@ public class PlayerRunState : IState
 
     public void UpdateState()
     {
-        if (player.playerCollision.isGrounded)
+        if (player.playerDatabase.isHurt)
+            player.SwitchState(player.hurtState);
 
+        if (player.playerDatabase.isDied)
+            player.SwitchState(player.dieState);
+
+        if (player.playerCollision.isGrounded)
         {
             if (player.inputController.inputX == 0)
             {

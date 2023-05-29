@@ -8,16 +8,19 @@ public class PlayerSpawner : MonoBehaviour
     [SerializeField] GameObject playerPrefab;
     GameObject player;
     Vector2 position;
+    float health = 100f;
     void Start()
     {
-        position = GameManager.instance.SetPosition();
-
         SpawnPlayer();
     }
 
     void SpawnPlayer()
     {
+        position = GameManager.instance.SetPosition();
+        // health = GameManager.instance.SetHealth();
         player = Instantiate(playerPrefab, position, Quaternion.identity);
+        player.GetComponentInChildren<PlayerAttackManager>().SetHealth(health);
+
         player.transform.parent = transform;
     }
 }
