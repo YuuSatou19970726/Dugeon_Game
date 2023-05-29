@@ -14,8 +14,8 @@ public class DragonWarriorController : MonoBehaviour
     BoxCollider2D boxCollider2D;
     SpriteRenderer spriteRenderer;
 
-    float rangeCharacter = 2.5f;
-    float colliderDistance = 0.75f;
+    float rangeCharacter = 4f;
+    float colliderDistance = 0.5f;
 
     [SerializeField]
     LayerMask playerLayer;

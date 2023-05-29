@@ -7,10 +7,12 @@ public class FireBallPool : MonoBehaviour
     public static FireBallPool instance;
 
     List<GameObject> pooledFireBalls = new List<GameObject>();
-    int amountToBulletPool = 5;
+    int amountToBulletPool = 7;
+    float durationBullet = 5f;
 
     List<GameObject> pooledPinkCoins = new List<GameObject>();
     int amountToCoinPool = 3;
+    float durationCoin = 7f;
 
     [SerializeField]
     GameObject fireBallPrefab;
@@ -45,7 +47,19 @@ public class FireBallPool : MonoBehaviour
 
     public GameObject GetPooledFireBall()
     {
-        for (int i = 0; i < pooledFireBalls.Count; i++)
+        int pooledCount = pooledFireBalls.Count;
+        if (durationBullet > 0f)
+            durationBullet -= Time.deltaTime;
+
+        if (durationBullet > 2.5f && durationBullet < 5.1f)
+        {
+            pooledCount -= 4;
+        } else if (durationBullet > 0f && durationBullet < 2.5f)
+        {
+            pooledCount -= 2;
+        }
+
+        for (int i = 0; i < pooledCount; i++)
         {
             if (!pooledFireBalls[i].activeInHierarchy)
                 return pooledFireBalls[i];
@@ -56,10 +70,26 @@ public class FireBallPool : MonoBehaviour
 
     public GameObject GetPooledPinkCoin()
     {
-        for (int i = 0; i < pooledPinkCoins.Count; i++)
+        int pooledCount = pooledPinkCoins.Count;
+
+        if (durationCoin > 0f)
+            durationCoin -= Time.deltaTime;
+
+        if (durationCoin > 2.5f && durationCoin < 7.1f)
         {
-            if (!pooledPinkCoins[i].activeInHierarchy)
-                return pooledPinkCoins[i];
+            pooledCount -= 3;
+        } else if (durationCoin > 0f && durationCoin < 2.5f)
+        {
+            pooledCount -= 2;
+        }
+
+        if (pooledCount != 0)
+        {
+            for (int i = 0; i < pooledCount; i++)
+            {
+                if (!pooledPinkCoins[i].activeInHierarchy)
+                    return pooledPinkCoins[i];
+            }
         }
 
         return null;
