@@ -35,10 +35,9 @@ public class PlayerInteractTile : MonoBehaviour
 
         LadderClimb();
 
-        if (isSwimming || isSpiking)
+        if (isSpiking)
             if (playerAttack.hurtTimer > 2f)
             {
-                WaterHurt(knocker);
                 SpikeHurt(knocker);
             }
     }
@@ -57,7 +56,7 @@ public class PlayerInteractTile : MonoBehaviour
         {
             isSwimming = true;
             knocker = coli;
-            WaterHurt(knocker);
+            // WaterHurt(knocker);
         }
 
         if (coli.CompareTag(SPIKE))
