@@ -11,23 +11,21 @@ public class Introduction : MonoBehaviour
 
     void Update()
     {
-        if (isTriggered)
+        Vector3 position = new Vector3(transform.position.x, transform.position.y + 3f);
+
+        if (isTriggered && !isShowed)
         {
-            Vector3 position = new Vector3(transform.position.x, transform.position.y + 3f);
-
-            if (isShowed)
-            {
-                DialogueManager.instance.PositionUpdate(position);
-                return;
-            }
-
             DialogueManager.instance.ShowIntroduction(introMessage, position, minScale, maxScale);
-
             isShowed = true;
         }
-        else
+        else if (isTriggered && isShowed)
+        {
+            DialogueManager.instance.PositionUpdate(position);
+        }
+        else if (!isTriggered && isShowed)
         {
             DialogueManager.instance.CloseIntroduction();
+            isShowed = false;
         }
     }
 
@@ -44,6 +42,5 @@ public class Introduction : MonoBehaviour
         if (!coli.CompareTag(PLAYER)) return;
 
         isTriggered = false;
-        isShowed = false;
     }
 }
