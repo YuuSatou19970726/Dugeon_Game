@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     {
         this.savePoint = savePoint;
         this.playerHealth = playerHealth;
-        Debug.Log(playerHealth);
+
         SaveToJson();
     }
 

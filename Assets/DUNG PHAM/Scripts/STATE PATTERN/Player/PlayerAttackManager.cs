@@ -109,13 +109,11 @@ public class PlayerAttackManager : MonoBehaviour, IDamageable
     void BeKnockBack(Transform knocker)
     {
         Vector2 knockWay = transform.position - knocker.position;
-        Debug.Log(knockWay);
 
         int knockX = knockWay.x < 0 ? -1 : 1;
         int knockY = knockWay.y < 0 ? -2 : 2;
 
         knockWay = new Vector2(knockX, knockY);
-
 
         rigid.velocity = knockWay * 5f;
     }
