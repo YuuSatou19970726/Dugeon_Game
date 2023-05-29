@@ -31,7 +31,7 @@ public class MainGame : MonoBehaviour
     //Gates
     int countOpenGate = 5; 
     int countGate_1 = 2;
-    int countGate_2 = 2;
+    int countGate_2 = 1;
 
     FireBallZone fireBallZone;
 
