@@ -3,13 +3,13 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "TileMap/Map 5.tmx",
+    "activeFile": "TileMap/Map 1.tmx",
     "automapping.whileDrawing": false,
     "expandedProjectPaths": [
-        "TileRule",
-        "TileMap",
+        "TileSet",
         ".",
-        "TileSet"
+        "TileMap",
+        "TileRule"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -38,8 +38,8 @@
             "scale": 0.75,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 547.9999999999999,
-                "y": 290
+                "x": 862.6666666666667,
+                "y": 1286
             }
         },
         "TileMap/Map 2.tmx": {
@@ -106,10 +106,10 @@
         },
         "TileMap/Map 4.3.tmx": {
             "scale": 1,
-            "selectedLayer": 0,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 400,
-                "y": 903.5
+                "x": 399,
+                "y": 902.5
             }
         },
         "TileMap/Map 4.tmx": {
@@ -125,10 +125,10 @@
                 21
             ],
             "scale": 3,
-            "selectedLayer": 3,
+            "selectedLayer": -1,
             "viewCenter": {
-                "x": 2119,
-                "y": 343.8333333333333
+                "x": 2119.6666666666665,
+                "y": 344.16666666666663
             }
         },
         "TileMap/Map 6.tmx": {
@@ -215,8 +215,8 @@
             "scale": 4,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 400,
-                "y": 399.875
+                "x": 399.75,
+                "y": 399.625
             }
         },
         "TileSet/Assets.tsx": {
@@ -338,8 +338,8 @@
         "TileMap/Map 4.2.tmx",
         "TileMap/Map 4.3.tmx",
         "TileRule/rule_5.tmx",
-        "TileMap/Map 1.tmx",
         "TileMap/Map 5.tmx",
+        "TileMap/Map 1.tmx",
         "TileMap/Map 2.tmx"
     ],
     "resizeMap.removeObjects": true,
