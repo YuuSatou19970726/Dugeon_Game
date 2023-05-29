@@ -2,11 +2,12 @@ using System.Collections;
 using UnityEngine;
 public class Introduction : MonoBehaviour
 {
-    [SerializeField] string introMessage;
+    [TextArea][SerializeField] string introMessage;
     [SerializeField] int minScale = 50;
     [SerializeField] int maxScale = 70;
     bool isTriggered = false;
     bool isShowed;
+    string PLAYER = "Player";
 
     void Update()
     {
@@ -33,14 +34,14 @@ public class Introduction : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D coli)
     {
-        if (!coli.CompareTag("Player")) return;
+        if (!coli.CompareTag(PLAYER)) return;
 
         isTriggered = true;
     }
 
     void OnTriggerExit2D(Collider2D coli)
     {
-        if (!coli.CompareTag("Player")) return;
+        if (!coli.CompareTag(PLAYER)) return;
 
         isTriggered = false;
         isShowed = false;
