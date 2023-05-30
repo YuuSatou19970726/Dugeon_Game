@@ -3,13 +3,13 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "TileMap/Map 4.2.tmx",
+    "activeFile": "TileMap/Map 3.2.tmx",
     "automapping.whileDrawing": false,
     "expandedProjectPaths": [
+        "TileMap",
         "TileSet",
         ".",
-        "TileRule",
-        "TileMap"
+        "TileRule"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -69,11 +69,11 @@
             "expandedObjectLayers": [
                 118
             ],
-            "scale": 0.75,
-            "selectedLayer": 5,
+            "scale": 5.5,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 640,
-                "y": 400.66666666666663
+                "x": 287.8181818181818,
+                "y": 300.6363636363636
             }
         },
         "TileMap/Map 3.3.tmx": {
@@ -104,8 +104,8 @@
             "scale": 0.5,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 788,
-                "y": 185
+                "x": 680,
+                "y": 401
             }
         },
         "TileMap/Map 4.3.tmx": {
@@ -337,15 +337,15 @@
         "TileRule/rule_1.tmx",
         "TileMap/Map 3.1.tmx",
         "TileRule/rule_4.tmx",
-        "TileMap/Map 3.2.tmx",
-        "TileMap/Map 3.3.tmx",
-        "TileMap/Map 4.1.tmx",
         "TileSet/main_lev_build_1.tsx",
         "TileMap/Map 1.tmx",
         "TileMap/Map 5.tmx",
         "TileRule/rule_5.tmx",
         "TileMap/Map 4.3.tmx",
-        "TileMap/Map 4.2.tmx"
+        "TileMap/Map 4.2.tmx",
+        "TileMap/Map 4.1.tmx",
+        "TileMap/Map 3.3.tmx",
+        "TileMap/Map 3.2.tmx"
     ],
     "resizeMap.removeObjects": true,
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",

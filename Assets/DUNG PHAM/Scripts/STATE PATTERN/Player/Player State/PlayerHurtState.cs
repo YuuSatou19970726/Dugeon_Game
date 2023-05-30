@@ -43,7 +43,7 @@ public class PlayerHurtState : IState
 
     void PriorityState()
     {
-        if (playerAttack.GetHealth() <= 0)
+        if (player.playerDatabase.isDied)
         {
             player.SwitchState(player.dieState);
         }

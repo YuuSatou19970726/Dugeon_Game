@@ -10,6 +10,8 @@ public class LoadingScene : MonoBehaviour
     public Slider loadingSlider;
     public TextMeshProUGUI percentText;
 
+    [SerializeField] GameObject[] backgrounds;
+
     //********************************************************************************************************************************************//
     //********************************************************************************************************************************************//
 
@@ -20,12 +22,15 @@ public class LoadingScene : MonoBehaviour
     #region LOADING SCENE
     public void LoadLevel()
     {
+        ChooseBackground();
+
         StartCoroutine(LoadAsynchronously());
     }
     IEnumerator LoadAsynchronously()
     {
         float x = 0f;
         float t = 0f;
+        loadingSlider.value = x;
 
         while (loadingSlider.value < 1)
         {
@@ -45,6 +50,17 @@ public class LoadingScene : MonoBehaviour
         if (loadingSlider.value == 1)
         {
             SceneManager.LoadSceneAsync(index);
+        }
+    }
+
+    void ChooseBackground()
+    {
+        int x = Random.Range(0, backgrounds.Length);
+
+        for (int i = 0; i < backgrounds.Length; i++)
+        {
+            if (i == x) continue;
+            backgrounds[i].SetActive(false);
         }
     }
     #endregion

@@ -19,13 +19,15 @@ public class GameManager : MonoBehaviour
     Vector2 savePoint;
     float playerHealth;
 
-
     /**********************************************************************************/
     /**********************************************************************************/
 
     void Awake()
     {
-        instance = this;
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(instance.gameObject);
     }
     void Start()
     {

@@ -15,8 +15,6 @@ public class PlayerDieState : IState
 
     public void EnterState()
     {
-        player.playerDatabase.isDied = true;
-
         player.playerAnimation.PlayAnimatorClip("Die");
 
         timer = 0f;

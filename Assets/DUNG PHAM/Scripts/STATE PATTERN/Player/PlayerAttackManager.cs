@@ -44,6 +44,8 @@ public class PlayerAttackManager : MonoBehaviour, IDamageable
         hitTimer += Time.deltaTime;
         hurtTimer += Time.deltaTime;
 
+        if (health <= 0) playerDatabase.isDied = true;
+
         BloodEffectReset();
     }
 
