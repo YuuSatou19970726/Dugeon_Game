@@ -14,8 +14,8 @@ public class DragonWarriorController : MonoBehaviour
     BoxCollider2D boxCollider2D;
     SpriteRenderer spriteRenderer;
 
-    float rangeCharacter = 4f;
-    float colliderDistance = 0.5f;
+    float rangeCharacter = 5f;
+    float colliderDistance = 0.75f;
 
     [SerializeField]
     LayerMask playerLayer;
@@ -29,6 +29,11 @@ public class DragonWarriorController : MonoBehaviour
     //animator
     Animator animator;
     float animatorDeplay = 0.3f;
+
+    [SerializeField]
+    GameObject waypoint;
+    float deplayBullet = 0f;
+    int countFire = -1;
 
     private void Awake()
     {
@@ -50,15 +55,48 @@ public class DragonWarriorController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerInSight() && currentState != baseCurrent.GetDragonWarriorDie())
+        if (PlayerInSight() && currentState != baseCurrent.GetDragonWarriorIdle() && currentState != baseCurrent.GetDragonWarriorAttack() && currentState != baseCurrent.GetDragonWarriorDie())
         {
-            ChangeAnimationState(baseCurrent.GetDragonWarriorDie());
-            float animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length + 0.3f;
-            Invoke("FireBallBattle", animatorDeplay);
+            ChangeAnimationState(baseCurrent.GetDragonWarriorAttack());
+            countFire = 5;
         }
 
         if (enemyPatrol != null)
             enemyPatrol.enabled = !PlayerInSight();
+
+        if (countFire > 0)
+        {
+            if (deplayBullet >= 0)
+                deplayBullet -= Time.deltaTime;
+
+            if(deplayBullet <= 0)
+                Fire();
+        } else if (countFire == 0 && currentState == baseCurrent.GetDragonWarriorAttack())
+        {
+            ChangeAnimationState(baseCurrent.GetDragonWarriorIdle());
+        }
+    }
+
+    void AnimationDeath()
+    {
+        ChangeAnimationState(baseCurrent.GetDragonWarriorDie());
+        float animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length + 0.3f;
+        Invoke("FireBallBattle", animatorDeplay);
+    }
+
+    void Fire()
+    {
+        GameObject bullet = ObjectPool.instance.GetPooledIblastBullet();
+
+        Vector2 bodyPosition = waypoint.transform.position;
+
+        if (bullet != null)
+        {
+            bullet.transform.position = bodyPosition;
+            bullet.SetActive(true);
+        }
+        countFire--;
+        deplayBullet = 0.5f;
     }
 
     void FireBallBattle()
@@ -80,6 +118,14 @@ public class DragonWarriorController : MonoBehaviour
         //Gizmos.color = Color.red;
         //Gizmos.DrawWireCube(boxCollider2DCallGate.bounds.center + transform.right * rangeCharacter * transform.localScale.x * colliderDistance,
         //    new Vector3(boxCollider2DCallGate.bounds.size.x * rangeCharacter, boxCollider2DCallGate.bounds.size.y, boxCollider2DCallGate.bounds.size.z));
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            AnimationDeath();
+        }
     }
 
     public void GetPlayerIdle()

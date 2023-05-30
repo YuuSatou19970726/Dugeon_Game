@@ -2,23 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireBallPool : MonoBehaviour
+public class ObjectPool : MonoBehaviour
 {
-    public static FireBallPool instance;
+    public static ObjectPool instance;
 
+    [SerializeField]
+    GameObject fireBallPrefab;
     List<GameObject> pooledFireBalls = new List<GameObject>();
     int amountToBulletPool = 7;
     float durationBullet = 5f;
 
+    [SerializeField]
+    GameObject pinkCoinPrefab;
     List<GameObject> pooledPinkCoins = new List<GameObject>();
     int amountToCoinPool = 3;
     float durationCoin = 7f;
 
     [SerializeField]
-    GameObject fireBallPrefab;
+    GameObject iblastBulletPrefab;
+    List<GameObject> pooledIblastBullet = new List<GameObject>();
+    int amountToIblastBulletPool = 5;
 
     [SerializeField]
-    GameObject pinkCoinPrefab;
+    GameObject sparkBulletPrefab;
+    List<GameObject> pooledSparkBullet = new List<GameObject>();
+    int amountToSparkBulletPool = 3;
 
     private void Awake()
     {
@@ -43,6 +51,20 @@ public class FireBallPool : MonoBehaviour
             objPrefab.SetActive(false);
             pooledPinkCoins.Add(objPrefab);
         }
+
+        for (int i = 0; i < amountToIblastBulletPool; i++)
+        {
+            GameObject objPrefab = Instantiate(iblastBulletPrefab);
+            objPrefab.SetActive(false);
+            pooledIblastBullet.Add(objPrefab);
+        }
+
+        for (int i = 0; i < amountToSparkBulletPool; i++)
+        {
+            GameObject objPrefab = Instantiate(sparkBulletPrefab);
+            objPrefab.SetActive(false);
+            pooledSparkBullet.Add(objPrefab);
+        }
     }
 
     public GameObject GetPooledFireBall()
@@ -54,7 +76,8 @@ public class FireBallPool : MonoBehaviour
         if (durationBullet > 2.5f && durationBullet < 5.1f)
         {
             pooledCount -= 4;
-        } else if (durationBullet > 0f && durationBullet < 2.5f)
+        }
+        else if (durationBullet > 0f && durationBullet < 2.5f)
         {
             pooledCount -= 2;
         }
@@ -78,7 +101,8 @@ public class FireBallPool : MonoBehaviour
         if (durationCoin > 2.5f && durationCoin < 7.1f)
         {
             pooledCount -= 3;
-        } else if (durationCoin > 0f && durationCoin < 2.5f)
+        }
+        else if (durationCoin > 0f && durationCoin < 2.5f)
         {
             pooledCount -= 2;
         }
@@ -90,6 +114,30 @@ public class FireBallPool : MonoBehaviour
                 if (!pooledPinkCoins[i].activeInHierarchy)
                     return pooledPinkCoins[i];
             }
+        }
+
+        return null;
+    }
+
+    public GameObject GetPooledIblastBullet()
+    {
+
+        for (int i = 0; i < pooledIblastBullet.Count; i++)
+        {
+            if (!pooledIblastBullet[i].activeInHierarchy)
+                return pooledIblastBullet[i];
+        }
+
+        return null;
+    }
+
+    public GameObject GetPooledSparkBullet()
+    {
+
+        for (int i = 0; i < pooledSparkBullet.Count; i++)
+        {
+            if (!pooledSparkBullet[i].activeInHierarchy)
+                return pooledSparkBullet[i];
         }
 
         return null;

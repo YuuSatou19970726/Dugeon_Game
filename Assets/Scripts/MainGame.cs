@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
@@ -23,11 +24,15 @@ public class MainGame : MonoBehaviour
     GameObject heart_1, heart_2, heart_3;
 
     [SerializeField]
+    GameObject spark_bullet_1, spark_bullet_2, spark_bullet_3;
+
+    [SerializeField]
     Text textScore;
 
     int positionCheckPoint = 0;
     int heart = 0;
     int score = 0;
+    int skill = 0;
 
     //Gates
     int countOpenGate = 5; 
@@ -149,6 +154,39 @@ public class MainGame : MonoBehaviour
         }
     }
 
+    public void DecreaseSkill()
+    {
+        skill--;
+        SparkBulletSkill(skill);
+    }
+
+    void SparkBulletSkill(int count)
+    {
+        switch (count)
+        {
+            case 1:
+                spark_bullet_1.SetActive(true);
+                spark_bullet_2.SetActive(false);
+                spark_bullet_3.SetActive(false);
+                break;
+            case 2:
+                spark_bullet_1.SetActive(true);
+                spark_bullet_2.SetActive(true);
+                spark_bullet_3.SetActive(false);
+                break;
+            case 3:
+                spark_bullet_1.SetActive(true);
+                spark_bullet_2.SetActive(true);
+                spark_bullet_3.SetActive(true);
+                break;
+            default:
+                spark_bullet_1.SetActive(false);
+                spark_bullet_2.SetActive(false);
+                spark_bullet_3.SetActive(false);
+                break;
+        }
+    }
+
     void CheckSavePoint (int checkPoint)
     {
         Vector2 position = new Vector2(-23f, 0f);
@@ -163,9 +201,10 @@ public class MainGame : MonoBehaviour
                 break;
             case 3:
                 position = new Vector2(79f, 4f);
+                skill = 3;
                 break;
         }
-
+        SparkBulletSkill(skill);
         Instantiate(blueSlime, position, Quaternion.identity);
     }
 

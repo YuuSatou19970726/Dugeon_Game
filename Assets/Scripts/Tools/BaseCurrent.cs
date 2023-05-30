@@ -22,6 +22,7 @@ public class BaseCurrent : MonoBehaviour
     const string DRAGON_WARRIOR_IDLE = "Dragon_Warrior_Idle_Animation";
     const string DRAGON_WARRIOR_MOVE = "Dragon_Warrior_Move_Animation";
     const string DRAGON_WARRIOR_DIE = "Dragon_Warrior_Die_Animation";
+    const string DRAGON_WARRIOR_ATTACK = "Dragon_Warrior_Attack_Animation";
 
 
     //cache data
@@ -107,6 +108,11 @@ public class BaseCurrent : MonoBehaviour
     public string GetDragonWarriorDie()
     {
         return DRAGON_WARRIOR_DIE;
+    }
+
+    public string GetDragonWarriorAttack()
+    {
+        return DRAGON_WARRIOR_ATTACK;
     }
 
     public string GetCheckPointLevel1()
