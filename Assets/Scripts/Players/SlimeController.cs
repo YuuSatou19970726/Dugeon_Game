@@ -155,6 +155,15 @@ public class SlimeController : MonoBehaviour
                         ChangeAnimationState(baseCurrent.GetPlayerIdle());
                     }
                 }
+            } else
+            {
+                if (!isDeath)
+                {
+                    if (!isHurt)
+                    {
+                        ChangeAnimationState(baseCurrent.GetPlayerIdle());
+                    }
+                }
             }
         }
     }
@@ -354,9 +363,9 @@ public class SlimeController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(boxCollider2DTargetEnemy.bounds.center + transform.right * rangeCharacter * transform.localScale.x * colliderDistance,
-            new Vector3(boxCollider2DTargetEnemy.bounds.size.x * rangeCharacter, boxCollider2DTargetEnemy.bounds.size.y, boxCollider2DTargetEnemy.bounds.size.z));
+        //Gizmos.color = Color.red;
+        //Gizmos.DrawWireCube(boxCollider2DTargetEnemy.bounds.center + transform.right * rangeCharacter * transform.localScale.x * colliderDistance,
+        //    new Vector3(boxCollider2DTargetEnemy.bounds.size.x * rangeCharacter, boxCollider2DTargetEnemy.bounds.size.y, boxCollider2DTargetEnemy.bounds.size.z));
     }
 
     bool IsGrounded()

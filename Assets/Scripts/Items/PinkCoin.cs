@@ -35,7 +35,7 @@ public class PinkCoin : MonoBehaviour
     void CointMovement()
     {
         Vector2 speedVector2 = transform.position;
-        float speedRandom = Random.Range(1f, 3f);
+        float speedRandom = Random.Range(8f, 10f);
         speedVector2.y -= speedRandom * Time.deltaTime;
         transform.position = speedVector2;
     }

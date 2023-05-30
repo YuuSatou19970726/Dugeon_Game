@@ -58,6 +58,7 @@ public class DragonWarriorController : MonoBehaviour
         if (PlayerInSight() && currentState != baseCurrent.GetDragonWarriorIdle() && currentState != baseCurrent.GetDragonWarriorAttack() && currentState != baseCurrent.GetDragonWarriorDie())
         {
             ChangeAnimationState(baseCurrent.GetDragonWarriorAttack());
+            mainGame.SetCountGates();
             countFire = 5;
         }
 
@@ -101,7 +102,7 @@ public class DragonWarriorController : MonoBehaviour
 
     void FireBallBattle()
     {
-        mainGame.SetCountGates();
+        mainGame.ActiveFireBall();
         gameObject.SetActive(false);
     }
 

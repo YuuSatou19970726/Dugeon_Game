@@ -4,9 +4,19 @@ using UnityEngine;
 
 public class IblastBullet : MonoBehaviour
 {
+    BaseCurrent baseCurrent;
+
+    BoxCollider2D boxCollider2D;
+
+    string currentState = "Iblast_Attack_Animation";
+    //animator
+    Animator animator;
 
     private void Start()
     {
+        baseCurrent = gameObject.AddComponent<BaseCurrent>();
+        animator = GetComponent<Animator>();
+        boxCollider2D = GetComponent<BoxCollider2D>();
         transform.Rotate(0, -180, 0);
     }
 
@@ -26,7 +36,26 @@ public class IblastBullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            gameObject.SetActive(false);
+            boxCollider2D.isTrigger = false;
+            ChangeAnimationState(baseCurrent.GetIblastExplosion());
+            float animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length;
+            Invoke("ObjectActive", animatorDeplay);
         }
+    }
+
+    void ObjectActive()
+    {
+        gameObject.SetActive(false);
+        boxCollider2D.isTrigger = true;
+        ChangeAnimationState(baseCurrent.GetIblastAttack());
+    }
+
+    void ChangeAnimationState(string newState)
+    {
+        if (currentState == newState) return;
+
+        animator.Play(newState);
+
+        currentState = newState;
     }
 }

@@ -236,12 +236,16 @@ public class MainGame : MonoBehaviour
     {
         countGate_1 = 1;
         countGate_2 = 1;
-        fireBallZone.SetActiveBullet();
     }
 
     public void SetCountGate2()
     {
         countGate_2 = 0;
+        fireBallZone.SetActiveBullet();
+    }
+
+    public void ActiveFireBall()
+    {
         fireBallZone.SetActiveBullet();
     }
 

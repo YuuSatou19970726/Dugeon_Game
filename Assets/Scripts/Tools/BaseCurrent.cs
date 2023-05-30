@@ -24,6 +24,13 @@ public class BaseCurrent : MonoBehaviour
     const string DRAGON_WARRIOR_DIE = "Dragon_Warrior_Die_Animation";
     const string DRAGON_WARRIOR_ATTACK = "Dragon_Warrior_Attack_Animation";
 
+    //animation fire ball
+    const string FIRE_BALL_ATTACK = "Fire_Ball_Animation";
+    const string FIRE_BALL_EXPLOSION = "Fire_Ball_Explosion_Animation";
+
+    //animation iblast
+    const string IBLAST_ATTACK = "Iblast_Attack_Animation";
+    const string IBLAST_EXPLOSION = "Iblast_Explosion_Animation";
 
     //cache data
     //Level 1
@@ -113,6 +120,28 @@ public class BaseCurrent : MonoBehaviour
     public string GetDragonWarriorAttack()
     {
         return DRAGON_WARRIOR_ATTACK;
+    }
+
+    //animation fire ball
+    public string GetFireBallAttack()
+    {
+        return FIRE_BALL_ATTACK;
+    }
+
+    public string GetFireBallExplosion()
+    {
+        return FIRE_BALL_EXPLOSION;
+    }
+
+    //animation iblast
+    public string GetIblastAttack()
+    {
+        return IBLAST_ATTACK;
+    }
+
+    public string GetIblastExplosion()
+    {
+        return IBLAST_EXPLOSION;
     }
 
     public string GetCheckPointLevel1()
