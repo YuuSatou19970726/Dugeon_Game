@@ -28,6 +28,7 @@ TagManager:
   - Enemy
   - Ground
   - Grapplable
+  - BulletInSight
   - 
   - 
   - 
