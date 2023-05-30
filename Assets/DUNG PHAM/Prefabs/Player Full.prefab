@@ -225,8 +225,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BindingMode: 1
   m_FollowOffset: {x: 0, y: 0, z: -10}
-  m_XDamping: 0
-  m_YDamping: 0
+  m_XDamping: 0.5
+  m_YDamping: 0.5
   m_ZDamping: 1
   m_AngularDampingMode: 0
   m_PitchDamping: 0
@@ -243,6 +243,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1190133187}
   - component: {fileID: 1190133186}
+  - component: {fileID: 3350642706212816345}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -304,6 +305,18 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 690151128}
+--- !u!114 &3350642706212816345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1190133185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a8a05de0ac134f4f9d01bef6b9da077, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2012270252209663077
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,13 +863,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4873df7d5aaa37b46b3d8ba74152ab77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSrc: {fileID: 0}
   climbSpeed: 15
   swimSpeed: 15
   isClimbing: 0
   isSwimming: 0
   isSpiking: 0
-  waterEffectPrefab: {fileID: 1412116877119366598, guid: a87d0d6fc6c8aa4478eba288a2387ec8, type: 3}
 --- !u!1 &2012270252472231330
 GameObject:
   m_ObjectHideFlags: 0
