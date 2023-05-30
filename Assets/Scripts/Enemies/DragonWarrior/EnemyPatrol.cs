@@ -17,7 +17,7 @@ public class EnemyPatrol : MonoBehaviour
     bool movingLeft;
 
     //Idle Behaviour
-    float idleDuration = 3f;
+    float idleDuration = 1f;
     float idleTimer;
 
     bool isDisable = false;

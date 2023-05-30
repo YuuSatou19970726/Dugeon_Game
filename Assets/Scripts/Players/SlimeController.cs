@@ -14,6 +14,9 @@ public class SlimeController : MonoBehaviour
     BoxCollider2D boxCollider2D;
     SpriteRenderer spriteRenderer;
 
+    [SerializeField]
+    LayerMask bulletLayer;
+
     //audio
     [SerializeField]
     AudioSource audioSource;
@@ -42,6 +45,17 @@ public class SlimeController : MonoBehaviour
 
     float animatorDeplay = 0.3f;
 
+    [SerializeField]
+    GameObject waypoint;
+    float deplayBullet = 0f;
+    int countFire = -1;
+
+    [SerializeField]
+    BoxCollider2D boxCollider2DTargetEnemy;
+
+    float rangeCharacter = 5f;
+    float colliderDistance = 0.75f;
+
     private void Awake()
     {
         mainGame = FindAnyObjectByType<MainGame>();
@@ -63,9 +77,23 @@ public class SlimeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (EnemyInSight() && countFire == -1)
+        {
+            countFire = 3;
+        }
+
+        if (countFire > 0)
+        {
+            if (deplayBullet >= 0)
+                deplayBullet -= Time.deltaTime;
+
+            if (deplayBullet <= 0)
+                SlimeAttack();
+        }
+
         if (!isDeath)
         {
-            if (!isHurt)
+            if (!isHurt && countFire <= 0)
             {
                 if (currentState == baseCurrent.GetPlayerIdle() || currentState == baseCurrent.GetPlayerMove())
                 {
@@ -83,17 +111,18 @@ public class SlimeController : MonoBehaviour
 
                 SlimeMove();
                 SlimeJump();
-                cameraController.SetMoveCamera(transform);
-                boardTutorial.CheckTransform(transform);
             }
         }
+
+        cameraController.SetMoveCamera(transform);
+        boardTutorial.CheckTransform(transform);
     }
 
     private void FixedUpdate()
     {
         if (!isDeath)
         {
-            if (!isHurt)
+            if (!isHurt && countFire <= 0)
             {
                 if (xDirection > 0)
                 {
@@ -122,6 +151,15 @@ public class SlimeController : MonoBehaviour
                         Invoke("AnimationJump", animatorDeplay);
                     }
                     else
+                    {
+                        ChangeAnimationState(baseCurrent.GetPlayerIdle());
+                    }
+                }
+            } else
+            {
+                if (!isDeath)
+                {
+                    if (!isHurt)
                     {
                         ChangeAnimationState(baseCurrent.GetPlayerIdle());
                     }
@@ -196,6 +234,22 @@ public class SlimeController : MonoBehaviour
                 ChangeAnimationState(baseCurrent.GetPlayerHoldJumpRed());
             }
         }
+    }
+
+    void SlimeAttack()
+    {
+        GameObject bullet = ObjectPool.instance.GetPooledSparkBullet();
+
+        Vector2 bodyPosition = waypoint.transform.position;
+
+        if (bullet != null)
+        {
+            bullet.transform.position = bodyPosition;
+            bullet.SetActive(true);
+        }
+        countFire--;
+        mainGame.DecreaseSkill();
+        deplayBullet = 0.7f;
     }
 
     void AnimationHoldJump()
@@ -299,6 +353,21 @@ public class SlimeController : MonoBehaviour
             Invoke("AnimationJump", animatorDeplay);
     }
 
+    bool EnemyInSight()
+    {
+        RaycastHit2D raycastHit2D = Physics2D.BoxCast(boxCollider2DTargetEnemy.bounds.center + transform.right * rangeCharacter * transform.localScale.x * colliderDistance,
+            new Vector3(boxCollider2DTargetEnemy.bounds.size.x * rangeCharacter, boxCollider2DTargetEnemy.bounds.size.y, boxCollider2DTargetEnemy.bounds.size.z),
+            0, Vector2.left, 0, bulletLayer);
+        return raycastHit2D.collider != null;
+    }
+
+    private void OnDrawGizmos()
+    {
+        //Gizmos.color = Color.red;
+        //Gizmos.DrawWireCube(boxCollider2DTargetEnemy.bounds.center + transform.right * rangeCharacter * transform.localScale.x * colliderDistance,
+        //    new Vector3(boxCollider2DTargetEnemy.bounds.size.x * rangeCharacter, boxCollider2DTargetEnemy.bounds.size.y, boxCollider2DTargetEnemy.bounds.size.z));
+    }
+
     bool IsGrounded()
     {
         return Physics2D.BoxCast(boxCollider2D.bounds.center, boxCollider2D.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
@@ -313,7 +382,7 @@ public class SlimeController : MonoBehaviour
         currentState = newState;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
@@ -325,7 +394,8 @@ public class SlimeController : MonoBehaviour
                 isDeath = true;
                 animatorDeplay = animator.GetCurrentAnimatorStateInfo(0).length;
                 Invoke("RestartGame", animatorDeplay);
-            } else
+            }
+            else
             {
                 ChangeAnimationState(baseCurrent.GetPlayerHurt());
                 isHurt = true;

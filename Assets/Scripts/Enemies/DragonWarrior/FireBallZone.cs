@@ -34,7 +34,7 @@ public class FireBallZone : MonoBehaviour
 
     void Fire()
     {
-        GameObject bullet = FireBallPool.instance.GetPooledFireBall();
+        GameObject bullet = ObjectPool.instance.GetPooledFireBall();
 
         Vector2 bodyPosition = transform.position;
         bodyPosition.x += Random.Range(-10f, 10f);
@@ -48,7 +48,7 @@ public class FireBallZone : MonoBehaviour
 
     void Coin()
     {
-        GameObject coin = FireBallPool.instance.GetPooledPinkCoin();
+        GameObject coin = ObjectPool.instance.GetPooledPinkCoin();
 
         Vector2 bodyPosition = transform.position;
         bodyPosition.x += Random.Range(-10f, 10f);
