@@ -3713,7 +3713,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1629740934}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.81333333
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6023,6 +6023,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 666660771}
     m_Modifications:
+    - target: {fileID: 1359664482, guid: 84fefba39f081834590cb3447279d6da, type: 3}
+      propertyPath: m_XDamping
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1359664482, guid: 84fefba39f081834590cb3447279d6da, type: 3}
+      propertyPath: m_YDamping
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5789537140831430401, guid: 84fefba39f081834590cb3447279d6da, type: 3}
       propertyPath: m_Name
       value: Player Full

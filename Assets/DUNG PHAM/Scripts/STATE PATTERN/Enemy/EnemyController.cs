@@ -182,7 +182,8 @@ public class EnemyController : MonoBehaviour, IDamageable
         maxAtkPoint = new Vector2(transform.position.x + maxAttackRange * faceDirection * originSpriteDirection, transform.position.y);
 
         Collider2D hit = Physics2D.OverlapArea(minAtkPoint, maxAtkPoint, enemyDatabase.guardLayer);
-        if (hit) playerInRange = true;
+        if (hit)
+            playerInRange = true;
         else playerInRange = false;
     }
     public void Attack()
