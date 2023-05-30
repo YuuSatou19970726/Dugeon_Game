@@ -25,6 +25,8 @@ public class EnemyDatabase : MonoBehaviour
     public float attackCooldown = 5f;
     public float minAttackRange = 2;
     public float maxAttackRange = 5;
+    public float fixMinRange = 0f;
+    public float fixMaxRange = 0f;
     public ContactFilter2D targetFilter;
 
     [Header("Guard and Patrol")]

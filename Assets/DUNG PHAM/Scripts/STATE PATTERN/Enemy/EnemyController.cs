@@ -17,7 +17,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     [HideInInspector] public float health;
     float healthRate;
     public bool isHurt;
-    public AudioSource audioSource;
+    [HideInInspector] public AudioSource audioSource;
 
     [Header("Movement")]
     float moveSpeed;
@@ -178,13 +178,15 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     void GetAttackRange()
     {
-        minAtkPoint = new Vector2(transform.position.x + minAttackRange * faceDirection * originSpriteDirection, transform.position.y);
-        maxAtkPoint = new Vector2(transform.position.x + maxAttackRange * faceDirection * originSpriteDirection, transform.position.y);
+        minAtkPoint = new Vector2(transform.position.x + minAttackRange * faceDirection * originSpriteDirection, transform.position.y + enemyDatabase.fixMinRange);
+        maxAtkPoint = new Vector2(transform.position.x + maxAttackRange * faceDirection * originSpriteDirection, transform.position.y + enemyDatabase.fixMaxRange);
 
         Collider2D hit = Physics2D.OverlapArea(minAtkPoint, maxAtkPoint, enemyDatabase.guardLayer);
+
         if (hit)
             playerInRange = true;
-        else playerInRange = false;
+        else
+            playerInRange = false;
     }
     public void Attack()
     {
