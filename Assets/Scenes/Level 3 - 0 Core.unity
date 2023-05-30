@@ -958,10 +958,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d1f269d5c2a94a4fbae521f6c0c5669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficult: 0
-  volume: 1
-  savePoint: {x: 0, y: 0}
-  playerHealth: 100
+  defaultDifficult: 2
+  defaultVolume: 1
+  defaultSavepoint: {x: 0, y: 0}
+  defaultHealth: 100
+  index: 0
 --- !u!1 &568032827
 GameObject:
   m_ObjectHideFlags: 0
