@@ -669,7 +669,7 @@ GameObject:
   m_Component:
   - component: {fileID: 168958840}
   - component: {fileID: 168958842}
-  - component: {fileID: 168958841}
+  - component: {fileID: 168958843}
   m_Layer: 0
   m_Name: Scene Transfer 2
   m_TagString: Untagged
@@ -692,32 +692,6 @@ Transform:
   m_Father: {fileID: 853740377}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &168958841
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 168958839}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!114 &168958842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -732,6 +706,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: Level 3 - 2
   isLoaded: 0
+--- !u!60 &168958843
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168958839}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0, y: 0.53}
+      - {x: -0.45, y: 0.53}
+      - {x: -0.45, y: -0.5}
+      - {x: 0.5, y: -0.5}
+      - {x: 0.5, y: -0.3}
+      - {x: 0, y: -0.3}
 --- !u!1 &227284805
 GameObject:
   m_ObjectHideFlags: 0
@@ -910,7 +915,7 @@ GameObject:
   m_Component:
   - component: {fileID: 281930456}
   - component: {fileID: 281930458}
-  - component: {fileID: 281930457}
+  - component: {fileID: 281930459}
   m_Layer: 0
   m_Name: Scene Transfer 3.3
   m_TagString: Untagged
@@ -933,32 +938,6 @@ Transform:
   m_Father: {fileID: 853740377}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &281930457
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 281930455}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!114 &281930458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -973,6 +952,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: Level 3 - 3.3
   isLoaded: 0
+--- !u!60 &281930459
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281930455}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.11769179, y: 0.7145992}
+      - {x: 0.115565225, y: 0.31698722}
+      - {x: -0.1254797, y: 0.3105886}
+      - {x: -0.7003639, y: 0.31885836}
+      - {x: -0.70574707, y: -0.11083631}
+      - {x: -0.19848788, y: -0.09578183}
+      - {x: -0.18628788, y: -0.4756878}
+      - {x: 0.47397777, y: -0.4738501}
+      - {x: 0.47025862, y: 0.71325773}
 --- !u!1 &321621322
 GameObject:
   m_ObjectHideFlags: 0
@@ -1682,7 +1695,7 @@ GameObject:
   m_Component:
   - component: {fileID: 667019017}
   - component: {fileID: 667019019}
-  - component: {fileID: 667019018}
+  - component: {fileID: 667019020}
   m_Layer: 0
   m_Name: Scene Transfer 3.2
   m_TagString: Untagged
@@ -1705,32 +1718,6 @@ Transform:
   m_Father: {fileID: 853740377}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &667019018
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 667019016}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!114 &667019019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1745,6 +1732,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: Level 3 - 3.2
   isLoaded: 0
+--- !u!60 &667019020
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 667019016}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.3, y: 0.4}
+      - {x: -0.3, y: -0.075}
+      - {x: -0.55, y: -0.075}
+      - {x: -0.55, y: -0.5}
+      - {x: -0.3, y: -0.5}
+      - {x: 0.3, y: -0.5}
+      - {x: 0.3, y: 0.03}
+      - {x: 0.5, y: 0.03}
+      - {x: 0.5, y: 0.4}
 --- !u!1 &679117881
 GameObject:
   m_ObjectHideFlags: 0
@@ -1755,7 +1776,7 @@ GameObject:
   m_Component:
   - component: {fileID: 679117884}
   - component: {fileID: 679117883}
-  - component: {fileID: 679117882}
+  - component: {fileID: 679117885}
   m_Layer: 0
   m_Name: Scene Transfer 5
   m_TagString: Untagged
@@ -1763,32 +1784,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!61 &679117882
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 679117881}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!114 &679117883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1818,6 +1813,37 @@ Transform:
   m_Father: {fileID: 853740377}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!60 &679117885
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679117881}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.5639995, y: 0.532568}
+      - {x: -0.48945194, y: 0.5747325}
+      - {x: -0.48842597, y: -0.47882786}
+      - {x: -0.25075352, y: -0.48823026}
+      - {x: -0.24948049, y: 0.15404025}
+      - {x: 0.5571523, y: 0.14404117}
 --- !u!1 &723969838
 GameObject:
   m_ObjectHideFlags: 0
@@ -1828,7 +1854,7 @@ GameObject:
   m_Component:
   - component: {fileID: 723969841}
   - component: {fileID: 723969840}
-  - component: {fileID: 723969839}
+  - component: {fileID: 723969842}
   m_Layer: 0
   m_Name: Scene Transfer 3.1
   m_TagString: Untagged
@@ -1836,32 +1862,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!61 &723969839
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 723969838}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!114 &723969840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1891,6 +1891,40 @@ Transform:
   m_Father: {fileID: 853740377}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!60 &723969842
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723969838}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.32, y: -0.15}
+      - {x: 0.32, y: 0.38}
+      - {x: -0.2, y: 0.38}
+      - {x: -0.2, y: -0.2}
+      - {x: -0.3, y: -0.2}
+      - {x: -0.55, y: -0.2}
+      - {x: -0.55, y: -0.54}
+      - {x: 0.83, y: -0.54}
+      - {x: 0.83, y: -0.15}
 --- !u!1 &852300118
 GameObject:
   m_ObjectHideFlags: 0
@@ -2105,7 +2139,7 @@ GameObject:
   m_Component:
   - component: {fileID: 927252741}
   - component: {fileID: 927252740}
-  - component: {fileID: 927252739}
+  - component: {fileID: 927252742}
   m_Layer: 0
   m_Name: Scene Transfer 1
   m_TagString: Untagged
@@ -2113,32 +2147,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!61 &927252739
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 927252738}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!114 &927252740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2168,6 +2176,37 @@ Transform:
   m_Father: {fileID: 853740377}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!60 &927252742
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927252738}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0, y: 0}
+      - {x: 0.5, y: 0}
+      - {x: 0.5, y: 0.5}
+      - {x: -0.6, y: 0.5}
+      - {x: -0.6, y: -0.8}
+      - {x: 0, y: -0.8}
 --- !u!1 &989713167
 GameObject:
   m_ObjectHideFlags: 0
@@ -2534,7 +2573,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1094693683}
   - component: {fileID: 1094693682}
-  - component: {fileID: 1094693681}
+  - component: {fileID: 1094693684}
   m_Layer: 0
   m_Name: Scene Transfer 4.1
   m_TagString: Untagged
@@ -2542,32 +2581,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!61 &1094693681
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1094693680}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!114 &1094693682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2597,6 +2610,39 @@ Transform:
   m_Father: {fileID: 853740377}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!60 &1094693684
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1094693680}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.48615178, y: 0.5028063}
+      - {x: -0.84979117, y: 0.50638676}
+      - {x: -0.8461022, y: 0.30595657}
+      - {x: -0.3567589, y: 0.3080303}
+      - {x: -0.3368597, y: -0.14515647}
+      - {x: 0.21549675, y: -0.1453655}
+      - {x: 0.21574661, y: -0.4885207}
+      - {x: 0.4901411, y: -0.48920104}
 --- !u!1 &1113927506
 GameObject:
   m_ObjectHideFlags: 0
@@ -2931,7 +2977,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1241123542}
   - component: {fileID: 1241123544}
-  - component: {fileID: 1241123543}
+  - component: {fileID: 1241123545}
   m_Layer: 0
   m_Name: Scene Transfer 4.3
   m_TagString: Untagged
@@ -2954,32 +3000,6 @@ Transform:
   m_Father: {fileID: 853740377}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1241123543
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1241123541}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!114 &1241123544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2994,6 +3014,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: Level 3 - 4.3
   isLoaded: 0
+--- !u!60 &1241123545
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1241123541}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.25452438, y: 0.6326354}
+      - {x: -0.5312565, y: 0.63441855}
+      - {x: -0.5542081, y: -0.4915481}
+      - {x: 0.24140222, y: -0.4927312}
+      - {x: 0.8478218, y: -0.49204114}
+      - {x: 0.8437371, y: -0.1935268}
+      - {x: 0.5046826, y: -0.19233738}
+      - {x: 0.21502812, y: -0.19107012}
+      - {x: 0.22110403, y: 0.29968703}
+      - {x: -0.27024367, y: 0.29816106}
 --- !u!1 &1320799914
 GameObject:
   m_ObjectHideFlags: 0
@@ -3215,7 +3270,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 4.625
+  orthographic size: 13
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3239,7 +3294,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1376838338}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 128.7, y: -127.8, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3346,7 +3401,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1396157277}
   - component: {fileID: 1396157279}
-  - component: {fileID: 1396157278}
+  - component: {fileID: 1396157280}
   m_Layer: 0
   m_Name: Scene Transfer 4.2
   m_TagString: Untagged
@@ -3369,32 +3424,6 @@ Transform:
   m_Father: {fileID: 853740377}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1396157278
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1396157276}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!114 &1396157279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3409,6 +3438,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: Level 3 - 4.2
   isLoaded: 0
+--- !u!60 &1396157280
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1396157276}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.33273727, y: 0.4826654}
+      - {x: -0.33240932, y: -0.1358522}
+      - {x: -0.6790933, y: -0.1357941}
+      - {x: -0.67974234, y: -0.34956884}
+      - {x: 0.35347039, y: -0.34992552}
+      - {x: 0.3530135, y: 0.16279852}
+      - {x: 0.7035359, y: 0.1636749}
+      - {x: 0.70366883, y: 0.48307368}
 --- !u!1 &1404510219
 GameObject:
   m_ObjectHideFlags: 0
@@ -3737,7 +3799,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1629740934}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.81333333
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
