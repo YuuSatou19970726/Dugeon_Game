@@ -31,6 +31,7 @@ public class LoadingScene : MonoBehaviour
     {
         index = GameManager.instance.index;
         AsyncOperation operation = SceneManager.LoadSceneAsync(index);
+        
         operation.allowSceneActivation = false;
 
         float x = 0f;
