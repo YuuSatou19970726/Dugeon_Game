@@ -7,9 +7,9 @@
     "automapping.whileDrawing": false,
     "expandedProjectPaths": [
         ".",
-        "TileRule",
         "TileSet",
-        "TileMap"
+        "TileMap",
+        "TileRule"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -54,28 +54,24 @@
             }
         },
         "TileMap/Map 3.1.tmx": {
-            "expandedObjectLayers": [
-                148,
-                150
-            ],
-            "scale": 5.5,
-            "selectedLayer": 3,
-            "viewCenter": {
-                "x": 465.4545454545455,
-                "y": 399.9090909090909
-            }
-        },
-        "TileMap/Map 3.2.tmx": {
             "scale": 0.75,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 733.3333333333333,
-                "y": 166
+                "x": 373.3333333333333,
+                "y": 400.66666666666663
+            }
+        },
+        "TileMap/Map 3.2.tmx": {
+            "scale": 8,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 837.75,
+                "y": 317.3125
             }
         },
         "TileMap/Map 3.3.tmx": {
             "scale": 1,
-            "selectedLayer": 5,
+            "selectedLayer": 2,
             "viewCenter": {
                 "x": 664,
                 "y": 399.5
@@ -90,19 +86,22 @@
             }
         },
         "TileMap/Map 4.1.tmx": {
-            "scale": 0.75,
-            "selectedLayer": 2,
+            "scale": 0.5,
+            "selectedLayer": 0,
             "viewCenter": {
                 "x": 608,
-                "y": 400.66666666666663
+                "y": 401
             }
         },
         "TileMap/Map 4.2.tmx": {
-            "scale": 0.5,
-            "selectedLayer": 2,
+            "expandedObjectLayers": [
+                94
+            ],
+            "scale": 11,
+            "selectedLayer": 5,
             "viewCenter": {
                 "x": 680,
-                "y": 401
+                "y": 399.9545454545455
             }
         },
         "TileMap/Map 4.3.tmx": {
@@ -213,11 +212,11 @@
             "expandedObjectLayers": [
                 4
             ],
-            "scale": 2,
+            "scale": 1,
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 400,
-                "y": 399.75
+                "y": 399.5
             }
         },
         "TileSet/Assets.tsx": {
