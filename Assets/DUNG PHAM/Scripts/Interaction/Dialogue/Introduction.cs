@@ -5,13 +5,14 @@ public class Introduction : MonoBehaviour
     [TextArea][SerializeField] string introMessage;
     [SerializeField] int minScale = 50;
     [SerializeField] int maxScale = 70;
+    [SerializeField] float fixHeight = 3f;
     bool isTriggered = false;
     bool isShowed;
     string PLAYER = "Player";
 
     void Update()
     {
-        Vector3 position = new Vector3(transform.position.x, transform.position.y + 3f);
+        Vector3 position = new Vector3(transform.position.x, transform.position.y + fixHeight);
 
         if (isTriggered && !isShowed)
         {

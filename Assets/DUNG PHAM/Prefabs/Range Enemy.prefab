@@ -281,6 +281,8 @@ MonoBehaviour:
   attackCooldown: 5
   minAttackRange: 2
   maxAttackRange: 5
+  fixMinRange: 0
+  fixMaxRange: 0
   targetFilter:
     useTriggers: 0
     useLayerMask: 0
@@ -471,7 +473,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &487135976241014833
 CapsuleCollider2D:

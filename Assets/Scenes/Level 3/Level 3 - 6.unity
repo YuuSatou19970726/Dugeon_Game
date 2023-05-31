@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -210,28 +210,28 @@ MonoBehaviour:
   - position: {x: -0.5008178, y: -0.06088559, z: 0}
     color: {r: 0, g: 0, b: 0, a: 1}
     uv: {x: 0, y: 0}
-  - position: {x: -0.5046, y: -0.5028, z: 0}
+  - position: {x: -0.5043, y: -0.5084, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 0.5003, y: -0.4982, z: 0}
+  - position: {x: 0.5016, y: -0.5006, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 0.505, y: 0.4941, z: 0}
+  - position: {x: 0.5002, y: 0.4951, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: -0.4949, y: 0.5046, z: 0}
+  - position: {x: -0.5042, y: 0.5026, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: -0.496, y: 0.074, z: 0}
+  - position: {x: -0.5008, y: 0.0688, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: -0.5052, y: -0.0695, z: 0}
+  - position: {x: -0.4974, y: -0.0574, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
   m_Triangles: 00000500010001000500020002000400030002000500040006000c000c00060007000d0006000c000d00070008000e0007000d000e00080009000f0008000e000f0009000a00100009000f0010000a000b0011000a00100011000c0006000b000c0011000b00
   m_LocalBounds:
-    m_Center: {x: -0.000100016594, y: 0.00090000033, z: 0}
-    m_Extent: {x: 0.5051, y: 0.5037, z: 0}
+    m_Center: {x: -0.0013499856, y: -0.0029000044, z: 0}
+    m_Extent: {x: 0.50295, y: 0.5055, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -386,7 +386,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &585331853
 Transform:
   m_ObjectHideFlags: 0

@@ -502,12 +502,12 @@ SpriteRenderer:
   m_SortingLayerID: 871894479
   m_SortingLayer: 15
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 349b02a58fc1c3c4993bf3edba2fcd60, type: 3}
+  m_Sprite: {fileID: -1488986141, guid: 349b02a58fc1c3c4993bf3edba2fcd60, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.5, y: 0.37}
+  m_Size: {x: 1.25, y: 1.25}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -633,7 +633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05495f6dee98333448ff11083016b632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  avatar: {fileID: 21300000, guid: 349b02a58fc1c3c4993bf3edba2fcd60, type: 3}
+  avatar: {fileID: -991714827, guid: 349b02a58fc1c3c4993bf3edba2fcd60, type: 3}
   head: {fileID: 2012270252932906193}
   healthBar: {fileID: 6098330862061981509}
   maxHealth: 100

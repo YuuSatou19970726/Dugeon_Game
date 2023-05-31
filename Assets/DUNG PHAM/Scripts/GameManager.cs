@@ -55,6 +55,17 @@ public class GameManager : MonoBehaviour
         SaveToJson();
     }
 
+    public void ResetGameJson()
+    {
+        difficult = defaultDifficult;
+        volume = defaultVolume;
+        savePoint = defaultSavepoint;
+        playerHealth = defaultHealth;
+
+        PlayerPrefs.DeleteAll();
+
+        SaveToJson();
+    }
     /***************************************************************************************************************************************************/
     /***************************************************************************************************************************************************/
 
@@ -82,17 +93,6 @@ public class GameManager : MonoBehaviour
         playerHealth = gameData.playerHealth;
     }
 
-    public void ResetGameJson()
-    {
-        difficult = defaultDifficult;
-        volume = defaultVolume;
-        savePoint = defaultSavepoint;
-        playerHealth = defaultHealth;
-
-        PlayerPrefs.DeleteAll();
-
-        SaveToJson();
-    }
     /***************************************************************************************************************************************************/
     /***************************************************************************************************************************************************/
 

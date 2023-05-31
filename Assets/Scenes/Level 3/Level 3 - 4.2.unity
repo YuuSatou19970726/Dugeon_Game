@@ -271,70 +271,70 @@ MonoBehaviour:
   - position: {x: -0.5, y: 0.5, z: 0}
     color: {r: 0, g: 0, b: 0, a: 1}
     uv: {x: 0, y: 0}
-  - position: {x: -0.606, y: -0.4902, z: 0}
+  - position: {x: -0.5937, y: -0.4965, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: -0.5966, y: -0.5327, z: 0}
+  - position: {x: -0.5836, y: -0.5388, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: -0.5699, y: -0.5672, z: 0}
+  - position: {x: -0.5565, y: -0.5729, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: -0.5312, y: -0.5871, z: 0}
+  - position: {x: -0.5175, y: -0.5922, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: -0.5061, y: -0.5903, z: 0}
+  - position: {x: -0.4935, y: -0.5951, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 0.5052, y: -0.5909, z: 0}
+  - position: {x: 0.4952, y: -0.5935, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 0.5478, y: -0.5814, z: 0}
+  - position: {x: 0.5377, y: -0.5839, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 0.5822, y: -0.5548, z: 0}
+  - position: {x: 0.5721, y: -0.5572, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 0.6021, y: -0.516, z: 0}
+  - position: {x: 0.5918, y: -0.5184, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 0.6053, y: -0.4901, z: 0}
+  - position: {x: 0.595, y: -0.4939, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 0.597, y: 0.498, z: 0}
+  - position: {x: 0.5989, y: 0.4964, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 0.5872, y: 0.5405, z: 0}
+  - position: {x: 0.5896, y: 0.539, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 0.5602, y: 0.5747, z: 0}
+  - position: {x: 0.5631, y: 0.5735, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 0.5213, y: 0.5942, z: 0}
+  - position: {x: 0.5244, y: 0.5935, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 0.4982, y: 0.5972, z: 0}
+  - position: {x: 0.4988, y: 0.5968, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: -0.5038, y: 0.6097, z: 0}
+  - position: {x: -0.5072, y: 0.5956, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: -0.5464, y: 0.6007, z: 0}
+  - position: {x: -0.5497, y: 0.5861, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: -0.5812, y: 0.5745, z: 0}
+  - position: {x: -0.5841, y: 0.5594, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: -0.6015, y: 0.536, z: 0}
+  - position: {x: -0.6039, y: 0.5206, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: -0.605, y: 0.5098, z: 0}
+  - position: {x: -0.6071, y: 0.4942, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
   m_Triangles: 000003000100010003000200040008000800040008000900040009000a0004000a000b0004000b000c00040005000d0004000c000d0005000d000e0005000e000f0005000f001000050010001100050006001200050011001200060012001300060013001400060014001500060015001600060007001700060016001700070017001800070018001900070019001a0007001a001b0008000400070008001b000700
   m_LocalBounds:
-    m_Center: {x: -0.00034999847, y: 0.00940001, z: 0}
-    m_Extent: {x: 0.60565, y: 0.6003, z: 0}
+    m_Center: {x: -0.004099995, y: 0.00085002184, z: 0}
+    m_Extent: {x: 0.60300004, y: 0.59595, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -1920,8 +1920,8 @@ MonoBehaviour:
   actors:
   - name: Sword Boy
     sprite: {fileID: 0}
-  - name: Status
-    sprite: {fileID: 21300150, guid: 7810966f0f690954c87305933cabf2b0, type: 3}
+  - name: Ghost
+    sprite: {fileID: 153246073, guid: 18cf6363a69ad8e47a080aad2513b08d, type: 3}
   activeAfterDialog: {fileID: 0}
 --- !u!4 &1959404140
 Transform:
