@@ -71,7 +71,7 @@ public class MainMenu : MonoBehaviour
     public void BackToMainMenuButton()
     {
         ShowMainMenu();
-        GetData();
+        // GetData();
     }
 
     public void ResetGameButton()
@@ -97,11 +97,13 @@ public class MainMenu : MonoBehaviour
     public void GetDifficult(int choice)
     {
         difficult = choice;
+        GetData();
     }
 
     public void GetVolume(float value)
     {
         volume = value;
+        GetData();
     }
     #endregion
     //********************************************************************************************************************************************//

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class SoundEffect : MonoBehaviour
 {
-    AudioSource audioSource;
+    [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip[] audioClips;
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        // audioSource = GetComponent<AudioSource>();
     }
 
     public void PlayAudio(int index)

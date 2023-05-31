@@ -18,13 +18,14 @@ public class BackgroundMusic : MonoBehaviour
 
     void Update()
     {
+        audioSource.volume = GameManager.instance.SetVolume();
+        
         if (!audioSource.isPlaying)
             PlayMusic();
     }
     void PlayMusic()
     {
         int index = GetRandomClip();
-        audioSource.volume = GameManager.instance.SetVolume();
         audioSource.clip = audioClips[index];
         audioSource.Play();
     }

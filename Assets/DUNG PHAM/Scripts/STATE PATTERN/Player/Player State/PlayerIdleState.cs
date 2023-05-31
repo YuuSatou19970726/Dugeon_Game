@@ -65,5 +65,8 @@ public class PlayerIdleState : IState
 
         if (player.playerCollision.isLeftWall || player.playerCollision.isRightWall)
             player.SwitchState(player.wallSlideState);
+
+        if (player.playerInteract.isClimbing) player.SwitchState(player.ladderState);
+
     }
 }

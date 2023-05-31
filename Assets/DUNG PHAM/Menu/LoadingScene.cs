@@ -12,6 +12,7 @@ public class LoadingScene : MonoBehaviour
 
     [SerializeField] GameObject[] backgrounds;
 
+    [SerializeField] int index;
     //********************************************************************************************************************************************//
     //********************************************************************************************************************************************//
 
@@ -20,7 +21,7 @@ public class LoadingScene : MonoBehaviour
         LoadLevel();
     }
     #region LOADING SCENE
-    public void LoadLevel()
+    void LoadLevel()
     {
         ChooseBackground();
 
@@ -28,11 +29,14 @@ public class LoadingScene : MonoBehaviour
     }
     IEnumerator LoadAsynchronously()
     {
+        index = GameManager.instance.index;
+        AsyncOperation operation = SceneManager.LoadSceneAsync(index);
+        operation.allowSceneActivation = false;
+
         float x = 0f;
         float t = 0f;
-        loadingSlider.value = x;
 
-        while (loadingSlider.value < 1)
+        while (!operation.isDone)
         {
             if (x > 1) x = 1;
             loadingSlider.value = Mathf.Lerp(0, 1, x);
@@ -43,13 +47,11 @@ public class LoadingScene : MonoBehaviour
             yield return new WaitForSeconds(t);
 
             x += Random.Range(0, 0.2f);
-        }
 
-        int index = GameManager.instance.index;
-
-        if (loadingSlider.value == 1)
-        {
-            SceneManager.LoadSceneAsync(index);
+            if (x >= 1)
+            {
+                operation.allowSceneActivation = true;
+            }
         }
     }
 
