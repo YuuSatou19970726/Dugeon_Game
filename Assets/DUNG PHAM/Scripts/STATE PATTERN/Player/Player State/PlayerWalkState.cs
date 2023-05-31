@@ -45,6 +45,8 @@ public class PlayerWalkState : IState
         {
             player.SwitchState(player.jumpState);
         }
+
+        if (player.playerInteract.isClimbing) player.SwitchState(player.ladderState);
     }
 
 }

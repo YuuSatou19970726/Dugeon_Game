@@ -17,6 +17,7 @@ public class PlayerStateManager : AStateMachine
     PlayerDash playerDash;
     PlayerWallLedgeGrabAndClimb playerLedge;
     PlayerWallSlideAndJump playerWall;
+    public PlayerInteractTile playerInteract;
     void GetObjectComponents()
     {
         playerDatabase = GetComponent<PlayerDatabase>();
@@ -31,6 +32,7 @@ public class PlayerStateManager : AStateMachine
         playerDash = GetComponent<PlayerDash>();
         playerLedge = GetComponent<PlayerWallLedgeGrabAndClimb>();
         playerWall = GetComponent<PlayerWallSlideAndJump>();
+        playerInteract = GetComponent<PlayerInteractTile>();
     }
     #endregion
 
@@ -57,7 +59,7 @@ public class PlayerStateManager : AStateMachine
     public PlayerWallClimbState wallClimb;
     public PlayerHurtState hurtState;
     public PlayerDieState dieState;
-
+    public PlayerLadderClimbState ladderState;
 
     void StateDeclaration()
     {
@@ -80,6 +82,7 @@ public class PlayerStateManager : AStateMachine
         wallClimb = new PlayerWallClimbState(this, playerLedge);
         hurtState = new PlayerHurtState(this, playerAttack);
         dieState = new PlayerDieState(this);
+        ladderState = new PlayerLadderClimbState(this, playerInteract);
     }
 
     void Awake()

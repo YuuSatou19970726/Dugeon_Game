@@ -15,8 +15,7 @@ public class PlayerInteractTile : MonoBehaviour
     const string SPIKE = "Trap";
 
     public float climbSpeed, swimSpeed;
-    [SerializeField] bool isClimbing, isSwimming, isSpiking;
-    float stayTimer;
+    public bool isClimbing, isSwimming, isSpiking;
 
     #endregion
 
@@ -91,7 +90,7 @@ public class PlayerInteractTile : MonoBehaviour
 
     /**********************************************************************************************************************************/
 
-    void LadderClimb()
+     void LadderClimb()
     {
         if (!isClimbing) return;
 
@@ -111,8 +110,6 @@ public class PlayerInteractTile : MonoBehaviour
         if (!isSpiking) return;
 
         playerAttack.GetDamage(10, coli.transform);
-
-        stayTimer = 0f;
     }
 
     /**********************************************************************************************************************************/
@@ -122,7 +119,6 @@ public class PlayerInteractTile : MonoBehaviour
         if (!isSwimming) return;
 
         playerAttack.GetDamage(10, coli.transform);
-        stayTimer = 0f;
     }
 
     /**********************************************************************************************************************************/
@@ -142,7 +138,7 @@ public class PlayerInteractTile : MonoBehaviour
         }
     }
 
-   
+
     /**********************************************************************************************************************************/
     /**********************************************************************************************************************************/
 
