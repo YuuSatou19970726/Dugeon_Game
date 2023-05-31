@@ -43,13 +43,9 @@ public class PlayerWallEdgeState : IState
             player.SwitchState(player.wallClimb);
 
         if (player.inputController.inputY < 0)
-        {
-            player.SwitchState(player.fallState);
-        }
+            player.SwitchState(player.wallSlideState);
 
         if (player.inputController.isJumpPress)
-        {
             player.SwitchState(player.wallJumpState);
-        }
     }
 }

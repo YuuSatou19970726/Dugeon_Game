@@ -14,6 +14,7 @@ public class PlayerCollisionDetector : MonoBehaviour
     public bool isLeftEdge, isRightEdge;
     Vector3 checkpoint;
     public float longLine = 0.3f;
+    public float fixHeight = 0.2f;
 
     /**************************************************************************************************************************************************/
     /**************************************************************************************************************************************************/
@@ -84,11 +85,11 @@ public class PlayerCollisionDetector : MonoBehaviour
         Gizmos.color = Color.green;
 
         Vector3 upLeftPointA = transform.position + upperLeftWallCheckpoint;
-        Vector3 upLeftPointB = new Vector3(upLeftPointA.x - longLine, upLeftPointA.y);
+        Vector3 upLeftPointB = new Vector3(upLeftPointA.x - longLine, upLeftPointA.y + fixHeight);
         Gizmos.DrawLine(upLeftPointA, upLeftPointB);
 
         Vector3 upRightPointA = transform.position + upperRightWallCheckpoint;
-        Vector3 upRightPointB = new Vector3(upRightPointA.x + longLine, upRightPointA.y);
+        Vector3 upRightPointB = new Vector3(upRightPointA.x + longLine, upRightPointA.y + fixHeight);
         Gizmos.DrawLine(upRightPointA, upRightPointB);
     }
 
@@ -148,7 +149,7 @@ public class PlayerCollisionDetector : MonoBehaviour
         }
 
         Vector3 upLeftPointA = transform.position + upperLeftWallCheckpoint;
-        Vector3 upLeftPointB = new Vector3(upLeftPointA.x - longLine, upLeftPointA.y);
+        Vector3 upLeftPointB = new Vector3(upLeftPointA.x - longLine, upLeftPointA.y + fixHeight);
 
         Collider2D leftUpper = Physics2D.OverlapArea(upLeftPointA, upLeftPointB, playerDatabase.wallLayer);
 
@@ -168,7 +169,7 @@ public class PlayerCollisionDetector : MonoBehaviour
         }
 
         Vector3 upRightPointA = transform.position + upperRightWallCheckpoint;
-        Vector3 upRightPointB = new Vector3(upRightPointA.x + longLine, upRightPointA.y);
+        Vector3 upRightPointB = new Vector3(upRightPointA.x + longLine, upRightPointA.y + fixHeight);
 
         Collider2D rightUpper = Physics2D.OverlapArea(upRightPointA, upRightPointB, playerDatabase.wallLayer);
 

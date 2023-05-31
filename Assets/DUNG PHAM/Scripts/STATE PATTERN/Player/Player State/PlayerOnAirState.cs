@@ -45,22 +45,16 @@ public class PlayerOnAirState : IState
                 player.SwitchState(player.fallState);
 
         if (player.playerCollision.isGrounded)
-        {
             player.SwitchState(player.idleState);
-        }
+
+        if (player.playerCollision.isLeftEdge || player.playerCollision.isRightEdge)
+            player.SwitchState(player.wallEdge);
 
         if (player.playerCollision.isLeftWall || player.playerCollision.isRightWall)
-        {
-            if (player.playerCollision.isLeftEdge || player.playerCollision.isRightEdge)
-                player.SwitchState(player.wallEdge);
-
             player.SwitchState(player.wallSlideState);
-        }
 
         if (player.inputController.isDashPress)
-        {
             player.SwitchState(player.dashState);
-        }
 
         if (player.inputController.isJumpPress)
             player.SwitchState(player.jumpState);

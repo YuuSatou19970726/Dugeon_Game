@@ -46,12 +46,8 @@ public class PlayerWallLedgeGrabAndClimb : MonoBehaviour
     #region LEDGE GRAB
     public void WallEdgeGrab()
     {
-        if (playerCollision.isLeftEdge || playerCollision.isRightEdge)
-        {
-            playerRigid.velocity = Vector2.zero;
-            playerRigid.gravityScale = 0;
-            transform.localScale = new Vector3(ledgeSide, 1, 1);
-        }
+        playerRigid.velocity = Vector2.zero;
+        transform.localScale = new Vector3(ledgeSide, 1, 1);
     }
     #endregion
 

@@ -6,9 +6,11 @@ public class PlayerFallState : IState
 {
 
     PlayerStateManager player;
+    Rigidbody2D rigid;
     public PlayerFallState(PlayerStateManager player)
     {
         this.player = player;
+        rigid = player.GetComponent<Rigidbody2D>();
     }
 
 
@@ -40,7 +42,7 @@ public class PlayerFallState : IState
 
         if (player.playerCollision.isGrounded)
         {
-            if (player.GetComponent<Rigidbody2D>().velocity.y < -player.playerDatabase.maxFallVelocity / 2)
+            if (rigid.velocity.y < -player.playerDatabase.maxFallVelocity * 0.5f)
             {
                 player.SwitchState(player.crouchState);
                 player.soundEffect.PlayAudio(3);

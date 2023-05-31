@@ -507,7 +507,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.25, y: 1.25}
+  m_Size: {x: 3.125, y: 2.3125}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -682,7 +682,8 @@ MonoBehaviour:
   isRightWall: 0
   isLeftEdge: 0
   isRightEdge: 0
-  longLine: 0.3
+  longLine: 0.2
+  fixHeight: 0.2
 --- !u!114 &2012270252228052878
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -44,8 +44,7 @@ public class PlayerWallJumpState : IState
             player.SwitchState(player.dieState);
 
         if (playerRigid.velocity.y < 0)
-        {
             player.SwitchState(player.onAirState);
-        }
+
     }
 }
