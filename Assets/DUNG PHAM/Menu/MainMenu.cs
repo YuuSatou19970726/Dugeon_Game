@@ -71,7 +71,6 @@ public class MainMenu : MonoBehaviour
     public void BackToMainMenuButton()
     {
         ShowMainMenu();
-        // GetData();
     }
 
     public void ResetGameButton()

@@ -16,10 +16,6 @@ public class SceneChanger : MonoBehaviour
     {
         StartCoroutine(SceneChangeCoroutine());
     }
-    void ChangeScene()
-    {
-        SceneManager.LoadSceneAsync(sceneIndex);
-    }
 
     IEnumerator SceneChangeCoroutine()
     {
@@ -27,6 +23,6 @@ public class SceneChanger : MonoBehaviour
 
         yield return new WaitForSeconds(1);
 
-        ChangeScene();
+        SceneManager.LoadSceneAsync(sceneIndex);
     }
 }

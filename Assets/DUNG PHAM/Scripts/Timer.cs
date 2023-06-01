@@ -7,19 +7,15 @@ public class Timer : MonoBehaviour
     [SerializeField] GameObject activeTarget;
     [SerializeField] bool active;
     [SerializeField] float dueTime;
-    float timer;
     void Start()
     {
-        timer = 0f;
-        activeTarget.SetActive(!active);
+        StartCoroutine(LoadToMenu());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator LoadToMenu()
     {
-        timer += Time.deltaTime;
+        yield return new WaitForSeconds(dueTime);
 
-        if (timer > dueTime)
-            activeTarget.SetActive(active);
+        activeTarget.SetActive(active);
     }
 }

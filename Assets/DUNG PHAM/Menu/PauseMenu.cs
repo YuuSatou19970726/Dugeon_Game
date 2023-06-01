@@ -72,11 +72,13 @@ public class PauseMenu : MonoBehaviour
     public void GetDifficult(int choice)
     {
         difficult = choice;
+        GetData();
     }
 
     public void GetVolume(float value)
     {
         volume = value;
+        GetData();
     }
     #endregion
 }
