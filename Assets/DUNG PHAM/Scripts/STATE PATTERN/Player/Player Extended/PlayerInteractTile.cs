@@ -109,7 +109,7 @@ public class PlayerInteractTile : MonoBehaviour
     {
         if (!isSpiking) return;
 
-        playerAttack.GetDamage(10, coli.transform);
+        playerAttack.GetDamage(playerDatabase.spikeDamage, coli.transform);
     }
 
     /**********************************************************************************************************************************/
@@ -118,7 +118,7 @@ public class PlayerInteractTile : MonoBehaviour
     {
         if (!isSwimming) return;
 
-        playerAttack.GetDamage(10, coli.transform);
+        playerAttack.GetDamage(playerDatabase.spikeDamage, coli.transform);
     }
 
     /**********************************************************************************************************************************/

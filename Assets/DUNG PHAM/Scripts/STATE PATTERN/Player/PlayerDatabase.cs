@@ -36,4 +36,16 @@ public class PlayerDatabase : MonoBehaviour
     [Header("Attack")]
     public float attackDamage = 10f;
     public float hitResetTime = 3f;
+    public float spikeDamage = 5f;
+
+    void Start()
+    {
+        ApplyDifficult();
+    }
+    void ApplyDifficult()
+    {
+        int ratio = GameManager.instance.SetDifficult();
+
+        spikeDamage *= ratio;
+    }
 }
