@@ -465,7 +465,8 @@ MonoBehaviour:
   healthBarHolder: {fileID: 2323738203053933024}
   maxHealth: 500
   health: 0
-  sounds: []
+  sounds:
+  - {fileID: 8300000, guid: 45e1878c8ccbf0746927b9dc1e0d6656, type: 3}
   moveSpeed: 5
   attackDamage: 20
   attackNumber: 2
@@ -474,6 +475,8 @@ MonoBehaviour:
   attackCooldown: 5
   minAttackRange: 0
   maxAttackRange: 4
+  fixMinRange: 0
+  fixMaxRange: 0
   targetFilter:
     useTriggers: 0
     useLayerMask: 1
