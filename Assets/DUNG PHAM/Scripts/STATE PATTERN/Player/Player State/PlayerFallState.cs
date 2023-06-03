@@ -42,15 +42,15 @@ public class PlayerFallState : IState
 
         if (player.playerCollision.isGrounded)
         {
-            if (rigid.velocity.y < -player.playerDatabase.maxFallVelocity * 0.5f)
+            // if (rigid.velocity.y < -player.playerDatabase.maxFallVelocity * 0.5f)
             {
                 player.SwitchState(player.crouchState);
                 player.soundEffect.PlayAudio(3);
             }
-            else
-            {
-                player.SwitchState(player.idleState);
-            }
+            // else
+            // {
+            //     player.SwitchState(player.idleState);
+            // }
         }
 
         if (player.playerCollision.isRightEdge || player.playerCollision.isLeftEdge)

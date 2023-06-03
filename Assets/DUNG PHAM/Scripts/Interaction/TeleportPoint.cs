@@ -16,10 +16,6 @@ public class TeleportPoint : MonoBehaviour
             gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
     IEnumerator TeleportToNextPoint()
     {
         yield return null;
@@ -34,7 +30,7 @@ public class TeleportPoint : MonoBehaviour
                 break;
             }
         }
-        
+
         StartCoroutine(TeleportToNextPoint());
     }
 
@@ -42,14 +38,18 @@ public class TeleportPoint : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (index + 1 >= teleports.Length) player.position = teleports[0].position;
-            else player.position = teleports[index + 1].position;
+            player.GetComponent<PlayerController>().UnGravity(1f);
+
+            if (index + 1 >= teleports.Length)
+                player.position = teleports[0].position;
+            else
+                player.position = teleports[index + 1].position;
         }
     }
 
-    void OnDrawGizmosSelected()
-    {
-        for (int i = 0; i < teleports.Length; i++)
-        { Gizmos.DrawWireSphere(teleports[i].position, 0.3f); }
-    }
+    // void OnDrawGizmosSelected()
+    // {
+    //     for (int i = 0; i < teleports.Length; i++)
+    //     { Gizmos.DrawWireSphere(teleports[i].position, 0.3f); }
+    // }
 }

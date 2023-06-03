@@ -2317,7 +2317,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Gradient, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"colorKeys":[{"color":{"r":0.08627451211214066,"g":1.4980392456054688,"b":0.0,"a":1.0},"time":0.0},{"color":{"r":1.4980392456054688,"g":1.4196078777313233,"b":0.0,"a":1.0},"time":0.21765469014644624},{"color":{"r":1.4980392456054688,"g":0.8156862854957581,"b":0.0,"a":1.0},"time":0.48529791831970217},{"color":{"r":1.4980392456054688,"g":0.8078431487083435,"b":0.0,"a":1.0},"time":0.7264667749404907},{"color":{"r":1.4980392456054688,"g":0.11764705926179886,"b":0.0,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":1.0,"time":0.0},{"alpha":1.0,"time":1.0}],"gradientMode":0}'
+      m_SerializableObject: '{"colorKeys":[{"color":{"r":0.062745101749897,"g":1.0980392694473267,"b":0.0,"a":1.0},"time":0.0},{"color":{"r":1.0586621761322022,"g":1.9056603908538819,"b":0.025169000029563905,"a":1.0},"time":0.21470969915390016},{"color":{"r":3.211519479751587,"g":0.8911545872688294,"b":0.050442714244127277,"a":1.0},"time":0.47058823704719546},{"color":{"r":1.600000023841858,"g":0.30588236451148989,"b":0.0,"a":1.0},"time":0.723537027835846},{"color":{"r":1.0,"g":0.20188677310943604,"b":0.2926900386810303,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":1.0,"time":0.0},{"alpha":1.0,"time":1.0}],"gradientMode":0}'
     m_Space: 2147483647
   m_Property:
     name: 
@@ -3426,7 +3426,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEditor.VFX.Vector, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"vector":{"x":0.0,"y":-9.8100004196167,"z":0.0}}'
+      m_SerializableObject: '{"vector":{"x":0.0,"y":-19.6200008392334,"z":0.0}}'
     m_Space: 0
   m_Property:
     name: Force

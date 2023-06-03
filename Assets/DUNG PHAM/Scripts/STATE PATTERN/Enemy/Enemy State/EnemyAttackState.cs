@@ -31,8 +31,8 @@ public class EnemyAttackState : IState
     {
         if (enemy.enemyAnimation.CheckState(2))
         {
-            if (enemy.enemyAnimation.currentState.normalizedTime > 0.5f && enemy.enemyController.isHurt)
-                enemy.SwitchState(enemy.hurtState);
+            // if (enemy.enemyAnimation.currentState.normalizedTime > 0.5f && enemy.enemyController.isHurt)
+            //     enemy.SwitchState(enemy.hurtState);
 
             if (enemy.enemyAnimation.currentState.normalizedTime > 1 && !enemy.enemyController.canAttack)
                 enemy.SwitchState(enemy.idleState);

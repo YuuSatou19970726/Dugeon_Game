@@ -475,8 +475,8 @@ MonoBehaviour:
   attackCooldown: 5
   minAttackRange: 0
   maxAttackRange: 4
-  fixMinRange: 0
-  fixMaxRange: 0
+  fixMinRange: -0.5
+  fixMaxRange: 3
   targetFilter:
     useTriggers: 0
     useLayerMask: 1

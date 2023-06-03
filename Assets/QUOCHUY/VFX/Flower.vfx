@@ -17,10 +17,10 @@ MonoBehaviour:
   categories: []
   uiBounds:
     serializedVersion: 2
-    x: 16
+    x: 356
     y: -190
-    width: 1349
-    height: 1846
+    width: 1010
+    height: 1826
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1

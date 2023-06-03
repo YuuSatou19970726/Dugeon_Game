@@ -210,28 +210,28 @@ MonoBehaviour:
   - position: {x: -0.5008178, y: -0.06088559, z: 0}
     color: {r: 0, g: 0, b: 0, a: 1}
     uv: {x: 0, y: 0}
-  - position: {x: -0.5085, y: -0.5025, z: 0}
+  - position: {x: -0.4944, y: -0.4977, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 0.5049, y: -0.497, z: 0}
+  - position: {x: 0.507, y: -0.5099, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 0.5054, y: 0.4906, z: 0}
+  - position: {x: 0.4984, y: 0.4918, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: -0.4951, y: 0.5044, z: 0}
+  - position: {x: -0.4928, y: 0.5092, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: -0.5067, y: 0.0769, z: 0}
+  - position: {x: -0.4963, y: 0.0751, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: -0.51, y: -0.0583, z: 0}
+  - position: {x: -0.5081, y: -0.0532, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
   m_Triangles: 00000500010001000500020002000400030002000500040006000c000c00060007000d0006000c000d00070008000e0007000d000e00080009000f0008000e000f0009000a00100009000f0010000a000b0011000a00100011000c0006000b000c0011000b00
   m_LocalBounds:
-    m_Center: {x: -0.0022999942, y: 0.00095000863, z: 0}
-    m_Extent: {x: 0.50769997, y: 0.50345004, z: 0}
+    m_Center: {x: -0.00054997206, y: -0.00034999847, z: 0}
+    m_Extent: {x: 0.50755, y: 0.50955, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -515,7 +515,7 @@ MonoBehaviour:
   - name: Sword Boy
     sprite: {fileID: 0}
   - name: Slime
-    sprite: {fileID: -7078261816480267791, guid: bfeede70efd14484683f5956b4f1194b, type: 3}
+    sprite: {fileID: -804337808, guid: bfeede70efd14484683f5956b4f1194b, type: 3}
   activeAfterDialog: {fileID: 585331852}
 --- !u!1 &687262675
 GameObject:
