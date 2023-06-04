@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour
     public int index;
     public void LoadLevel(int index)
     {
-        SceneManager.LoadSceneAsync("LoadingScene");
+        SceneManager.LoadSceneAsync(1);
 
         this.index = index;
     }

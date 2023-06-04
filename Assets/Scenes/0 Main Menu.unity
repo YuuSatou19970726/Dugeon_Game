@@ -1021,8 +1021,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioClips:
-  - {fileID: 8300000, guid: e707c32e16e77d04ea19e2e0c0f9dfbb, type: 3}
-  - {fileID: 8300000, guid: 8a1034945d2b4fb4a81b8115376cebc7, type: 3}
+  - {fileID: 8300000, guid: b610065520958cf4a98ca98bdadbc59e, type: 3}
+  - {fileID: 8300000, guid: f832ed169244b8e47bfe90f6ab7496e1, type: 3}
 --- !u!1 &252429791
 GameObject:
   m_ObjectHideFlags: 0
@@ -5835,7 +5835,7 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: Heaven
+    - m_Text: Demo
       m_Image: {fileID: 0}
     - m_Text: Easy
       m_Image: {fileID: 0}
