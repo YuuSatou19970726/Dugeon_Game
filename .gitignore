@@ -46,11 +46,11 @@ ExportedObj/
 *.mdb
 *.opendb
 *.VC.db
-*.meta
-*.log
-*.asset
-*.vsconfig
-*.dwlt
+# *.meta
+# *.log
+# *.asset
+# *.vsconfig
+# *.dwlt
 *.mat
 
 # Unity3D generated meta files
@@ -74,7 +74,6 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
-*.dwlt
 UserSettings/Layouts/default-2021.dwlt
 Assets/SaveData.json
 Test
