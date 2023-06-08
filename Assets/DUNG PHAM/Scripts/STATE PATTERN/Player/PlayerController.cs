@@ -131,7 +131,7 @@ public class PlayerController : MonoBehaviour, IStopAttack
     IEnumerator UnGravityCoroutine(float time)
     {
         unGravity = true;
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSecondsRealtime(time);
         unGravity = false;
     }
 
