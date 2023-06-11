@@ -1995,70 +1995,70 @@ MonoBehaviour:
   - position: {x: -0.5, y: 0.5, z: 0}
     color: {r: 0, g: 0, b: 0, a: 1}
     uv: {x: 0, y: 0}
-  - position: {x: -0.603, y: -0.4901, z: 0}
+  - position: {x: -0.6016, y: -0.5006, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: -0.5938, y: -0.5327, z: 0}
+  - position: {x: -0.5918, y: -0.543, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: -0.5673, y: -0.5673, z: 0}
+  - position: {x: -0.5648, y: -0.5773, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: -0.5287, y: -0.5873, z: 0}
+  - position: {x: -0.5259, y: -0.5968, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: -0.5037, y: -0.5907, z: 0}
+  - position: {x: -0.5016, y: -0.5998, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 0.491, y: -0.5974, z: 0}
+  - position: {x: 0.4982, y: -0.5996, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 0.5336, y: -0.5882, z: 0}
+  - position: {x: 0.5407, y: -0.5901, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 0.5682, y: -0.5618, z: 0}
+  - position: {x: 0.5752, y: -0.5634, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 0.5883, y: -0.5231, z: 0}
+  - position: {x: 0.595, y: -0.5247, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 0.5917, y: -0.4978, z: 0}
+  - position: {x: 0.5982, y: -0.5002, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 0.596, y: 0.4996, z: 0}
+  - position: {x: 0.6042, y: 0.5049, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 0.5867, y: 0.5421, z: 0}
+  - position: {x: 0.595, y: 0.5475, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 0.5602, y: 0.5767, z: 0}
+  - position: {x: 0.5685, y: 0.5821, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 0.5215, y: 0.5967, z: 0}
+  - position: {x: 0.5299, y: 0.6021, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 0.4952, y: 0.6, z: 0}
+  - position: {x: 0.5045, y: 0.6055, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: -0.4979, y: 0.5918, z: 0}
+  - position: {x: -0.5094, y: 0.6085, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: -0.5404, y: 0.582, z: 0}
+  - position: {x: -0.5519, y: 0.5991, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: -0.5746, y: 0.555, z: 0}
+  - position: {x: -0.5865, y: 0.5726, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: -0.5941, y: 0.5161, z: 0}
+  - position: {x: -0.6064, y: 0.5339, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: -0.5971, y: 0.4924, z: 0}
+  - position: {x: -0.6097, y: 0.5077, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
   m_Triangles: 000003000100010003000200040008000800040008000900040009000a0004000a000b0004000b000c00040005000d0004000c000d0005000d000e0005000e000f0005000f001000050010001100050006001200050011001200060012001300060013001400060014001500060015001600060007001700060016001700070017001800070018001900070019001a0007001a001b0008000400070008001b000700
   m_LocalBounds:
-    m_Center: {x: -0.0034999847, y: 0.0013000071, z: 0}
-    m_Extent: {x: 0.5995, y: 0.59870005, z: 0}
+    m_Center: {x: -0.0027500093, y: 0.0043500066, z: 0}
+    m_Extent: {x: 0.60695004, y: 0.60415, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -3322,6 +3322,7 @@ GameObject:
   - component: {fileID: 1497770588}
   - component: {fileID: 1497770587}
   - component: {fileID: 1497770589}
+  - component: {fileID: 1497770590}
   m_Layer: 11
   m_Name: Platform
   m_TagString: OneWayPlatform
@@ -3666,11 +3667,30 @@ TilemapCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
+--- !u!251 &1497770590
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1497770585}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 256
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &1646170690
 GameObject:
   m_ObjectHideFlags: 0
