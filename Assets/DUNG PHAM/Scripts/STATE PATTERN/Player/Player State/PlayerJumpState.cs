@@ -5,22 +5,18 @@ using UnityEngine;
 public class PlayerJumpState : IState
 {
     PlayerStateManager player;
-    PlayerJump playerJump;
-    public PlayerJumpState(PlayerStateManager player, PlayerJump playerJump)
+    public PlayerJumpState(PlayerStateManager player)
     {
         this.player = player;
-        this.playerJump = playerJump;
     }
-
-
 
     public void EnterState()
     {
-        player.playerAnimation.PlayAnimatorClip("Jump");
+        Jump();
 
-        playerJump.Jump();
-
+        player.playerAnimation.PlayAnimatorClip(player.playerDatabase.JUMP);
         player.soundEffect.PlayAudio(2);
+
     }
 
 
@@ -41,15 +37,12 @@ public class PlayerJumpState : IState
         if (player.playerDatabase.isDied)
             player.SwitchState(player.dieState);
 
-        if (Mathf.Abs(player.GetComponent<Rigidbody2D>().velocity.y) < 2)
+        if (Mathf.Abs(player.rigid.velocity.y) < 2)
             if (!player.playerCollision.isLeftWall && !player.playerCollision.isRightWall)
                 player.SwitchState(player.onAirState);
 
         if (player.playerCollision.isLeftWall || player.playerCollision.isRightWall)
             player.SwitchState(player.wallSlideState);
-
-        if (player.playerCollision.isLeftEdge || player.playerCollision.isRightEdge)
-            player.SwitchState(player.wallEdge);
 
         if (player.inputController.isLeftMousePress)
             player.SwitchState(player.airAttackState);
@@ -59,5 +52,23 @@ public class PlayerJumpState : IState
 
         if (player.inputController.isDashPress)
             player.SwitchState(player.dashState);
+
+        if (player.playerInteract.isClimbing)
+            player.SwitchState(player.ladderState);
+
+
+
+        if (player.playerCollision.isLeftEdge || player.playerCollision.isRightEdge)
+            player.SwitchState(player.wallLedgeState);
+    }
+
+    void Jump()
+    {
+        if (player.playerController.jumpCount <= 0) return;
+        player.playerController.jumpTimer = 0;
+
+        player.rigid.velocity = new Vector2(player.rigid.velocity.x, player.playerDatabase.jumpForce);
+
+        player.playerController.jumpCount--;
     }
 }

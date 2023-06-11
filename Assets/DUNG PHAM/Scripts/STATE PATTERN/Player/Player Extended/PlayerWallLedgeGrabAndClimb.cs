@@ -64,7 +64,7 @@ public class PlayerWallLedgeGrabAndClimb : MonoBehaviour
 
     IEnumerator WallClimbDelay()
     {
-        GetEdgePoint(ledgeSide);
+        // GetEdgePoint(ledgeSide);
 
         yield return new WaitForSeconds(0.5f);
 
@@ -77,25 +77,25 @@ public class PlayerWallLedgeGrabAndClimb : MonoBehaviour
     }
 
     /**************************************************************************************************************************************************/
-    void GetEdgePoint(int ledgeSide)
-    {
-        switch (ledgeSide)
-        {
-            case -1:
-                {
-                    Collider2D leftHit = playerCollision.ledgePoint;
+    // void GetEdgePoint(int ledgeSide)
+    // {
+    //     switch (ledgeSide)
+    //     {
+    //         case -1:
+    //             {
+    //                 Collider2D leftHit = playerCollision.ledgePoint;
 
-                    wallEdgePoint = leftHit.bounds.center + new Vector3(leftHit.bounds.size.x / 2, leftHit.bounds.size.y / 2, 0);
-                    break;
-                }
-            case 1:
-                {
-                    Collider2D rightHit = playerCollision.ledgePoint;
+    //                 wallEdgePoint = leftHit.bounds.center + new Vector3(leftHit.bounds.size.x / 2, leftHit.bounds.size.y / 2, 0);
+    //                 break;
+    //             }
+    //         case 1:
+    //             {
+    //                 Collider2D rightHit = playerCollision.ledgePoint;
 
-                    wallEdgePoint = rightHit.bounds.center + new Vector3(-rightHit.bounds.size.x / 2, rightHit.bounds.size.y / 2, 0);
-                    break;
-                }
-        }
-    }
+    //                 wallEdgePoint = rightHit.bounds.center + new Vector3(-rightHit.bounds.size.x / 2, rightHit.bounds.size.y / 2, 0);
+    //                 break;
+    //             }
+    //     }
+    // }
     #endregion
 }

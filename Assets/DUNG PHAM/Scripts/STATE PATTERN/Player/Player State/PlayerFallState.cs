@@ -54,7 +54,7 @@ public class PlayerFallState : IState
         }
 
         if (player.playerCollision.isRightEdge || player.playerCollision.isLeftEdge)
-            player.SwitchState(player.wallEdge);
+            player.SwitchState(player.wallLedgeState);
 
         if (player.playerCollision.isLeftWall || player.playerCollision.isRightWall)
             player.SwitchState(player.wallSlideState);

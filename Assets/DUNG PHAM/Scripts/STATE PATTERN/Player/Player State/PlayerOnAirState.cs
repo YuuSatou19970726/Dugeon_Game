@@ -48,7 +48,7 @@ public class PlayerOnAirState : IState
             player.SwitchState(player.idleState);
 
         if (player.playerCollision.isLeftEdge || player.playerCollision.isRightEdge)
-            player.SwitchState(player.wallEdge);
+            player.SwitchState(player.wallLedgeState);
 
         if (player.playerCollision.isLeftWall || player.playerCollision.isRightWall)
             player.SwitchState(player.wallSlideState);

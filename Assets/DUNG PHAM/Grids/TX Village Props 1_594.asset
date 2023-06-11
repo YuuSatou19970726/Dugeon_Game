@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: TX Village Props_202
+  m_Name: TX Village Props 1_594
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: -1611944061, guid: e67eea7cfe275cb4ebef766326acb48e, type: 3}
+  m_Sprite: {fileID: 302264382, guid: f47d654f8e7594e4bafe8dcc5ea928f9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

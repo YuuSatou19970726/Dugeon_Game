@@ -4,25 +4,26 @@ using UnityEngine;
 
 public class PlayerWallClimbState : IState
 {
-
+    Collider2D playerColi;
+    Rigidbody2D playerRigid;
     PlayerStateManager player;
-    PlayerWallLedgeGrabAndClimb playerLedge;
-    string WALLCLB = "Wall Climb";
+    PlayerCollisionDetector playerCollision;
 
-
-    public PlayerWallClimbState(PlayerStateManager player, PlayerWallLedgeGrabAndClimb playerLedge)
+    public PlayerWallClimbState(PlayerStateManager player)
     {
         this.player = player;
-        this.playerLedge = playerLedge;
+        this.playerCollision = player.playerCollision;
+        playerRigid = player.GetComponent<Rigidbody2D>();
+        playerColi = player.GetComponent<Collider2D>();
     }
 
 
 
     public void EnterState()
     {
-        player.playerAnimation.PlayAnimatorClip(WALLCLB);
+        player.playerAnimation.PlayAnimatorClip(player.playerDatabase.WALLCLB);
 
-        playerLedge.WallClimb();
+        WallClimb();
     }
 
     public void ExitState()
@@ -42,10 +43,31 @@ public class PlayerWallClimbState : IState
         if (player.playerDatabase.isDied)
             player.SwitchState(player.dieState);
 
-        if (player.playerAnimation.currentState.IsName(WALLCLB)
+        if (player.playerAnimation.currentState.IsName(player.playerDatabase.WALLCLB)
          && player.playerAnimation.currentState.normalizedTime >= 0.9f)
         {
             player.SwitchState(player.idleState);
         }
     }
+
+    public void WallClimb()
+    {
+        player.StartCoroutine(WallClimbDelay());
+    }
+
+    /**************************************************************************************************************************************************/
+
+    IEnumerator WallClimbDelay()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        Vector3 position = new Vector3(
+            playerCollision.ledgePoint.x + playerColi.bounds.size.x / 2 * player.transform.localScale.x,
+            playerCollision.ledgePoint.y + playerColi.bounds.size.y / 2 + 0.46f,
+            0);
+
+        player.transform.position = position;
+    }
+
+    /**************************************************************************************************************************************************/
 }

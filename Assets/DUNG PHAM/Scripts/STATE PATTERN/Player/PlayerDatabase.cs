@@ -38,14 +38,42 @@ public class PlayerDatabase : MonoBehaviour
     public float hitResetTime = 3f;
     public float spikeDamage = 5f;
 
-    void Start()
+    [Header("Animation")]
+    public string IDLE = "Idle";
+    public string JUMP = "Jump";
+    public string CROUCH = "Crouch";
+    public string CROUCH_MOVE = "Crouch Move";
+    public string WALLSLIDE = "Wall Slide";
+    public string WALLJUMP = "Wall Jump";
+    public string LEDGE_GRAB = "Wall Grab";
+    public string WALLCLB = "Wall Climb";
+    public string DASH = "Wall Jump";
+    public string AIR_ATK = "Attack Jump 1";
+    public string AIR_ATK_1 = "Attack Jump 2";
+    public string AIR_ATK_2 = "Attack Jump 3 Begin";
+    public string AIR_ATK_2_LOOP = "Attack Jump 3 Loop";
+    public string AIR_ATK_2_END = "Attack Jump 3 End";
+    public string SPELL = "Spell Cast";
+
+    void Awake()
     {
         ApplyDifficult();
+        SpawnPlayer();
     }
     void ApplyDifficult()
     {
         int ratio = GameManager.instance.SetDifficult();
 
         spikeDamage *= ratio;
+    }
+    Vector2 position;
+    float health;
+    void SpawnPlayer()
+    {
+        position = GameManager.instance.SetPosition();
+        transform.position = position;
+
+        health = GameManager.instance.SetHealth();
+        GetComponent<PlayerAttackManager>().SetHealth(health);
     }
 }

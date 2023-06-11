@@ -910,7 +910,7 @@ MonoBehaviour:
   defaultDifficult: 2
   defaultVolume: 1
   defaultSavepoint: {x: 0, y: 0}
-  defaultHealth: 0
+  defaultHealth: 100
   index: 0
 --- !u!82 &230929596
 AudioSource:

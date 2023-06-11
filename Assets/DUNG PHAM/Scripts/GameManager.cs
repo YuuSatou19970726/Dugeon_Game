@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] int defaultDifficult = 2;
     [SerializeField] float defaultVolume = 1;
     [SerializeField] Vector2 defaultSavepoint = Vector2.zero;
-    [SerializeField] float defaultHealth = 100;
+    [SerializeField] float defaultHealth = 100f;
 
     [Header("Variables to get data")]
     int difficult;

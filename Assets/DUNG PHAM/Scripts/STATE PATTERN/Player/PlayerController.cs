@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour, IStopAttack
     #region MISCELLANEOUS
     InputControllerNew inputController;
     PlayerDatabase playerDatabase;
-    PlayerWallSlideAndJump playerWall;
     PlayerCollisionDetector playerCollision;
     Rigidbody2D playerRigid;
     Collider2D playerColi;
@@ -21,7 +20,6 @@ public class PlayerController : MonoBehaviour, IStopAttack
         playerCollision = GetComponent<PlayerCollisionDetector>();
         inputController = GetComponent<InputControllerNew>();
         playerDatabase = GetComponent<PlayerDatabase>();
-        playerWall = GetComponent<PlayerWallSlideAndJump>();
         playerRigid = GetComponent<Rigidbody2D>();
         playerColi = GetComponent<Collider2D>();
     }
@@ -49,8 +47,12 @@ public class PlayerController : MonoBehaviour, IStopAttack
     {
         FallGravityChange();
         MaxFallVelocity();
-    }
+        CoyoteJumpCheck();
 
+        CooldownTimer();
+        JumpCut();
+        JumpReset();
+    }
     #endregion
 
     /**********************************************************************************************************************************/
@@ -100,7 +102,7 @@ public class PlayerController : MonoBehaviour, IStopAttack
             return;
         }
 
-        if (playerWall.wallTimer <= 0.4f)
+        if (wallTimer <= 0.4f)
         {
             playerRigid.gravityScale = playerDatabase.gravity / 2;
             return;
@@ -110,11 +112,11 @@ public class PlayerController : MonoBehaviour, IStopAttack
         {
             if (playerCollision.isLeftWall || playerCollision.isRightWall)
             {
-                playerRigid.gravityScale = playerDatabase.gravity / 2;
+                playerRigid.gravityScale = playerDatabase.gravity;
                 return;
             }
 
-            playerRigid.gravityScale = playerDatabase.gravity * 2;
+            playerRigid.gravityScale += playerDatabase.gravity * 2 * Time.deltaTime;
             return;
         }
 
@@ -145,7 +147,58 @@ public class PlayerController : MonoBehaviour, IStopAttack
     #endregion
 
     /**********************************************************************************************************************************/
+
+    public float wallTimer;
+    public float jumpTimer;
+    public float dashTimer;
+    void CooldownTimer()
+    {
+        jumpTimer += Time.deltaTime;
+        wallTimer += Time.deltaTime;
+        dashTimer += Time.deltaTime;
+    }
     /**********************************************************************************************************************************/
 
+    public int jumpCount;
+    void JumpReset()
+    {
+        if (Input.GetKey(KeyCode.Space)) return;
 
+        if (playerCollision.isGrounded) jumpCount = playerDatabase.jumpNumber;
+    }
+
+    public void StopJump(float time)
+    {
+        StartCoroutine(StopJumpCoroutine(time));
+    }
+
+    IEnumerator StopJumpCoroutine(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        playerRigid.velocity = new Vector2(playerRigid.velocity.x, 0);
+    }
+
+    void JumpCut()
+    {
+        if (jumpTimer > 0.2f) return;
+
+        if (Input.GetKeyUp(KeyCode.Space))
+            StartCoroutine(StopJumpCoroutine(0));
+    }
+
+    /*************************************************** COYOTE JUMP ******************************************************************/
+    /**********************************************************************************************************************************/
+
+    float lastGroundTimer;
+
+    void CoyoteJumpCheck()
+    {
+        if (playerCollision.isGrounded)
+            lastGroundTimer = 0f;
+        else lastGroundTimer += Time.deltaTime;
+
+        if (lastGroundTimer <= playerDatabase.maxCoyoteTime)
+            playerCollision.isGrounded = true;
+    }
 }

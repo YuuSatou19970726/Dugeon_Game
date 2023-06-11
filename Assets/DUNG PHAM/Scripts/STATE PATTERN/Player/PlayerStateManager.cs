@@ -13,11 +13,11 @@ public class PlayerStateManager : AStateMachine
     [HideInInspector] public PlayerAnimation playerAnimation;
     [HideInInspector] public SoundEffect soundEffect;
     PlayerAttackManager playerAttack;
-    PlayerJump playerJump;
     PlayerDash playerDash;
     PlayerWallLedgeGrabAndClimb playerLedge;
     PlayerWallSlideAndJump playerWall;
-    public PlayerInteractTile playerInteract;
+    [HideInInspector] public PlayerInteractTile playerInteract;
+    [HideInInspector] public Rigidbody2D rigid;
     void GetObjectComponents()
     {
         playerDatabase = GetComponent<PlayerDatabase>();
@@ -28,11 +28,12 @@ public class PlayerStateManager : AStateMachine
         soundEffect = GetComponentInChildren<SoundEffect>();
 
         playerAttack = GetComponent<PlayerAttackManager>();
-        playerJump = GetComponent<PlayerJump>();
         playerDash = GetComponent<PlayerDash>();
         playerLedge = GetComponent<PlayerWallLedgeGrabAndClimb>();
         playerWall = GetComponent<PlayerWallSlideAndJump>();
         playerInteract = GetComponent<PlayerInteractTile>();
+
+        rigid = GetComponent<Rigidbody2D>();
     }
     #endregion
 
@@ -55,8 +56,8 @@ public class PlayerStateManager : AStateMachine
     public PlayerCrouchMoveState crouchMoveState;
     public PlayerWallSlideState wallSlideState;
     public PlayerWallJumpState wallJumpState;
-    public PlayerWallEdgeState wallEdge;
-    public PlayerWallClimbState wallClimb;
+    public PlayerWallEdgeState wallLedgeState;
+    public PlayerWallClimbState wallClimbState;
     public PlayerHurtState hurtState;
     public PlayerDieState dieState;
     public PlayerLadderClimbState ladderState;
@@ -65,7 +66,7 @@ public class PlayerStateManager : AStateMachine
     {
         idleState = new PlayerIdleState(this);
         walkState = new PlayerWalkState(this);
-        jumpState = new PlayerJumpState(this, playerJump);
+        jumpState = new PlayerJumpState(this);
         runState = new PlayerRunState(this);
         fallState = new PlayerFallState(this);
         onAirState = new PlayerOnAirState(this);
@@ -76,10 +77,10 @@ public class PlayerStateManager : AStateMachine
         airAttackState = new PlayerAirAttackState(this, playerAttack);
         crouchState = new PlayerCrouchState(this);
         crouchMoveState = new PlayerCrouchMoveState(this);
-        wallSlideState = new PlayerWallSlideState(this, playerWall);
-        wallJumpState = new PlayerWallJumpState(this, playerWall);
-        wallEdge = new PlayerWallEdgeState(this, playerLedge);
-        wallClimb = new PlayerWallClimbState(this, playerLedge);
+        wallSlideState = new PlayerWallSlideState(this);
+        wallJumpState = new PlayerWallJumpState(this);
+        wallLedgeState = new PlayerWallEdgeState(this);
+        wallClimbState = new PlayerWallClimbState(this);
         hurtState = new PlayerHurtState(this, playerAttack);
         dieState = new PlayerDieState(this);
         ladderState = new PlayerLadderClimbState(this, playerInteract);
