@@ -1,5 +1,5 @@
 # Dungeon Game
-Project of Game Development with Unity.
+2D Project of Game Development with Unity.
 
 Authors:
 - Nguyễn Việt Dũng (Level 1)
